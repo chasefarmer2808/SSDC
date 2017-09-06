@@ -6,7 +6,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "start-dev": "nodemon server/app.js --watch server",
+    "start-prod": "nodemon server/app.js --watch server",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
