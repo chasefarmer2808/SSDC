@@ -12,7 +12,7 @@ export class NavbarComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {
-    this.navDropDown = false;
+    this.navDropDown = true;
   }
 
 }
