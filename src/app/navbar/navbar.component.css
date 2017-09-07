@@ -16,4 +16,11 @@ nav {
   margin-right: 16px;
   top: 50%;
   transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.nav-links-container ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }

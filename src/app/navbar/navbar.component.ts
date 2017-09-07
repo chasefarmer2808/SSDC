@@ -7,9 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor() { }
+  navDropDown:boolean;
+
+  constructor() {}
 
   ngOnInit() {
+    this.navDropDown = false;
   }
 
 }
