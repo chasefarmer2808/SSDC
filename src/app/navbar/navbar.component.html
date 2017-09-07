@@ -3,7 +3,7 @@
     <div class="nav-logo"></div>
     <div class="nav-burger" (click)="navDropDown = !navDropDown"><i class="fa fa-bars fa-2x" aria-hidden="true"></i></div>
   </div>
-  <div class="nav-links-container" [hidden]="!navDropDown">
+  <div class="nav-links-container" [@dropDown]="navDropDown">
     <ul class="nav-links">
       <li class="nav-link">Test</li>
       <li class="nav-link">Test</li>
