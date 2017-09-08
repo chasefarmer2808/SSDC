@@ -32,7 +32,11 @@ nav {
   line-height: 2em;
   border-bottom: 1px solid #F0B173;
   font-size: 40px;
-  color: white;
   padding-left: 16px;
   background-color: #191919;
+}
+
+.nav-link a {
+  text-decoration: none;
+  color: white;
 }
