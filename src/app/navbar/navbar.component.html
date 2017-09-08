@@ -1,14 +1,11 @@
 <nav class="navbar">
   <div class="navbar-container">
     <div class="nav-logo"></div>
-    <div class="nav-burger" (click)="navDropDown = !navDropDown"><i class="fa fa-bars fa-2x" aria-hidden="true"></i></div>
+    <div class="nav-burger" (click)="toggleNav()"><i class="fa fa-bars fa-2x" aria-hidden="true"></i></div>
   </div>
   <div class="nav-links-container" [@dropDown]="navDropDown">
     <ul class="nav-links">
-      <li class="nav-link"><a routerLink="/">Home</a></li>
-      <li class="nav-link"><a routerLink="/events">Events</a></li>
-      <li class="nav-link">Test</li>
-      <li class="nav-link">Test</li>
+      <li *ngFor="let route of myRoutes" class="nav-link" (click)="toggleNav()"><a routerLink="/{{route.path}}">{{route.data.name}}</a></li>
     </ul>
   </div>
 </nav>

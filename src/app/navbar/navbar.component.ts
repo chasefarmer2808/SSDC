@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Routes } from '@angular/router';
 import { trigger, state, style, animate, transition } from '@angular/animations';
+import { routes } from '../app-routing/app-routes';
 
 @Component({
   selector: 'app-navbar',
@@ -24,11 +26,17 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
 export class NavbarComponent implements OnInit {
 
   navDropDown:boolean;
+  myRoutes:Routes;
 
   constructor() {}
 
   ngOnInit() {
-    this.navDropDown = true;
+    this.navDropDown = false;
+    this.myRoutes = routes;
+  }
+
+  toggleNav() {
+    this.navDropDown = !this.navDropDown;
   }
 
 }
