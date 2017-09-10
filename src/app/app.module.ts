@@ -13,6 +13,7 @@ import { ContactComponent } from './contact/contact.component';
 
 import { ClickOutsideDirective } from './directives/click-outside.directive';
 import { OfficersComponent } from './officers/officers.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { OfficersComponent } from './officers/officers.component';
     EventsComponent,
     ContactComponent,
     ClickOutsideDirective,
-    OfficersComponent
+    OfficersComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

@@ -32,6 +32,7 @@
 
 .about-container {
   width: 100%;
+  height: auto;
   text-align: left;
   margin-top: 24px;
 }
