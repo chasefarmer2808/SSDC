@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 
 import { NavbarComponent } from './navbar.component';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -14,7 +15,7 @@ describe('NavbarComponent', () => {
       declarations: [ NavbarComponent ],
       imports: [
         RouterTestingModule,
-        BrowserAnimationsModule 
+        BrowserAnimationsModule
       ]
     })
     .compileComponents();
@@ -28,5 +29,14 @@ describe('NavbarComponent', () => {
 
   it('should be created', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should have imported routes', () => {
+    expect(component.myRoutes.length).toBeGreaterThan(0);
+  });
+
+  it('should have populated nav bar in view', () => {
+    let navLinks = fixture.nativeElement;
+    expect(navLinks.querySelectorAll('.nav-link').length).toEqual(component.myRoutes.length);
   });
 });
