@@ -7,9 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
+  clubName:string;
+  clubMessage:string;
+
   constructor() { }
 
   ngOnInit() {
+    this.clubName = 'Space Systems Design Group';
+    this.clubMessage = 'Orbiting student designes';
   }
 
 }

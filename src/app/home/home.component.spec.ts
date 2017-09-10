@@ -22,4 +22,14 @@ describe('HomeComponent', () => {
   it('should be created', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should show club name in view', () => {
+    let clubName = fixture.nativeElement;
+    expect(clubName.querySelector('#banner-title').innerHTML).toEqual(component.clubName);
+  });
+
+  it('should show club message in view', () => {
+    let clubMessage = fixture.nativeElement;
+    expect(clubMessage.querySelector('#banner-message').innerHTML).toEqual(component.clubMessage);
+  });
 });
