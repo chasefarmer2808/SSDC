@@ -27,12 +27,16 @@ export class NavbarComponent implements OnInit {
 
   navDropDown:boolean;
   myRoutes:Routes;
+  fbLink:string;
+  emailAddr:string;
 
   constructor() {}
 
   ngOnInit() {
-    this.navDropDown = false;
+    this.navDropDown = true;
     this.myRoutes = routes;
+    this.fbLink = 'https://www.facebook.com/groups/ufssdc/';
+    this.emailAddr = 'ssdc@gmail.com';
   }
 
   toggleNav() {
