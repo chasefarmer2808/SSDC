@@ -8,11 +8,16 @@
   margin-bottom: 8px;
 }
 
+.profile-container {
+  display: flex;
+  flex-direction: column;
+}
+
 .profile-picture {
   border-radius: 50%;
   overflow: hidden;
-  width: 200px;
-  height: 200px;
+  width: 250px;
+  height: 250px;
   margin: 0 auto;
 }
 
@@ -22,5 +27,16 @@
 }
 
 .officer-info {
+  text-align: left;
+  margin-left: 16px;
   margin-top: 8px;
+}
+
+.info {
+  margin-bottom: 8px;
+}
+
+.email a {
+  text-decoration: none;
+  color: #F0B173;
 }
