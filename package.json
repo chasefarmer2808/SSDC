@@ -5,7 +5,6 @@
   "main": "server/app.js",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
     "start_prod": "nodemon server/app.js --watch server",
     "build": "ng build",
     "test": "ng test",
