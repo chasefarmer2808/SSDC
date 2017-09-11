@@ -2,22 +2,20 @@
   <div class="heading">Meet the Officers</div>
 </div>
 <div id="officers-grid">
-  <div class="officer">
-    <div class="role">Web Master: Chase Farmer</div>
+  <div *ngFor="let officer of officers" class="officer">
+    <div class="role">{{officer.role}}: {{officer.name}}</div>
     <div class="profile-container">
       <div class="profile-picture">
-        <img src="../../assets/chase.jpg">
+        <img src="{{officer.pictureUrl}}">
       </div>
       <div class="officer-info">
         <div class="info">
-          Chase Farmer is a 5th year computer engineering major at the University
-          of Florida.  He has a passion for IoT and full stack development.  He
-          spends his free time running, rock climbing, and making websites.
+          {{officer.bio}}
         </div>
         <div class="email">
-          <a href="mailto:chasefarmer2808@ufl.edu">
+          <a href="mailto:{{officer.email}}">
             <i class="fa fa-envelope"></i>
-            chasefarmer2808@ufl.edu
+            {{officer.email}}
           </a>
         </div>
       </div>
