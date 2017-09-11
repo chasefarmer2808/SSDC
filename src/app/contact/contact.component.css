@@ -1,0 +1,26 @@
+.officer {
+  text-align: center;
+}
+
+.role {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.profile-picture {
+  border-radius: 50%;
+  overflow: hidden;
+  width: 200px;
+  height: 200px;
+  margin: 0 auto;
+}
+
+.profile-picture img {
+  width: 100%;
+  height: auto;
+}
+
+.officer-info {
+  margin-top: 8px;
+}

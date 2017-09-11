@@ -8,13 +8,15 @@ import { HomeComponent } from './home/home.component';
 
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { EventsComponent } from './events/events.component';
+import { ContactComponent } from './contact/contact.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     HomeComponent,
-    EventsComponent
+    EventsComponent,
+    ContactComponent
   ],
   imports: [
     BrowserModule,

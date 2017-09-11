@@ -1,1 +1,17 @@
+.heading-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
 
+.heading {
+  display: inline-block;
+  margin-bottom: 24px;
+  font-size: 24px;
+  font-weight: bold;
+  border-bottom: 1px solid black;
+}
+
+.quote {
+  font-style: italic;
+}
