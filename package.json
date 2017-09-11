@@ -5,6 +5,7 @@
   "main": "server/app.js",
   "scripts": {
     "preinstall": "npm install && npm install -g @angular/cli",
+    "postinstall": "ng build",
     "ng": "ng",
     "start_prod": "nodemon server/app.js --watch server",
     "build": "ng build",
@@ -15,6 +16,7 @@
   "private": true,
   "dependencies": {
     "@angular/animations": "^4.0.0",
+    "@angular/cli": "^1.1.2",
     "@angular/common": "^4.0.0",
     "@angular/compiler": "^4.0.0",
     "@angular/core": "^4.0.0",
