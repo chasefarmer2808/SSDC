@@ -4,7 +4,6 @@
   "license": "MIT",
   "main": "server/app.js",
   "scripts": {
-    "preinstall": "npm install && npm install -g @angular/cli",
     "postinstall": "ng build",
     "ng": "ng",
     "start_prod": "nodemon server/app.js --watch server",
