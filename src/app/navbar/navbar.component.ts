@@ -43,4 +43,8 @@ export class NavbarComponent implements OnInit {
     this.navDropDown = !this.navDropDown;
   }
 
+  closeNav() {
+    this.navDropDown = false;
+  }
+
 }

@@ -9,6 +9,7 @@ import { HomeComponent } from './home/home.component';
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { EventsComponent } from './events/events.component';
 import { ContactComponent } from './contact/contact.component';
+import { ClickOutsideDirective } from './directives/click-outside.directive';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { ContactComponent } from './contact/contact.component';
     NavbarComponent,
     HomeComponent,
     EventsComponent,
-    ContactComponent
+    ContactComponent,
+    ClickOutsideDirective
   ],
   imports: [
     BrowserModule,
