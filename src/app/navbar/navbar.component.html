@@ -1,18 +1,18 @@
 <nav class="navbar">
   <div class="navbar-container">
     <div class="nav-logo"></div>
-    <div class="nav-burger" (click)="toggleNav()"><i class="fa fa-bars fa-3x" aria-hidden="true"></i></div>
+    <div class="nav-burger" (click)="toggleNav()"><i class="fa fa-bars fa-2x" aria-hidden="true"></i></div>
   </div>
   <div class="nav-links-container" [@dropDown]="navDropDown">
     <ul class="nav-links">
-      <li *ngFor="let route of myRoutes" class="nav-link" (click)="toggleNav()"><a routerLink="/{{route.path}}">{{route.data.name}}</a></li>
+      <li *ngFor="let route of myRoutes" class="nav-link" (click)="toggleNav()" routerLink="/{{route.path}}"><a>{{route.data.name}}</a></li>
     </ul>
     <div class="social-media-container">
       <div class="social-media-icon">
-        <a class="no-decorate" href="{{fbLink}}" target="_blank"><i class="fa fa-facebook-square fa-3x" aria-hidden="true"></i></a>
+        <a class="no-decorate" href="{{fbLink}}" target="_blank"><i class="fa fa-facebook-square fa-2x" aria-hidden="true"></i></a>
       </div>
       <div class="social-media-icon">
-        <a href="mailto:{{emailAddr}}"><i class="fa fa-envelope fa-3x" aria-hidden="true"></i></a>
+        <a href="mailto:{{emailAddr}}"><i class="fa fa-envelope fa-2x" aria-hidden="true"></i></a>
       </div>
     </div>
   </div>
