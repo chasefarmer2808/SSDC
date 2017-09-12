@@ -18,6 +18,38 @@ export const Officers: Officer[] = [
     email: 'kempienski@ufl.edu'
   },
   {
+    name: 'Kevin Almanzar',
+    role: 'VP External',
+    pictureUrl: '../../../assets/kevin.jpg',
+    bio: `Kevin Almanzar is a 4th year Aerospace Engineering major at the
+          University of Florida.`,
+    email: 'kalmanzar5@ufl.edu'
+  },
+  {
+    name: 'Zane Gyorko',
+    role: 'BEC Rep',
+    pictureUrl: '../../../assets/zane.jpg',
+    bio: `Zane Gyorko is a 2nd year Electrical Engineering major at the
+          University of Florida.`,
+    email: 'zgyorko@ufl.edu'
+  },
+  {
+    name: 'Chris Charters',
+    role: 'Treasurer',
+    pictureUrl: '../../../assets/chris.jpg',
+    bio: 'Chris Charters has the best mom in the whole wide world',
+    email: 'chartersauce25@ufl.edu'
+  },
+  {
+    name: 'Logan Sprole',
+    role: 'Secretary',
+    pictureUrl: '../../../assets/logan.jpg',
+    bio: `Logan Sprole is a 3rd year Economics major at the University of
+          Florida.  He uses a CM QuickFile Rapid keyboad with Cherry MX red
+          switches.`,
+    email: 'lsprole@ufl.edu'
+  },
+  {
     name: 'Chase Farmer',
     role: 'Web Master',
     pictureUrl: '../../../assets/chase.jpg',

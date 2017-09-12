@@ -9,8 +9,6 @@
 }
 
 .profile-container {
-  display: flex;
-  flex-direction: column;
   margin-bottom: 16px;
 }
 
@@ -28,9 +26,10 @@
 }
 
 .officer-info {
+  display: inline-block;
   text-align: left;
-  margin-left: 16px;
   margin-top: 8px;
+  margin-left: 16px;
 }
 
 .info {
