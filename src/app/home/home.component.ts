@@ -14,7 +14,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.clubName = 'Space Systems Design Group';
-    this.clubMessage = 'Orbiting student designes';
+    this.clubMessage = 'Orbiting student designs';
   }
 
 }
