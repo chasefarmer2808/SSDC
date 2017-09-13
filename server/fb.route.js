@@ -7,7 +7,7 @@ const secrets = require('./secrets');
 
 const router = express.Router();
 
-router.get('/getEvents', function (req, res) {
+router.get('/getEvents', function (req, res, next) {
   var options = {
     uri: `${config.fbApiRootUrl}/${config.ssdcGroupId}/events`,
     qs: {
@@ -21,7 +21,7 @@ router.get('/getEvents', function (req, res) {
       res.send(events);
     })
     .catch(function(err) {
-      res.send(err);
+      next(err);
     });
 });
 
