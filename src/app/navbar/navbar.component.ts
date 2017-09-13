@@ -36,7 +36,7 @@ export class NavbarComponent implements OnInit {
     this.navDropDown = false;
     this.myRoutes = routes;
     this.fbLink = 'https://www.facebook.com/groups/ufssdc/';
-    this.emailAddr = 'ssdc@gmail.com';
+    this.emailAddr = 'ufssdc@gmail.com';
   }
 
   toggleNav() {
