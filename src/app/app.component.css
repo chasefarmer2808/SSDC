@@ -12,6 +12,11 @@
   border-bottom: 1px solid black;
 }
 
+.underline-white {
+  display: inline-block;
+  border-bottom: 1px solid white;
+}
+
 .quote {
   font-style: italic;
 }
