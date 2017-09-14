@@ -8,7 +8,7 @@ import { Event } from '../../events/event';
 @Injectable()
 export class FacebookService {
 
-  private fbUrl = 'http://localhost:5000/api/v1/fb/getEvents';
+  private fbUrl = '/api/v1/fb/getEvents';
 
   constructor(private http: Http) { }
 
