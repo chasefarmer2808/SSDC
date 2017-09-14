@@ -4,6 +4,6 @@ export class Event {
   name: string;
   description: string;
   place: Place;
-  startTime: string;
-  endTime: string;
+  start_time: string;
+  end_time: string;
 }

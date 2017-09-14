@@ -6,7 +6,7 @@ import { Event } from './event';
 @Component({
   selector: 'app-events',
   templateUrl: './events.component.html',
-  styleUrls: ['./events.component.css'],
+  styleUrls: ['./events.component.css', '../app.component.css'],
   providers: [FacebookService]
 })
 export class EventsComponent implements OnInit {
@@ -21,7 +21,7 @@ export class EventsComponent implements OnInit {
 
   getEvents(): void {
     this.facebookService.getEvents()
-        .then(events => this.events = events);
+        .then((events) => {this.events = events;});
   }
 
 }
