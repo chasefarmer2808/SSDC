@@ -14,7 +14,7 @@ router.get('/getEvents', function (req, res, next) {
     uri: `${config.fbApiRootUrl}/${config.ssdcGroupId}/events`,
     qs: {
       since: Math.floor(Date.now()/1000).toString(),
-      access_token: secrets.fbAccessToken
+      access_token: accessToken
     }
   }
 
