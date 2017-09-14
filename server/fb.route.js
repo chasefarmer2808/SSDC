@@ -18,6 +18,7 @@ router.get('/getEvents', function (req, res, next) {
 
   rp(options)
     .then(function(events) {
+      res.set('Access-control-Allow-origin', '*');
       res.send(events);
     })
     .catch(function(err) {
