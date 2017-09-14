@@ -8,6 +8,8 @@ const secrets = require('./secrets');
 const router = express.Router();
 
 router.get('/getEvents', function (req, res, next) {
+  var accessToken = secrets.fbAccessToken || process.env.FB_ACCESS_TOKEN;
+
   var options = {
     uri: `${config.fbApiRootUrl}/${config.ssdcGroupId}/events`,
     qs: {
