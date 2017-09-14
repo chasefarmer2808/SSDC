@@ -3,7 +3,6 @@
 const express = require('express');
 const rp = require('request-promise');
 const config = require('./config');
-const secrets = require('./secrets');
 
 const router = express.Router();
 
