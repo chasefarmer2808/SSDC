@@ -1,0 +1,24 @@
+<div class="officers-container">
+  <div id="officers-heading" class="heading">Meet the Officers</div>
+  <div id="officers-grid" class="single-column-center">
+    <div *ngFor="let officer of officers" class="officer">
+      <div class="role">{{officer.role}}: {{officer.name}}</div>
+      <div class="profile-container">
+        <div class="profile-picture">
+          <img src="{{officer.pictureUrl}}">
+        </div>
+        <div class="officer-info">
+          <div class="info">
+            {{officer.bio}}
+          </div>
+          <div class="email">
+            <a href="mailto:{{officer.email}}">
+              <i class="fa fa-envelope"></i>
+              {{officer.email}}
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

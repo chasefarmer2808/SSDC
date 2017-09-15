@@ -11,6 +11,7 @@ import { EventsComponent } from './events/events.component';
 import { ContactComponent } from './contact/contact.component';
 
 import { ClickOutsideDirective } from './directives/click-outside.directive';
+import { OfficersComponent } from './officers/officers.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { ClickOutsideDirective } from './directives/click-outside.directive';
     HomeComponent,
     EventsComponent,
     ContactComponent,
-    ClickOutsideDirective
+    ClickOutsideDirective,
+    OfficersComponent
   ],
   imports: [
     BrowserModule,
