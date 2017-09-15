@@ -1,11 +1,12 @@
-<div class="heading-container">
-  <div class="heading">Upcoming events</div>
-</div>
-<div id="events-container">
-  <div *ngFor="let event of events" class="event">
-    <div class="event-name">{{event.name}}</div>
-    <div class="event-start">When: {{event.start_time | date:'medium'}}</div>
-    <div class="event-loc">Location: {{event.place.name}}</div>
-    <div class="event-description">Description: {{event.description}}</div>
+<div class="events-container">
+  <div id="events-header" class="heading">Upcoming events</div>
+  <div id="events-container">
+    <div *ngIf="events?.length == 0" class="message">{{noEventsMessage}}</div>
+    <div *ngFor="let event of events" class="event">
+      <div class="event-name">{{event.name}}</div>
+      <div class="event-start">When: {{event.start_time | date:'medium'}}</div>
+      <div class="event-loc">Location: {{event.place.name}}</div>
+      <div class="event-description">Description: {{event.description}}</div>
+    </div>
   </div>
 </div>

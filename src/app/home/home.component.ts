@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { OfficersComponent } from '../officers/officers.component';
+import { EventsComponent } from '../events/events.component';
 
 @Component({
   selector: 'app-home',

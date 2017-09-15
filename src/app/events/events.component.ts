@@ -11,12 +11,14 @@ import { Event } from './event';
 })
 export class EventsComponent implements OnInit {
 
-  events: Event[];
+  events:Event[];
+  noEventsMessage:string;
 
   constructor(private facebookService: FacebookService) { }
 
   ngOnInit() {
     this.getEvents();
+    this.noEventsMessage = 'There are currently no upcoming events.';
   }
 
   getEvents(): void {
