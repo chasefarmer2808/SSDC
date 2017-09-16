@@ -33,7 +33,7 @@ export class NavbarComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {
-    this.navDropDown = false;
+    this.navDropDown = true;
     this.myRoutes = routes;
     this.fbLink = 'https://www.facebook.com/groups/ufssdc/';
     this.emailAddr = 'ufssdc@gmail.com';
@@ -45,6 +45,10 @@ export class NavbarComponent implements OnInit {
 
   closeNav() {
     this.navDropDown = false;
+  }
+
+  toggleScrollable(route: any) {
+    route.data.showScrollables = !route.data.showScrollables;
   }
 
 }

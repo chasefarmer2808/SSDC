@@ -8,12 +8,20 @@ export const routes: Routes = [
   {
     path: '',
     component: HomeComponent,
-    data: {name: 'Home'}
-  },
-  {
-    path: 'events',
-    component: EventsComponent,
-    data: {name: 'Events'}
+    data: {
+      name: 'Home',
+      showScrollables: false,
+      scrollables: [
+        {
+          name: 'About',
+          selector: '.about-container'
+        },
+        {
+          name: 'Officers',
+          selector: '.officers-container'
+        }
+      ]
+    }
   },
   {
     path: 'contact',

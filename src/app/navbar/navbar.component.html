@@ -1,12 +1,19 @@
-<nav class="navbar" (clickOutside)="closeNav()">
+<nav class="navbar">
   <div class="navbar-container">
     <div class="nav-logo"></div>
     <div class="nav-burger" (click)="toggleNav()"><i class="fa fa-bars fa-2x" aria-hidden="true"></i></div>
   </div>
   <div class="nav-links-container" [@dropDown]="navDropDown">
-    <ul class="nav-links">
-      <li *ngFor="let route of myRoutes" class="nav-link" (click)="toggleNav()" routerLink="/{{route.path}}"><a>{{route.data.name}}</a></li>
-    </ul>
+    <div class="nav-links">
+      <div *ngFor="let route of myRoutes" class="nav-link">
+        <a routerLink="/{{route.path}}">{{route.data.name}}</a>
+        <i *ngIf="route.data.showScrollables" (click)="toggleScrollable(route)" class="fa fa-angle-down" aria-hidden="true"></i>
+        <i *ngIf="route.data.scrollables?.length > 0 && !route.data.showScrollables" (click)="toggleScrollable(route)" class="fa fa-angle-right" aria-hidden="true"></i>
+        <ul *ngIf="route.data.showScrollables" class="scrollables">
+          <li *ngFor="let scrollable of route.data.scrollables" class="scrollable-item"><a>{{scrollable.name}}</a></li>
+        </ul>
+      </div>
+    </div>
     <div class="social-media-container">
       <div class="social-media-icon">
         <a class="no-decorate" href="{{fbLink}}" target="_blank"><i class="fa fa-facebook-square fa-2x" aria-hidden="true"></i></a>
