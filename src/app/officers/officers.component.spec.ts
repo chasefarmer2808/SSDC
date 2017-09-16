@@ -8,6 +8,7 @@ import { Officer } from '../services/officers/officer';
 describe('OfficersComponent', () => {
   let component: OfficersComponent;
   let fixture: ComponentFixture<OfficersComponent>;
+  let officersService: OfficersService;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -21,10 +22,16 @@ describe('OfficersComponent', () => {
     fixture = TestBed.createComponent(OfficersComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+
+    officersService = TestBed.get(OfficersService);
   });
 
   it('should be created', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should instantiate the officers service', () => {
+    expect(officersService).toBeTruthy();
   });
 
   it('should have all officers', () => {
