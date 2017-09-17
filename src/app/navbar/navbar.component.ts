@@ -33,7 +33,7 @@ export class NavbarComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {
-    this.navDropDown = true;
+    this.navDropDown = false;
     this.myRoutes = routes;
     this.fbLink = 'https://www.facebook.com/groups/ufssdc/';
     this.emailAddr = 'ufssdc@gmail.com';

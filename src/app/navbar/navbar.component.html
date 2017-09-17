@@ -11,7 +11,7 @@
         <i *ngIf="route.data.scrollables?.length > 0 && !route.data.showScrollables" (click)="toggleScrollable(route)" class="fa fa-angle-down" aria-hidden="true"></i>
         <ul *ngIf="route.data.showScrollables" class="scrollables">
           <li *ngFor="let scrollable of route.data.scrollables" class="scrollable-item">
-            <a pageScroll [pageScrollOffset]="64" [pageScrollDuration]="200" [pageScrollInterruptible]="true" routerLink="/{{route.path}}" href="{{scrollable.selector}}">{{scrollable.name}}</a>
+            <a (click)="closeNav()" pageScroll [pageScrollOffset]="64" [pageScrollDuration]="200" [pageScrollInterruptible]="true" routerLink="/{{route.path}}" href="{{scrollable.selector}}">{{scrollable.name}}</a>
           </li>
         </ul>
       </div>
