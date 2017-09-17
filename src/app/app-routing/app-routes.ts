@@ -19,6 +19,10 @@ export const routes: Routes = [
         {
           name: 'Officers',
           selector: '#officers-heading'
+        },
+        {
+          name: 'Events',
+          selector: '#events-header'
         }
       ]
     }
