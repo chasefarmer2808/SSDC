@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { HttpModule } from '@angular/http';
-import { ScrollToModule } from 'ng2-scroll-to-el';
+import { Ng2PageScrollModule } from 'ng2-page-scroll';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -29,7 +29,7 @@ import { OfficersComponent } from './officers/officers.component';
     BrowserAnimationsModule,
     AppRoutingModule,
     HttpModule,
-    ScrollToModule.forRoot()
+    Ng2PageScrollModule
   ],
   providers: [],
   bootstrap: [AppComponent]

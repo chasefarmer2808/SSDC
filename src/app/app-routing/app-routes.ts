@@ -14,11 +14,11 @@ export const routes: Routes = [
       scrollables: [
         {
           name: 'About',
-          selector: '.about-container'
+          selector: '#about-heading'
         },
         {
           name: 'Officers',
-          selector: '.officers-container'
+          selector: '#officers-heading'
         }
       ]
     }

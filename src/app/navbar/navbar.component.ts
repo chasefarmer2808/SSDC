@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Routes, Router } from '@angular/router';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 import { routes } from '../app-routing/app-routes';
-import { ScrollToService } from 'ng2-scroll-to-el';
 
 @Component({
   selector: 'app-navbar',
@@ -31,7 +30,7 @@ export class NavbarComponent implements OnInit {
   fbLink:string;
   emailAddr:string;
 
-  constructor(private router: Router, private scrollService: ScrollToService) {}
+  constructor() {}
 
   ngOnInit() {
     this.navDropDown = true;
@@ -50,16 +49,6 @@ export class NavbarComponent implements OnInit {
 
   toggleScrollable(route: any) {
     route.data.showScrollables = !route.data.showScrollables;
-  }
-
-  scrollTo(route, selector) {
-
-    let selectedPath:any = `/${route.path}`;
-
-    if (selectedPath != this.router.url) {
-      this.router.navigate([selectedPath]);
-    }
-    this.scrollService.scrollTo(selector, 300, -64);
   }
 
 }
