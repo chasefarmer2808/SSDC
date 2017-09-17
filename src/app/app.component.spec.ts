@@ -4,6 +4,7 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { Ng2PageScrollModule } from 'ng2-page-scroll';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -14,7 +15,8 @@ describe('AppComponent', () => {
       ],
       imports: [
         RouterTestingModule,
-        BrowserAnimationsModule
+        BrowserAnimationsModule,
+        Ng2PageScrollModule
       ]
     }).compileComponents();
   }));
