@@ -6,10 +6,9 @@
   <div class="nav-links-container" [@dropDown]="navDropDown">
     <div class="nav-links">
       <div *ngFor="let route of myRoutes" class="nav-link">
-        <a routerLink="/{{route.path}}" (click)="closeNav()">{{route.data.name}}</a>
-        <i *ngIf="route.data.showScrollables" (click)="toggleScrollable(route)" class="fa fa-angle-up" aria-hidden="true"></i>
-        <i *ngIf="route.data.scrollables?.length > 0 && !route.data.showScrollables" (click)="toggleScrollable(route)" class="fa fa-angle-down" aria-hidden="true"></i>
-        <ul *ngIf="route.data.showScrollables" class="scrollables">
+        <a routerLink="/{{route.path}}" (click)="closeNav(true)">{{route.data.name}}</a>
+        <i [@rotate180]="route.data.showScrollables" *ngIf="route.data.scrollables?.length > 0" (click)="toggleScrollable(route)" class="fa fa-angle-down" aria-hidden="true"></i>
+        <ul [@slideDown]="route.data.showScrollables" class="scrollables">
           <li *ngFor="let scrollable of route.data.scrollables" class="scrollable-item">
             <a (click)="closeNav()" pageScroll [pageScrollOffset]="64" [pageScrollDuration]="200" [pageScrollInterruptible]="true" routerLink="/{{route.path}}" href="{{scrollable.selector}}">{{scrollable.name}}</a>
           </li>

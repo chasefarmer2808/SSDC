@@ -20,6 +20,26 @@ import { routes } from '../app-routing/app-routes';
         transform: 'translateX(0%)'
       })),
       transition('* => *', animate('500ms ease-in-out'))
+    ]),
+    trigger('rotate180', [
+      state('0', style({
+        transform: 'none'
+      })),
+      state('1', style({
+        transform: 'rotate(-180deg)'
+      })),
+      transition('* => *', animate('300ms ease-in-out'))
+    ]),
+    trigger('slideDown', [
+      state('0', style({
+        overflow: 'hidden',
+        height: '0px'
+      })),
+      state('1', style({
+        overflow: 'hidden',
+        height: '*'
+      })),
+      transition('* => *', animate('300ms ease-in-out'))
     ])
   ]
 })
@@ -43,12 +63,22 @@ export class NavbarComponent implements OnInit {
     this.navDropDown = !this.navDropDown;
   }
 
-  closeNav() {
+  closeNav(collapse: boolean) {
     this.navDropDown = false;
+
+    if (collapse) {
+      this.collapseAll();
+    }
   }
 
   toggleScrollable(route: any) {
     route.data.showScrollables = !route.data.showScrollables;
+  }
+
+  collapseAll() {
+    for (let route of this.myRoutes) {
+      route.data.showScrollables = false;
+    }
   }
 
 }
