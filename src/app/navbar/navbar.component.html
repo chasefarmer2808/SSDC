@@ -2,6 +2,34 @@
   <div class="navbar-container">
     <div class="nav-logo"></div>
     <div class="nav-burger" (click)="toggleNav()"><i class="fa fa-bars fa-2x" aria-hidden="true"></i></div>
+    <div class="large-links-container">
+      <div class="large-nav-link">
+        <div class="vert-center">
+          <a>Home</a>
+        </div>
+        <ul class="large-scrollables">
+          <li class="large-scrollable-item">
+            <a>Test</a>
+          </li>
+          <li class="large-scrollable-item">
+            <a>Test</a>
+          </li>
+          <li class="large-scrollable-item">
+            <a>Test</a>
+          </li>
+        </ul>
+      </div>
+      <div class="large-nav-link">
+        <div class="vert-center">
+          <a>Home</a>
+        </div>
+      </div>
+      <div class="large-nav-link">
+        <div class="vert-center">
+          <a>Home</a>
+        </div>
+      </div>
+    </div>
   </div>
   <div class="nav-links-container" [@dropDown]="navDropDown">
     <div class="nav-links">

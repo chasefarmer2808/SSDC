@@ -22,6 +22,10 @@ nav {
   color: white;
 }
 
+.large-links-container {
+  display: none;
+}
+
 .nav-links-container {
   width: 50%;
   background-color: #191919;
@@ -87,4 +91,59 @@ nav {
 
 .no-decorate {
   text-decoration: none;
+}
+
+
+/* Desktop Rules */
+
+@media screen and (min-width: 720px) {
+  .nav-burger {
+    display: none;
+  }
+
+  .nav-links-container {
+    display: none;
+  }
+
+  .navbar-container {
+    position: relative;
+  }
+  
+  .large-links-container {
+    display: flex;
+    flex-direction: row;
+    float: right;
+    height: 100%;
+    margin-right: 40px;
+  }
+
+  .large-nav-link {
+    color: white;
+    font-size: 24px;
+    margin-right: 24px;
+  }
+
+  .large-nav-link a {
+    cursor: pointer;
+  }
+
+  .vert-center{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .large-scrollables {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border: 1px solid white;
+    position: absolute;
+    top: 100%;
+  }
+
+  .large-scrollable-item {
+    color: white;
+  }
 }
