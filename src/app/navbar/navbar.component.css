@@ -174,3 +174,9 @@
     border-bottom: 1px solid #F0B173;
   }
 }
+
+/* Nav fonts */
+
+.nav-font {
+  font-family: "Text Me One", sans-serif;
+}

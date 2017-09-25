@@ -16,7 +16,7 @@ export class HomeComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.clubName = 'Space Systems Design Group';
+    this.clubName = 'Space Systems Design Club';
     this.clubMessage = 'Orbiting student designs';
     this.aboutUs = `This is our overarching goal. To this end, the University of Florida’s Space
                     Systems Design Club consists of both design teams and general body meetings
