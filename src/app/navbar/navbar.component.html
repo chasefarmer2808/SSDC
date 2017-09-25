@@ -1,4 +1,4 @@
-<nav class="navbar" [ngClass]="{'navbar-small':!scrolledUp}">
+<nav class="navbar" [ngClass]="navClassHandler()">
   <div class="navbar-container">
     <div class="nav-logo"></div>
     <div class="nav-burger" (click)="toggleNav()"><i class="fa fa-bars fa-2x" aria-hidden="true"></i></div>

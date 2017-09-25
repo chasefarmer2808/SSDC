@@ -93,4 +93,18 @@ export class NavbarComponent implements OnInit {
     }
   }
 
+  navClassHandler() {
+    let result:String = '';
+
+    if (this.scrolledUp && !this.navDropDown) {
+      result = 'navbar-transparent';
+    }
+
+    if (!this.scrolledUp) {
+      result = 'navbar-small';
+    }
+
+    return result;
+  }
+
 }
