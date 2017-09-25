@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { Routes, Router } from '@angular/router';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 import { routes } from '../app-routing/app-routes';
@@ -46,14 +46,26 @@ import { routes } from '../app-routing/app-routes';
 export class NavbarComponent implements OnInit {
 
   navDropDown:boolean;
+  scrolledUp: boolean;
   myRoutes:Routes;
   fbLink:string;
   emailAddr:string;
 
-  constructor() {}
+  constructor(zone: NgZone) {
+    window.onscroll = () => {
+      zone.run(() => {
+        if (window.pageYOffset > 0) {
+          this.scrolledUp = false;
+        } else {
+          this.scrolledUp = true;
+        }
+      });
+    };
+  }
 
   ngOnInit() {
     this.navDropDown = false;
+    this.scrolledUp = true;
     this.myRoutes = routes;
     this.fbLink = 'https://www.facebook.com/groups/ufssdc/';
     this.emailAddr = 'ufssdc@gmail.com';
