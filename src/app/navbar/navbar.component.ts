@@ -6,7 +6,7 @@ import { routes } from '../app-routing/app-routes';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.css'],
+  styleUrls: ['./navbar.component.css', '../app.component.css'],
   animations: [
     trigger('dropDown', [
       state('0', style({
@@ -26,7 +26,7 @@ import { routes } from '../app-routing/app-routes';
         transform: 'none'
       })),
       state('1', style({
-        transform: 'rotate(-180deg)'
+        transform: 'rotate(-179deg)'
       })),
       transition('* => *', animate('300ms ease-in-out'))
     ]),

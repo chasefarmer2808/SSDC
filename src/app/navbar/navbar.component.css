@@ -121,6 +121,7 @@ nav {
     color: white;
     font-size: 24px;
     margin-right: 24px;
+    margin-left: 24px;
   }
 
   .large-nav-link a {
@@ -140,12 +141,27 @@ nav {
     list-style: none;
     padding: 0;
     margin: 0;
-    border: 1px solid white;
     position: absolute;
     top: 100%;
+    background-color: #191919;
+  }
+
+  .large-link-group {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .large-link-group i {
+    padding-top: 6px;
+    margin-left: 8px;
   }
 
   .large-scrollable-item {
     color: white;
+    padding: 16px;
+  }
+
+  .large-scrollable-item:not(:last-child) {
+    border-bottom: 1px solid #F0B173;
   }
 }

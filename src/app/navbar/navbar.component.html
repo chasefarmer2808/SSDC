@@ -5,11 +5,14 @@
     <div class="large-links-container">
       <div *ngFor="let route of myRoutes" (mouseover)="toggleScrollable(route)" (mouseout)="toggleScrollable(route)" class="large-nav-link">
         <div class="vert-center">
-          <a routerLink="/{{route.path}}">{{route.data.name}}</a>
+          <div class="large-link-group">
+            <a routerLink="/{{route.path}}" class="slide-center">{{route.data.name}}</a>
+            <i [@rotate180]="route.data.showScrollables" *ngIf="route.data.scrollables?.length > 0" (click)="toggleScrollable(route)" class="fa fa-angle-down" aria-hidden="true"></i>
+          </div>
         </div>
         <ul [@slideDown]="route.data.showScrollables" class="large-scrollables">
           <li *ngFor="let scrollable of route.data.scrollables" class="large-scrollable-item">
-            <a pageScroll [pageScrollOffset]="64" [pageScrollDuration]="200" routerLink="/{{route.path}}" href="{{scrollable.selector}}">{{scrollable.name}}</a>
+            <a class="slide-center" pageScroll [pageScrollOffset]="64" [pageScrollDuration]="200" routerLink="/{{route.path}}" href="{{scrollable.selector}}">{{scrollable.name}}</a>
           </li>
         </ul>
       </div>
