@@ -3,31 +3,15 @@
     <div class="nav-logo"></div>
     <div class="nav-burger" (click)="toggleNav()"><i class="fa fa-bars fa-2x" aria-hidden="true"></i></div>
     <div class="large-links-container">
-      <div class="large-nav-link">
+      <div *ngFor="let route of myRoutes" (mouseover)="toggleScrollable(route)" (mouseout)="toggleScrollable(route)" class="large-nav-link">
         <div class="vert-center">
-          <a>Home</a>
+          <a routerLink="/{{route.path}}">{{route.data.name}}</a>
         </div>
-        <ul class="large-scrollables">
-          <li class="large-scrollable-item">
-            <a>Test</a>
-          </li>
-          <li class="large-scrollable-item">
-            <a>Test</a>
-          </li>
-          <li class="large-scrollable-item">
-            <a>Test</a>
+        <ul [@slideDown]="route.data.showScrollables" class="large-scrollables">
+          <li *ngFor="let scrollable of route.data.scrollables" class="large-scrollable-item">
+            <a pageScroll [pageScrollOffset]="64" [pageScrollDuration]="200" routerLink="/{{route.path}}" href="{{scrollable.selector}}">{{scrollable.name}}</a>
           </li>
         </ul>
-      </div>
-      <div class="large-nav-link">
-        <div class="vert-center">
-          <a>Home</a>
-        </div>
-      </div>
-      <div class="large-nav-link">
-        <div class="vert-center">
-          <a>Home</a>
-        </div>
       </div>
     </div>
   </div>

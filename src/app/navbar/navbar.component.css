@@ -125,6 +125,8 @@ nav {
 
   .large-nav-link a {
     cursor: pointer;
+    text-decoration: none;
+    color: white;
   }
 
   .vert-center{
