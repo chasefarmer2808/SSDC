@@ -4,3 +4,23 @@ footer {
   height: 16em;
   border: 1px solid black;
 }
+
+.footer-container {
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
+  justify-items: center; 
+  align-items: center;
+}
+
+
+.logo-container {
+  
+}
+
+.logo {
+  width: 24px;
+  height: 24px;
+  border: 1px solid black;
+}

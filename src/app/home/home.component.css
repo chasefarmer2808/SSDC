@@ -3,12 +3,11 @@
   background-attachment: fixed;
   background-repeat: no-repeat;
   background-size: cover;
-  height: 100vh;
+  /* height: 100vh; */
 }
 
 .banner-container {
   height: 100vh;
-  border: 1px solid black;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -35,6 +34,7 @@
   height: auto;
   text-align: left;
   margin-top: 24px;
+  background-color: white;
 }
 
 #about-heading {
