@@ -1,26 +1,36 @@
 footer {
   margin-top: 24px;
   width: 100%;
-  height: 16em;
+  /* height: 16em; */
   border: 1px solid black;
+  background-color: #191919;
 }
 
 .footer-container {
   height: 100%;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr;
   justify-items: center; 
   align-items: center;
 }
 
-
 .logo-container {
-  
+  color: white;
 }
 
 .logo {
-  width: 24px;
-  height: 24px;
-  border: 1px solid black;
+}
+
+.logo img {
+  width: 140px;
+  height: 140px;
+}
+
+.nav-map-container {
+  color: white;
+}
+
+.info-container {
+  color: white;
 }
