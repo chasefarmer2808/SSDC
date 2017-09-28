@@ -4,17 +4,17 @@
           <div class="logo">
               <img src="../../../assets/ssdc_embelem_small.png">
           </div>
-          <div class="trademark">SSDC Trademark</div>
+          <div class="trademark">&#169; {{name}} {{copywriteYear}}</div>
       </div>
       <div class="info-container">
-          <div class="info">test</div>
-          <div class="info">test</div>
-          <div class="info">test</div>
+          <div class="info">Office: NEB 225</div>
       </div>
       <div class="nav-map-container">
-          <div class="nav-map-link">test</div>
-          <div class="nav-map-link">test</div>
-          <div class="nav-map-link">test</div>
+          <div class="grid-col-header">
+            <div *ngFor="let route of myRoutes" class="nav-map-link">
+                <a routerLink="/{{route.path}}">{{route.data.name}}</a>
+            </div>
+          </div>
       </div>
   </div>
 </footer>

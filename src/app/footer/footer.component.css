@@ -1,7 +1,5 @@
 footer {
-  margin-top: 24px;
   width: 100%;
-  /* height: 16em; */
   border: 1px solid black;
   background-color: #191919;
 }
@@ -19,15 +17,24 @@ footer {
   color: white;
 }
 
+.trademark {
+  text-align: center;
+}
+
 .logo {
 }
 
 .logo img {
-  width: 140px;
-  height: 140px;
+  width: 120px;
+  height: 120px;
 }
 
 .nav-map-container {
+  color: white;
+}
+
+.nav-map-link a {
+  text-decoration: none;
   color: white;
 }
 
