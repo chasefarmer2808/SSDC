@@ -12,7 +12,7 @@
         </div>
         <ul [@slideDown]="route.data.showScrollables" class="large-scrollables">
           <li *ngFor="let scrollable of route.data.scrollables" class="large-scrollable-item">
-            <a class="slide-center" pageScroll [pageScrollOffset]="64" [pageScrollDuration]="200" routerLink="/{{route.path}}" href="{{scrollable.selector}}">{{scrollable.name}}</a>
+            <a class="slide-center" pageScroll [pageScrollOffset]="64" [pageScrollDuration]="500" routerLink="/{{route.path}}" href="{{scrollable.selector}}">{{scrollable.name}}</a>
           </li>
         </ul>
       </div>
@@ -21,11 +21,11 @@
   <div class="nav-links-container" [@dropDown]="navDropDown">
     <div class="nav-links">
       <div *ngFor="let route of myRoutes" class="nav-link">
-        <a routerLink="/{{route.path}}" (click)="closeNav(true)">{{route.data.name}}</a>
+        <a routerLink="/{{route.path}}" (click)="closeNav(true, route.path)">{{route.data.name}}</a>
         <i [@rotate180]="route.data.showScrollables" *ngIf="route.data.scrollables?.length > 0" (click)="toggleScrollable(route)" class="fa fa-angle-down" aria-hidden="true"></i>
         <ul [@slideDown]="route.data.showScrollables" class="scrollables">
           <li *ngFor="let scrollable of route.data.scrollables" class="scrollable-item">
-            <a (click)="closeNav()" pageScroll [pageScrollOffset]="64" [pageScrollDuration]="200" [pageScrollInterruptible]="true" routerLink="/{{route.path}}" href="{{scrollable.selector}}">{{scrollable.name}}</a>
+            <a (click)="closeNav()" pageScroll [pageScrollOffset]="64" [pageScrollDuration]="500" [pageScrollInterruptible]="true" routerLink="/{{route.path}}" href="{{scrollable.selector}}">{{scrollable.name}}</a>
           </li>
         </ul>
       </div>

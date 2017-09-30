@@ -1,5 +1,5 @@
 import { Component, OnInit, NgZone } from '@angular/core';
-import { Routes, Router } from '@angular/router';
+import { Routes, Router, NavigationEnd } from '@angular/router';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 import { routes } from '../app-routing/app-routes';
 
@@ -50,8 +50,9 @@ export class NavbarComponent implements OnInit {
   myRoutes:Routes;
   fbLink:string;
   emailAddr:string;
+  currentRoute:string;
 
-  constructor(zone: NgZone) {
+  constructor(zone: NgZone, private router: Router) {
     window.onscroll = () => {
       zone.run(() => {
         if (window.pageYOffset > 0) {
@@ -69,18 +70,26 @@ export class NavbarComponent implements OnInit {
     this.myRoutes = routes;
     this.fbLink = 'https://www.facebook.com/groups/ufssdc/';
     this.emailAddr = 'ufssdc@gmail.com';
+
+    this.router.events.subscribe((evt) => {
+      if (evt instanceof NavigationEnd) {
+        this.currentRoute = evt.url;
+      }
+    });
   }
 
   toggleNav() {
     this.navDropDown = !this.navDropDown;
   }
 
-  closeNav(collapse: boolean) {
+  closeNav(collapse: boolean, routePath: string) {
     this.navDropDown = false;
 
     if (collapse) {
       this.collapseAll();
     }
+
+    this.scrollTopOnSameRoute(routePath);
   }
 
   toggleScrollable(route: any) {
@@ -105,6 +114,14 @@ export class NavbarComponent implements OnInit {
     }
 
     return result;
+  }
+
+  scrollTopOnSameRoute(routePath: string) {
+    routePath = `/${routePath}`;
+    
+    if (routePath == this.currentRoute) {
+      window.scrollTo(0,0);
+    }
   }
 
 }
