@@ -7,14 +7,22 @@
           <div class="trademark">&#169; {{name}} {{copywriteYear}}</div>
       </div>
       <div class="info-container">
-          <div class="info">Office: NEB 225</div>
-      </div>
-      <div class="nav-map-container">
-          <div class="grid-col-header">
-            <div *ngFor="let route of myRoutes" class="nav-map-link">
-                <a routerLink="/{{route.path}}">{{route.data.name}}</a>
+          <div class="grid-col-header-sm">Information</div>
+          <div class="info">Office: {{office}}</div>
+          <div class="social-media-icons">
+            <div class="social-media-icon">
+                <a class="no-decorate" href="{{fbLink}}" target="_blank"><i class="fa fa-facebook-square fa-2x" aria-hidden="true"></i></a>
+            </div>
+            <div class="social-media-icon">
+                <a href="mailto:{{emailAddr}}"><i class="fa fa-envelope fa-2x" aria-hidden="true"></i></a>
             </div>
           </div>
+      </div>
+      <div class="nav-map-container">
+        <div class="grid-col-header-sm">Navigation</div>
+        <div *ngFor="let route of myRoutes" class="nav-map-link">
+            <a class="nav-link-sm" routerLink="/{{route.path}}">{{route.data.name}}</a>
+        </div>
       </div>
   </div>
 </footer>

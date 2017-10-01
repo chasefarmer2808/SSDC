@@ -10,7 +10,6 @@ footer {
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr;
   justify-items: center; 
-  align-items: center;
 }
 
 .logo-container {
@@ -38,6 +37,21 @@ footer {
   color: white;
 }
 
+.nav-link-sm {
+  border-bottom: 1px solid #555555;
+}
+
 .info-container {
+  color: white;
+}
+
+.social-media-icons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-top: 16px;
+}
+
+.social-media-icon a {
   color: white;
 }

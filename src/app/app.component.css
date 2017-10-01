@@ -58,6 +58,14 @@
   transform: scaleX(1);
 }
 
+/* Grid styles */
+
+.grid-col-header-sm {
+  margin-top: 8px;
+  margin-bottom: 8px;
+  border-bottom: 1px solid white;
+}
+
 /* Fonts */
 
 .heading-font {
