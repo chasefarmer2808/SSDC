@@ -3,8 +3,10 @@
 const express = require('express');
 const router = express.Router();
 const nodemailer = require('nodemailer');
+const multer = require('multer');
+const upload = multer();
 
-router.post('/', function (req, res, next) {
+router.post('/', upload.array(), function (req, res, next) {
     
     var transporter = nodemailer.createTransport({
         service: 'Gmail',
@@ -14,13 +16,11 @@ router.post('/', function (req, res, next) {
         }
     });
 
-    var test = 'hello';
-
     var mailOptions = {
         from: '',
         to: process.env.GMAIL_USERNAME,
-        subject: 'Test message',
-        text: test
+        subject: req.body.subject,
+        text: req.body.body
     };
 
     transporter.sendMail(mailOptions, function(err, info) {

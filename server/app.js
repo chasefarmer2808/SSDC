@@ -18,7 +18,7 @@ app.use('/api/v1/fb', fb);
 app.use('/api/v1/email', email);
 app.use(morgan('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(errorHandler);
 
 
