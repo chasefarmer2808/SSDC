@@ -12,8 +12,10 @@ const port = process.env.PORT || 8080;
 const server = http.createServer(app);
 
 const fb = require('./fb.route');
+const email = require('./email.route');
 
 app.use('/api/v1/fb', fb);
+app.use('/api/v1/email', email);
 app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
