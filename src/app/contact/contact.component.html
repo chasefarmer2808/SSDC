@@ -3,13 +3,17 @@
         <div class="heading heading-font">Contact Us!</div>
         <form (ngSubmit)="submitEmail()" #emailForm="ngForm">
             <div class="form-input-container">
-                <mdl-textfield type="text" label="Email Address" floating-label></mdl-textfield>
+                <md-form-field>
+                    <input mdInput placeholder="Email">
+                </md-form-field>
             </div>
             <div class="form-multiline-container">
-                <mdl-textfield type="text" label="Message" rows="3" maxrows="4" floating-label></mdl-textfield>
+                <md-form-field>
+                    <textarea mdInput placeholder="Message"></textarea>
+                </md-form-field>
             </div>
             <div class="form-submit-container">
-                <button mdl-button mdl-button-type="raised" mdl-ripple>Dope!</button>
+                <button md-raised-button color="primary">Submit</button>
             </div>
         </form>
         <div class="info-container"></div>

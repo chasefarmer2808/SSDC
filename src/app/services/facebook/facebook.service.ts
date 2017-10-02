@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Headers, Http } from '@angular/http';
 
+import { environment } from '../../../environments/environment';
+
 import 'rxjs/add/operator/toPromise';
 
 import { Event } from '../../events/event';
@@ -8,7 +10,7 @@ import { Event } from '../../events/event';
 @Injectable()
 export class FacebookService {
 
-  private fbUrl = 'http://localhost:5000/api/v1/fb/getEvents';
+  private fbUrl = environment.facebookUrl;
 
   constructor(private http: Http) { }
 

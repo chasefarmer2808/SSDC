@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Headers, Http } from '@angular/http';
 
+import { environment } from '../../../environments/environment';
+
 import 'rxjs/add/operator/toPromise';
 
 import { Email } from './email';
@@ -8,7 +10,7 @@ import { Email } from './email';
 @Injectable()
 export class EmailService {
 
-  private emailUrl = 'http://localhost:5000/api/v1/email';
+  private emailUrl = environment.emailUrl;
 
   constructor(private http: Http) { }
 
