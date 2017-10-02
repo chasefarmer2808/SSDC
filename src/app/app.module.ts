@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { HttpModule } from '@angular/http';
+import { MdlModule } from '@angular-mdl/core';
+import { FormsModule } from '@angular/forms';
 import { Ng2PageScrollModule } from 'ng2-page-scroll';
 
 import { AppComponent } from './app.component';
@@ -31,7 +33,9 @@ import { FooterComponent } from './footer/footer.component';
     BrowserAnimationsModule,
     AppRoutingModule,
     HttpModule,
-    Ng2PageScrollModule
+    Ng2PageScrollModule,
+    MdlModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

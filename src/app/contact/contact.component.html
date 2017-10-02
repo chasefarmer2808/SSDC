@@ -1,1 +1,18 @@
-
+<div id="contact-container">
+    <div class="grid-mobile-auto">
+        <div class="heading heading-font">Contact Us!</div>
+        <form (ngSubmit)="submitEmail()" #emailForm="ngForm">
+            <div class="form-input-container">
+                <mdl-textfield type="text" label="Email Address" floating-label></mdl-textfield>
+            </div>
+            <div class="form-multiline-container">
+                <mdl-textfield type="text" label="Message" rows="3" maxrows="4" floating-label></mdl-textfield>
+            </div>
+            <div class="form-submit-container">
+                <button mdl-button mdl-button-type="raised" mdl-ripple>Dope!</button>
+            </div>
+        </form>
+        <div class="info-container"></div>
+        <div class="map-container"></div>
+    </div>
+</div>
