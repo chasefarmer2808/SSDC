@@ -10,9 +10,14 @@ import { Email } from '../services/email/email';
 })
 export class ContactComponent implements OnInit {
 
+  userEmail: string;
+  emailBody: string;
+
   constructor() { }
 
   ngOnInit() {
+    this.userEmail = "";
+    this.emailBody = "Hello!\r\n\r\nMy name is _____ and I would like to express my interest in the Space Systems Design Club!"
   }
 
   submitEmail() {

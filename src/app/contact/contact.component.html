@@ -9,16 +9,16 @@
             <div class="heading heading-font">Send us an Email!</div>
             <div class="form-input-container">
                 <md-form-field>
-                    <input mdInput placeholder="Email">
+                    <input mdInput [(ngModel)]="userEmail" name="email" placeholder="Email">
                 </md-form-field>
             </div>
             <div class="form-multiline-container">
                 <md-form-field>
-                    <textarea mdInput placeholder="Message"></textarea>
+                    <textarea mdInput mdTextareaAutosize [(ngModel)]="emailBody" name="body" placeholder="Message"></textarea>
                 </md-form-field>
             </div>
             <div class="form-checkbox-container">
-                <md-checkbox>Add me to Listserve</md-checkbox>
+                <md-checkbox>Add me to listserve</md-checkbox>
             </div>
             <div class="form-submit-container">
                 <button md-raised-button color="primary">Submit</button>
