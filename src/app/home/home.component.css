@@ -3,7 +3,6 @@
   background-attachment: fixed;
   background-repeat: no-repeat;
   background-size: cover;
-  /* height: 100vh; */
 }
 
 .banner-container {
@@ -16,7 +15,6 @@
 .banner-text-container {
   margin-left: 16px;
   color: white;
-  background-color: rgba(0, 0, 0, 0.2);
 }
 
 #banner-title {

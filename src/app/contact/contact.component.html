@@ -1,7 +1,12 @@
 <div id="contact-container">
     <div class="grid-mobile-auto">
-        <div class="heading heading-font">Contact Us!</div>
-        <form (ngSubmit)="submitEmail()" #emailForm="ngForm">
+        <div class="banner-container-small">
+            <div class="banner-text-container">
+                <div class="banner-title heading-font">Contact Us!</div>
+            </div>
+        </div>
+        <form (ngSubmit)="submitEmail()" #emailForm="ngForm" class="email-form">
+            <div class="heading heading-font">Send us an Email!</div>
             <div class="form-input-container">
                 <md-form-field>
                     <input mdInput placeholder="Email">
@@ -11,6 +16,9 @@
                 <md-form-field>
                     <textarea mdInput placeholder="Message"></textarea>
                 </md-form-field>
+            </div>
+            <div class="form-checkbox-container">
+                <md-checkbox>Add me to Listserve</md-checkbox>
             </div>
             <div class="form-submit-container">
                 <button md-raised-button color="primary">Submit</button>

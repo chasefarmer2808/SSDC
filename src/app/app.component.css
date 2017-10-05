@@ -58,6 +58,25 @@
   transform: scaleX(1);
 }
 
+/* Banners */
+
+.banner-container-small {
+  height: 40vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.banner-text-container {
+  margin-left: 16px;
+  color: white;
+}
+
+.banner-title {
+  font-size: 40px;
+  font-weight: bold;
+}
+
 /* Grid styles */
 
 .grid-col-header-sm {
@@ -70,4 +89,5 @@
 
 .heading-font {
   font-family: "Oswald", sans-serif;
+  letter-spacing: 5px;
 }
