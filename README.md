@@ -14,6 +14,15 @@ Run `ng generate component component-name` to generate a new component. You can 
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
 
+## Running the backend NodeJS server
+
+In another terminal, run `heroku local` to spin up Node in a dev environment.  Without the backend
+running, the Angular application will not be able to communicate to the REST API.
+
+## Config Variables
+
+The backend uses config vars for secret information such as API keys.  These vars are not in source control.  You must get them from your system administrator.  They are not necessary for view development.
+
 ## Running unit tests
 
 Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
