@@ -5,6 +5,7 @@ const path = require('path');
 const http = require('http');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
+const cors = require('cors');
 const errorHandler = require('./error.handler');
 
 const app = express();
@@ -14,13 +15,13 @@ const server = http.createServer(app);
 const fb = require('./fb.route');
 const email = require('./email.route');
 
-app.use('/api/v1/fb', fb);
-app.use('/api/v1/email', email);
-app.use(morgan('dev'));
+app.options('*', cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(morgan('dev'));
 app.use(errorHandler);
-
+app.use('/api/v1/fb', fb);
+app.use('/api/v1/email', email);
 
 var appDir = 'dist';
 

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Headers, Http } from '@angular/http';
+import { Headers, Http, RequestOptions } from '@angular/http';
+import { HttpHeaders } from '@angular/common/http';
 
 import { environment } from '../../../environments/environment';
 
@@ -15,14 +16,14 @@ export class EmailService {
   constructor(private http: Http) { }
 
   sendEmail(emailObj: Email): Promise<any> {
-    // const body = {
-    //   subject: emailObj.subject,
-    //   body: emailObj.body,
-    //   email: emailObj.emailAddress,
-    //   listServe: emailObj.enableListServe
-    // };
+    const body = {
+      subject: emailObj.subject,
+      emailAddress: emailObj.emailAddress,
+      body: emailObj.body,
+      enableListServ: emailObj.enableListServe
+    };
 
-    return this.http.post(this.emailUrl, emailObj)
+    return this.http.post(this.emailUrl, body)
                .toPromise()
                .then(response => response.json())
                .catch(this.handleError);

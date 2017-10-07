@@ -17,7 +17,7 @@ router.post('/', upload.array(), function (req, res, next) {
     });
 
     var mailOptions = {
-        from: '',
+        from: process.env.GMAIL_USERNAME,
         to: process.env.GMAIL_USERNAME,
         subject: req.body.subject,
         text: req.body.body

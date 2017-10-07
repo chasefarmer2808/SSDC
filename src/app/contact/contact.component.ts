@@ -7,12 +7,13 @@ import { Email } from '../services/email/email';
   selector: 'app-contact',
   templateUrl: './contact.component.html',
   styleUrls: ['./contact.component.css', '../app.component.css'],
+  providers: [EmailService]
 })
 export class ContactComponent implements OnInit {
 
   emailObj: Email;
 
-  constructor() { }
+  constructor(private emailService: EmailService) { }
 
   ngOnInit() {
     this.emailObj = new Email();
@@ -20,6 +21,7 @@ export class ContactComponent implements OnInit {
 
   submitEmail() {
     console.log('Sending email...');
+    this.emailService.sendEmail(this.emailObj);
   }
 
 }
