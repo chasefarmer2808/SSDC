@@ -11,7 +11,7 @@
     margin-bottom: 16px;
 }
 
-.email-form md-form-field {
+.email-form mat-form-field {
     width: 80%;
 }
 
@@ -34,7 +34,7 @@
     justify-content: center;
 }
 
-.submit-status md-spinner {
+.submit-status mat-spinner {
     width: 60px;
     height: 60px;
 }

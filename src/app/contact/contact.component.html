@@ -8,25 +8,25 @@
         <form (ngSubmit)="submitEmail()" [formGroup]="emailForm" class="email-form" novalidate>
             <div class="heading heading-font">Send us an Email!</div>
             <div class="form-input-container">
-                <md-form-field>
-                    <input mdInput formControlName="email" placeholder="Email" required>
-                    <md-error *ngIf="emailForm.controls['email'].hasError('required')">This field is required</md-error>
-                    <md-error *ngIf="emailForm.controls['email'].hasError('pattern') && !emailForm.controls['email'].hasError('required')">That is not a valid email</md-error>
-                </md-form-field>
+                <mat-form-field>
+                    <input matInput formControlName="email" placeholder="Email" required>
+                    <mat-error *ngIf="emailForm.controls['email'].hasError('required')">This field is required</mat-error>
+                    <mat-error *ngIf="emailForm.controls['email'].hasError('pattern') && !emailForm.controls['email'].hasError('required')">That is not a valid email</mat-error>
+                </mat-form-field>
             </div>
             <div class="form-multiline-container">
-                <md-form-field>
-                    <textarea mdInput maxlength="{{bodyInputLength}}" formControlName="body" mdTextareaAutosize placeholder="Message"></textarea>
-                    <md-hint align="end">{{emailForm.controls['body'].value.length}} / {{bodyInputLength}}</md-hint>
-                </md-form-field>
+                <mat-form-field>
+                    <textarea matInput maxlength="{{bodyInputLength}}" formControlName="body" mdTextareaAutosize placeholder="Message"></textarea>
+                    <mat-hint align="end">{{emailForm.controls['body'].value.length}} / {{bodyInputLength}}</mat-hint>
+                </mat-form-field>
             </div>
             <div class="form-checkbox-container">
-                <md-checkbox formControlName="listServ" ngControlDefault>Add me to listserv</md-checkbox>
+                <mat-checkbox formControlName="listServ" ngControlDefault>Add me to listserv</mat-checkbox>
             </div>
             <div class="form-submit-container">
-                <button *ngIf="!loading && !emailSuccess" class="submit-button" md-raised-button color="primary" [disabled]="emailForm.invalid || emailSuccess">Submit</button>
+                <button *ngIf="!loading && !emailSuccess" class="submit-button" mat-raised-button color="primary" [disabled]="emailForm.invalid || emailSuccess">Submit</button>
                 <div class="submit-status">
-                    <md-spinner *ngIf="loading"></md-spinner>
+                    <mat-spinner *ngIf="loading"></mat-spinner>
                     <i *ngIf="emailSuccess" class="fa fa-check fa-3x" aria-hidden="true"></i>
                     <p *ngIf="emailSuccess">Email successfully sent!</p>
                     <i *ngIf="emailError && !loading" class="fa fa-times fa-3x" aria-hidden="true"></i>

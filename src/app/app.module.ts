@@ -4,7 +4,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { HttpModule } from '@angular/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatInputModule, MatButtonModule, MatCheckboxModule, MatProgressSpinnerModule } from '@angular/material';
+import { MatInputModule, MatButtonModule, MatCheckboxModule, MatProgressSpinnerModule, NoConflictStyleCompatibilityMode } from '@angular/material';
 import { Ng2PageScrollModule } from 'ng2-page-scroll';
 
 import { AppComponent } from './app.component';
@@ -39,7 +39,8 @@ import { FooterComponent } from './footer/footer.component';
     MatInputModule,
     MatButtonModule,
     MatCheckboxModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    NoConflictStyleCompatibilityMode
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MatInputModule, MatButtonModule, MatCheckboxModule, MatProgressSpinnerModule } from '@angular/material';
+import { MatInputModule, MatButtonModule, MatCheckboxModule, MatProgressSpinnerModule, NoConflictStyleCompatibilityMode } from '@angular/material';
 import { HttpModule } from '@angular/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -21,6 +21,7 @@ describe('ContactComponent', () => {
         MatButtonModule,
         MatCheckboxModule,
         MatProgressSpinnerModule,
+        NoConflictStyleCompatibilityMode,
         BrowserAnimationsModule
       ],
       providers: [EmailService]
