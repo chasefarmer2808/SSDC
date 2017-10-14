@@ -15,15 +15,14 @@ export class EmailService {
 
   constructor(private http: Http) { }
 
-  sendEmail(emailObj: Email): Promise<any> {
-    const body = {
-      subject: emailObj.subject,
-      emailAddress: emailObj.emailAddress,
-      body: emailObj.body,
-      enableListServ: emailObj.enableListServe
-    };
+  appendEmailAddressToBody(body: string, email: string): string {
+    return `${body}\r\n\r\nMy email address: ${email}`;
+  }
 
-    return this.http.post(this.emailUrl, body)
+  sendEmail(emailObj: Email): Promise<any> {
+    emailObj.body = this.appendEmailAddressToBody(emailObj.body, emailObj.emailAddress);
+    
+    return this.http.post(this.emailUrl, emailObj)
                .toPromise()
                .then(response => response.json())
                .catch(this.handleError);

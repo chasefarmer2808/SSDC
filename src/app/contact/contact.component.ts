@@ -28,14 +28,20 @@ export class ContactComponent implements OnInit {
 
   createEmailForm() {
     this.emailForm = this.fb.group({
-      email: ['', [Validators.required, Validators.pattern(emailPattern)]],
+      email: ['test@test.com', [Validators.required, Validators.pattern(emailPattern)]],
       body: [this.emailObj.body, Validators.maxLength(this.bodyInputLength)],
       listServ: true
     })
   }
 
+  updateEmailObj(emailFormInfo:any) {
+    this.emailObj.emailAddress = emailFormInfo.email;
+    this.emailObj.body = emailFormInfo.body;
+    this.emailObj.enableListServ = emailFormInfo.listServ;
+  }
+
   submitEmail() {
-    console.log(this.emailForm.value);
+    this.updateEmailObj(this.emailForm.value)
     if (this.emailForm.valid) {
       this.emailService.sendEmail(this.emailObj);
     } else {

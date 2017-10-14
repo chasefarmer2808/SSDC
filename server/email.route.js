@@ -5,8 +5,13 @@ const router = express.Router();
 const nodemailer = require('nodemailer');
 const multer = require('multer');
 const upload = multer();
+const Joi = require('joi');
+const expressJoi = require('express-joi-validator');
+const emailSchema = require('./schema/email.schema');
 
-router.post('/', upload.array(), function (req, res, next) {
+const emailSubject = 'Email from SSDC Site';
+
+router.post('/', upload.array(), expressJoi(emailSchema), function (req, res, next) {
     
     var transporter = nodemailer.createTransport({
         service: 'Gmail',
@@ -24,7 +29,7 @@ router.post('/', upload.array(), function (req, res, next) {
     var mailOptions = {
         from: process.env.GMAIL_USERNAME,
         to: process.env.GMAIL_USERNAME,
-        subject: req.body.subject,
+        subject: emailSubject,
         text: req.body.body
     };
 
