@@ -21,11 +21,21 @@ export class EmailService {
 
   sendEmail(emailObj: Email): Promise<any> {
     emailObj.body = this.appendEmailAddressToBody(emailObj.body, emailObj.emailAddress);
-    
-    return this.http.post(this.emailUrl, emailObj)
-               .toPromise()
-               .then(response => response.json())
-               .catch(this.handleError);
+
+    let promise = new Promise((resolve, reject) => {
+      this.http.post(this.emailUrl, emailObj)
+        .toPromise()
+        .then(
+          res => {
+            resolve(res);
+          },
+          err => {
+            reject(err);
+          }
+        );
+    });
+
+    return promise;
   }
 
   private handleError(error: any): Promise<any> {

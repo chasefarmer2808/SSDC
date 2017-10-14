@@ -24,7 +24,14 @@
                 <md-checkbox formControlName="listServ">Add me to listserv</md-checkbox>
             </div>
             <div class="form-submit-container">
-                <button class="submit-button" md-raised-button color="primary" [disabled]="emailForm.invalid">Submit</button>
+                <button *ngIf="!loading && !emailSuccess" class="submit-button" md-raised-button color="primary" [disabled]="emailForm.invalid || emailSuccess">Submit</button>
+                <div class="submit-status">
+                    <md-spinner *ngIf="loading"></md-spinner>
+                    <i *ngIf="emailSuccess" class="fa fa-check fa-3x" aria-hidden="true"></i>
+                    <p *ngIf="emailSuccess">Email successfully sent!</p>
+                    <i *ngIf="emailError && !loading" class="fa fa-times fa-3x" aria-hidden="true"></i>
+                    <p *ngIf="emailError && !loading">Please try again.</p>
+                </div>
             </div>
         </form>
         <div class="info-container"></div>

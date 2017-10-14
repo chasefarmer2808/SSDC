@@ -92,3 +92,11 @@
   font-family: "Oswald", sans-serif;
   letter-spacing: 5px;
 }
+
+.fa-check {
+  color: #5cb85c;
+}
+
+.fa-times {
+  color: #d9534f;
+}

@@ -37,7 +37,6 @@ router.post('/', upload.array(), expressJoi(emailSchema), function (req, res, ne
         if (err) {
             next(err);
         } else {
-            console.log(info.response);
             res.send(info.resposne);
         }
     });
