@@ -36,7 +36,11 @@ export class ContactComponent implements OnInit {
 
   submitEmail() {
     console.log(this.emailForm.value);
-    this.emailService.sendEmail(this.emailObj);
+    if (this.emailForm.valid) {
+      this.emailService.sendEmail(this.emailObj);
+    } else {
+      console.log('Form invalid');
+    }
   }
 
 }
