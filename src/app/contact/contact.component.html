@@ -5,23 +5,26 @@
                 <div class="banner-title heading-font">Contact Us!</div>
             </div>
         </div>
-        <form (ngSubmit)="submitEmail()" #emailForm="ngForm" class="email-form">
+        <form (ngSubmit)="submitEmail()" [formGroup]="emailForm" class="email-form" novalidate>
             <div class="heading heading-font">Send us an Email!</div>
             <div class="form-input-container">
                 <md-form-field>
-                    <input mdInput [(ngModel)]="emailObj.email" name="email" placeholder="Email">
+                    <input mdInput formControlName="email" placeholder="Email" required>
+                    <md-error *ngIf="emailForm.controls['email'].hasError('required')">This field is required</md-error>
+                    <md-error *ngIf="emailForm.controls['email'].hasError('pattern') && !emailForm.controls['email'].hasError('required')">That is not a valid email</md-error>
                 </md-form-field>
             </div>
             <div class="form-multiline-container">
                 <md-form-field>
-                    <textarea mdInput mdTextareaAutosize [(ngModel)]="emailObj.body" name="body" placeholder="Message"></textarea>
+                    <textarea mdInput maxlength="{{bodyInputLength}}" formControlName="body" mdTextareaAutosize placeholder="Message"></textarea>
+                    <md-hint align="end">{{emailForm.controls['body'].value.length}} / {{bodyInputLength}}</md-hint>
                 </md-form-field>
             </div>
             <div class="form-checkbox-container">
-                <md-checkbox [(ngModel)]="emailObj.enableListServ" name="listserv">Add me to listserve</md-checkbox>
+                <md-checkbox formControlName="listServ">Add me to listserv</md-checkbox>
             </div>
             <div class="form-submit-container">
-                <button md-raised-button color="primary">Submit</button>
+                <button md-raised-button color="primary" [disabled]="emailForm.invalid">Submit</button>
             </div>
         </form>
         <div class="info-container"></div>

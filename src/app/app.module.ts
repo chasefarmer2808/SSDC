@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { HttpModule } from '@angular/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule, MatButtonModule, MatCheckboxModule } from '@angular/material';
 import { Ng2PageScrollModule } from 'ng2-page-scroll';
 
@@ -35,6 +35,7 @@ import { FooterComponent } from './footer/footer.component';
     HttpModule,
     Ng2PageScrollModule,
     FormsModule,
+    ReactiveFormsModule,
     MatInputModule,
     MatButtonModule,
     MatCheckboxModule

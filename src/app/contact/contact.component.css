@@ -15,6 +15,10 @@
     width: 80%;
 }
 
+.form-input-container {
+    margin-bottom: 8px;
+}
+
 .form-checkbox-container {
     margin-bottom: 16px;
 }

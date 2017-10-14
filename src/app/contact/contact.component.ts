@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { EmailService } from '../services/email/email.service';
 import { Email } from '../services/email/email';
+
+const emailPattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
 @Component({
   selector: 'app-contact',
@@ -12,15 +15,27 @@ import { Email } from '../services/email/email';
 export class ContactComponent implements OnInit {
 
   emailObj: Email;
+  emailForm: FormGroup;
+  bodyInputLength: number = 300;
 
-  constructor(private emailService: EmailService) { }
+  constructor(private emailService: EmailService, private fb: FormBuilder) {
+    this.emailObj = new Email();
+    this.createEmailForm();
+  }
 
   ngOnInit() {
-    this.emailObj = new Email();
+  }
+
+  createEmailForm() {
+    this.emailForm = this.fb.group({
+      email: ['', [Validators.required, Validators.pattern(emailPattern)]],
+      body: [this.emailObj.body, Validators.maxLength(this.bodyInputLength)],
+      listServ: true
+    })
   }
 
   submitEmail() {
-    console.log('Sending email...');
+    console.log(this.emailForm.value);
     this.emailService.sendEmail(this.emailObj);
   }
 
