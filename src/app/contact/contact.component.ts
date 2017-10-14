@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 
 import { EmailService } from '../services/email/email.service';
 import { Email } from '../services/email/email';
@@ -33,7 +33,7 @@ export class ContactComponent implements OnInit {
     this.emailForm = this.fb.group({
       email: ['', [Validators.required, Validators.pattern(emailPattern)]],
       body: [this.emailObj.body, Validators.maxLength(this.bodyInputLength)],
-      listServ: true
+      listServ: false
     })
   }
 
