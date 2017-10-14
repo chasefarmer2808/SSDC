@@ -21,7 +21,7 @@
                 </md-form-field>
             </div>
             <div class="form-checkbox-container">
-                <md-checkbox formControlName="listServ">Add me to listserv</md-checkbox>
+                <md-checkbox formControlName="listServ" ngControlDefault>Add me to listserv</md-checkbox>
             </div>
             <div class="form-submit-container">
                 <button *ngIf="!loading && !emailSuccess" class="submit-button" md-raised-button color="primary" [disabled]="emailForm.invalid || emailSuccess">Submit</button>
