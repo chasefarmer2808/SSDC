@@ -12,4 +12,12 @@ export class OfficersService {
     return Officers;
   }
 
+  getPresident(): Officer {
+    for (let officer of Officers) {
+      if (officer.role == 'President') {
+        return officer;
+      }
+    }
+  }
+
 }

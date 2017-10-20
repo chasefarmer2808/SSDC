@@ -7,5 +7,8 @@ export const environment = {
   production: false,
   envName: 'dev',
   facebookUrl: 'http://localhost:5000/api/v1/fb/getEvents',
-  emailUrl: 'http://localhost:5000/api/v1/email'
+  emailUrl: 'http://localhost:5000/api/v1/email',
+  emailAddress: 'ufssdc@gmail.com',
+  facebookLink: 'https://www.facebook.com/groups/ufssdc/',
+  office: 'NEB 225'
 };

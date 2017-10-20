@@ -11,10 +11,29 @@
             </div>
             <div class="flex-center">
                 <div class="info-box">
-                    <div class="text-item">Email Address</div>
-                    <div class="text-item">Pres Email Address</div>
-                    <div class="text-item">Office Location</div>
+                    <div class="text-item">
+                        Email Address: <a href="mailto:{{emailAddr}}">{{emailAddr}}</a>
+                    </div>
+                    <div class="text-item">
+                        President Email: <a href="mailto:{{presEmailAddr}}">{{presEmailAddr}}</a>
+                    </div>
+                    <div class="text-item">Office: {{office}}</div>
                     <div class="text-item">Next event</div>
+                </div>
+            </div>
+        </div>
+        <div class="officers-container-sm">
+            <div class="center">
+                <div class="heading heading-font">Our Officers</div>
+            </div>
+            <div class="flex-center">
+                <div class="officers-grid-sm">
+                    <div class="officer" *ngFor="let officer of officers">
+                        <div class="role">test</div>
+                        <div class="profile-picture-sm"></div>
+                        <div class="name"></div>
+                        <div class="email"></div>
+                    </div>
                 </div>
             </div>
         </div>

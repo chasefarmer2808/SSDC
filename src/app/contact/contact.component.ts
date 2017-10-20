@@ -2,7 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 
 import { EmailService } from '../services/email/email.service';
+import { OfficersService } from '../services/officers/officers.service';
 import { Email } from '../services/email/email';
+import { Officer } from '../services/officers/officer';
+
+import { environment } from '../../environments/environment';
 
 const emailPattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
@@ -10,7 +14,7 @@ const emailPattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+
   selector: 'app-contact',
   templateUrl: './contact.component.html',
   styleUrls: ['./contact.component.css', '../app.component.css'],
-  providers: [EmailService]
+  providers: [EmailService, OfficersService]
 })
 export class ContactComponent implements OnInit {
 
@@ -20,10 +24,16 @@ export class ContactComponent implements OnInit {
   loading: boolean = false;
   emailSuccess: boolean = false;
   emailError: boolean = false;
+  emailAddr: string = environment.emailAddress;
+  presEmailAddr: string;
+  office: string = environment.office;
+  officers: Officer[];
 
-  constructor(private emailService: EmailService, private fb: FormBuilder) {
+  constructor(private emailService: EmailService, private fb: FormBuilder, private officersService: OfficersService) {
     this.emailObj = new Email();
     this.createEmailForm();
+    this.presEmailAddr = this.officersService.getPresident().email;
+    this.officers = this.officersService.getOfficers();
   }
 
   ngOnInit() {

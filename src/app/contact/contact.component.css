@@ -13,6 +13,18 @@
     width: 80%;
 }
 
+.officers-container-sm {
+    background-color: white;
+}
+
+.officers-grid-sm {
+    width: 80%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    justify-items: center;
+}
+
 .email-form {
     background-color: white;
     text-align: center;
