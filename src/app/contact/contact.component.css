@@ -5,6 +5,14 @@
     background-size: cover;
 }
 
+#info-container {
+    background-color: white;
+}
+
+.info-box {
+    width: 80%;
+}
+
 .email-form {
     background-color: white;
     text-align: center;

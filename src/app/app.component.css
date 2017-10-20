@@ -78,12 +78,33 @@
   font-weight: bold;
 }
 
+.center {
+  text-align: center;
+}
+
+.white {
+  background-color: white;
+}
+
 /* Grid styles */
 
 .grid-col-header-sm {
   margin-top: 8px;
   margin-bottom: 8px;
   border-bottom: 1px solid white;
+}
+
+.grid-mobile-auto {
+  grid-template-columns: 1fr;
+  justify-items: center;
+}
+
+/* Flex styles */
+
+.flex-center {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }
 
 /* Fonts */
