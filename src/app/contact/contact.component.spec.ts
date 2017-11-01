@@ -5,15 +5,20 @@ import { HttpModule } from '@angular/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { ContactComponent } from './contact.component';
+import { OfficersComponent } from '../officers/officers.component';
 import { EmailService } from '../services/email/email.service';
+
+import { Officers } from '../services/officers/officers';
 
 describe('ContactComponent', () => {
   let component: ContactComponent;
   let fixture: ComponentFixture<ContactComponent>;
+  let officersComponent: OfficersComponent;
+  let officersFixture: ComponentFixture<OfficersComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ContactComponent ],
+      declarations: [ ContactComponent, OfficersComponent ],
       imports: [ 
         HttpModule,
         ReactiveFormsModule,
@@ -31,12 +36,22 @@ describe('ContactComponent', () => {
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ContactComponent);
+    officersFixture = TestBed.createComponent(OfficersComponent);
     component = fixture.componentInstance;
+    officersComponent = officersFixture.componentInstance;
     fixture.detectChanges();
   });
 
   it('should be created', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should instantiate officers component', () => {
+    expect(officersComponent).toBeTruthy();
+  });
+
+  it('should show all officers', () => {
+    expect(component.officers.length).toEqual(Officers.length);
   });
 
   it('email form should initially be invalid', () => {
