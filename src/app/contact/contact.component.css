@@ -18,11 +18,26 @@
 }
 
 .officers-grid-sm {
-    width: 80%;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
     justify-items: center;
+}
+
+.officer {
+    text-align: center;
+}
+
+.profile-picture-sm {
+    border-radius: 50%;
+    overflow: hidden;
+    width: 100px;
+    height: 100px;
+    margin: 0 auto;
+}
+
+.profile-picture-sm img {
+    width: 100%;
+    height: auto;
 }
 
 .email-form {

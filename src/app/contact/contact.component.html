@@ -29,10 +29,14 @@
             <div class="flex-center">
                 <div class="officers-grid-sm">
                     <div class="officer" *ngFor="let officer of officers">
-                        <div class="role">test</div>
-                        <div class="profile-picture-sm"></div>
-                        <div class="name"></div>
-                        <div class="email"></div>
+                        <div class="role">{{officer.role}}</div>
+                        <div class="profile-picture-sm">
+                            <img src="{{officer.pictureUrl}}">
+                        </div>
+                        <div class="name">{{officer.name}}</div>
+                        <div class="email">
+                            <a href="mailto:{{officer.email}}">{{officer.email}}</a>
+                        </div>
                     </div>
                 </div>
             </div>
