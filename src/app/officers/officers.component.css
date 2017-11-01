@@ -3,6 +3,12 @@
   background-color: white;
 }
 
+.officers-grid-sm {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-items: center;
+}
+
 #officers-heading {
   margin-left: 16px;
 }
@@ -30,6 +36,19 @@
 }
 
 .profile-picture img {
+  width: 100%;
+  height: auto;
+}
+
+.profile-picture-sm {
+  border-radius: 50%;
+  overflow: hidden;
+  width: 100px;
+  height: 100px;
+  margin: 0 auto;
+}
+
+.profile-picture-sm img {
   width: 100%;
   height: auto;
 }

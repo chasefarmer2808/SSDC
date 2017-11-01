@@ -1,23 +1,18 @@
 <div class="officers-container">
-  <div id="officers-heading" class="heading heading-font">Meet the Officers</div>
-  <div id="officers-grid" class="single-column-center">
-    <div *ngFor="let officer of officers" class="officer">
-      <div class="role">{{officer.role}}: {{officer.name}}</div>
-      <div class="profile-container">
-        <div class="profile-picture">
-          <img src="{{officer.pictureUrl}}">
-        </div>
-        <div class="officer-info">
-          <div class="info">
-            {{officer.bio}}
+  <div class="center">
+    <div id="officers-heading" class="heading heading-font">Meet the Officers</div>
+  </div>
+  <div class="flex-center">
+    <div class="officers-grid-sm">
+      <div class="officer" *ngFor="let officer of officers">
+          <div class="role">{{officer.role}}</div>
+          <div class="profile-picture-sm">
+              <img src="{{officer.pictureUrl}}">
           </div>
+          <div class="name">{{officer.name}}</div>
           <div class="email">
-            <a href="mailto:{{officer.email}}">
-              <i class="fa fa-envelope"></i>
-              {{officer.email}}
-            </a>
+              <a href="mailto:{{officer.email}}">{{officer.email}}</a>
           </div>
-        </div>
       </div>
     </div>
   </div>

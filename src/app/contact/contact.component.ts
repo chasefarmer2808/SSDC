@@ -8,6 +8,8 @@ import { Email } from '../services/email/email';
 import { Officer } from '../services/officers/officer';
 import { Event } from '../events/event';
 
+import { OfficersComponent } from '../officers/officers.component';
+
 import { environment } from '../../environments/environment';
 
 const emailPattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
