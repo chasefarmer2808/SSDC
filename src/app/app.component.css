@@ -59,6 +59,10 @@
   transform: scaleX(1);
 }
 
+.inline {
+  display: inline-block;
+}
+
 /* Banners */
 
 .banner-container-small {

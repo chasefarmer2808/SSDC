@@ -3,8 +3,10 @@ import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms'
 
 import { EmailService } from '../services/email/email.service';
 import { OfficersService } from '../services/officers/officers.service';
+import { FacebookService } from '../services/facebook/facebook.service';
 import { Email } from '../services/email/email';
 import { Officer } from '../services/officers/officer';
+import { Event } from '../events/event';
 
 import { environment } from '../../environments/environment';
 
@@ -14,7 +16,7 @@ const emailPattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+
   selector: 'app-contact',
   templateUrl: './contact.component.html',
   styleUrls: ['./contact.component.css', '../app.component.css'],
-  providers: [EmailService, OfficersService]
+  providers: [EmailService, OfficersService, FacebookService]
 })
 export class ContactComponent implements OnInit {
 
@@ -28,8 +30,12 @@ export class ContactComponent implements OnInit {
   presEmailAddr: string;
   office: string = environment.office;
   officers: Officer[];
+  nextEvent: Event;
 
-  constructor(private emailService: EmailService, private fb: FormBuilder, private officersService: OfficersService) {
+  constructor(private emailService: EmailService, 
+              private fb: FormBuilder, 
+              private officersService: OfficersService,
+              private facebookService: FacebookService) {
     this.emailObj = new Email();
     this.createEmailForm();
     this.presEmailAddr = this.officersService.getPresident().email;
@@ -37,6 +43,16 @@ export class ContactComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.setNextEventLink();
+  }
+
+  setNextEventLink() {
+    this.facebookService.getEvents()
+      .then((events) => {
+        if (events.length > 0) {
+          this.nextEvent = events[0];
+        }
+      });
   }
 
   createEmailForm() {

@@ -8,7 +8,8 @@ export const MockEvents: Event[] = [
       name: 'event 1 location'
     },
     start_time: 'event 1 start time',
-    end_time: 'event 1 end time'
+    end_time: 'event 1 end time',
+    link: 'https://facebook.com/events/1234567'
   },
   {
     name: 'event 2',
@@ -17,6 +18,7 @@ export const MockEvents: Event[] = [
       name: 'event 2 location'
     },
     start_time: 'event 2 start time',
-    end_time: 'event 2 end time'
+    end_time: 'event 2 end time',
+    link: 'https://facebook.com/events/1234567'
   }
 ];

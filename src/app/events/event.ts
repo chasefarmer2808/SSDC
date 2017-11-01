@@ -6,4 +6,5 @@ export class Event {
   place: Place;
   start_time: string;
   end_time: string;
+  link: string;
 }

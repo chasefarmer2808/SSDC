@@ -21,6 +21,10 @@ export class FacebookService {
                .catch(this.handleError);
   }
 
+  private generateEventLink(eventId: string) {
+    return `https://facebook.com/events/${eventId}`;
+  }
+
   private handleError(error: any): Promise<any> {
     console.error(error);
     return Promise.reject(error.message || error);

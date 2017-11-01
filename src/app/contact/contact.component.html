@@ -18,7 +18,11 @@
                         President Email: <a href="mailto:{{presEmailAddr}}">{{presEmailAddr}}</a>
                     </div>
                     <div class="text-item">Office: {{office}}</div>
-                    <div class="text-item">Next event</div>
+                    <div class="text-item">
+                        Next event: 
+                        <a *ngIf="nextEvent != undefined" href="{{nextEvent.link}}" target="_blank">{{nextEvent.name}}</a>
+                        <div class="inline" *ngIf="nextEvent == undefined">N/A</div>
+                    </div>
                 </div>
             </div>
         </div>
