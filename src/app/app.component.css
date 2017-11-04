@@ -60,7 +60,7 @@
 }
 
 .inline {
-  display: inline-block;
+  display: inline-block;      
 }
 
 /* Banners */
@@ -88,6 +88,10 @@
 
 .white {
   background-color: white;
+}
+
+.text-item {
+  margin: 8px;
 }
 
 /* Grid styles */
