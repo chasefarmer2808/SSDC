@@ -7,7 +7,8 @@ export const Officers: Officer[] = [
     pictureUrl: '../../../assets/aastha.jpg',
     bio: `Aastha is a 4th year Aerospace Engineering major at the University of
           Florida.`,
-    email: 'aasthar@ufl.edu'
+    email: 'aasthar@ufl.edu',
+    showInfo: false
   },
   {
     name: 'John Kemienski',
@@ -15,7 +16,8 @@ export const Officers: Officer[] = [
     pictureUrl: '../../../assets/john.jpg',
     bio: `John Kempiensky is a 4th year Mechanical Engineering major at the
           University of Florida.`,
-    email: 'kempienski@ufl.edu'
+    email: 'kempienski@ufl.edu',
+    showInfo: false
   },
   {
     name: 'Kevin Almanzar',
@@ -23,7 +25,8 @@ export const Officers: Officer[] = [
     pictureUrl: '../../../assets/kevin.jpg',
     bio: `Kevin Almanzar is a 4th year Aerospace Engineering major at the
           University of Florida.`,
-    email: 'kalmanzar5@ufl.edu'
+    email: 'kalmanzar5@ufl.edu',
+    showInfo: false
   },
   {
     name: 'Zane Gyorko',
@@ -31,14 +34,16 @@ export const Officers: Officer[] = [
     pictureUrl: '../../../assets/zane.jpg',
     bio: `Zane Gyorko is a 2nd year Electrical Engineering major at the
           University of Florida.`,
-    email: 'zgyorko@ufl.edu'
+    email: 'zgyorko@ufl.edu',
+    showInfo: false
   },
   {
     name: 'Chris Charters',
     role: 'Treasurer',
     pictureUrl: '../../../assets/chris.jpg',
     bio: 'Chris Charters has the best mom in the whole wide world',
-    email: 'chartersauce25@ufl.edu'
+    email: 'chartersauce25@ufl.edu',
+    showInfo: false
   },
   {
     name: 'Logan Sprole',
@@ -47,7 +52,8 @@ export const Officers: Officer[] = [
     bio: `Logan Sprole is a 3rd year Economics major at the University of
           Florida.  He uses a CM QuickFile Rapid keyboad with Cherry MX red
           switches.`,
-    email: 'lsprole@ufl.edu'
+    email: 'lsprole@ufl.edu',
+    showInfo: false
   },
   {
     name: 'Chase Farmer',
@@ -56,6 +62,7 @@ export const Officers: Officer[] = [
     bio: `Chase Farmer is a 5th year computer engineering major at the University
           of Florida.  He has a passion for IoT and full stack development.  He
           spends his free time running, rock climbing, and making websites.`,
-    email: 'chasefarmer2808@ufl.edu'
+    email: 'chasefarmer2808@ufl.edu',
+    showInfo: false
   }
 ];

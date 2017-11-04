@@ -4,4 +4,5 @@ export class Officer {
   pictureUrl: string;
   bio: string;
   email: string;
+  showInfo: boolean;
 }

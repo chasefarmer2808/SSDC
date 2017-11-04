@@ -6,8 +6,8 @@
     <div class="officers-grid">
       <div class="officer" *ngFor="let officer of officers">
           <div class="role">{{officer.role}}</div>
-          <div class="profile-picture">
-            <div class="officer-info-overlay">Test</div>
+          <div class="profile-picture" (mouseover)="toggleOfficerInfo(officer)" (mouseout)="toggleOfficerInfo(officer)">
+            <div [@slideDown]="officer.showInfo" class="officer-info-overlay">Test</div>
             <img src="{{officer.pictureUrl}}">
           </div>
           <div class="name">{{officer.name}}</div>
