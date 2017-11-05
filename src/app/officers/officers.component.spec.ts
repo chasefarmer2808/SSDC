@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { OfficersComponent } from './officers.component';
 import { OfficersService } from '../services/officers/officers.service';
@@ -13,7 +14,8 @@ describe('OfficersComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ OfficersComponent ],
-      providers: [ OfficersService ]
+      providers: [ OfficersService ],
+      imports: [ BrowserAnimationsModule ]
     })
     .compileComponents();
   }));
