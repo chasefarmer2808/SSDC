@@ -25,7 +25,20 @@ var transporter = nodemailer.createTransport({
 });
 
 router.post('/', upload.array(), expressJoi(emailSchema), function (req, res, next) {
+    var mailOptions = {
+        from: process.env.GMAIL_USERNAME,
+        to: process.env.LISTSERV_EMAIL,
+        text: `Add SSDC-L //${req.body.emailAddress}//`
+    };
 
+    transporter.sendMail(mailOptions, function(err, info) {
+        if (err) {
+            next(err);
+        } else {
+            res.send(info.resposne);
+        }
+    });
+}, function(req, res, next) {
     var mailOptions = {
         from: process.env.GMAIL_USERNAME,
         to: process.env.GMAIL_USERNAME,
@@ -40,21 +53,6 @@ router.post('/', upload.array(), expressJoi(emailSchema), function (req, res, ne
             next();
         }
         else {
-            res.send(info.resposne);
-        }
-    });
-}, function(req, res, next) {
-
-    var mailOptions = {
-        from: process.env.GMAIL_USERNAME,
-        to: process.env.LISTSERV_EMAIL,
-        text: `Add SSDC-L //${req.body.emailAddress}//`
-    };
-
-    transporter.sendMail(mailOptions, function(err, info) {
-        if (err) {
-            next(err);
-        } else {
             res.send(info.resposne);
         }
     });
