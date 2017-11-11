@@ -31,9 +31,23 @@
             <div class="heading heading-font">Send us an Email!</div>
             <div class="form-input-container">
                 <mat-form-field>
-                    <input matInput formControlName="email" placeholder="Email" required>
+                    <input matInput formControlName="email" placeholder="Email Address" required>
                     <mat-error *ngIf="emailForm.controls['email'].hasError('required')">This field is required</mat-error>
                     <mat-error *ngIf="emailForm.controls['email'].hasError('pattern') && !emailForm.controls['email'].hasError('required')">That is not a valid email</mat-error>
+                </mat-form-field>
+            </div>
+            <div class="form-input-container">
+                <mat-form-field>
+                    <input matInput formControlName="firstName" placeholder="First Name" required>
+                    <mat-error *ngIf="emailForm.controls['firstName'].hasError('required')">This field is required</mat-error>
+                    <mat-error *ngIf="emailForm.controls['firstName'].hasError('pattern') && !emailForm.controls['firstName'].hasError('required')">Only letters please</mat-error>
+                </mat-form-field>
+            </div>
+            <div class="form-input-container">
+                <mat-form-field>
+                    <input matInput formControlName="firstName" placeholder="Last Name" required>
+                    <mat-error *ngIf="emailForm.controls['lastName'].hasError('required')">This field is required</mat-error>
+                    <mat-error *ngIf="emailForm.controls['lastName'].hasError('pattern') && !emailForm.controls['lastName'].hasError('required')">Only letters please</mat-error>
                 </mat-form-field>
             </div>
             <div class="form-multiline-container">

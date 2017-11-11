@@ -71,18 +71,44 @@ describe('ContactComponent', () => {
     expect(emailField.errors['pattern']).toBeTruthy();
   });
 
+  it('should require first name field', () => {
+    let firstNameField = component.emailForm.controls['firstName'];
+    expect(firstNameField.errors['required']).toBeTruthy();
+  });
+
+  it('should require last name field', () => {
+    let lastNameField = component.emailForm.controls['lastName'];
+    expect(lastNameField.errors['required']).toBeTruthy();
+  });
+
+  it('should error on invalid first name pattern', () => {
+    let firstNameField = component.emailForm.controls['firstName'];
+    firstNameField.setValue('123');
+    expect(firstNameField.errors['pattern']).toBeTruthy();
+  });
+
+  it('should error on invalid last name pattern', () => {
+    let lastNameField = component.emailForm.controls['lastName'];
+    lastNameField.setValue('123');
+    expect(lastNameField.errors['pattern']).toBeTruthy();
+  });
+
   it('should disable the submit button initially', () => {
     let submitButton = fixture.nativeElement.querySelector('.submit-button');
     expect(submitButton.disabled).toBeTruthy();
   });
 
-  it('should have valid form on valid email', () => {
+  it('should have valid form on valid email, first name, and last name', () => {
     expect(component.emailForm.invalid).toBeTruthy();
 
     let emailField = component.emailForm.controls['email'];
+    let firstNameField = component.emailForm.controls['firstName'];
+    let lastNameField = component.emailForm.controls['lastName'];
     let submitButton = fixture.nativeElement.querySelector('.submit-button');
     
     emailField.setValue('test@test.com');
+    firstNameField.setValue('Buzz');
+    lastNameField.setValue('Aldrin');
     fixture.detectChanges();
 
     expect(component.emailForm.valid).toBeTruthy();

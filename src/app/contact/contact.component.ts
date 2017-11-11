@@ -13,6 +13,7 @@ import { OfficersComponent } from '../officers/officers.component';
 import { environment } from '../../environments/environment';
 
 const emailPattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+const lettersOnlyRegex = /^[a-zA-Z]+$/;
 
 @Component({
   selector: 'app-contact',
@@ -59,10 +60,12 @@ export class ContactComponent implements OnInit {
 
   createEmailForm() {
     this.emailForm = this.fb.group({
-      email: ['', [Validators.required, Validators.pattern(emailPattern)]],
+      email: [this.emailObj.emailAddress, [Validators.required, Validators.pattern(emailPattern)]],
+      firstName: [this.emailObj.firstName, [Validators.required, Validators.pattern(lettersOnlyRegex)]],
+      lastName: [this.emailObj.lastName, [Validators.required, Validators.pattern(lettersOnlyRegex)]],
       body: [this.emailObj.body, Validators.maxLength(this.bodyInputLength)],
       listServ: false
-    })
+    });
   }
 
   updateEmailObj(emailFormInfo:any) {
