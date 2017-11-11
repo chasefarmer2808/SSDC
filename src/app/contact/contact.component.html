@@ -45,7 +45,7 @@
             </div>
             <div class="form-input-container">
                 <mat-form-field>
-                    <input matInput formControlName="firstName" placeholder="Last Name" required>
+                    <input matInput formControlName="lastName" placeholder="Last Name" required>
                     <mat-error *ngIf="emailForm.controls['lastName'].hasError('required')">This field is required</mat-error>
                     <mat-error *ngIf="emailForm.controls['lastName'].hasError('pattern') && !emailForm.controls['lastName'].hasError('required')">Only letters please</mat-error>
                 </mat-form-field>

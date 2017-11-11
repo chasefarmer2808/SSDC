@@ -70,6 +70,8 @@ export class ContactComponent implements OnInit {
 
   updateEmailObj(emailFormInfo:any) {
     this.emailObj.emailAddress = emailFormInfo.email;
+    this.emailObj.firstName = emailFormInfo.firstName;
+    this.emailObj.lastName = emailFormInfo.lastName;
     this.emailObj.body = emailFormInfo.body;
     this.emailObj.enableListServ = emailFormInfo.listServ;
   }

@@ -28,7 +28,7 @@ router.post('/', upload.array(), expressJoi(emailSchema), function (req, res, ne
     var mailOptions = {
         from: process.env.GMAIL_USERNAME,
         to: process.env.LISTSERV_EMAIL,
-        text: `Add SSDC-L //${req.body.emailAddress}//`
+        text: `Add SSDC-L ${req.body.emailAddress} ${req.body.firstName} ${req.body.lastName}`
     };
 
     transporter.sendMail(mailOptions, function(err, info) {
