@@ -6,3 +6,17 @@
 
 #events-header {
 }
+
+.event {
+  margin-bottom: 8px;
+  border: 1px solid black;
+  padding: 8px;
+}
+
+.event-name {
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+.event-name a {
+}

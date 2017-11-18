@@ -4,11 +4,18 @@
     <div *ngIf="events?.length == 0" class="message">{{noEventsMessage}}</div>
     <div *ngFor="let event of events" class="event">
       <div class="event-name">
-        <a href="{{event.link}}" target="_black">{{event.name}}</a>
+        <a href="{{event.link}}" target="_blank" class="slide-center-black">{{event.name}}</a>
+        <i class="fa fa-external-link" aria-hidden="true"></i>
       </div>
-      <div class="event-start">When: {{event.start_time | date:'medium'}}</div>
-      <div class="event-loc">Location: {{event.place.name}}</div>
-      <div class="event-description">Description: {{event.description}}</div>
+      <div class="event-start">
+        <h4 class="inline">When:</h4> {{event.start_time | date:'medium'}}
+      </div>
+      <div class="event-loc">
+        <h4 class="inline">Location:</h4> {{event.place.name}}
+      </div>
+      <div class="event-description">
+        <h4 class="inline">Description:</h4> {{event.description}}
+      </div>
     </div>
   </div>
 </div>
