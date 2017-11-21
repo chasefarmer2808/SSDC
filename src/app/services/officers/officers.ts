@@ -5,16 +5,16 @@ export const Officers: Officer[] = [
     name: 'Aastha Rajbhandary',
     role: 'President',
     pictureUrl: '../../../assets/aastha.jpg',
-    bio: `Aastha is a 4th year Aerospace Engineering major at the University of
+    bio: `Aastha is a 3th year Aerospace Engineering major at the University of
           Florida.`,
     email: 'aasthar@ufl.edu',
     showInfo: false
   },
   {
-    name: 'John Kemienski',
+    name: 'John Kempienski',
     role: 'VP Internal',
     pictureUrl: '../../../assets/john.jpg',
-    bio: `John Kempiensky is a 4th year Mechanical Engineering major at the
+    bio: `John Kempienski is a 4th year Mechanical Engineering major at the
           University of Florida.`,
     email: 'kempienski@ufl.edu',
     showInfo: false
