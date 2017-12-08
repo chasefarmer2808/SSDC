@@ -16,6 +16,7 @@ import { ContactComponent } from './contact/contact.component';
 import { ClickOutsideDirective } from './directives/click-outside.directive';
 import { OfficersComponent } from './officers/officers.component';
 import { FooterComponent } from './footer/footer.component';
+import { GalleryComponent } from './gallery/gallery.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { FooterComponent } from './footer/footer.component';
     ContactComponent,
     ClickOutsideDirective,
     OfficersComponent,
-    FooterComponent
+    FooterComponent,
+    GalleryComponent
   ],
   imports: [
     BrowserModule,

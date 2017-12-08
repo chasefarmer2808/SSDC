@@ -94,7 +94,6 @@ export class NavbarComponent implements OnInit {
 
   toggleScrollable(route: any) {
     route.data.showScrollables = !route.data.showScrollables;
-    console.log(route.data.showScrollables);
   }
 
   collapseAll() {

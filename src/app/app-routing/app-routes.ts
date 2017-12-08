@@ -3,6 +3,7 @@ import { Routes } from '@angular/router';
 import { HomeComponent } from '../home/home.component';
 import { EventsComponent } from '../events/events.component';
 import { ContactComponent } from '../contact/contact.component';
+import { GalleryComponent } from 'app/gallery/gallery.component';
 
 export const routes: Routes = [
   {
@@ -31,5 +32,12 @@ export const routes: Routes = [
     path: 'contact',
     component: ContactComponent,
     data: {name: 'Contact'}
+  },
+  {
+    path: 'gallery',
+    component: GalleryComponent,
+    data: {
+      name: 'Gallery'
+    }
   }
 ];
