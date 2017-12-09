@@ -33,6 +33,51 @@ router.get('/getEvents', function (req, res, next) {
     });
 });
 
+router.get('/albums', function(req, res, next) {
+  var accessToken = process.env.FB_ACCESS_TOKEN;
+
+  var options = {
+    uri: `${config.fbApiRootUrl}/${config.ssdcGroupId}/albums`,
+    qs : {
+      access_token: accessToken
+    },
+    json: true
+  };
+
+  rp(options)
+    .then(function(albums) {
+      res.set('Access-control-Allow-origin', '*');
+
+      res.send(albums);
+    })
+    .catch(function(err) {
+      next(err);
+    });
+});
+
+router.get('/album/:albumId', function(req, res, next) {
+  console.log(req.params.albumId);
+  var accessToken = process.env.FB_ACCESS_TOKEN;
+  
+  var options = {
+    uri: `${config.fbApiRootUrl}/${req.params.albumId}/photos?fields=source`,
+    qs : {
+      access_token: accessToken
+    },
+    json: true
+  };
+
+  rp(options)
+    .then(function(album) {
+      res.set('Access-control-Allow-origin', '*');
+
+      res.send(album);
+    })
+    .catch(function(err) {
+      next(err);
+    });
+});
+
 function generateEventLink(eventId) {
   return `https://facebook.com/events/${eventId}`;
 }
