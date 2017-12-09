@@ -6,6 +6,7 @@ import { environment } from '../../../environments/environment';
 import 'rxjs/add/operator/toPromise';
 
 import { Event } from '../../events/event';
+import { Album } from '../../gallery/album';
 
 @Injectable()
 export class FacebookService {
@@ -15,13 +16,20 @@ export class FacebookService {
   constructor(private http: Http) { }
 
   getEvents(): Promise<Event[]> {
-    return this.http.get(this.fbUrl)
+    return this.http.get(`${this.fbUrl}/getEvents`)
                .toPromise()
                .then(response => response.json().data as Event[])
                .catch(this.handleError);
   }
 
-  private generateEventLink(eventId: string) {
+  getAlbums(): Promise<Album[]> {
+    return this.http.get(`${this.fbUrl}/albums`)
+               .toPromise()
+               .then(response => response.json().data as Album[])
+               .catch(this.handleError);
+  }
+
+  private generateEventLink(eventId: string): String {
     return `https://facebook.com/events/${eventId}`;
   }
 

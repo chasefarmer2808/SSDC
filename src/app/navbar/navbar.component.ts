@@ -2,11 +2,14 @@ import { Component, OnInit, NgZone } from '@angular/core';
 import { Routes, Router, NavigationEnd } from '@angular/router';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 import { routes } from '../app-routing/app-routes';
+import { FacebookService } from '../services/facebook/facebook.service';
+import { Album } from '../gallery/album';
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css', '../app.component.css'],
+  providers: [FacebookService],
   animations: [
     trigger('dropDown', [
       state('0', style({
@@ -51,8 +54,9 @@ export class NavbarComponent implements OnInit {
   fbLink:string;
   emailAddr:string;
   currentRoute:string;
+  galleries:Album[];
 
-  constructor(zone: NgZone, private router: Router) {
+  constructor(zone: NgZone, private router: Router, private facebookService: FacebookService) {
     window.onscroll = () => {
       zone.run(() => {
         if (window.pageYOffset > 0) {
@@ -70,12 +74,28 @@ export class NavbarComponent implements OnInit {
     this.myRoutes = routes;
     this.fbLink = 'https://www.facebook.com/groups/ufssdc/';
     this.emailAddr = 'ufssdc@gmail.com';
+    //this.getGalleries();
 
     this.router.events.subscribe((evt) => {
       if (evt instanceof NavigationEnd) {
         this.currentRoute = evt.url;
       }
     });
+  }
+
+  getGalleries() {
+    this.facebookService.getAlbums()
+        .then((albums) => {
+          this.getRoute('gallery').data.scrollables = albums;
+        });
+  }
+
+  getRoute(routePath: string): any {
+    for (let route of this.myRoutes) {
+      if (route.path == routePath) {
+        return route;
+      }
+    }
   }
 
   toggleNav() {

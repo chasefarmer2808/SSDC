@@ -37,7 +37,9 @@ export const routes: Routes = [
     path: 'gallery',
     component: GalleryComponent,
     data: {
-      name: 'Gallery'
+      name: 'Gallery',
+      showScrollables: false,
+      scrollables: []
     }
   }
 ];
