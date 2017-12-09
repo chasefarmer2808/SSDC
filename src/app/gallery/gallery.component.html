@@ -1,3 +1,14 @@
-<p>
-  gallery works!
-</p>
+<div id="gallery-container">
+  <div class="banner-container-small">
+    <div class="banner-text-container">
+      <div class="banner-title heading-font">Gallery</div>
+    </div>
+  </div>
+  <div class="content-container">
+    <div class="albums-container">
+      <div *ngFor="let album of albums" class="album-name-container">
+        <button mat-raised-button color="primary" class="album-name">{{album.name}}</button>
+      </div>
+    </div>
+  </div>
+</div>

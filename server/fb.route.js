@@ -56,7 +56,6 @@ router.get('/albums', function(req, res, next) {
 });
 
 router.get('/album/:albumId', function(req, res, next) {
-  console.log(req.params.albumId);
   var accessToken = process.env.FB_ACCESS_TOKEN;
   
   var options = {

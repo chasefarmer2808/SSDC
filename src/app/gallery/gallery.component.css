@@ -1,0 +1,31 @@
+#gallery-container {
+    background: url("../../assets/background6.jpg");
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.albums-container {
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    padding-left: 8px;
+    padding-right: 8px;
+    overflow-x: scroll;
+}
+
+.albums-container::-webkit-scrollbar {
+    background: transparent;
+}
+
+.album-name-container {
+    white-space: nowrap;
+    margin: 8px;
+    background-color: #3f51b5;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+
+.album-name {
+    font-size: 20px;
+}
