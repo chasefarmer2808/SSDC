@@ -5,10 +5,16 @@
     </div>
   </div>
   <div class="content-container">
-    <div class="albums-container">
+    <div class="albums-container" scrollInfo (showRightArrow)="showRightArrow()" (hideRightArrow)="hideRightArrow()" (showLeftArrow)="showLeftArrow()" (hideLeftArrow)="hideLeftArrow()">
       <div *ngFor="let album of albums" class="album-name-container">
         <button mat-raised-button color="primary" class="album-name">{{album.name}}</button>
       </div>
+      <button mat-fab color="#E8EAF6" class="right-arrow-scroll" *ngIf="rightArrowVisible">
+        <i class="fa fa-chevron-right fa-2x" aria-hidden="true"></i>
+      </button>
+      <button mat-fab color="#E8EAF6" class="left-arrow-scroll" *ngIf="leftArrowVisible">
+        <i class="fa fa-chevron-left fa-2x" aria-hidden="true"></i>
+      </button>
     </div>
   </div>
 </div>

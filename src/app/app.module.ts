@@ -14,6 +14,7 @@ import { EventsComponent } from './events/events.component';
 import { ContactComponent } from './contact/contact.component';
 
 import { ClickOutsideDirective } from './directives/click-outside.directive';
+import { ScrollRightDirective } from './directives/onscroll.directive';
 import { OfficersComponent } from './officers/officers.component';
 import { FooterComponent } from './footer/footer.component';
 import { GalleryComponent } from './gallery/gallery.component';
@@ -26,6 +27,7 @@ import { GalleryComponent } from './gallery/gallery.component';
     EventsComponent,
     ContactComponent,
     ClickOutsideDirective,
+    ScrollRightDirective,
     OfficersComponent,
     FooterComponent,
     GalleryComponent

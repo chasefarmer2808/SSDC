@@ -27,5 +27,19 @@
 }
 
 .album-name {
-    font-size: 20px;
+    font-size: 16px;
+}
+
+.right-arrow-scroll {
+    position: fixed;
+    right: -20px;
+    color: black;
+    opacity: 0.6;
+}
+
+.left-arrow-scroll {
+    position: fixed;
+    left: -20px;
+    color: black;
+    opacity: 0.6;
 }

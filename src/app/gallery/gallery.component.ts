@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FacebookService } from '../services/facebook/facebook.service';
+import { ScrollRightDirective } from '../directives/onscroll.directive';
 import { Album } from '../gallery/album';
 
 @Component({
@@ -11,9 +12,12 @@ import { Album } from '../gallery/album';
 export class GalleryComponent implements OnInit {
 
   albums:Album[];
+  rightArrowVisible:boolean;
+  leftArrowVisible:boolean;
 
   constructor(private facebookService: FacebookService) {
-
+    this.hideLeftArrow();
+    this.hideRightArrow();
   }
 
   ngOnInit() {
@@ -24,7 +28,26 @@ export class GalleryComponent implements OnInit {
     this.facebookService.getAlbums()
         .then((albums) => {
           this.albums = albums;
+          this.showRightArrow();
         });
   }
+
+  hideRightArrow() {
+    this.rightArrowVisible = false;
+  }
+
+  showRightArrow() {
+    this.rightArrowVisible = true;
+  }
+
+  hideLeftArrow() {
+    this.leftArrowVisible = false;
+  }
+
+  showLeftArrow() {
+    this.leftArrowVisible = true;
+  }
+
+
 
 }
