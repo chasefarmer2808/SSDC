@@ -1,7 +1,7 @@
 export const environment = {
   production: true,
   envName: 'prod',
-  facebookUrl: '/api/v1/fb/getEvents',
+  facebookUrl: '/api/v1/fb',
   emailUrl: '/api/v1/email',
   emailAddress: 'ufssdc@gmail.com',
   facebookLink: 'https://www.facebook.com/groups/ufssdc/',
