@@ -12,6 +12,7 @@ import { Album } from '../gallery/album';
 export class GalleryComponent implements OnInit {
 
   albums:Album[];
+  getAlbumsError:String;
   rightArrowVisible:boolean;
   leftArrowVisible:boolean;
 
@@ -26,10 +27,13 @@ export class GalleryComponent implements OnInit {
 
   getGalleries() {
     this.facebookService.getAlbums()
-        .then((albums) => {
-          this.albums = albums;
-          this.showRightArrow();
-        });
+        .subscribe(
+          (albums) => {
+            this.albums = albums
+            this.showRightArrow();
+          },
+          error => this.getAlbumsError = error
+        );
   }
 
   hideRightArrow() {
@@ -47,7 +51,4 @@ export class GalleryComponent implements OnInit {
   showLeftArrow() {
     this.leftArrowVisible = true;
   }
-
-
-
 }
