@@ -19,6 +19,7 @@
 }
 
 .album-name-container {
+    position: relative;
     white-space: nowrap;
     margin: 8px;
     background-color: #3f51b5;
@@ -31,15 +32,25 @@
 }
 
 .right-arrow-scroll {
-    position: fixed;
+    position: absolute;
     right: -20px;
     color: black;
     opacity: 0.6;
 }
 
 .left-arrow-scroll {
-    position: fixed;
+    position: absolute;
     left: -20px;
     color: black;
     opacity: 0.6;
+}
+
+.album-container {
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr;
+    justify-content: center;
+}
+
+.album-photo {
 }

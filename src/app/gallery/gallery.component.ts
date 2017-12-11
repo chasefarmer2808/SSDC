@@ -34,6 +34,10 @@ export class GalleryComponent implements OnInit {
           (albums) => {
             this.albums = albums;
             this.showRightArrow();
+
+            if (this.albums.length > 0) {
+              this.getAlbum(this.albums[0]);
+            }
           },
           error => this.getAlbumsError = error
         );
