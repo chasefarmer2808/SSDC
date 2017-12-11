@@ -33,14 +33,14 @@
 
 .right-arrow-scroll {
     position: absolute;
-    right: -20px;
+    right: 0px;
     color: black;
     opacity: 0.6;
 }
 
 .left-arrow-scroll {
     position: absolute;
-    left: -20px;
+    left: 0px;
     color: black;
     opacity: 0.6;
 }

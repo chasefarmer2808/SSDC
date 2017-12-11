@@ -20,12 +20,14 @@ export class ScrollRightDirective {
 
     @HostListener('scroll', ['$event.target'])
     public onScroll(targetElement: HTMLElement): void {
-        let yScroll = Math.ceil(targetElement.offsetWidth + targetElement.scrollLeft);
+        //getting ceiling and floor width to account for desktop and mobile screens
+        let yScrollFloor = Math.floor(targetElement.offsetWidth + targetElement.scrollLeft);
+        let yScrollCeil = Math.ceil(targetElement.offsetWidth + targetElement.scrollLeft);
 
-        if (yScroll != targetElement.scrollWidth) {
-            this.showRightArrow.emit();
-        } else {
+        if (yScrollCeil == targetElement.scrollWidth || yScrollFloor == targetElement.scrollWidth) {
             this.hideRightArrow.emit();
+        } else {
+            this.showRightArrow.emit();
         }
 
         if (targetElement.scrollLeft == 0) {
