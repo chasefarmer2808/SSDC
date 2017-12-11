@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FacebookService } from '../services/facebook/facebook.service';
 import { ScrollRightDirective } from '../directives/onscroll.directive';
 import { Album } from '../gallery/album';
+import { Photo } from '../gallery/photo';
 
 @Component({
   selector: 'app-gallery',
@@ -12,7 +13,9 @@ import { Album } from '../gallery/album';
 export class GalleryComponent implements OnInit {
 
   albums:Album[];
+  selectedAlbum:Photo[];
   getAlbumsError:String;
+  getAlbumError:String;
   rightArrowVisible:boolean;
   leftArrowVisible:boolean;
 
@@ -29,10 +32,20 @@ export class GalleryComponent implements OnInit {
     this.facebookService.getAlbums()
         .subscribe(
           (albums) => {
-            this.albums = albums
+            this.albums = albums;
             this.showRightArrow();
           },
           error => this.getAlbumsError = error
+        );
+  }
+
+  getAlbum(album) {
+    this.facebookService.getAlbum(album.id)
+        .subscribe(
+          (album) => {
+            this.selectedAlbum = album;
+          },
+        error => this.getAlbumError = error
         );
   }
 

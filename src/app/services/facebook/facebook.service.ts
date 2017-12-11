@@ -11,6 +11,7 @@ import 'rxjs/add/observable/throw';
 
 import { Event } from '../../events/event';
 import { Album } from '../../gallery/album';
+import { Photo } from '../../gallery/photo';
 
 @Injectable()
 export class FacebookService {
@@ -30,6 +31,13 @@ export class FacebookService {
     return this.http
       .get(`${this.fbUrl}/albums`)
       .map((response: Response) => <Album[]> response.json().data)
+      .catch(this.handleObservableError);
+  }
+
+  getAlbum(id:String): Observable<Photo[]> {
+    return this.http
+      .get(`${this.fbUrl}/album/${id}`)
+      .map((response:Response) => <Photo[]> response.json().data)
       .catch(this.handleObservableError);
   }
 
