@@ -49,3 +49,15 @@ Before running the tests make sure you are serving the app via `ng serve`.
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+## Refs and Docs
+
+[Angular CLI](https://cli.angular.io/)
+[Angular 4](https://angular.io/docs)
+[ExpressJS](https://expressjs.com/)
+[Facebook Graph API](https://developers.facebook.com/docs/graph-api/)
+[KarmaJS](https://karma-runner.github.io/1.0/index.html)
+[JasmineJS](https://jasmine.github.io/)
+[Heroku](https://www.heroku.com/)
+[Angular Material](https://material.angular.io/)
+[Nodemailer](https://nodemailer.com/about/)
