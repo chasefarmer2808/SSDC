@@ -56,7 +56,7 @@ describe('EventsComponent', () => {
   it('should show message when there are no events', async(() => {
     
     spyOn(facebookService, 'getEvents')
-      .and.returnValue(Observable.of(null));
+      .and.returnValue(Observable.of([]));
 
     fixture.whenStable().then(() => {
       fixture.detectChanges();
@@ -64,6 +64,7 @@ describe('EventsComponent', () => {
       const message = de.query(By.css('.message')).nativeElement;
 
       expect(component.events.length).toEqual(0);
+      expect(message).toBeDefined();
     });
   }));
 });
