@@ -51,10 +51,11 @@ export class ContactComponent implements OnInit {
 
   setNextEventLink() {
     this.facebookService.getEvents()
-      .then((events) => {
-        if (events.length > 0) {
-          this.nextEvent = events[0];
-        }
+      .subscribe(
+        (events) => {
+          if (events.length > 0) {
+            this.nextEvent = events[0];
+          }
       });
   }
 

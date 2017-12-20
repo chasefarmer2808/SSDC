@@ -20,11 +20,11 @@ export class FacebookService {
 
   constructor(private http: Http) { }
 
-  getEvents(): Promise<Event[]> {
-    return this.http.get(`${this.fbUrl}/getEvents`)
-               .toPromise()
-               .then(response => response.json().data as Event[])
-               .catch(this.handleError);
+  getEvents(): Observable<Event[]> {
+    return this.http
+      .get(`${this.fbUrl}/getEvents`)
+      .map((response: Response) => <Event[]> response.json().data)
+      .catch(this.handleObservableError);   
   }
 
   getAlbums(): Observable<Album[]> {

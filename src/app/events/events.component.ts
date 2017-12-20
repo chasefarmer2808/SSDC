@@ -23,7 +23,11 @@ export class EventsComponent implements OnInit {
 
   getEvents(): void {
     this.facebookService.getEvents()
-        .then((events) => {this.events = events;});
+        .subscribe(
+          (events) => {
+            this.events = events;
+          }
+        );
   }
 
 }
