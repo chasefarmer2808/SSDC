@@ -1,6 +1,6 @@
 # SSDC
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.1.2.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.1.2, and is being served [here](http://ssdc-website.herokuapp.com/).
 
 ## Environment Setup
 
@@ -15,6 +15,19 @@ machine.  Troubleshoot this by restarting your computer, or making an environmen
 When you have verified the installation, you must now install all of the dependencies listed in the `package.json` file located in the root of
 this project.  To do this, open a terminal and navigate to the root of this project.  Run `npm install` and wait for everything to be downloaded
 and installed.  If this works, you should see a new directory called `node_modules`.  You are now ready to run the front end of this application.
+
+Next is installing the Angular CLI.  To do this, simply run `npm install -g @angular/cli` in any directory.
+
+Next is grabbing all of the config variables from Heroku that our app needs to make API calls to external services such as Facebook or Gmail.  To do this,
+you must first install the Heroku CLI.  Do this by running `npm install -g heroku-cli` in any directory.  Next, use the `heroku login` command to login to
+the heroku account that holds this app.  You will need an email and password.  Grab them from a project admin.  Next, you need to point your heroku instance
+to the remote heroku app.  Do this by running `heroku git:remote -a ssdc-website`.  Next, make a file in the root directory of this project named `.env`.  Make sure
+this file does not have any extentions, or heroku will not recognize it.  You are now ready to pull the config vars from heroku.  To do this, run
+`heroku config:git CONFIG_VAR_NAME -s >> .env`.  A list of the config vars can by found by logging into the heroku account with the same credentials used in the
+`heroku login` command.  Click on the `ssdc-website` app.  Click the settings tab.  Then click `Reveal config vars`.  This information is sensative and confidential.
+Make sure it remains a secret, and the values are not altered unless approved by an admin.  Also note to never commit the `.env` file to any kind of version
+control system.  It too holds all of this information, and should only remain on a developer's hard drive.  With all config vars pulled, you are now
+ready to run the backend of the app.  To do this, simply run 'heroku local'.  This will spin up the Node server, enabling REST API calls to be made.
 
 ## Development server
 
@@ -45,6 +58,19 @@ Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.
 
 Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
 Before running the tests make sure you are serving the app via `ng serve`.
+
+## Build and Deployment
+
+This application is currently being hosted by Heroku.  When a feature is ready to be pushed to the live site, you must do the following.  First, 
+make sure to rebase your code onto the `develop` branch of the repo.  Do this by checking out the branch with `git checkout develop`, and then 
+`git rebase FEATURE_BRANCH_NAME`.  Your commits are now played on top of the develop branch.  Push them with `git push`.  Make sure the rebase was
+successful by running the app and all automated tests.  You should have no merge conflicts or failed tests.  The develop branch acts as a staging
+area for a new feature.  When everything on develop is error and bug free, it can then be rebased to the `master` branch.  Do this by following
+the same steps as before; `git checkout master`, and then `git rebase develop`, and finally push the commits with `git push`.  Your code is still 
+not on the live site yet.  To finally do this, make sure you are on the master branch, and run `git push heroku master`.  This will take some time,
+and you will see some output in the terminal, but that just means heroku is rebuilding and republishing the application!  If it is successful, you
+should be able to see your changes on the live site.  If things failed, or not behaving as expected, run `heroku logs --tail` to see logs from the
+heroku machine.  
 
 ## Further help
 
