@@ -11,7 +11,7 @@ import { Event } from './event';
 })
 export class EventsComponent implements OnInit {
 
-  events:Event[];
+  events:Event[] = [];
   noEventsMessage:string;
 
   constructor(private facebookService: FacebookService) { }

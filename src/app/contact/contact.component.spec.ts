@@ -1,20 +1,27 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { DebugElement } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule, MatButtonModule, MatCheckboxModule, MatProgressSpinnerModule, NoConflictStyleCompatibilityMode } from '@angular/material';
 import { HttpModule } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { ContactComponent } from './contact.component';
 import { OfficersComponent } from '../officers/officers.component';
 import { EmailService } from '../services/email/email.service';
+import { FacebookService } from '../services/facebook/facebook.service';
 
 import { Officers } from '../services/officers/officers';
+import { MockEvents } from '../events/events.mock';
 
 describe('ContactComponent', () => {
   let component: ContactComponent;
   let fixture: ComponentFixture<ContactComponent>;
+  let de: DebugElement;
   let officersComponent: OfficersComponent;
   let officersFixture: ComponentFixture<OfficersComponent>;
+  let facebookService: FacebookService;
+  let getEventsSpy: any;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -29,7 +36,7 @@ describe('ContactComponent', () => {
         NoConflictStyleCompatibilityMode,
         BrowserAnimationsModule
       ],
-      providers: [EmailService]
+      providers: [EmailService, FacebookService]
     })
     .compileComponents();
   }));
@@ -38,8 +45,13 @@ describe('ContactComponent', () => {
     fixture = TestBed.createComponent(ContactComponent);
     officersFixture = TestBed.createComponent(OfficersComponent);
     component = fixture.componentInstance;
+    de = fixture.debugElement;
     officersComponent = officersFixture.componentInstance;
-    fixture.detectChanges();
+
+    facebookService = de.injector.get(FacebookService);
+
+    getEventsSpy = spyOn(facebookService, 'getEvents')
+                    .and.returnValue(Observable.of(MockEvents));
   });
 
   it('should be created', () => {
@@ -94,11 +106,13 @@ describe('ContactComponent', () => {
   });
 
   it('should disable the submit button initially', () => {
+    fixture.detectChanges();
     let submitButton = fixture.nativeElement.querySelector('.submit-button');
     expect(submitButton.disabled).toBeTruthy();
   });
 
   it('should have valid form on valid email, first name, and last name', () => {
+    fixture.detectChanges();
     expect(component.emailForm.invalid).toBeTruthy();
 
     let emailField = component.emailForm.controls['email'];

@@ -7,7 +7,7 @@ export const MockEvents: Event[] = [
     place: {
       name: 'event 1 location'
     },
-    start_time: 'event 1 start time',
+    start_time: new Date().getUTCDate().toString(),
     end_time: 'event 1 end time',
     link: 'https://facebook.com/events/1234567'
   },
@@ -17,7 +17,7 @@ export const MockEvents: Event[] = [
     place: {
       name: 'event 2 location'
     },
-    start_time: 'event 2 start time',
+    start_time: new Date().getUTCDate().toString(),
     end_time: 'event 2 end time',
     link: 'https://facebook.com/events/1234567'
   }

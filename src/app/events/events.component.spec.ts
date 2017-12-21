@@ -1,6 +1,7 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed, inject } from '@angular/core/testing';
 import { DebugElement } from '@angular/core';
-import { HttpModule } from '@angular/http';
+import { HttpModule, XHRBackend, Response, ResponseOptions } from '@angular/http';
+import { MockBackend } from '@angular/http/testing';
 import { Observable } from 'rxjs/Observable';
 import { By } from '@angular/platform-browser';
 import 'rxjs/Rx';
@@ -15,12 +16,16 @@ describe('EventsComponent', () => {
   let fixture: ComponentFixture<EventsComponent>;
   let de: DebugElement;
   let facebookService: FacebookService;
+  let mockBackend: MockBackend;
+  let getEventsSpy: any;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ EventsComponent ],
       imports: [ HttpModule ],
-      providers: [ FacebookService ]
+      providers: [
+        FacebookService
+      ]
     })
     .compileComponents();
   }));
@@ -30,9 +35,10 @@ describe('EventsComponent', () => {
     component = fixture.componentInstance;
     de = fixture.debugElement;
 
-    facebookService = TestBed.get(FacebookService);
+    facebookService = de.injector.get(FacebookService);
 
-    fixture.detectChanges();
+    getEventsSpy = spyOn(facebookService, 'getEvents')
+                    .and.returnValue(Observable.of(MockEvents));
   });
 
   it('should be created', () => {
@@ -44,8 +50,7 @@ describe('EventsComponent', () => {
   });
 
   it('should have all events if there are events', async(() => {
-    spyOn(facebookService, 'getEvents')
-      .and.returnValue(Observable.of(MockEvents));
+    fixture.detectChanges();
 
     fixture.whenStable().then(() => {
       fixture.detectChanges();
@@ -54,9 +59,9 @@ describe('EventsComponent', () => {
   }));
 
   it('should show message when there are no events', async(() => {
-    
-    spyOn(facebookService, 'getEvents')
-      .and.returnValue(Observable.of([]));
+    getEventsSpy.and.returnValue(Observable.of([]));
+
+    fixture.detectChanges();
 
     fixture.whenStable().then(() => {
       fixture.detectChanges();

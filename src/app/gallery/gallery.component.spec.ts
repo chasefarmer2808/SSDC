@@ -7,12 +7,15 @@ import 'rxjs/Rx';
 import { GalleryComponent } from './gallery.component';
 import { FacebookService } from '../services/facebook/facebook.service';
 import { MockAlbums } from './albums.mock';
+import { MockPhotos } from './photos.mock';
 
 describe('GalleryComponent', () => {
   let component: GalleryComponent;
   let fixture: ComponentFixture<GalleryComponent>;
   let de: DebugElement;
   let facebookService: FacebookService;
+  let getAlbumsSpy: any;
+  let getAlbumSpy: any;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -27,8 +30,14 @@ describe('GalleryComponent', () => {
     fixture = TestBed.createComponent(GalleryComponent);
     component = fixture.componentInstance;
     de = fixture.debugElement;
-    facebookService = TestBed.get(FacebookService);
-    fixture.detectChanges();
+    facebookService = de.injector.get(FacebookService);
+    
+    getAlbumsSpy = spyOn(facebookService, 'getAlbums')
+                    .and.returnValue(Observable.of(MockAlbums));
+
+    getAlbumSpy = spyOn(facebookService, 'getAlbum')
+                    .and.returnValue(Observable.of(MockPhotos));
+
   });
 
   it('should be created', () => {
@@ -40,8 +49,7 @@ describe('GalleryComponent', () => {
   });
 
   it('should have all albums', () => {
-    spyOn(facebookService, 'getAlbums')
-      .and.returnValue(Observable.of(MockAlbums));
+    fixture.detectChanges();
 
     fixture.whenStable().then(() => {
       fixture.detectChanges();
