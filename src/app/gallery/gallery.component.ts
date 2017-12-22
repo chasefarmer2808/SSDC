@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { FacebookService } from '../services/facebook/facebook.service';
 import { ScrollRightDirective } from '../directives/onscroll.directive';
 import { Album } from '../gallery/album';
@@ -18,6 +18,9 @@ export class GalleryComponent implements OnInit {
   getAlbumError:String;
   rightArrowVisible:boolean;
   leftArrowVisible:boolean;
+  yScrollLimit:number;
+
+  @ViewChild('albumsContainer') albumsContainer: ElementRef;
 
   constructor(private facebookService: FacebookService) {
     this.hideLeftArrow();
@@ -67,5 +70,31 @@ export class GalleryComponent implements OnInit {
 
   showLeftArrow() {
     this.leftArrowVisible = true;
+  }
+
+  scrollRight() {
+    this.smoothYScroll(this.albumsContainer, 3);
+  }
+
+  scrollLeft() {
+    this.smoothYScroll(this.albumsContainer, -3);
+  }
+
+  smoothYScroll(element:ElementRef, offset:number) {
+    let currentYScroll = element.nativeElement.scrollLeft;  // get the current y scroll position (0 if all the way left)
+    let yScrollRightLimit = currentYScroll + element.nativeElement.offsetWidth; // set the y scroll amount for right scrolling
+    let yScrollLeftLimit = currentYScroll - element.nativeElement.offsetWidth; // set the y scroll amount for left scrolling
+
+    // Using an interval to atificially create a linear smoothness
+    let scrollSmoother = setInterval(() => {
+      element.nativeElement.scrollLeft += offset; // scroll the div
+      
+      if (element.nativeElement.scrollLeft >= yScrollRightLimit || 
+          element.nativeElement.scrollLeft <= yScrollLeftLimit || 
+          this.rightArrowVisible == false || 
+          this.leftArrowVisible == false) {
+        clearInterval(scrollSmoother); // stop the interval
+      }
+    }, 1); // call every 1 millisecond
   }
 }
