@@ -1,6 +1,10 @@
+<<<<<<< 69622faf5321d1516cbdcb3e94fa68e4523bd5ac
 # SSDC 
 
 ![alt text](https://travis-ci.org/chasefarmer2808/SSDC.svg?branch=master)
+=======
+# SSDC [https://travis-ci.org/chasefarmer2808/SSDC.svg?branch=master]
+>>>>>>> build badge
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.1.2, and is being served [here](http://ssdc-website.herokuapp.com/).
 
