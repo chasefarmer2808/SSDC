@@ -20,6 +20,8 @@ export class GalleryComponent implements OnInit {
   leftArrowVisible:boolean;
   yScrollLimit:number;
 
+  readonly SCROLL_SPEED:number = 5;
+
   @ViewChild('albumsContainer') albumsContainer: ElementRef;
 
   constructor(private facebookService: FacebookService) {
@@ -73,11 +75,11 @@ export class GalleryComponent implements OnInit {
   }
 
   scrollRight() {
-    this.smoothYScroll(this.albumsContainer, 3);
+    this.smoothYScroll(this.albumsContainer, this.SCROLL_SPEED);
   }
 
   scrollLeft() {
-    this.smoothYScroll(this.albumsContainer, -3);
+    this.smoothYScroll(this.albumsContainer, -1*this.SCROLL_SPEED);
   }
 
   smoothYScroll(element:ElementRef, offset:number) {
@@ -88,11 +90,10 @@ export class GalleryComponent implements OnInit {
     // Using an interval to atificially create a linear smoothness
     let scrollSmoother = setInterval(() => {
       element.nativeElement.scrollLeft += offset; // scroll the div
-      
       if (element.nativeElement.scrollLeft >= yScrollRightLimit || 
           element.nativeElement.scrollLeft <= yScrollLeftLimit || 
-          this.rightArrowVisible == false || 
-          this.leftArrowVisible == false) {
+          element.nativeElement.scrollLeft == 0 || 
+          this.rightArrowVisible == false) {
         clearInterval(scrollSmoother); // stop the interval
       }
     }, 1); // call every 1 millisecond

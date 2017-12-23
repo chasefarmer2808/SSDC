@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, fakeAsync, tick, ComponentFixture, TestBed } from '@angular/core/testing';
 import { DebugElement } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
@@ -55,5 +55,11 @@ describe('GalleryComponent', () => {
       fixture.detectChanges();
       expect(component.albums.length).toEqual(MockAlbums.length);
     })
+  });
+
+  it('should show right scroll arrow and hide left scroll arrow on init', () => {
+    fixture.detectChanges();
+    expect(component.rightArrowVisible).toBeTruthy();
+    expect(component.leftArrowVisible).toBeFalsy();
   });
 });
