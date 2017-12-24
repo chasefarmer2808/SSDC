@@ -54,6 +54,9 @@
 
 .album-grid {
     display: grid;
+    justify-items: center;
+    align-items: center;
+    grid-row-gap: 8px;
 }
 
 .album-photo {
