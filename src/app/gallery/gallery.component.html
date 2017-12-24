@@ -17,8 +17,10 @@
       </button>
     </div>
     <div class="album-container">
-      <div *ngFor="let photo of selectedAlbum" class="album-photo">
-        <img src="{{photo.source}}">
+      <div class="album-grid">
+        <div *ngFor="let photo of selectedAlbum" class="album-photo">
+          <img src="{{photo.source}}">
+        </div>
       </div>
     </div>
   </div>

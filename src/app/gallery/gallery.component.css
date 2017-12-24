@@ -46,11 +46,26 @@
 }
 
 .album-container {
-    display: grid;
-    grid-template-rows: 1fr;
-    grid-template-columns: 1fr;
+    display: flex;
     justify-content: center;
+    max-width: 100vw;
+    padding-top: 8px;
+}
+
+.album-grid {
+    display: grid;
 }
 
 .album-photo {
+}
+
+@media screen and (min-width: 720px) {
+    .album-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-column-gap: 8px;
+        grid-row-gap: 8px;
+        justify-items: center;
+        align-items: center;
+    }
 }
