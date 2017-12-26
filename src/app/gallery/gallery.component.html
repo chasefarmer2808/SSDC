@@ -16,11 +16,9 @@
         <i class="fa fa-chevron-left fa-2x" aria-hidden="true"></i>
       </button>
     </div>
-    <div class="album-container">
-      <div class="album-grid">
-        <div *ngFor="let photo of selectedAlbum" class="album-photo">
-          <img src="{{photo.source}}">
-        </div>
+    <div class="album-grid">
+      <div *ngFor="let photo of selectedAlbum" class="album-photo">
+        <img src="{{photo.source}}">
       </div>
     </div>
   </div>
