@@ -18,6 +18,7 @@ import { ScrollRightDirective } from './directives/onscroll.directive';
 import { OfficersComponent } from './officers/officers.component';
 import { FooterComponent } from './footer/footer.component';
 import { GalleryComponent } from './gallery/gallery.component';
+import { GalleryGridComponent } from './gallery/gallery-grid/gallery-grid.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { GalleryComponent } from './gallery/gallery.component';
     ScrollRightDirective,
     OfficersComponent,
     FooterComponent,
-    GalleryComponent
+    GalleryComponent,
+    GalleryGridComponent
   ],
   imports: [
     BrowserModule,

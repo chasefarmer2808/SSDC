@@ -59,7 +59,7 @@ router.get('/album/:albumId', function(req, res, next) {
   var accessToken = process.env.FB_ACCESS_TOKEN;
   
   var options = {
-    uri: `${config.fbApiRootUrl}/${req.params.albumId}/photos?fields=source`,
+    uri: `${config.fbApiRootUrl}/${req.params.albumId}/photos?fields=source,width,height`,
     qs : {
       access_token: accessToken
     },

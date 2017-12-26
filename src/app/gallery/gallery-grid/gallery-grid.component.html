@@ -1,0 +1,5 @@
+<div class="album-grid">
+  <div *ngFor="let photo of album; let i = index" class="album-photo">
+    <img (load)="refreshGrid($event, i)" src="{{photo.source}}">
+  </div>
+</div>

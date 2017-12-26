@@ -1,0 +1,20 @@
+.album-grid {
+    display: grid;
+    grid-gap: 8px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-auto-rows: 300px;
+    grid-auto-flow: dense;
+    padding: 8px;
+}
+
+.album-photo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.album-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}

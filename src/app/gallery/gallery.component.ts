@@ -1,8 +1,9 @@
-import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild, Renderer2 } from '@angular/core';
 import { FacebookService } from '../services/facebook/facebook.service';
 import { ScrollRightDirective } from '../directives/onscroll.directive';
 import { Album } from '../gallery/album';
 import { Photo } from '../gallery/photo';
+import { GalleryGridComponent } from './gallery-grid/gallery-grid.component';
 
 @Component({
   selector: 'app-gallery',
@@ -24,7 +25,7 @@ export class GalleryComponent implements OnInit {
 
   @ViewChild('albumsContainer') albumsContainer: ElementRef;
 
-  constructor(private facebookService: FacebookService) {
+  constructor(private facebookService: FacebookService, private renderer: Renderer2) {
     this.hideLeftArrow();
     this.hideRightArrow();
   }
