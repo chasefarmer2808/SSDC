@@ -1,6 +1,7 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
 
 import { GalleryGridComponent } from './gallery-grid.component';
+import { MockPhotos } from '../photos.mock';
 
 describe('GalleryGridComponent', () => {
   let component: GalleryGridComponent;
@@ -16,10 +17,16 @@ describe('GalleryGridComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(GalleryGridComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
   it('should be created', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should set averages on input change', async(() => {
+    component.album = MockPhotos;
+    fixture.detectChanges();
+    expect(component.avgPhotoHeight).toEqual(10);
+    expect(component.avgPhotoWidth).toEqual(10);
+  }));
 });

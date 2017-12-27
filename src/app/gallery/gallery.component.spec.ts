@@ -5,6 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/Rx';
 
 import { GalleryComponent } from './gallery.component';
+import { GalleryGridComponent } from './gallery-grid/gallery-grid.component';
 import { FacebookService } from '../services/facebook/facebook.service';
 import { MockAlbums } from './albums.mock';
 import { MockPhotos } from './photos.mock';
@@ -19,7 +20,7 @@ describe('GalleryComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ GalleryComponent ],
+      declarations: [ GalleryComponent, GalleryGridComponent ],
       imports: [ HttpModule ],
       providers: [ FacebookService ]
     })

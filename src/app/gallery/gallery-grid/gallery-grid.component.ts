@@ -10,7 +10,7 @@ import "rxjs/add/operator/takeWhile";
 })
 export class GalleryGridComponent implements OnInit {
 
-  private _album = new BehaviorSubject<Photo[]>([]);
+  public _album = new BehaviorSubject<Photo[]>([]);
 
   @Input()
   set album(value) {
@@ -37,6 +37,7 @@ export class GalleryGridComponent implements OnInit {
   }
 
   setAverages() {
+    console.log('here');
     this.album.forEach((photo:Photo) => {
       this.avgPhotoWidth += photo.width;
       this.avgPhotoHeight += photo.height;
