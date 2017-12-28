@@ -4,7 +4,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { HttpModule } from '@angular/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatInputModule, MatButtonModule, MatCheckboxModule, MatProgressSpinnerModule, NoConflictStyleCompatibilityMode } from '@angular/material';
+import { MatInputModule, 
+         MatButtonModule, 
+         MatCheckboxModule, 
+         MatProgressSpinnerModule, 
+         NoConflictStyleCompatibilityMode,
+         MatButtonToggleModule } from '@angular/material';
 import { Ng2PageScrollModule } from 'ng2-page-scroll';
 
 import { AppComponent } from './app.component';
@@ -46,7 +51,8 @@ import { GalleryGridComponent } from './gallery/gallery-grid/gallery-grid.compon
     MatButtonModule,
     MatCheckboxModule,
     MatProgressSpinnerModule,
-    NoConflictStyleCompatibilityMode
+    NoConflictStyleCompatibilityMode,
+    MatButtonToggleModule
   ],
   providers: [],
   bootstrap: [AppComponent]

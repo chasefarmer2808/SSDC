@@ -37,7 +37,6 @@ export class GalleryGridComponent implements OnInit {
   }
 
   setAverages() {
-    console.log('here');
     this.album.forEach((photo:Photo) => {
       this.avgPhotoWidth += photo.width;
       this.avgPhotoHeight += photo.height;

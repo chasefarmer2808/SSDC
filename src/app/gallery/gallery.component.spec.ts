@@ -58,6 +58,15 @@ describe('GalleryComponent', () => {
     })
   });
 
+  it('should select first album in album array', () => {
+    fixture.detectChanges();
+
+    fixture.whenStable().then(() => {
+      fixture.detectChanges();
+      expect(component.selectedAlbumName).toEqual(MockAlbums[0].name);
+    });
+  });
+
   it('should show right scroll arrow and hide left scroll arrow on init', () => {
     fixture.detectChanges();
     expect(component.rightArrowVisible).toBeTruthy();

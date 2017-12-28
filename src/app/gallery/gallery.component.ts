@@ -15,6 +15,7 @@ export class GalleryComponent implements OnInit {
 
   albums:Album[];
   selectedAlbum:Photo[];
+  selectedAlbumName:String;
   getAlbumsError:String;
   getAlbumError:String;
   rightArrowVisible:boolean;
@@ -49,7 +50,8 @@ export class GalleryComponent implements OnInit {
         );
   }
 
-  getAlbum(album) {
+  getAlbum(album:Album) {
+    this.selectedAlbumName = album.name;
     this.facebookService.getAlbum(album.id)
         .subscribe(
           (album) => {
