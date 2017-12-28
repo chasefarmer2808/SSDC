@@ -129,6 +129,10 @@
   display: inline;
 }
 
+.full-width {
+  width: 100%;
+}
+
 /* Grid styles */
 
 .grid-col-header-sm {

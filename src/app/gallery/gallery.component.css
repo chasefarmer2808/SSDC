@@ -57,6 +57,12 @@
     padding-top: 8px;
 }
 
+.gallery-grid-title {
+    color: white;
+    border-bottom: 1px solid white !important;
+    margin: 8px;
+}
+
 .album-grid {
     display: grid;
     grid-gap: 8px;
