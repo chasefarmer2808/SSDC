@@ -67,6 +67,16 @@ describe('GalleryComponent', () => {
     });
   });
 
+  it('should display selected album name', () => {
+    fixture.detectChanges();
+
+    fixture.whenStable().then(() => {
+      fixture.detectChanges();
+      let galleryGridTitle = fixture.nativeElement.querySelector('.gallery-grid-title');
+      expect(galleryGridTitle.innerHTML).toEqual(component.selectedAlbumName);
+    });
+  });
+
   it('should show right scroll arrow and hide left scroll arrow on init', () => {
     fixture.detectChanges();
     expect(component.rightArrowVisible).toBeTruthy();
