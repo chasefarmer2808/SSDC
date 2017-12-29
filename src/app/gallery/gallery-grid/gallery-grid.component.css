@@ -11,6 +11,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    transition: all .2s ease-in-out;
+}
+
+.album-photo:hover {
+    transform: scale(1.1);
 }
 
 .album-photo img {
