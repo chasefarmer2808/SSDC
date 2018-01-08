@@ -30,9 +30,9 @@ function makeServer() {
   app.use('/api/v1/fb', fb);
   app.use('/api/v1/email', email);
 
-  var appDir = 'dist';
+  var buildPath = '../../dist/';
 
-  app.use(express.static(path.join(__dirname, `../${appDir}/`)));
+  app.use(express.static(path.join(__dirname, `${buildPath}`)));
   app.use(express.static('./'));
 
   app.all('/*', function(req, res) {
