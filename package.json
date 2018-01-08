@@ -6,7 +6,7 @@
   "scripts": {
     "postinstall": "ng build --env=prod",
     "ng": "ng",
-    "start_prod": "nodemon server/app.js --watch server",
+    "start_prod": "nodemon server/start_server.js --watch server",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",

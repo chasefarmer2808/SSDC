@@ -2,7 +2,7 @@
 
 const express = require('express');
 const rp = require('request-promise');
-const config = require('./config');
+const config = require('../config.js');
 
 const router = express.Router();
 
@@ -21,7 +21,7 @@ router.get('/getEvents', function (req, res, next) {
   rp(options)
     .then(function(events) {
       res.set('Access-control-Allow-origin', '*');
-      
+
       events.data.forEach(function(event) {
         event.link = generateEventLink(event.id);
       })
@@ -57,7 +57,7 @@ router.get('/albums', function(req, res, next) {
 
 router.get('/album/:albumId', function(req, res, next) {
   var accessToken = process.env.FB_ACCESS_TOKEN;
-  
+
   var options = {
     uri: `${config.fbApiRootUrl}/${req.params.albumId}/photos?fields=source,width,height`,
     qs : {

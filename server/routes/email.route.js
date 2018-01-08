@@ -7,7 +7,7 @@ const multer = require('multer');
 const upload = multer();
 const Joi = require('joi');
 const expressJoi = require('express-joi-validator');
-const emailSchema = require('./schema/email.schema');
+const emailSchema = require('../schema/email.schema.js');
 
 const emailSubject = 'Email from SSDC Site';
 
