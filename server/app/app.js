@@ -36,7 +36,7 @@ function makeServer() {
   app.use(express.static('./'));
 
   app.all('/*', function(req, res) {
-    res.sendFile('index.html', { root: path.join(__dirname, `../${appDir}`) });
+    res.sendFile('index.html', { root: path.join(__dirname, `../${buildPath}`) });
   });
 
   app.set('port', port);
