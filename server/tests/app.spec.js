@@ -18,4 +18,11 @@ describe('SSDC Server Integration Tests', function() {
       .get('/')
       .expect(200, done);
   });
+
+  it('should respond to / with HTML content', function(done) {
+    request(server)
+      .get('/')
+      .expect('Content-Type', 'text/html; charset=UTF-8')
+      .expect(200, done);
+  });
 });
