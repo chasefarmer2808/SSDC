@@ -24,7 +24,28 @@ var transporter = nodemailer.createTransport({
     }
 });
 
-router.post('/', upload.array(), expressJoi(emailSchema), function (req, res, next) {
+function emailSSDC(req, res, next) {
+    var mailOptions = {
+        from: process.env.GMAIL_USERNAME,
+        to: process.env.GMAIL_USERNAME,
+        subject: emailSubject,
+        text: req.body.body
+    };
+
+    transporter.sendMail(mailOptions, function(err, info) {
+        if (err) {
+            console.log(err);
+            next(err);
+        } else if (req.body.enableListServ) {
+            emailUFListServ();
+        }
+        else {
+            res.send(info.resposne);
+        }
+    });
+};
+
+function emailUFListServ(req, res, next) {
     var mailOptions = {
         from: process.env.GMAIL_USERNAME,
         to: process.env.LISTSERV_EMAIL,
@@ -38,24 +59,8 @@ router.post('/', upload.array(), expressJoi(emailSchema), function (req, res, ne
             res.send(info.resposne);
         }
     });
-}, function(req, res, next) {
-    var mailOptions = {
-        from: process.env.GMAIL_USERNAME,
-        to: process.env.GMAIL_USERNAME,
-        subject: emailSubject,
-        text: req.body.body
-    };
+};
 
-    transporter.sendMail(mailOptions, function(err, info) {
-        if (err) {
-            next(err);
-        } else if (req.body.enableListServ) {
-            next();
-        }
-        else {
-            res.send(info.resposne);
-        }
-    });
-});
+router.post('/', upload.array(), expressJoi(emailSchema), emailSSDC);
 
 module.exports = router;
