@@ -1,4 +1,4 @@
-# SSDC
+# SSDC [](https://travis-ci.org/chasefarmer2808/SSDC.svg?branch=master)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.1.2, and is being served [here](http://ssdc-website.herokuapp.com/).
 
