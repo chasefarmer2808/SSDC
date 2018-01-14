@@ -12,6 +12,7 @@ function makeServer() {
   const app = express();
   const port = process.env.PORT || 5000;
 
+  const routeNames = require('../routes/route.names.js');
   const fb = require('../routes/fb.route.js');
   const email = require('../routes/email.route.js');
 
@@ -27,8 +28,8 @@ function makeServer() {
   app.use(bodyParser.urlencoded({ extended: true }));
   app.use(morgan('dev'));
   app.use(errorHandler);
-  app.use('/api/v1/fb', fb);
-  app.use('/api/v1/email', email);
+  app.use(routeNames.facebookRoute, fb);
+  app.use(routeNames.emailRoute, email);
 
   var buildPath = '../../dist/';
 

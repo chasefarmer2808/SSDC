@@ -34,7 +34,6 @@ function emailSSDC(req, res, next) {
 
     transporter.sendMail(mailOptions, function(err, info) {
         if (err) {
-            console.log(err);
             next(err);
         } else if (req.body.enableListServ) {
             emailUFListServ();
