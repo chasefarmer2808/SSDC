@@ -4,31 +4,42 @@ import { HttpModule } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { MockComponent } from 'ng2-mock-component';
 import { By } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { HomeComponent } from './home.component';
+import { OfficersComponent } from '../officers/officers.component';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
   let fixture: ComponentFixture<HomeComponent>;
+  let officersComponent: OfficersComponent;
+  let officersFixture: ComponentFixture<OfficersComponent>;
   let de: DebugElement;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ HomeComponent,
-                      MockComponent({ selector: 'app-events' }) ],
-      imports: [ HttpModule ]
+                      MockComponent({ selector: 'app-events' }),
+                      OfficersComponent ],
+      imports: [ HttpModule, BrowserAnimationsModule ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(HomeComponent);
+    officersFixture = TestBed.createComponent(OfficersComponent);
     component = fixture.componentInstance;
     de = fixture.debugElement;
+    officersComponent = officersFixture.componentInstance;
   });
 
   it('should be created', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should instantiate officers component', () => {
+    expect(officersComponent).toBeTruthy();
   });
 
   it('should instantiate events component', () => {
