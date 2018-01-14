@@ -8,8 +8,6 @@ import { Email } from '../services/email/email';
 import { Officer } from '../services/officers/officer';
 import { Event } from '../events/event';
 
-import { OfficersComponent } from '../officers/officers.component';
-
 import { environment } from '../../environments/environment';
 
 const emailPattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -32,7 +30,6 @@ export class ContactComponent implements OnInit {
   emailAddr: string = environment.emailAddress;
   presEmailAddr: string;
   office: string = environment.office;
-  officers: Officer[];
   nextEvent: Event;
 
   constructor(private emailService: EmailService, 
@@ -42,7 +39,6 @@ export class ContactComponent implements OnInit {
     this.emailObj = new Email();
     this.createEmailForm();
     this.presEmailAddr = this.officersService.getPresident().email;
-    this.officers = this.officersService.getOfficers();
   }
 
   ngOnInit() {
