@@ -7,25 +7,21 @@ import { Observable } from 'rxjs/Observable';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { ContactComponent } from './contact.component';
-import { OfficersComponent } from '../officers/officers.component';
 import { EmailService } from '../services/email/email.service';
 import { FacebookService } from '../services/facebook/facebook.service';
 
-import { Officers } from '../services/officers/officers';
 import { MockEvents } from '../events/events.mock';
 
 describe('ContactComponent', () => {
   let component: ContactComponent;
   let fixture: ComponentFixture<ContactComponent>;
   let de: DebugElement;
-  let officersComponent: OfficersComponent;
-  let officersFixture: ComponentFixture<OfficersComponent>;
   let facebookService: FacebookService;
   let getEventsSpy: any;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ContactComponent, OfficersComponent ],
+      declarations: [ ContactComponent ],
       imports: [ 
         HttpModule,
         ReactiveFormsModule,
@@ -43,10 +39,8 @@ describe('ContactComponent', () => {
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ContactComponent);
-    officersFixture = TestBed.createComponent(OfficersComponent);
     component = fixture.componentInstance;
     de = fixture.debugElement;
-    officersComponent = officersFixture.componentInstance;
 
     facebookService = de.injector.get(FacebookService);
 
@@ -58,13 +52,6 @@ describe('ContactComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should instantiate officers component', () => {
-    expect(officersComponent).toBeTruthy();
-  });
-
-  it('should show all officers', () => {
-    expect(component.officers.length).toEqual(Officers.length);
-  });
 
   it('email form should initially be invalid', () => {
     expect(component.emailForm.invalid).toBeTruthy();
