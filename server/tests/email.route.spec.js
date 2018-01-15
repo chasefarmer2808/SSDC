@@ -29,10 +29,35 @@ describe('Email Route Integration Tests', function() {
             .expect(200, done);
     });
 
-    //TODO: test all email params based on Joi schema
-
     it('should return an error code when email address is not a string', function(done) {
         emailParamsTemplate.emailAddress = 1;
+
+        request(server)
+            .post(routeNames.emailRoute)
+            .send(emailParamsTemplate)
+            .expect(500, done);
+    });
+
+    it('should return an error code when first name is not a string', function(done) {
+        emailParamsTemplate.firstName = 1;
+
+        request(server)
+            .post(routeNames.emailRoute)
+            .send(emailParamsTemplate)
+            .expect(500, done);
+    });
+
+    it('should return an error code when last name is not a string', function(done) {
+        emailParamsTemplate.lastName = 1;
+
+        request(server)
+            .post(routeNames.emailRoute)
+            .send(emailParamsTemplate)
+            .expect(500, done);
+    });
+
+    it('should return an error code when email body is not a string', function(done) {
+        emailParamsTemplate.body = 1;
 
         request(server)
             .post(routeNames.emailRoute)
@@ -57,7 +82,5 @@ describe('Email Route Integration Tests', function() {
             .send(emailParamsTemplate)
             .expect(500, done);
     });
-
-    //TODO: spy on list serv function
 
 });
