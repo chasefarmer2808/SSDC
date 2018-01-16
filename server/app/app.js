@@ -5,6 +5,7 @@ function makeServer() {
   const express = require('express');
   const path = require('path');
   const bodyParser = require('body-parser');
+  const validator = require('express-validator');
   const morgan = require('morgan');
   const cors = require('cors');
   const errorHandler = require('./error.handler.js');
@@ -26,6 +27,7 @@ function makeServer() {
 
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: true }));
+  app.use(validator());
   app.use(morgan('dev'));
   app.use(errorHandler);
   app.use(routeNames.facebookRoute, fb);
@@ -36,8 +38,8 @@ function makeServer() {
   app.use(express.static(path.join(__dirname, `${buildPath}`)));
   app.use(express.static('./'));
 
-  app.all('/*', function(req, res) {
-    res.sendFile('index.html', { root: path.join(__dirname, `../${buildPath}`) });
+  app.all('/', function(req, res) {
+    res.sendFile('index.html', { root: path.join(__dirname, `${buildPath}`) });
   });
 
   app.set('port', port);
