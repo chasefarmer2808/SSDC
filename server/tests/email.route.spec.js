@@ -29,7 +29,7 @@ describe('Email Route Integration Tests', function() {
             .expect(200, done);
     });
 
-    it('should return an error code when email address is not a string', function(done) {
+    it('should return an error code 500 when email address is not a string', function(done) {
         emailParamsTemplate.emailAddress = 1;
 
         request(server)
@@ -38,7 +38,7 @@ describe('Email Route Integration Tests', function() {
             .expect(500, done);
     });
 
-    it('should return an error code when first name is not a string', function(done) {
+    it('should return an error code 500 when first name is not a string', function(done) {
         emailParamsTemplate.firstName = 1;
 
         request(server)
@@ -47,7 +47,7 @@ describe('Email Route Integration Tests', function() {
             .expect(500, done);
     });
 
-    it('should return an error code when last name is not a string', function(done) {
+    it('should return an error code 500 when last name is not a string', function(done) {
         emailParamsTemplate.lastName = 1;
 
         request(server)
@@ -56,7 +56,7 @@ describe('Email Route Integration Tests', function() {
             .expect(500, done);
     });
 
-    it('should return an error code when email body is not a string', function(done) {
+    it('should return an error code 500 when email body is not a string', function(done) {
         emailParamsTemplate.body = 1;
 
         request(server)
@@ -65,7 +65,7 @@ describe('Email Route Integration Tests', function() {
             .expect(500, done);
     });
 
-    it('should return an error if no email address provided', function(done) {
+    it('should return an error code 500 if no email address provided', function(done) {
         emailParamsTemplate.emailAddress = null;
         
         request(server)
@@ -74,13 +74,25 @@ describe('Email Route Integration Tests', function() {
             .expect(500, done);
     });
 
-    it('should return an error code if on enableListServ flag provided', function(done) {
+    it('should return an error code 500 if no enableListServ flag provided', function(done) {
         emailParamsTemplate.enableListServ = null;
         
         request(server)
             .post(routeNames.emailRoute)
             .send(emailParamsTemplate)
             .expect(500, done);
+    });
+
+    it('should send email to the UF listserv and return 200', function(done) {
+        emailParamsTemplate.enableListServ = true;
+
+        request(server)
+            .post(routeNames.emailRoute)
+            .send(emailParamsTemplate)
+            .expect(200)
+            .then(function(res) {
+                done();
+            });
     });
 
 });
