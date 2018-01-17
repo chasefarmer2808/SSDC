@@ -15,13 +15,7 @@ export class EmailService {
 
   constructor(private http: Http) { }
 
-  appendEmailAddressToBody(body: string, email: string): string {
-    return `${body}\r\n\r\nMy email address: ${email}`;
-  }
-
   sendEmail(emailObj: Email): Promise<any> {
-    emailObj.body = this.appendEmailAddressToBody(emailObj.body, emailObj.emailAddress);
-
     let promise = new Promise((resolve, reject) => {
       this.http.post(this.emailUrl, emailObj)
         .toPromise()

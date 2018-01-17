@@ -40,7 +40,18 @@ function validateEmailParams(req, res, next) {
     }
 
     next();
-}
+};
+
+function appendInfoToEmailBody(req, res, next) {
+    var appendage = `
+        First name: ${req.body.firstName}
+        Last name: ${req.body.lastName}
+        Email address: ${req.body.emailAddress}
+    `;
+
+    req.body.body = `${req.body.body}\r\n\r\n${appendage}`;
+    next();
+};
 
 function emailSSDC(req, res, next) {
     var mailOptions = {
@@ -53,11 +64,7 @@ function emailSSDC(req, res, next) {
     transporter.sendMail(mailOptions, function(err, info) {
         if (err) {
             next(err);
-        } else if (req.body.enableListServ) {
-            console.log(emailUFListServ)
-            emailUFListServ();
-        }
-        else {
+        } else {
             res.send(info.resposne);
         }
     });
@@ -83,7 +90,7 @@ function emailUFListServ(req, res, next) {
     });
 };
 
-router.post('/', upload.array(), validateEmailParams, emailSSDC);
+router.post('/', upload.array(), validateEmailParams, appendInfoToEmailBody, emailSSDC);
 router.post('/listserv', upload.array(), emailUFListServ)
 
 module.exports = router;
