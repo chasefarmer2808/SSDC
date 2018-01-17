@@ -29,6 +29,7 @@ function validateEmailParams(req, res, next) {
     req.checkBody("firstName", "Enter your first name.").isAlpha();
     req.checkBody("lastName", "Enter your last name.").isAlpha();
     req.checkBody("body", "Provide a message for the body of the email.")
+        .optional()
         .isAscii()
         .isLength({max: 300});
 
@@ -71,26 +72,22 @@ function emailSSDC(req, res, next) {
 };
 
 function emailUFListServ(req, res, next) {
-    console.log('here')
     var mailOptions = {
         from: process.env.GMAIL_USERNAME,
         to: process.env.LISTSERV_EMAIL,
         text: `Add SSDC-L ${req.body.emailAddress} ${req.body.firstName} ${req.body.lastName}`
     };
-    console.log(mailOptions.text);
 
     transporter.sendMail(mailOptions, function(err, info) {
         if (err) {
-            console.log(err)
             next(err);
         } else {
-            console.log(info.response)
             res.send(info.resposne);
         }
     });
 };
 
 router.post('/', upload.array(), validateEmailParams, appendInfoToEmailBody, emailSSDC);
-router.post('/listserv', upload.array(), emailUFListServ)
+router.post('/listserv', upload.array(), validateEmailParams, emailUFListServ)
 
 module.exports = router;
