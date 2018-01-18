@@ -5,7 +5,6 @@ const router = express.Router();
 const nodemailer = require('nodemailer');
 const multer = require('multer');
 const upload = multer();
-const emailSchema = require('../schema/email.schema.js');
 
 const emailSubject = 'Email from SSDC Site';
 
