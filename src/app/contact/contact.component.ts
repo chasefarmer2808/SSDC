@@ -24,9 +24,12 @@ export class ContactComponent implements OnInit {
   emailObj: Email;
   emailForm: FormGroup;
   bodyInputLength: number = 300;
-  loading: boolean = false;
+  emailLoading: boolean = false;
   emailSuccess: boolean = false;
   emailError: boolean = false;
+  listservLoading: boolean = false;
+  listservSuccess: boolean = false;
+  listservError: boolean = false;
   emailAddr: string = environment.emailAddress;
   presEmailAddr: string;
   office: string = environment.office;
@@ -60,8 +63,7 @@ export class ContactComponent implements OnInit {
       email: [this.emailObj.emailAddress, [Validators.required, Validators.pattern(emailPattern)]],
       firstName: [this.emailObj.firstName, [Validators.required, Validators.pattern(lettersOnlyRegex)]],
       lastName: [this.emailObj.lastName, [Validators.required, Validators.pattern(lettersOnlyRegex)]],
-      body: [this.emailObj.body, Validators.maxLength(this.bodyInputLength)],
-      listServ: false
+      body: [this.emailObj.body, Validators.maxLength(this.bodyInputLength)]
     });
   }
 
@@ -70,13 +72,45 @@ export class ContactComponent implements OnInit {
     this.emailObj.firstName = emailFormInfo.firstName;
     this.emailObj.lastName = emailFormInfo.lastName;
     this.emailObj.body = emailFormInfo.body;
-    this.emailObj.enableListServ = emailFormInfo.listServ;
   }
 
   resetMsgFlags() {
     this.emailSuccess = false;
     this.emailError = false;
-    this.loading = true;
+    this.emailLoading = true;
+  }
+
+  setListservLoadingFlags() {
+    this.listservSuccess = false;
+    this.listservError = false;
+    this.listservLoading = true;
+  }
+
+  setListservSuccessFlags() {
+    this.listservSuccess = true;
+    this.listservError = false;
+    this.listservLoading = false;
+  }
+
+  setListservErrorFlags() {
+    this.listservSuccess = false;
+    this.listservError = true;
+    this.listservLoading = false;
+  }
+
+  addUserToListserv() {
+    this.setListservLoadingFlags();
+
+    this.updateEmailObj(this.emailForm.value);
+    if (this.emailForm.valid) {
+      this.emailService.addUserToListserv(this.emailObj)
+        .then((success) => {
+          this.setListservSuccessFlags();
+        })
+        .catch((err) => {
+          this.setListservErrorFlags();
+        });
+    }
   }
 
   submitEmail() {
@@ -86,17 +120,13 @@ export class ContactComponent implements OnInit {
     if (this.emailForm.valid) {
       this.emailService.sendEmail(this.emailObj)
         .then((success) => {
-          this.loading = false;
+          this.emailLoading = false;
           this.emailSuccess = true;
-          console.log(success);
         })
         .catch((err) => {
-          console.log(err);
-          this.loading = false;
+          this.emailLoading = false;
           this.emailError = true;
         });
-    } else {
-      console.log('Form invalid');
     }
   }
 
