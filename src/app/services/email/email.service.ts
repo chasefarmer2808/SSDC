@@ -12,12 +12,30 @@ import { Email } from './email';
 export class EmailService {
 
   private emailUrl = environment.emailUrl;
+  private listservUrl = environment.listservUrl;
 
   constructor(private http: Http) { }
 
   sendEmail(emailObj: Email): Promise<any> {
     let promise = new Promise((resolve, reject) => {
       this.http.post(this.emailUrl, emailObj)
+        .toPromise()
+        .then(
+          res => {
+            resolve(res);
+          },
+          err => {
+            reject(err);
+          }
+        );
+    });
+
+    return promise;
+  }
+
+  addUserToListserv(user: Email): Promise<any> {
+    let promise = new Promise((resolve, reject) => {
+      this.http.post(this.listservUrl, user)
         .toPromise()
         .then(
           res => {

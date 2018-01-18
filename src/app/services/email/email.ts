@@ -10,6 +10,5 @@ export class Email {
         this.firstName = "";
         this.lastName = "";
         this.body = "Hello!\r\n\r\nMy name is _____ and I would like to express my interest in the Space Systems Design Club!";
-        this.enableListServ = false;
     }
 }

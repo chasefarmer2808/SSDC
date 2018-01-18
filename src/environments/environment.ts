@@ -3,11 +3,15 @@
 // `ng build --env=prod` then `environment.prod.ts` will be used instead.
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
+let serverUrl = 'http://localhost';
+let serverPort = 5000;
+
 export const environment = {
   production: false,
   envName: 'dev',
-  facebookUrl: 'http://localhost:5000/api/v1/fb/',
-  emailUrl: 'http://localhost:5000/api/v1/email',
+  facebookUrl: `${serverUrl}:${serverPort}/api/v1/fb/`,
+  emailUrl: `${serverUrl}:${serverPort}/api/v1/email/`,
+  listservUrl: `${serverUrl}:${serverPort}/api/v1/email/listserv/`,
   emailAddress: 'ufssdc@gmail.com',
   facebookLink: 'https://www.facebook.com/groups/ufssdc/',
   office: 'NEB 225'

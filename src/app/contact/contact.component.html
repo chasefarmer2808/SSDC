@@ -26,7 +26,7 @@
                 </div>
             </div>
         </div>
-        <form (ngSubmit)="submitEmail()" [formGroup]="emailForm" class="email-form" novalidate>
+        <form [formGroup]="emailForm" class="email-form" novalidate>
             <div class="heading heading-font">Send us an Email!</div>
             <div class="form-input-container">
                 <mat-form-field>
@@ -49,23 +49,30 @@
                     <mat-error *ngIf="emailForm.controls['lastName'].hasError('pattern') && !emailForm.controls['lastName'].hasError('required')">Only letters please</mat-error>
                 </mat-form-field>
             </div>
+            <div class="form-submit-container">
+                <button (click)="addUserToListserv()" *ngIf="!listservLoading && !listservSuccess" mat-raised-button color="primary" [disabled]="emailForm.invalid">Add me to SSDC Listserv</button>
+                <div class="submit-status">
+                    <mat-spinner *ngIf="listservLoading"></mat-spinner>
+                    <i *ngIf="listservSuccess" class="fa fa-check fa-3x" aria-hidden="true"></i>
+                    <p *ngIf="listservSuccess">You have been added!</p>
+                    <i *ngIf="listservError && !listservLoading" class="fa fa-times fa-3x" aria-hidden="true"></i>
+                    <p *ngIf="listservError && !listservLoading">Please try again.</p>
+                </div>
+            </div>
             <div class="form-multiline-container">
                 <mat-form-field>
                     <textarea matInput maxlength="{{bodyInputLength}}" formControlName="body" matTextareaAutosize placeholder="Message"></textarea>
                     <mat-hint align="end">{{emailForm.controls['body'].value.length}} / {{bodyInputLength}}</mat-hint>
                 </mat-form-field>
             </div>
-            <div class="form-checkbox-container">
-                <mat-checkbox formControlName="listServ" ngControlDefault>Add me to listserv</mat-checkbox>
-            </div>
             <div class="form-submit-container">
-                <button *ngIf="!loading && !emailSuccess" class="submit-button" mat-raised-button color="primary" [disabled]="emailForm.invalid || emailSuccess">Submit</button>
+                <button *ngIf="!emailLoading && !emailSuccess" (click)="submitEmail()" class="submit-button" mat-raised-button color="primary" [disabled]="emailForm.invalid || emailSuccess">Submit</button>
                 <div class="submit-status">
-                    <mat-spinner *ngIf="loading"></mat-spinner>
+                    <mat-spinner *ngIf="emailLoading"></mat-spinner>
                     <i *ngIf="emailSuccess" class="fa fa-check fa-3x" aria-hidden="true"></i>
                     <p *ngIf="emailSuccess">Email successfully sent!</p>
-                    <i *ngIf="emailError && !loading" class="fa fa-times fa-3x" aria-hidden="true"></i>
-                    <p *ngIf="emailError && !loading">Please try again.</p>
+                    <i *ngIf="emailError && !emailLoading" class="fa fa-times fa-3x" aria-hidden="true"></i>
+                    <p *ngIf="emailError && !emailLoading">Please try again.</p>
                 </div>
             </div>
         </form>
