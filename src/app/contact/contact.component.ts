@@ -5,7 +5,6 @@ import { EmailService } from '../services/email/email.service';
 import { OfficersService } from '../services/officers/officers.service';
 import { FacebookService } from '../services/facebook/facebook.service';
 import { Email } from '../services/email/email';
-import { Officer } from '../services/officers/officer';
 import { Event } from '../events/event';
 
 import { environment } from '../../environments/environment';
@@ -41,10 +40,10 @@ export class ContactComponent implements OnInit {
               private facebookService: FacebookService) {
     this.emailObj = new Email();
     this.createEmailForm();
-    this.presEmailAddr = this.officersService.getPresident().email;
   }
 
   ngOnInit() {
+    this.presEmailAddr = this.officersService.getPresident().email;
     this.setNextEventLink();
   }
 

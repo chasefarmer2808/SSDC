@@ -9,6 +9,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ContactComponent } from './contact.component';
 import { EmailService } from '../services/email/email.service';
 import { FacebookService } from '../services/facebook/facebook.service';
+import { OfficersService } from '../services/officers/officers.service';
 
 import { MockEvents } from '../events/events.mock';
 
@@ -17,7 +18,23 @@ describe('ContactComponent', () => {
   let fixture: ComponentFixture<ContactComponent>;
   let de: DebugElement;
   let facebookService: FacebookService;
+  let officersService: OfficersService;
+  let emailService: EmailService;
   let getEventsSpy: any;
+  let sendEmailSpy: any;
+
+  function fillInFormCorrectly() {
+    let emailField = component.emailForm.controls['email'];
+    let firstNameField = component.emailForm.controls['firstName'];
+    let lastNameField = component.emailForm.controls['lastName'];
+    let submitButton = fixture.nativeElement.querySelector('.submit-button');
+    let listservButton = fixture.nativeElement.querySelector('#listserv-button');
+    
+    emailField.setValue('test@test.com');
+    firstNameField.setValue('Buzz');
+    lastNameField.setValue('Aldrin');
+    fixture.detectChanges();
+  }
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -32,7 +49,7 @@ describe('ContactComponent', () => {
         NoConflictStyleCompatibilityMode,
         BrowserAnimationsModule
       ],
-      providers: [EmailService, FacebookService]
+      providers: [EmailService, OfficersService, FacebookService]
     })
     .compileComponents();
   }));
@@ -43,6 +60,8 @@ describe('ContactComponent', () => {
     de = fixture.debugElement;
 
     facebookService = de.injector.get(FacebookService);
+    officersService = de.injector.get(OfficersService);
+    emailService = de.injector.get(EmailService);
 
     getEventsSpy = spyOn(facebookService, 'getEvents')
                     .and.returnValue(Observable.of(MockEvents));
@@ -52,6 +71,10 @@ describe('ContactComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  it('should get the president email', () => {
+    fixture.detectChanges();
+    expect(component.presEmailAddr).toEqual(officersService.getPresident().email);
+  });
 
   it('email form should initially be invalid', () => {
     expect(component.emailForm.invalid).toBeTruthy();
@@ -123,4 +146,36 @@ describe('ContactComponent', () => {
     expect(submitButton.disabled).toBeFalsy();
     expect(listservButton.disabled).toBeFalsy();
   });
+
+  it('should set error flag to true when service returns error on email', async(() => {
+    fixture.detectChanges()
+    sendEmailSpy = spyOn(emailService, 'sendEmail')
+                    .and.returnValue(Observable.throw(new Error()));
+
+    fillInFormCorrectly();
+
+    component.submitEmail();
+
+    fixture.whenStable().then(() => {
+      fixture.detectChanges();
+      expect(component.emailLoading).toBeFalsy();
+      expect(component.emailError).toBeTruthy();
+    });
+  }));
+
+  it('should set error flag to true when service returns error on listserv', async(() => {
+    fixture.detectChanges()
+    sendEmailSpy = spyOn(emailService, 'addUserToListserv')
+                    .and.returnValue(Observable.throw(new Error()));
+
+    fillInFormCorrectly();
+
+    component.addUserToListserv();
+
+    fixture.whenStable().then(() => {
+      fixture.detectChanges();
+      expect(component.listservLoading).toBeFalsy();
+      expect(component.listservError).toBeTruthy();
+    });
+  }));
 });
