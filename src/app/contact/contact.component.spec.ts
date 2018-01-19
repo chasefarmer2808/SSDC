@@ -98,6 +98,12 @@ describe('ContactComponent', () => {
     expect(submitButton.disabled).toBeTruthy();
   });
 
+  it('should disable the listserv submit button initially', () => {
+    fixture.detectChanges();
+    let button = fixture.nativeElement.querySelector('#listserv-button');
+    expect(button.disabled).toBeTruthy();
+  });
+
   it('should have valid form on valid email, first name, and last name', () => {
     fixture.detectChanges();
     expect(component.emailForm.invalid).toBeTruthy();
@@ -106,6 +112,7 @@ describe('ContactComponent', () => {
     let firstNameField = component.emailForm.controls['firstName'];
     let lastNameField = component.emailForm.controls['lastName'];
     let submitButton = fixture.nativeElement.querySelector('.submit-button');
+    let listservButton = fixture.nativeElement.querySelector('#listserv-button');
     
     emailField.setValue('test@test.com');
     firstNameField.setValue('Buzz');
@@ -114,5 +121,6 @@ describe('ContactComponent', () => {
 
     expect(component.emailForm.valid).toBeTruthy();
     expect(submitButton.disabled).toBeFalsy();
+    expect(listservButton.disabled).toBeFalsy();
   });
 });
