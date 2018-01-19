@@ -50,7 +50,7 @@
                 </mat-form-field>
             </div>
             <div class="form-submit-container">
-                <button (click)="addUserToListserv()" *ngIf="!listservLoading && !listservSuccess" mat-raised-button color="primary" [disabled]="emailForm.invalid">Add me to SSDC Listserv</button>
+                <button id="listserv-button" (click)="addUserToListserv()" *ngIf="!listservLoading && !listservSuccess" mat-raised-button color="primary" [disabled]="emailForm.invalid">Add me to SSDC Listserv</button>
                 <div class="submit-status">
                     <mat-spinner *ngIf="listservLoading"></mat-spinner>
                     <i *ngIf="listservSuccess" class="fa fa-check fa-3x" aria-hidden="true"></i>
@@ -66,7 +66,7 @@
                 </mat-form-field>
             </div>
             <div class="form-submit-container">
-                <button *ngIf="!emailLoading && !emailSuccess" (click)="submitEmail()" class="submit-button" mat-raised-button color="primary" [disabled]="emailForm.invalid || emailSuccess">Submit</button>
+                <button *ngIf="!emailLoading && !emailSuccess" (click)="submitEmail()" class="submit-button" mat-raised-button color="primary" [disabled]="emailForm.invalid || emailSuccess">Submit Email</button>
                 <div class="submit-status">
                     <mat-spinner *ngIf="emailLoading"></mat-spinner>
                     <i *ngIf="emailSuccess" class="fa fa-check fa-3x" aria-hidden="true"></i>

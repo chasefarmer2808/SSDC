@@ -104,12 +104,15 @@ export class ContactComponent implements OnInit {
     this.updateEmailObj(this.emailForm.value);
     if (this.emailForm.valid) {
       this.emailService.addUserToListserv(this.emailObj)
-        .then((success) => {
-          this.setListservSuccessFlags();
-        })
-        .catch((err) => {
-          this.setListservErrorFlags();
-        });
+        .subscribe(
+          (response) => {
+            this.listservSuccess = true;
+            this.listservLoading = false;
+          },
+          (error) => {
+            this.listservError = true;
+            this.listservLoading = false;
+          });
     }
   }
 
@@ -119,14 +122,15 @@ export class ContactComponent implements OnInit {
     this.updateEmailObj(this.emailForm.value)
     if (this.emailForm.valid) {
       this.emailService.sendEmail(this.emailObj)
-        .then((success) => {
-          this.emailLoading = false;
-          this.emailSuccess = true;
-        })
-        .catch((err) => {
-          this.emailLoading = false;
-          this.emailError = true;
-        });
+        .subscribe(
+          (response) => {
+            this.emailLoading = false;
+            this.emailSuccess = true;
+          },
+          (err) => {
+            this.emailLoading = false;
+            this.emailError = true;
+          });
     }
   }
 
