@@ -4,7 +4,7 @@
     <div class="officer" *ngFor="let officer of officers">
         <div class="role">{{officer.role}}
           <div class="show-more-info" (click)="toggleOfficerInfo(officer)">
-            <i class="fa fa-plus" aria-hidden="true"></i>
+            <i [@plusToCross]="officer.showInfo" class="fa fa-plus" aria-hidden="true"></i>
           </div>
         </div>
         <div class="profile-picture" (mouseover)="toggleOfficerInfo(officer)" (mouseout)="toggleOfficerInfo(officer)">
