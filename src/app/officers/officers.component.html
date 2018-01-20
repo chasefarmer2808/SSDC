@@ -1,22 +1,24 @@
 <div class="officers-container">
   <div id="officers-heading" class="heading heading-font">Meet the Officers</div>
-  <div class="flex-center">
-    <div class="officers-grid">
-      <div class="officer" *ngFor="let officer of officers">
-          <div class="role">{{officer.role}}</div>
-          <div class="profile-picture" (mouseover)="toggleOfficerInfo(officer)" (mouseout)="toggleOfficerInfo(officer)">
-            <div [@slideDown]="officer.showInfo" class="officer-info-overlay">
-              <div class="more-info-container">
-                {{officer.bio}}
-              </div>
+  <div class="officers-grid">
+    <div class="officer" *ngFor="let officer of officers">
+        <div class="role">{{officer.role}}
+          <div class="show-more-info" (click)="toggleOfficerInfo(officer)">
+            <i [@plusToCross]="officer.showInfo" class="fa fa-plus" aria-hidden="true"></i>
+          </div>
+        </div>
+        <div class="profile-picture" (mouseover)="toggleOfficerInfo(officer)" (mouseout)="toggleOfficerInfo(officer)">
+          <div [@slideDown]="officer.showInfo" class="officer-info-overlay">
+            <div class="more-info-container">
+              {{officer.bio}}
             </div>
-            <img src="{{officer.pictureUrl}}">
           </div>
-          <div class="name">{{officer.name}}</div>
-          <div class="email">
-              <a href="mailto:{{officer.email}}">{{officer.email}}</a>
-          </div>
-      </div>
+          <img src="{{officer.pictureUrl}}">
+        </div>
+        <div class="name">{{officer.name}}</div>
+        <div class="email">
+            <a href="mailto:{{officer.email}}">{{officer.email}}</a>
+        </div>
     </div>
   </div>
 </div>
