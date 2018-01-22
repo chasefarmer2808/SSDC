@@ -3,19 +3,19 @@ node_js:
 - lts/*
 
 before_install:
-  - export CHROME_BIN=/usr/bin/google-chrome
+  - export CHROME_BIN=chromium_browser
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start
   - sleep 3
 
-addons:
-  apt:
-    sources:
-     - google-chrome
-    packages:
-     - google-chrome-stable
+# addons:
+#   apt:
+#     sources:
+#      - google-chrome
+#     packages:
+#      - google-chrome-stable
 
-script: node_modules/karma/bin/karma start karma.conf.js --browsers Chrome --single-run
+script: node_modules/karma/bin/karma start karma.conf.js --single-run
 
 before_deploy:
   - npm run test:int
