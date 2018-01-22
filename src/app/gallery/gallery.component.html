@@ -9,10 +9,10 @@
       <div *ngFor="let album of albums" class="album-name-container">
         <button mat-raised-button [ngClass]="{'buttonSelected':album.name === selectedAlbumName}" class="album-name" (click)="getAlbum(album)">{{album.name}}</button>
       </div>
-      <button mat-fab color="#E8EAF6" (click)="scrollRight()" class="right-arrow-scroll" *ngIf="rightArrowVisible">
+      <button mat-fab color="#E8EAF6" (click)="scrollRightToNextAlbum()" class="right-arrow-scroll" *ngIf="rightArrowVisible">
         <i class="fa fa-chevron-right fa-2x" aria-hidden="true"></i>
       </button>
-      <button mat-fab color="#E8EAF6" (click)="scrollLeft()" class="left-arrow-scroll" *ngIf="leftArrowVisible">
+      <button mat-fab color="#E8EAF6" (click)="scrollLeftToNextAlbum()" class="left-arrow-scroll" *ngIf="leftArrowVisible">
         <i class="fa fa-chevron-left fa-2x" aria-hidden="true"></i>
       </button>
     </div>

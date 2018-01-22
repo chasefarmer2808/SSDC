@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef, ViewChild, Renderer2 } from '@angular/core';
+import { Component, OnInit, AfterViewChecked, ElementRef, ViewChild, Renderer2 } from '@angular/core';
 import { FacebookService } from '../services/facebook/facebook.service';
 import { ScrollRightDirective } from '../directives/onscroll.directive';
 import { Album } from '../gallery/album';
@@ -11,7 +11,7 @@ import { GalleryGridComponent } from './gallery-grid/gallery-grid.component';
   styleUrls: ['./gallery.component.css', '../app.component.css'],
   providers: [ FacebookService ]
 })
-export class GalleryComponent implements OnInit {
+export class GalleryComponent implements OnInit, AfterViewChecked {
 
   albums:Album[];
   selectedAlbum:Photo[];
@@ -21,6 +21,8 @@ export class GalleryComponent implements OnInit {
   rightArrowVisible:boolean;
   leftArrowVisible:boolean;
   yScrollLimit:number;
+  albumButtonElements:HTMLElement[];
+  firstAlbumIndex:number = 0;
 
   readonly SCROLL_SPEED:number = 5;
 
@@ -33,6 +35,10 @@ export class GalleryComponent implements OnInit {
 
   ngOnInit() {
     this.getGalleries();
+  }
+
+  ngAfterViewChecked() {
+    this.getAlbumButtonElements();
   }
 
   getGalleries() {
@@ -61,6 +67,10 @@ export class GalleryComponent implements OnInit {
         );
   }
 
+  getAlbumButtonElements() {
+    this.albumButtonElements = this.albumsContainer.nativeElement.querySelectorAll('button');
+  }
+
   hideRightArrow() {
     this.rightArrowVisible = false;
   }
@@ -77,28 +87,46 @@ export class GalleryComponent implements OnInit {
     this.leftArrowVisible = true;
   }
 
-  scrollRight() {
-    this.smoothYScroll(this.albumsContainer, this.SCROLL_SPEED);
-  }
+  smoothYScrollRight(element:ElementRef, offset:number) {
+    let currentYScroll = element.nativeElement.scrollLeft;
+    let yScrollRightLimit = currentYScroll + offset;
 
-  scrollLeft() {
-    this.smoothYScroll(this.albumsContainer, -1*this.SCROLL_SPEED);
-  }
-
-  smoothYScroll(element:ElementRef, offset:number) {
-    let currentYScroll = element.nativeElement.scrollLeft;  // get the current y scroll position (0 if all the way left)
-    let yScrollRightLimit = currentYScroll + element.nativeElement.offsetWidth; // set the y scroll amount for right scrolling
-    let yScrollLeftLimit = currentYScroll - element.nativeElement.offsetWidth; // set the y scroll amount for left scrolling
-
-    // Using an interval to atificially create a linear smoothness
     let scrollSmoother = setInterval(() => {
-      element.nativeElement.scrollLeft += offset; // scroll the div
-      if (element.nativeElement.scrollLeft >= yScrollRightLimit || 
-          element.nativeElement.scrollLeft <= yScrollLeftLimit || 
-          element.nativeElement.scrollLeft == 0 || 
-          this.rightArrowVisible == false) {
-        clearInterval(scrollSmoother); // stop the interval
+      element.nativeElement.scrollLeft += this.SCROLL_SPEED;
+
+      if (element.nativeElement.scrollLeft >= yScrollRightLimit) {
+        clearInterval(scrollSmoother);
       }
-    }, 1); // call every 1 millisecond
+    }, 1);
+  }
+
+  smoothYScrollLeft(element:ElementRef, offset:number) {
+    let currentYScroll = element.nativeElement.scrollLeft;
+    let yScrollLeftLimit = currentYScroll - offset;
+    let isAllTheWayLeft = element.nativeElement.scrollLeft == 0;
+
+    let scrollSmoother = setInterval(() => {
+      element.nativeElement.scrollLeft -= this.SCROLL_SPEED;
+
+      if (element.nativeElement.scrollLeft <= yScrollLeftLimit || isAllTheWayLeft) {
+        clearInterval(scrollSmoother);
+      }
+    }, 1);
+  }
+
+  scrollRightToNextAlbum() {
+    if (this.firstAlbumIndex < this.albumButtonElements.length) {
+      let currentWidth = this.albumButtonElements[this.firstAlbumIndex].offsetWidth;
+      this.firstAlbumIndex++;
+      this.smoothYScrollRight(this.albumsContainer, currentWidth);
+    }
+  }
+
+  scrollLeftToNextAlbum() {
+    if (this.firstAlbumIndex > 0) {
+      this.firstAlbumIndex--;
+      let currentWidth = this.albumButtonElements[this.firstAlbumIndex].offsetWidth;
+      this.smoothYScrollLeft(this.albumsContainer, currentWidth);
+    }
   }
 }
