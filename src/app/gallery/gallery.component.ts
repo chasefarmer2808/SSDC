@@ -25,6 +25,7 @@ export class GalleryComponent implements OnInit, AfterViewChecked {
   firstAlbumIndex:number = 0;
 
   readonly SCROLL_SPEED:number = 5;
+  readonly INTERAL_TIME_MS:number = 1;
 
   @ViewChild('albumsContainer') albumsContainer: ElementRef;
 
@@ -68,7 +69,7 @@ export class GalleryComponent implements OnInit, AfterViewChecked {
   }
 
   getAlbumButtonElements() {
-    this.albumButtonElements = this.albumsContainer.nativeElement.querySelectorAll('button');
+    this.albumButtonElements = this.albumsContainer.nativeElement.querySelectorAll('.album-name-container');
   }
 
   hideRightArrow() {
@@ -97,7 +98,7 @@ export class GalleryComponent implements OnInit, AfterViewChecked {
       if (element.nativeElement.scrollLeft >= yScrollRightLimit) {
         clearInterval(scrollSmoother);
       }
-    }, 1);
+    }, this.INTERAL_TIME_MS);
   }
 
   smoothYScrollLeft(element:ElementRef, offset:number) {
@@ -111,22 +112,40 @@ export class GalleryComponent implements OnInit, AfterViewChecked {
       if (element.nativeElement.scrollLeft <= yScrollLeftLimit || isAllTheWayLeft) {
         clearInterval(scrollSmoother);
       }
-    }, 1);
+    }, this.INTERAL_TIME_MS);
   }
 
   scrollRightToNextAlbum() {
+    let currentButton:HTMLElement;
     if (this.firstAlbumIndex < this.albumButtonElements.length) {
-      let currentWidth = this.albumButtonElements[this.firstAlbumIndex].offsetWidth;
+      currentButton = this.albumButtonElements[this.firstAlbumIndex];
+      let currentWidth = this.calculateElementWidth(currentButton);
       this.firstAlbumIndex++;
       this.smoothYScrollRight(this.albumsContainer, currentWidth);
     }
   }
 
   scrollLeftToNextAlbum() {
+    let prevButton:HTMLElement;
     if (this.firstAlbumIndex > 0) {
       this.firstAlbumIndex--;
-      let currentWidth = this.albumButtonElements[this.firstAlbumIndex].offsetWidth;
+      prevButton = this.albumButtonElements[this.firstAlbumIndex];
+      let currentWidth = this.calculateElementWidth(prevButton);
       this.smoothYScrollLeft(this.albumsContainer, currentWidth);
     }
+  }
+
+  calculateElementWidth(element:HTMLElement):number {
+    let totalWidth = 0;
+    return element.offsetWidth + this.getHorizontalMargin(element);
+  }
+
+  getHorizontalMargin(element:HTMLElement):number {
+    let styles = window.getComputedStyle(element);
+    return this.pixelToNumber(styles.marginLeft) + this.pixelToNumber(styles.marginRight);
+  }
+
+  pixelToNumber(pixelString:string):number {
+    return parseFloat(pixelString.replace('px', ''));
   }
 }
