@@ -16,6 +16,7 @@
 
 .albums-container::-webkit-scrollbar {
     background: transparent;
+    display: none;
 }
 
 .album-name-container {
