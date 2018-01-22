@@ -5,7 +5,7 @@ node_js:
 script: node_modules/karma/bin/karma start karma.conf.js --single-run
 
 before_install:
-  - export CHROME_BIN=chromium_browser
+  # - export CHROME_BIN=chromium_browser
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start
   - sleep 3
