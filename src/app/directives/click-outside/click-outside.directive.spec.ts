@@ -15,6 +15,11 @@ describe('ClickOutsideDirective', () => {
   let outsideElement: DebugElement;
   let clickedOutsideEventSpy: any;
 
+  function triggerDocumentEvent(eventName:string, eventObj:any) {
+    let event = new Event(eventName, eventObj);
+    document.dispatchEvent(event);
+  }
+
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [ClickOutsideComponent, ClickOutsideDirective]
@@ -37,12 +42,16 @@ describe('ClickOutsideDirective', () => {
     expect(directive).not.toBeNull();
   });
 
-  // it('should print', fakeAsync(() => {
-  //   // console.log(directiveElement);
-  //   // directiveElement.triggerEventHandler('click', null);
-  //   tick();
-  //   // outsideElement.nativeElement.dispatchEvent(new Event('click'));
-  //   fixture.detectChanges();
-  //   expect(clickedOutsideEventSpy).toHaveBeenCalled();
-  // }));
+  it('should detect click outside and call emit', fakeAsync(() => {
+    triggerDocumentEvent('click', null);
+    tick();
+    fixture.detectChanges();
+    expect(clickedOutsideEventSpy).toHaveBeenCalled();
+  }));
+
+  it('should not emit click outside when clicked inside', () => {
+    itemElement.triggerEventHandler('click', null);
+    fixture.detectChanges();
+    expect(clickedOutsideEventSpy).not.toHaveBeenCalled();
+  });
 });
