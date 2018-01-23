@@ -18,8 +18,8 @@ import { HomeComponent } from './home/home.component';
 import { EventsComponent } from './events/events.component';
 import { ContactComponent } from './contact/contact.component';
 
-import { ClickOutsideDirective } from './directives/click-outside.directive';
-import { ScrollRightDirective } from './directives/onscroll.directive';
+import { ClickOutsideDirective } from './directives/click-outside/click-outside.directive';
+import { ScrollInfoDirective } from './directives/onscroll/onscroll.directive';
 import { OfficersComponent } from './officers/officers.component';
 import { FooterComponent } from './footer/footer.component';
 import { GalleryComponent } from './gallery/gallery.component';
@@ -33,7 +33,7 @@ import { GalleryGridComponent } from './gallery/gallery-grid/gallery-grid.compon
     EventsComponent,
     ContactComponent,
     ClickOutsideDirective,
-    ScrollRightDirective,
+    ScrollInfoDirective,
     OfficersComponent,
     FooterComponent,
     GalleryComponent,

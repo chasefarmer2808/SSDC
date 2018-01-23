@@ -1,6 +1,6 @@
 import { Component, OnInit, ElementRef, ViewChild, Renderer2 } from '@angular/core';
 import { FacebookService } from '../services/facebook/facebook.service';
-import { ScrollRightDirective } from '../directives/onscroll.directive';
+import { ScrollInfoDirective } from '../directives/onscroll/onscroll.directive';
 import { Album } from '../gallery/album';
 import { Photo } from '../gallery/photo';
 import { GalleryGridComponent } from './gallery-grid/gallery-grid.component';
