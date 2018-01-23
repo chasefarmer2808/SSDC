@@ -2,6 +2,7 @@ import { Component, OnInit, NgZone } from '@angular/core';
 import { Routes, Router, NavigationEnd } from '@angular/router';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 import { routes } from '../app-routing/app-routes';
+import { ClickOutsideDirective } from '../directives/click-outside/click-outside.directive';
 
 @Component({
   selector: 'app-navbar',

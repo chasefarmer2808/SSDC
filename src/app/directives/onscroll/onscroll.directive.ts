@@ -3,7 +3,7 @@ import { Directive, ElementRef, Output, EventEmitter, HostListener } from '@angu
 @Directive({
     selector: '[scrollInfo]'
 })
-export class ScrollRightDirective {
+export class ScrollInfoDirective {
     constructor(private _elementRef : ElementRef) {}
 
     @Output()
