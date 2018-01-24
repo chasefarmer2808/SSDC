@@ -7,7 +7,7 @@
         <div class="vert-center">
           <div class="large-link-group">
             <a routerLink="/{{route.path}}" class="slide-center">{{route.data.name}}</a>
-            <i [@rotate180]="route.data.showScrollables" *ngIf="route.data.scrollables?.length > 0" (click)="toggleScrollable(route)" class="fa fa-angle-down" aria-hidden="true"></i>
+            <i [@rotate180]="route.data.showScrollables" *ngIf="route.data.scrollables?.length > 0" class="fa fa-angle-down" aria-hidden="true"></i>
           </div>
         </div>
         <ul [@slideDown]="route.data.showScrollables" class="large-scrollables">
