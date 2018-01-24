@@ -27,7 +27,7 @@ this file does not have any extentions, or heroku will not recognize it.  You ar
 `heroku login` command.  Click on the `ssdc-website` app.  Click the settings tab.  Then click `Reveal config vars`.  This information is sensative and confidential.
 Make sure it remains a secret, and the values are not altered unless approved by an admin.  Also note to never commit the `.env` file to any kind of version
 control system.  It too holds all of this information, and should only remain on a developer's hard drive.  With all config vars pulled, you are now
-ready to run the backend of the app.  To do this, simply run 'heroku local'.  This will spin up the Node server, enabling REST API calls to be made.
+ready to run the backend of the app.  To do this, simply run `heroku local`.  This will spin up the Node server, enabling REST API calls to be made.
 
 ## Development server
 
@@ -52,7 +52,19 @@ The backend uses config vars for secret information such as API keys.  These var
 
 ## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Running tests locally will require importing the secret config vars without hard-coding them into the source code.  In order to do this, we need the help of
+Foreman.  Foreman is a manager for apps such as ours that run off a Procfile.  It can be installed through npm by running `npm install -g foreman`.  Once this
+is done, you will be ready to run all tests.
+
+Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).  This will run all of the unit tests in the front end that are in a
+`*.spec.ts` file.  PRO-TIP: Have the browser dev tools open to the browser console when the tests are running to make sure there are no errors.  This can 
+happen even if all the tests pass, and will break the build in Travis.
+
+## Running integration tests
+
+Currently, the only integration tests are for the backend server.  They are located in the test folder.  To run them, execute the command 
+`nf run npm run test:int`.  The `nf` stands for Node Foreman.  NOTE: An internet connection is necessary to run these tests, as they make
+HTTP requests.
 
 ## Running end-to-end tests
 
@@ -60,6 +72,18 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 Before running the tests make sure you are serving the app via `ng serve`.
 
 ## Build and Deployment
+
+### Travis CI
+
+This application is currently using the Travis-CI for automated builds and deploys.  In order to make an actual deploy, a push needs to be 
+made to the master branch.  This will automatically trigger a build in Travis.  The build clones the master branch of this repo, does an 
+`npm install`, builds the entire app, runs unit and integration tests, and deploys to heroku.  If the build passes, the live site should
+be updated with the changes.  The integration tests and actual deployment only happen on a push to the master branch.  Builds are kicked
+off on pushes to ALL branches, but only compilation and unit tests are run.  The Travis-CI build dashboard for this application can be 
+seen by going [here](https://travis-ci.org/), and signing in with your Github credentials.  You can only see the dashboard if you are a
+collaborator of this repository.
+
+### Heroku
 
 This application is currently being hosted by Heroku.  When a feature is ready to be pushed to the live site, you must do the following.  First, 
 make sure to rebase your code onto the `develop` branch of the repo.  Do this by checking out the branch with `git checkout develop`, and then 
@@ -97,6 +121,9 @@ The corresponding config var on
 Heroku must then be updated with the fresh token in order for the production server to read the token.  When Heroku is up to date, 
 developers that are logged onto the Heroku app can pull the fresh token by running `heroku config:get CONFIG_VAR_NAME`.  Refer to 
 this [link](https://devcenter.heroku.com/articles/config-vars) for more help and details.
+
+Facebook has a handy debug tool [here](https://developers.facebook.com/tools/debug/accesstoken/) that can be used to check the 
+expiry time of an access token.
 
 ## Further help
 
