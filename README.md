@@ -79,7 +79,9 @@ This application is currently using the Travis-CI for automated builds and deplo
 made to the master branch.  This will automatically trigger a build in Travis.  The build clones the master branch of this repo, does an 
 `npm install`, builds the entire app, runs unit and integration tests, and deploys to heroku.  If the build passes, the live site should
 be updated with the changes.  The integration tests and actual deployment only happen on a push to the master branch.  Builds are kicked
-off on pushes to ALL branches, but only compilation and unit tests are run.
+off on pushes to ALL branches, but only compilation and unit tests are run.  The Travis-CI build dashboard for this application can be 
+seen by going [here](https://travis-ci.org/), and signing in with your Github credentials.  You can only see the dashboard if you are a
+collaborator of this repository.
 
 ### Heroku
 
@@ -119,6 +121,9 @@ The corresponding config var on
 Heroku must then be updated with the fresh token in order for the production server to read the token.  When Heroku is up to date, 
 developers that are logged onto the Heroku app can pull the fresh token by running `heroku config:get CONFIG_VAR_NAME`.  Refer to 
 this [link](https://devcenter.heroku.com/articles/config-vars) for more help and details.
+
+Facebook has a handy debug tool [here](https://developers.facebook.com/tools/debug/accesstoken/) that can be used to check the 
+expiry time of an access token.
 
 ## Further help
 
