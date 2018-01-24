@@ -112,7 +112,7 @@
   }
 
   .nav-links-container {
-    display: none;
+    display: none !important;
   }
 
   .navbar-container {
