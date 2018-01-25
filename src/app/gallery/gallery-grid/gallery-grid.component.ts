@@ -2,7 +2,7 @@ import { Component, OnInit, Input, Renderer2 } from '@angular/core';
 import { Photo } from '../photo';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import "rxjs/add/operator/takeWhile";
-import { MatDialog } from '@angular/material';
+import { MatDialog, MatDialogRef } from '@angular/material';
 import { ImageDialogComponent } from './image-dialog/image-dialog.component';
 
 @Component({
