@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { Photo } from '../../photo';
 
 @Component({
@@ -10,7 +10,7 @@ import { Photo } from '../../photo';
 export class ImageDialogComponent implements OnInit {
 
   selectedPhoto: Photo;
-  selectedPhotoIndex: number;
+  selectedPhotoIndex: number = 0;
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any) { }
 

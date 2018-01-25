@@ -4,14 +4,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { HttpModule } from '@angular/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatInputModule, 
-         MatButtonModule, 
-         MatCheckboxModule, 
-         MatProgressSpinnerModule, 
-         NoConflictStyleCompatibilityMode,
-         MatButtonToggleModule,
-         MatDialogModule } from '@angular/material';
 import { Ng2PageScrollModule } from 'ng2-page-scroll';
+import { MaterialModule } from './material.module';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -50,13 +44,7 @@ import { ImageDialogComponent } from './gallery/gallery-grid/image-dialog/image-
     Ng2PageScrollModule,
     FormsModule,
     ReactiveFormsModule,
-    MatInputModule,
-    MatButtonModule,
-    MatCheckboxModule,
-    MatProgressSpinnerModule,
-    NoConflictStyleCompatibilityMode,
-    MatButtonToggleModule,
-    MatDialogModule
+    MaterialModule
   ],
   entryComponents: [ ImageDialogComponent ],
   providers: [],

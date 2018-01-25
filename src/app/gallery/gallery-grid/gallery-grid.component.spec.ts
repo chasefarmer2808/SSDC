@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
 
 import { GalleryGridComponent } from './gallery-grid.component';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
+import { MaterialModule } from '../../material.module';
 import { MockPhotos } from '../photos.mock';
 
 describe('GalleryGridComponent', () => {
@@ -9,7 +11,8 @@ describe('GalleryGridComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ GalleryGridComponent ]
+      declarations: [ GalleryGridComponent ],
+      imports: [ MaterialModule ]
     })
     .compileComponents();
   }));
