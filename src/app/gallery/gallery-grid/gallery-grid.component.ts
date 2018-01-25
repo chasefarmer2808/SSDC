@@ -38,10 +38,11 @@ export class GalleryGridComponent implements OnInit {
       });
   }
 
-  openImageDialog(selectedImageUrl:string) {
+  openImageDialog(photoIndex: number) {
     let dialogData: any = {
       data: {
-        imageUrl: selectedImageUrl
+        photos: this.album,
+        index: photoIndex
       }
     };
 

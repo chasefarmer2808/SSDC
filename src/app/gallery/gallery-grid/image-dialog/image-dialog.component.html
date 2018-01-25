@@ -1,3 +1,11 @@
 <mat-dialog-content>
-  <img src="{{data.imageUrl}}">
+  <img src="{{selectedPhoto.source}}">
 </mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-icon-button (click)="prevPhoto()">
+    <i class="fa fa-chevron-left fa-2x" aria-hidden="true"></i>
+  </button>
+  <button mat-icon-button (click)="nextPhoto()">
+    <i class="fa fa-chevron-right fa-2x" aria-hidden="true"></i>
+  </button>
+</mat-dialog-actions>
