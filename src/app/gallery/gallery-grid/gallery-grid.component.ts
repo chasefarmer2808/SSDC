@@ -2,6 +2,8 @@ import { Component, OnInit, Input, Renderer2 } from '@angular/core';
 import { Photo } from '../photo';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import "rxjs/add/operator/takeWhile";
+import { MatDialog, MatDialogRef } from '@angular/material';
+import { ImageDialogComponent } from './image-dialog/image-dialog.component';
 
 @Component({
   selector: 'app-gallery-grid',
@@ -24,7 +26,7 @@ export class GalleryGridComponent implements OnInit {
   avgPhotoWidth:number = 0;
   avgPhotoHeight:number = 0;
 
-  constructor(private renderer: Renderer2) {
+  constructor(private renderer: Renderer2, private imageDialog: MatDialog) {
   }
 
   ngOnInit() {
@@ -34,6 +36,17 @@ export class GalleryGridComponent implements OnInit {
           this.setAverages();
         }
       });
+  }
+
+  openImageDialog(photoIndex: number) {
+    let dialogData: any = {
+      data: {
+        photos: this.album,
+        index: photoIndex
+      }
+    };
+
+    let dialogRef = this.imageDialog.open(ImageDialogComponent, dialogData);
   }
 
   setAverages() {

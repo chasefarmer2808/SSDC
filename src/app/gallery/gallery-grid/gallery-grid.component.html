@@ -1,5 +1,8 @@
 <div class="album-grid">
-  <div *ngFor="let photo of album; let i = index" class="album-photo">
+  <div *ngFor="let photo of album; let i = index" class="album-photo" (click)="openImageDialog(i)">
     <img (load)="refreshGrid($event, i)" src="{{photo.source}}">
   </div>
+</div>
+<div class="lightbox-container">
+    
 </div>

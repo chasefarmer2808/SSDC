@@ -4,13 +4,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { HttpModule } from '@angular/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatInputModule, 
-         MatButtonModule, 
-         MatCheckboxModule, 
-         MatProgressSpinnerModule, 
-         NoConflictStyleCompatibilityMode,
-         MatButtonToggleModule } from '@angular/material';
 import { Ng2PageScrollModule } from 'ng2-page-scroll';
+import { MaterialModule } from './material.module';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -24,6 +19,7 @@ import { OfficersComponent } from './officers/officers.component';
 import { FooterComponent } from './footer/footer.component';
 import { GalleryComponent } from './gallery/gallery.component';
 import { GalleryGridComponent } from './gallery/gallery-grid/gallery-grid.component';
+import { ImageDialogComponent } from './gallery/gallery-grid/image-dialog/image-dialog.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +33,8 @@ import { GalleryGridComponent } from './gallery/gallery-grid/gallery-grid.compon
     OfficersComponent,
     FooterComponent,
     GalleryComponent,
-    GalleryGridComponent
+    GalleryGridComponent,
+    ImageDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -47,13 +44,9 @@ import { GalleryGridComponent } from './gallery/gallery-grid/gallery-grid.compon
     Ng2PageScrollModule,
     FormsModule,
     ReactiveFormsModule,
-    MatInputModule,
-    MatButtonModule,
-    MatCheckboxModule,
-    MatProgressSpinnerModule,
-    NoConflictStyleCompatibilityMode,
-    MatButtonToggleModule
+    MaterialModule
   ],
+  entryComponents: [ ImageDialogComponent ],
   providers: [],
   bootstrap: [AppComponent]
 })
