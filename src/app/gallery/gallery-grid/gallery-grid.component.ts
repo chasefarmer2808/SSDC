@@ -38,8 +38,14 @@ export class GalleryGridComponent implements OnInit {
       });
   }
 
-  openImageDialog() {
-    let dialogRef = this.imageDialog.open(ImageDialogComponent);
+  openImageDialog(selectedImageUrl:string) {
+    let dialogData: any = {
+      data: {
+        imageUrl: selectedImageUrl
+      }
+    };
+
+    let dialogRef = this.imageDialog.open(ImageDialogComponent, dialogData);
   }
 
   setAverages() {

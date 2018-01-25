@@ -1,5 +1,5 @@
 <div class="album-grid">
-  <div *ngFor="let photo of album; let i = index" class="album-photo" (click)="openImageDialog()">
+  <div *ngFor="let photo of album; let i = index" class="album-photo" (click)="openImageDialog(photo.source)">
     <img (load)="refreshGrid($event, i)" src="{{photo.source}}">
   </div>
 </div>
