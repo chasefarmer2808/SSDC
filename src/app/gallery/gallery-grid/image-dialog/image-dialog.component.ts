@@ -42,7 +42,7 @@ export class ImageDialogComponent implements OnInit {
   }
 
   lastPhotoSelected() {
-    return this.selectedPhotoIndex === this.data.photos.length;
+    return this.selectedPhotoIndex === this.data.photos.length - 1;
   }
 
 }
