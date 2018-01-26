@@ -4,6 +4,7 @@ import { HomeComponent } from '../home/home.component';
 import { EventsComponent } from '../events/events.component';
 import { ContactComponent } from '../contact/contact.component';
 import { GalleryComponent } from 'app/gallery/gallery.component';
+import { TeamsComponent } from 'app/teams/teams.component';
 
 export const routes: Routes = [
   {
@@ -11,8 +12,8 @@ export const routes: Routes = [
     component: HomeComponent,
     data: {
       name: 'Home',
-      showScrollables: false,
-      scrollables: [
+      showSubItems: false,
+      subItems: [
         {
           name: 'About',
           selector: '#about-heading'
@@ -37,9 +38,23 @@ export const routes: Routes = [
     path: 'gallery',
     component: GalleryComponent,
     data: {
-      name: 'Gallery',
-      showScrollables: false,
-      scrollables: []
+      name: 'Gallery'
+    }
+  },
+  {
+    path: 'teams',
+    component: TeamsComponent,
+    data: {
+      name: 'Design Teams',
+      showSubItems: false,
+      subItems: [
+        {
+          name: 'Team1'
+        },
+        {
+          name: 'Team2'
+        }
+      ]
     }
   }
 ];

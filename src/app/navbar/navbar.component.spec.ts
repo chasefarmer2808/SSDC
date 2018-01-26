@@ -5,6 +5,7 @@ import { NavbarComponent } from './navbar.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Ng2PageScrollModule } from 'ng2-page-scroll';
+import { RouteFilterPipe } from '../pipes/route-filter/route-filter.pipe';
 
 describe('NavbarComponent', () => {
   let component: NavbarComponent;
@@ -12,7 +13,7 @@ describe('NavbarComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ NavbarComponent ],
+      declarations: [ NavbarComponent, RouteFilterPipe ],
       imports: [
         RouterTestingModule,
         BrowserAnimationsModule,
