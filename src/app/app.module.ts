@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing/app-routing.module';
 import { HttpModule } from '@angular/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Ng2PageScrollModule } from 'ng2-page-scroll';
-import { MaterialModule } from './material.module';
+import { MaterialModule } from './modules/material.module';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -20,6 +20,8 @@ import { FooterComponent } from './footer/footer.component';
 import { GalleryComponent } from './gallery/gallery.component';
 import { GalleryGridComponent } from './gallery/gallery-grid/gallery-grid.component';
 import { ImageDialogComponent } from './gallery/gallery-grid/image-dialog/image-dialog.component';
+import { TeamsComponent } from './teams/teams.component';
+import { RouteFilterPipe } from './pipes/route-filter/route-filter.pipe';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,9 @@ import { ImageDialogComponent } from './gallery/gallery-grid/image-dialog/image-
     FooterComponent,
     GalleryComponent,
     GalleryGridComponent,
-    ImageDialogComponent
+    ImageDialogComponent,
+    TeamsComponent,
+    RouteFilterPipe
   ],
   imports: [
     BrowserModule,

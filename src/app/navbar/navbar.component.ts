@@ -3,6 +3,7 @@ import { Routes, Router, NavigationEnd } from '@angular/router';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 import { routes } from '../app-routing/app-routes';
 import { ClickOutsideDirective } from '../directives/click-outside/click-outside.directive';
+// import { RouteFilterPipe } from '../pipes/route-filter/route-filter.pipe';
 
 @Component({
   selector: 'app-navbar',
@@ -79,6 +80,10 @@ export class NavbarComponent implements OnInit {
     });
   }
 
+  navigate(routePath: string, params:any) {
+    this.router.navigate([routePath, params])
+  }
+
   getRoute(routePath: string): any {
     for (let route of this.myRoutes) {
       if (route.path == routePath) {
@@ -101,13 +106,13 @@ export class NavbarComponent implements OnInit {
     this.scrollTopOnSameRoute(routePath);
   }
 
-  toggleScrollable(route: any) {
-    route.data.showScrollables = !route.data.showScrollables;
+  toggleSubItemVisible(route: any) {
+    route.data.showSubItems = !route.data.showSubItems;
   }
 
   collapseAll() {
     for (let route of this.myRoutes) {
-      route.data.showScrollables = false;
+      route.data.showSubItems = false;
     }
   }
 
