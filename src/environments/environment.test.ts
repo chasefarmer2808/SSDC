@@ -6,11 +6,12 @@
 let localUrl = 'http://localhost';
 let serverPort = 5000;
 let localPort = 4200;
+let testPort = 9876;
 
 export const environment = {
   production: false,
   envName: 'dev',
-  assetsUrl: `${localUrl}:${localPort}/assets`,
+  assetsUrl: `${localUrl}:${testPort}/assets`,
   facebookUrl: `${localUrl}:${serverPort}/api/v1/fb/`,
   emailUrl: `${localUrl}:${serverPort}/api/v1/email/`,
   listservUrl: `${localUrl}:${serverPort}/api/v1/email/listserv/`,
