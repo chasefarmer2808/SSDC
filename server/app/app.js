@@ -42,10 +42,6 @@ function makeServer() {
     res.sendFile('index.html', { root: path.join(__dirname, `${buildPath}`) });
   });
 
-  app.get('/.well-known/acme-challenge/h5_W6j2t5pPPtV3dg9eTFpnVsts47O3yiBOGM2qb7GQ', function(req, res) {
-    res.send('h5_W6j2t5pPPtV3dg9eTFpnVsts47O3yiBOGM2qb7GQ.MY4OaIUq_Yrql-b0w9Sw8VjIe54xz3bvuGeh39Pcr80');
-  });
-
   app.set('port', port);
 
   var server = app.listen(port, function() {

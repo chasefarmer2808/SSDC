@@ -10,7 +10,7 @@ let localPort = 4200;
 export const environment = {
   production: false,
   envName: 'dev',
-  assetsUrl: `${localUrl}:${localPort}/assets/`,
+  assetsUrl: `${localUrl}:${localPort}/assets`,
   facebookUrl: `${localUrl}:${serverPort}/api/v1/fb/`,
   emailUrl: `${localUrl}:${serverPort}/api/v1/email/`,
   listservUrl: `${localUrl}:${serverPort}/api/v1/email/listserv/`,

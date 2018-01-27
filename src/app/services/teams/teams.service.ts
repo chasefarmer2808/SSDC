@@ -17,7 +17,7 @@ export class TeamsService {
 
   getTeams(): Observable<Team[]> {
     return this.http 
-      .get(`${environment.assetsUrl}/teams.json`)
+      .get(`${environment.assetsUrl}/data/teams.json`)
       .map((response:Response) => <Team[]> response.json().data)
       .catch(this.handleObservableError);
   }
