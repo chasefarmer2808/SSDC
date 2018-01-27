@@ -51,6 +51,7 @@ describe('NavbarComponent', () => {
     fixture.detectChanges();
 
     fixture.whenStable().then(() => {
+      fixture.detectChanges();
       expect(component.populateTeamsSubItems).toHaveBeenCalled();
       expect(component.getRoute).toHaveBeenCalled();
     });
