@@ -3,12 +3,13 @@ import { Routes, Router, NavigationEnd } from '@angular/router';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 import { routes } from '../app-routing/app-routes';
 import { ClickOutsideDirective } from '../directives/click-outside/click-outside.directive';
-// import { RouteFilterPipe } from '../pipes/route-filter/route-filter.pipe';
+import { TeamsService } from '../services/teams/teams.service';
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css', '../app.component.css'],
+  providers: [ TeamsService ],
   animations: [
     trigger('dropDown', [
       state('0', style({
@@ -54,7 +55,7 @@ export class NavbarComponent implements OnInit {
   emailAddr:string;
   currentRoute:string;
 
-  constructor(zone: NgZone, private router: Router) {
+  constructor(zone: NgZone, private router: Router, private teamsService: TeamsService) {
     window.onscroll = () => {
       zone.run(() => {
         if (window.pageYOffset > 0) {
@@ -78,10 +79,25 @@ export class NavbarComponent implements OnInit {
         this.currentRoute = evt.url;
       }
     });
+
+    this.populateTeamsSubItems();
   }
 
   navigate(routePath: string, params:any) {
     this.router.navigate([routePath, params])
+  }
+
+  populateTeamsSubItems() {
+    let teamsRoute = this.getRoute('teams');
+
+    if (!teamsRoute) {
+      return;
+    }
+
+    this.teamsService.getTeams()
+      .subscribe(teams => {
+        teamsRoute.data.subItems = teams;
+      });
   }
 
   getRoute(routePath: string): any {

@@ -7,6 +7,7 @@ import { RouteFilterPipe } from './pipes/route-filter/route-filter.pipe';
 import { RouterTestingModule } from '@angular/router/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Ng2PageScrollModule } from 'ng2-page-scroll';
+import { HttpModule } from '@angular/http';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -20,7 +21,8 @@ describe('AppComponent', () => {
       imports: [
         RouterTestingModule,
         BrowserAnimationsModule,
-        Ng2PageScrollModule
+        Ng2PageScrollModule,
+        HttpModule
       ]
     }).compileComponents();
   }));

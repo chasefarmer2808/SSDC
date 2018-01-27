@@ -5,6 +5,7 @@ import { NavbarComponent } from './navbar.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Ng2PageScrollModule } from 'ng2-page-scroll';
+import { HttpModule } from '@angular/http';
 import { RouteFilterPipe } from '../pipes/route-filter/route-filter.pipe';
 
 describe('NavbarComponent', () => {
@@ -17,7 +18,8 @@ describe('NavbarComponent', () => {
       imports: [
         RouterTestingModule,
         BrowserAnimationsModule,
-        Ng2PageScrollModule
+        Ng2PageScrollModule,
+        HttpModule
       ]
     })
     .compileComponents();
@@ -41,4 +43,17 @@ describe('NavbarComponent', () => {
     let navLinks = fixture.nativeElement;
     expect(navLinks.querySelectorAll('.nav-link').length).toEqual(component.myRoutes.length);
   });
+
+  it('should call functions to get team route and populate teams', async(() => {
+    spyOn(component, 'populateTeamsSubItems');
+    spyOn(component, 'getRoute');
+
+    fixture.detectChanges();
+
+    fixture.whenStable().then(() => {
+      expect(component.populateTeamsSubItems).toHaveBeenCalled();
+      expect(component.getRoute).toHaveBeenCalled();
+    });
+  }));
+
 });
