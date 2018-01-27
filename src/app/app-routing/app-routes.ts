@@ -47,14 +47,7 @@ export const routes: Routes = [
     data: {
       name: 'Design Teams',
       showSubItems: false,
-      subItems: [
-        {
-          name: 'Team1'
-        },
-        {
-          name: 'Team2'
-        }
-      ]
+      subItems: [ ]
     }
   }
 ];

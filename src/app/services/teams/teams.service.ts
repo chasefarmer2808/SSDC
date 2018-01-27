@@ -6,6 +6,8 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 
+import { environment } from '../../../environments/environment';
+
 import { Team } from './team';
 
 @Injectable()
@@ -15,7 +17,7 @@ export class TeamsService {
 
   getTeams(): Observable<Team[]> {
     return this.http 
-      .get('./teams.json')
+      .get(`${environment.assetsUrl}/teams.json`)
       .map((response:Response) => <Team[]> response.json().data)
       .catch(this.handleObservableError);
   }
