@@ -1,16 +1,22 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Routes, Router, ActivatedRoute } from '@angular/router';
+import { TeamsService } from '../services/teams/teams.service';
+import { Team } from '../services/teams/team';
 
 @Component({
   selector: 'app-teams',
   templateUrl: './teams.component.html',
-  styleUrls: ['./teams.component.css', '../app.component.css']
+  styleUrls: ['./teams.component.css', '../app.component.css'],
+  providers: [ TeamsService ]
 })
 export class TeamsComponent implements OnInit {
 
   name: string;
   overview: string;
   goal: string;
+  onTitlePage: boolean;
+  teams: Array<Team>;
+  selectedTeam: Team;
   teamDescription: string = 
     `
     Design teams are a great way to get involved in SSDC!  Members get real hands
@@ -20,16 +26,35 @@ export class TeamsComponent implements OnInit {
     email!
     `;
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute, private router: Router, private teamsService: TeamsService) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      if (params.name) {
-        this.name = params.name;
+      if (!this.isEmpty(params)) {
+        this.selectedTeam = params as Team;
+        this.onTitlePage = false;
       } else {
-        this.name = undefined;
+        this.selectedTeam = undefined;
+        this.onTitlePage = true;
       }
-    })
+    });
+
+    this.getTeams();
+  }
+
+  getTeams() {
+    this.teamsService.getTeams()
+      .subscribe(teams => {
+        this.teams = teams;
+      });
+  }
+
+  selectTeam(team: Team) {
+    this.router.navigate(['/teams', team]);
+  }
+
+  isEmpty(obj: any) {
+    return Object.keys(obj).length === 0;
   }
 
 }
