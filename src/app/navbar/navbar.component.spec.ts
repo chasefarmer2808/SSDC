@@ -44,17 +44,4 @@ describe('NavbarComponent', () => {
     expect(navLinks.querySelectorAll('.nav-link').length).toEqual(component.myRoutes.length);
   });
 
-  it('should call functions to get team route and populate teams', async(() => {
-    spyOn(component, 'populateTeamsSubItems');
-    spyOn(component, 'getRoute');
-
-    fixture.detectChanges();
-
-    fixture.whenStable().then(() => {
-      fixture.detectChanges();
-      expect(component.populateTeamsSubItems).toHaveBeenCalled();
-      expect(component.getRoute).toHaveBeenCalled();
-    });
-  }));
-
 });
