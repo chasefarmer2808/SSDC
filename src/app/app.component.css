@@ -13,6 +13,12 @@
   border-bottom: 1px solid black;
 }
 
+.text-block {
+  word-wrap: normal;
+  margin-left: 16px;
+  margin-right: 16px;
+}
+
 .underline-white {
   display: inline-block;
   border-bottom: 1px solid white;
