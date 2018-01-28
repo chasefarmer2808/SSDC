@@ -1,8 +1,7 @@
-<div id="teams-container">
+<div *ngIf="onTitlePage" id="teams-container">
   <div class="banner-container-small">
     <div class="banner-text-container">
-      <div class="banner-title heading-font">{{name}}</div>
-      <div class="banner-title heading-font" *ngIf="name == undefined">Design Teams</div>
+      <div class="banner-title heading-font">Design Teams</div>
     </div>
   </div>
   <div class="content-container">
@@ -10,5 +9,16 @@
       <div class="heading heading-font">What is a Design Team?</div>
       <div class="text-block">{{teamDescription}}</div>
     </div>
+    <div class="button-grid">
+      <button *ngFor="let team of teams" (click)="selectTeam(team)" class="button-large" mat-raised-button color="primary">{{team.name}}</button>
+    </div>
   </div>
+</div>
+
+<div *ngIf="!onTitlePage" id="teams-container">
+  <div class="banner-container-small">
+      <div class="banner-text-container">
+        <div class="banner-title heading-font">{{selectedTeam.name}}</div>
+      </div>
+    </div>
 </div>
