@@ -2,11 +2,7 @@ import { async, ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core
 
 import { GalleryGridComponent } from './gallery-grid.component';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
-<<<<<<< HEAD
-import { MaterialModule } from '../../material.module';
-=======
 import { MaterialModule } from '../../modules/material.module';
->>>>>>> develop
 import { MockPhotos } from '../photos.mock';
 
 describe('GalleryGridComponent', () => {
