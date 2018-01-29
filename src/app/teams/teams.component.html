@@ -17,8 +17,18 @@
 
 <div *ngIf="!onTitlePage" id="teams-container">
   <div class="banner-container-small">
-      <div class="banner-text-container">
-        <div class="banner-title heading-font">{{selectedTeam.name}}</div>
-      </div>
+    <div class="banner-text-container">
+      <div class="banner-title heading-font">{{selectedTeam.name}}</div>
     </div>
+  </div>
+  <div class="content-container">
+    <div class="overview-container">
+      <div class="heading heading-font">Overview</div>
+      <div class="text-block">{{selectedTeam.overview}}</div>
+    </div>
+    <div class="goal-container">
+      <div class="heading heading-font">Goal</div>
+      <div class="text-block">{{selectedTeam.goal}}</div>
+    </div>
+  </div>
 </div>
