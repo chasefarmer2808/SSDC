@@ -26,7 +26,8 @@
         <i [@rotate180]="route.data.showSubItems" *ngIf="route.data.subItems?.length > 0" (click)="toggleSubItemVisible(route)" class="fa fa-angle-down" aria-hidden="true"></i>
         <ul [@slideDown]="route.data.showSubItems" class="scrollables">
           <li *ngFor="let subItem of route.data.subItems" class="scrollable-item">
-            <a (click)="closeNav()" pageScroll [pageScrollOffset]="64" [pageScrollDuration]="500" [pageScrollInterruptible]="true" routerLink="/{{route.path}}" href="{{subItem.selector}}">{{subItem.name}}</a>
+            <a *ngIf="subItem.selector" (click)="closeNav()" pageScroll [pageScrollOffset]="64" [pageScrollDuration]="500" [pageScrollInterruptible]="true" routerLink="/{{route.path}}" href="{{subItem.selector}}">{{subItem.name}}</a>
+            <a *ngIf="subItem.selector == undefined" class="slide-center" (click)="navigate(route.path, subItem)">{{subItem.name}}</a>
           </li>
         </ul>
       </div>
