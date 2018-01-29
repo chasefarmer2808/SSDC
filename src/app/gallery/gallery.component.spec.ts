@@ -2,7 +2,7 @@ import { async, fakeAsync, tick, ComponentFixture, TestBed } from '@angular/core
 import { DebugElement } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
-import { MaterialModule } from '../material.module';
+import { MaterialModule } from '../modules/material.module';
 import 'rxjs/Rx';
 
 import { GalleryComponent } from './gallery.component';

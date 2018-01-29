@@ -15,7 +15,11 @@ module.exports = function (config) {
       require('@angular/cli/plugins/karma')
     ],
     files: [
-      { pattern: './node_modules/@angular/material/prebuild-themes/indigo-pink.css', included: true, watched: true }
+      { pattern: './node_modules/@angular/material/prebuild-themes/indigo-pink.css', included: true, watched: true },
+      { pattern: './src/assets/**', watched: false, included: false, nocache: false, served: true},
+      { pattern: './src/assets/**/*.json', watched: false, included: false, nocache: false, served: true},
+      { pattern: './src/assets/**/*.jpg', watched: false, included: false, nocache: false, served: true},
+      { pattern: './src/assets/**/*.png', watched: false, included: false, nocache: false, served: true}
     ],
     client:{
       clearContext: false // leave Jasmine Spec Runner output visible in browser
@@ -25,7 +29,13 @@ module.exports = function (config) {
       fixWebpackSourcePaths: true
     },
     angularCli: {
-      environment: 'dev'
+      environment: 'test'
+    },
+    customLaunchers: {
+      Chrome_travis_ci: {
+        base: 'Chrome',
+        flags: ['--no-sandbox']
+      }
     },
     customLaunchers: {
       Chrome_travis_ci: {
@@ -39,7 +49,10 @@ module.exports = function (config) {
     logLevel: config.LOG_INFO,
     autoWatch: true,
     browsers: ['Firefox'],
-    singleRun: false
+    singleRun: false,
+    proxies: {
+      '/assets': '/base/src/assets/'
+    }
   };
 
   // if (process.env.TRAVIS) {

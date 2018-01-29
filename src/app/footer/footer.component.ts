@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Routes, Router } from '@angular/router';
 import { routes } from '../app-routing/app-routes';
+import { RouteFilterPipe } from '../pipes/route-filter/route-filter.pipe';
 
 @Component({
   selector: 'app-footer',

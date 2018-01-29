@@ -8,9 +8,16 @@
   display: inline-block;
   margin-bottom: 24px;
   margin-top: 16px;
+  margin-left: 16px;
   font-size: 24px;
   font-weight: bold;
   border-bottom: 1px solid black;
+}
+
+.text-block {
+  word-wrap: normal;
+  margin-left: 16px;
+  margin-right: 16px;
 }
 
 .underline-white {
@@ -177,4 +184,15 @@
 
 .black:hover {
   color: black;
+}
+
+/* Angular Material */
+
+.nav-chip {
+  margin: 24px;
+  cursor: pointer !important;
+}
+
+.chip-text {
+  margin-left: 8px;
 }

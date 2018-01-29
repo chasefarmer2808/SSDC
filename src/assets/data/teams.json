@@ -1,0 +1,22 @@
+{
+    "data": [
+        {
+            "name": "CanSat",
+            "overview": "CanSat overview",
+            "goal": "CanSat goal",
+            "albumId": "CanSat album id"
+        },
+        {
+            "name": "HAB",
+            "overview": "HAB overview",
+            "goal": "HAB goal",
+            "albumId": "HAB album id"
+        },
+        {
+            "name": "MicroG",
+            "overview": "MicroG overview",
+            "goal": "MicroG goal",
+            "albumId": "MicroG album id"
+        }
+    ]
+}

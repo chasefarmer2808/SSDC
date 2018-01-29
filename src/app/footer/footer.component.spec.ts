@@ -3,6 +3,7 @@ import { By } from '@angular/platform-browser';
 
 import { FooterComponent } from './footer.component';
 import { RouterTestingModule } from '@angular/router/testing';
+import { RouteFilterPipe } from '../pipes/route-filter/route-filter.pipe';
 
 import { routes } from '../app-routing/app-routes';
 
@@ -12,7 +13,7 @@ describe('FooterComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FooterComponent ],
+      declarations: [ FooterComponent, RouteFilterPipe ],
       imports: [ RouterTestingModule ]
     })
     .compileComponents();
