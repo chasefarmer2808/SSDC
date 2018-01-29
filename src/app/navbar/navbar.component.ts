@@ -84,7 +84,8 @@ export class NavbarComponent implements OnInit {
   }
 
   navigate(routePath: string, params:any) {
-    this.router.navigate([routePath, params])
+    this.router.navigate([routePath, params]);
+    this.closeNav(false, '');
   }
 
   populateTeamsSubItems() {
