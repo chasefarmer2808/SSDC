@@ -5,7 +5,8 @@ import {
     MatCheckboxModule, 
     MatProgressSpinnerModule, 
     NoConflictStyleCompatibilityMode,
-    MatButtonToggleModule
+    MatButtonToggleModule,
+    MatChipsModule
 } from '@angular/material';
 import { MatDialogModule } from '@angular/material/dialog';
 
@@ -18,6 +19,7 @@ import { MatDialogModule } from '@angular/material/dialog';
         NoConflictStyleCompatibilityMode,
         MatButtonToggleModule,
         MatDialogModule,
+        MatChipsModule
     ],
     exports: [
         MatInputModule, 
@@ -27,6 +29,7 @@ import { MatDialogModule } from '@angular/material/dialog';
         NoConflictStyleCompatibilityMode,
         MatButtonToggleModule,
         MatDialogModule,
+        MatChipsModule
     ]
 })
 export class MaterialModule{};

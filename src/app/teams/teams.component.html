@@ -22,6 +22,14 @@
     </div>
   </div>
   <div class="content-container">
+    <div class="back-button-container">
+      <mat-chip-list>
+        <mat-chip (click)="backToTeamsMenu()" class="nav-chip" [color]="primary">
+          <i class="fa fa-chevron-left" aria-hidden="true"></i>
+          <div class="chip-text">Teams Menu</div>
+        </mat-chip>
+      </mat-chip-list>
+    </div>
     <div class="overview-container">
       <div class="heading heading-font">Overview</div>
       <div class="text-block">{{selectedTeam.overview}}</div>
