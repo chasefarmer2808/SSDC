@@ -15,7 +15,7 @@ export class TeamsComponent implements OnInit {
   overview: string;
   goal: string;
   onTitlePage: boolean;
-  teams: Array<Team>;
+  teams: Array<Team> = [];
   selectedTeam: Team;
   teamDescription: string = 
     `
@@ -51,6 +51,10 @@ export class TeamsComponent implements OnInit {
 
   selectTeam(team: Team) {
     this.router.navigate(['/teams', team]);
+  }
+
+  backToTeamsMenu() {
+    this.router.navigate(['/teams']);
   }
 
   isEmpty(obj: any) {

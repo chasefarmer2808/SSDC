@@ -185,3 +185,14 @@
 .black:hover {
   color: black;
 }
+
+/* Angular Material */
+
+.nav-chip {
+  margin: 24px;
+  cursor: pointer !important;
+}
+
+.chip-text {
+  margin-left: 8px;
+}
