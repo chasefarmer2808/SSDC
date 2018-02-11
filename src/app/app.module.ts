@@ -22,6 +22,7 @@ import { GalleryGridComponent } from './gallery/gallery-grid/gallery-grid.compon
 import { ImageDialogComponent } from './gallery/gallery-grid/image-dialog/image-dialog.component';
 import { TeamsComponent } from './teams/teams.component';
 import { RouteFilterPipe } from './pipes/route-filter/route-filter.pipe';
+import { KeyDirective } from './directives/key/key.directive';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { RouteFilterPipe } from './pipes/route-filter/route-filter.pipe';
     GalleryGridComponent,
     ImageDialogComponent,
     TeamsComponent,
-    RouteFilterPipe
+    RouteFilterPipe,
+    KeyDirective
   ],
   imports: [
     BrowserModule,

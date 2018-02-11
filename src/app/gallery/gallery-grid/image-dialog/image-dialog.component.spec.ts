@@ -9,6 +9,11 @@ describe('ImageDialogComponent', () => {
   let component: ImageDialogComponent;
   let fixture: ComponentFixture<ImageDialogComponent>;
 
+  function triggerDocumentEvent(eventName:string, eventObj:any) {
+    let event = new Event(eventName, eventObj);
+    document.dispatchEvent(event);
+  }
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ ImageDialogComponent ],
@@ -62,5 +67,17 @@ describe('ImageDialogComponent', () => {
 
     expect(component.lastPhotoSelected).toHaveBeenCalled();
     expect(component.selectedPhotoIndex).toEqual(1);
+  });
+
+  it('should go to next photo if right arrow key pressed', () => {
+    let indexBeforeEvent:number = component.selectedPhotoIndex;
+
+    triggerDocumentEvent('keyup.arrowright', null);
+
+    expect(component.selectedPhotoIndex).toEqual(indexBeforeEvent + 1);
+  });
+
+  it('should go to previous photo if left arrow key pressed', () => {
+
   });
 });
