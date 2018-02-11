@@ -8,7 +8,7 @@
   <div class="photo-progress-container">
     {{selectedPhotoIndex + 1}}/{{data.photos.length}}
   </div>
-  <button mat-icon-button (click)="nextPhoto()">
+  <button appKey mat-icon-button (click)="nextPhoto()" (arrowRight)="nextPhoto()" (arrowLeft)="prevPhoto()">
     <i class="fa fa-chevron-right fa-2x" aria-hidden="true"></i>
   </button>
 </mat-dialog-actions>
