@@ -39,10 +39,4 @@ describe('KeyDirective', () => {
     expect(directiveElement).not.toBeNull();
     expect(directive).not.toBeNull();
   });
-
-  it('should emit arrow right event when right arrow key pressed', () => {
-    triggerDocumentEvent('document:keypress', null);
-    fixture.detectChanges();
-    expect(arrowRightSpy).toHaveBeenCalled();
-  });
 });
