@@ -1,14 +1,16 @@
-<mat-dialog-content>
-  <img src="{{selectedPhoto.source}}">
-</mat-dialog-content>
-<mat-dialog-actions>
-  <button mat-icon-button (click)="prevPhoto()">
-    <i class="fa fa-chevron-left fa-2x" aria-hidden="true"></i>
-  </button>
-  <div class="photo-progress-container">
-    {{selectedPhotoIndex + 1}}/{{data.photos.length}}
-  </div>
-  <button appKey mat-icon-button (click)="nextPhoto()" (arrowRight)="nextPhoto()" (arrowLeft)="prevPhoto()">
-    <i class="fa fa-chevron-right fa-2x" aria-hidden="true"></i>
-  </button>
-</mat-dialog-actions>
+<div class="dialog-container" (keydown.arrowright)="nextPhoto()" (keydown.arrowleft)="prevPhoto()">
+  <mat-dialog-content>
+    <img src="{{selectedPhoto.source}}">
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button mat-icon-button (click)="prevPhoto()">
+      <i class="fa fa-chevron-left fa-2x" aria-hidden="true"></i>
+    </button>
+    <div class="photo-progress-container">
+      {{selectedPhotoIndex + 1}}/{{data.photos.length}}
+    </div>
+    <button mat-icon-button (click)="nextPhoto()">
+      <i class="fa fa-chevron-right fa-2x" aria-hidden="true"></i>
+    </button>
+  </mat-dialog-actions>
+</div>

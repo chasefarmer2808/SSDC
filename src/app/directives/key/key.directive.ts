@@ -1,6 +1,5 @@
 import { Directive, Output, EventEmitter, HostListener } from '@angular/core';
 
-
 let keyCodeMap:any = {
   ARROW_RIGHT: 39,
   ARROW_LEFT: 37
