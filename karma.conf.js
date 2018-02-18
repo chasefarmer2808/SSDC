@@ -37,6 +37,12 @@ module.exports = function (config) {
         flags: ['--no-sandbox']
       }
     },
+    customLaunchers: {
+      Chrome_travis_ci: {
+        base: 'Chrome',
+        flags: ['--no-sandbox']
+      }
+    },
     reporters: ['progress', 'kjhtml'],
     port: 9876,
     colors: true,

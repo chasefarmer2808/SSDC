@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { Photo } from '../../photo';
+import { KeyDirective } from '../../../directives/key/key.directive';
 
 @Component({
   selector: 'app-image-dialog',
