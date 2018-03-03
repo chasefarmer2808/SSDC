@@ -35,15 +35,4 @@ export class EmailService {
       .catch((err: any) => Observable.of(false));
   }
 
-  private handleError(error: any): Promise<any> {
-    console.error(error);
-    return Promise.reject(error.message || error);
-  }
-
-  private handleObservableError(error: Response) {
-    console.error(error);
-    let message = `Error status code ${error.status} at ${error.url}`;
-    return Observable.throw(message);
-  }
-
 }
