@@ -3,6 +3,7 @@ import { DebugElement } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule, MatButtonModule, MatCheckboxModule, MatProgressSpinnerModule, NoConflictStyleCompatibilityMode } from '@angular/material';
 import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -41,6 +42,7 @@ describe('ContactComponent', () => {
       declarations: [ ContactComponent ],
       imports: [ 
         HttpModule,
+        HttpClientModule,
         ReactiveFormsModule,
         MatInputModule,
         MatButtonModule,
