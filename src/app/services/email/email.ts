@@ -3,12 +3,11 @@ export class Email {
     firstName: string;
     lastName: string;
     body: string;
-    enableListServ: boolean;
 
-    constructor() {
-        this.emailAddress = "";
-        this.firstName = "";
-        this.lastName = "";
-        this.body = "Hello!\r\n\r\nMy name is _____ and I would like to express my interest in the Space Systems Design Club!";
+    constructor(emailAddress?:string, firstName?:string, lastName?:string, body?:string) {
+        this.emailAddress = emailAddress || "";
+        this.firstName = firstName || "";
+        this.lastName = lastName || "";
+        this.body = body || "Hello!\r\n\r\nMy name is _____ and I would like to express my interest in the Space Systems Design Club!";
     }
 }
