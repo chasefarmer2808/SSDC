@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed, inject } from '@angular/core/testing';
 import { DebugElement } from '@angular/core';
 import { HttpModule, XHRBackend, Response, ResponseOptions } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { By } from '@angular/platform-browser';
 import 'rxjs/Rx';
@@ -20,7 +21,7 @@ describe('EventsComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ EventsComponent ],
-      imports: [ HttpModule ],
+      imports: [ HttpModule, HttpClientModule ],
       providers: [
         FacebookService
       ]

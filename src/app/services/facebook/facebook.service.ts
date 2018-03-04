@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Headers, Http, Response } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 
 import { environment } from '../../../environments/environment';
@@ -18,7 +19,7 @@ export class FacebookService {
 
   private fbUrl = environment.facebookUrl;
 
-  constructor(private http: Http) { }
+  constructor(private http: HttpClient) { }
 
   getEvents(): Observable<Event[]> {
     return this.http

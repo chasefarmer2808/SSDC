@@ -1,6 +1,7 @@
 import { async, fakeAsync, tick, ComponentFixture, TestBed } from '@angular/core/testing';
 import { DebugElement } from '@angular/core';
 import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { MaterialModule } from '../modules/material.module';
 import 'rxjs/Rx';
@@ -22,7 +23,7 @@ describe('GalleryComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ GalleryComponent, GalleryGridComponent ],
-      imports: [ HttpModule, MaterialModule ],
+      imports: [ HttpModule, MaterialModule, HttpClientModule ],
       providers: [ FacebookService ]
     })
     .compileComponents();
