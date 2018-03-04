@@ -21,7 +21,11 @@ describe('EventsComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ EventsComponent ],
+<<<<<<< HEAD
       imports: [ HttpClientModule ],
+=======
+      imports: [ HttpModule, HttpClientModule ],
+>>>>>>> basic tests for service functions
       providers: [
         FacebookService
       ]
