@@ -8,14 +8,27 @@ function makeServer() {
   const validator = require('express-validator');
   const morgan = require('morgan');
   const cors = require('cors');
+  const mongoose = require('mongoose');
   const errorHandler = require('./error.handler.js');
-
-  const app = express();
-  const port = process.env.PORT || 5000;
 
   const routeNames = require('../routes/route.names.js');
   const fb = require('../routes/fb.route.js');
   const email = require('../routes/email.route.js');
+  const config = require('../config.js');
+
+  mongoose.connect(config.mongoUrl);
+  let db = mongoose.connection;
+
+  db.once('open', function() {
+    console.log('Connected to Mongo');
+  });
+
+  db.on('error', function(err) {
+    console.log(err);
+  });
+
+  const app = express();
+  const port = process.env.PORT || 5000;
 
   app.options('*', cors());
 

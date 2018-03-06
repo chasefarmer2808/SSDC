@@ -3,6 +3,7 @@
 const request = require('supertest');
 const expect = require('chai').expect;
 const sinon = require('sinon');
+const mongoose = require('mongoose');
 const routeNames = require('../routes/route.names.js');
 const emailRoute = require('../routes/email.route.js');
 
@@ -20,7 +21,8 @@ describe('Email Route Integration Tests', function() {
     });
 
     afterEach(function(done) {
-        server.close(done);
+        server.close();
+        mongoose.connection.close(done);
     });
 
     it('should send email to SSDC gmail and return 200 when valid email parameters', function(done) {
@@ -86,7 +88,7 @@ describe('Email Route Integration Tests', function() {
 
     it('should return an error code 400 if no email address provided', function(done) {
         delete emailParamsTemplate.emailAddress ;
-        
+
         request(server)
         .post(routeNames.emailRoute)
         .send(emailParamsTemplate)
