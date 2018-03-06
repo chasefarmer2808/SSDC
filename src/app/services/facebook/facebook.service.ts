@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Headers, Http, Response } from '@angular/http';
+// import { Headers, Http, Response } from '@angular/http';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 
@@ -21,24 +21,21 @@ export class FacebookService {
 
   constructor(private http: HttpClient) { }
 
-  getEvents(): Observable<Event[]> {
+  getEvents() {
     return this.http
-      .get(`${this.fbUrl}/getEvents`)
-      .map((response: Response) => <Event[]> response.json().data)
+      .get<Event[]>(`${this.fbUrl}/getEvents`)
       .catch(this.handleObservableError);   
   }
 
-  getAlbums(): Observable<Album[]> {
+  getAlbums() {
     return this.http
-      .get(`${this.fbUrl}/albums`)
-      .map((response: Response) => <Album[]> response.json().data)
+      .get<Album[]>(`${this.fbUrl}/albums`)
       .catch(this.handleObservableError);
   }
 
-  getAlbum(id:String): Observable<Photo[]> {
+  getAlbum(id:String) {
     return this.http
-      .get(`${this.fbUrl}/album/${id}`)
-      .map((response:Response) => <Photo[]> response.json().data)
+      .get<Photo[]>(`${this.fbUrl}/album/${id}`)
       .catch(this.handleObservableError);
   }
 

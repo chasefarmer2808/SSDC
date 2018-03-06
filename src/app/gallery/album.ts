@@ -1,4 +1,4 @@
-export class Album {
+export interface Album {
     name: String;
     id: String;
 };
