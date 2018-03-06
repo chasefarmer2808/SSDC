@@ -8,10 +8,8 @@ function makeServer() {
   const validator = require('express-validator');
   const morgan = require('morgan');
   const cors = require('cors');
+  const mongoose = require('mongoose');
   const errorHandler = require('./error.handler.js');
-
-  const app = express();
-  const port = process.env.PORT || 5000;
 
   const routeNames = require('../routes/route.names.js');
   const fb = require('../routes/fb.route.js');
@@ -19,6 +17,22 @@ function makeServer() {
   const teams = require('../routes/teams.route.js');
   const officers = require('../routes/officers.route.js');
   const BUILD_PATH = '../../dist/';
+
+  const config = require('../config.js');
+
+  mongoose.connect(config.mongoUrl);
+  let db = mongoose.connection;
+
+  db.once('open', function() {
+    console.log('Connected to Mongo');
+  });
+
+  db.on('error', function(err) {
+    console.log(err);
+  });
+
+  const app = express();
+  const port = process.env.PORT || 5000;
 
   function redirectToHomePage(req, res) {
     res.redirect('/');
