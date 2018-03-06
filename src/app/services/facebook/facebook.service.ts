@@ -1,4 +1,8 @@
 import { Injectable } from '@angular/core';
+<<<<<<< HEAD
+=======
+// import { Headers, Http, Response } from '@angular/http';
+>>>>>>> implements HttpClient
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 
@@ -20,18 +24,23 @@ export class FacebookService {
 
   constructor(private http: HttpClient) { }
 
-  getEvents(): Observable<Event[]> {
+  getEvents() {
     return this.http
+<<<<<<< HEAD
       .get<Event[]>(`${this.fbUrl}/getEvents`);
+=======
+      .get<Event[]>(`${this.fbUrl}/getEvents`)
+      .catch(this.handleObservableError);   
+>>>>>>> implements HttpClient
   }
 
-  getAlbums(): Observable<Album[]> {
+  getAlbums() {
     return this.http
       .get<Album[]>(`${this.fbUrl}/albums`)
       .catch(this.handleObservableError);
   }
 
-  getAlbum(id:String): Observable<Photo[]> {
+  getAlbum(id:String) {
     return this.http
       .get<Photo[]>(`${this.fbUrl}/album/${id}`)
       .catch(this.handleObservableError);
