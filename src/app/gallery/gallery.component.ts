@@ -39,7 +39,7 @@ export class GalleryComponent implements OnInit {
     this.facebookService.getAlbums()
         .subscribe(
           (albums) => {
-            this.albums = albums;
+            this.albums = albums.data;
             this.showRightArrow();
 
             if (this.albums.length > 0) {
@@ -55,7 +55,7 @@ export class GalleryComponent implements OnInit {
     this.facebookService.getAlbum(album.id)
         .subscribe(
           (album) => {
-            this.selectedAlbum = album;
+            this.selectedAlbum = album.data;
           },
         error => this.getAlbumError = error
         );
