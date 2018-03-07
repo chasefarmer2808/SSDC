@@ -9,7 +9,7 @@
     "start_prod": "nodemon server/start_server.js --watch server",
     "build": "ng build",
     "test": "ng test",
-    "test:int": "mocha server/tests/*.spec.js",
+    "test:int": "mocha --timeout 5000 server/tests/*.spec.js",
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
