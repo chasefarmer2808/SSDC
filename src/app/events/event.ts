@@ -1,6 +1,6 @@
 import { Place } from './place';
 
-export class Event {
+export interface Event {
   name: string;
   description: string;
   place: Place;

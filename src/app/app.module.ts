@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Ng2PageScrollModule } from 'ng2-page-scroll';
 import { MaterialModule } from './modules/material.module';
@@ -47,6 +48,7 @@ import { KeyDirective } from './directives/key/key.directive';
     BrowserAnimationsModule,
     AppRoutingModule,
     HttpModule,
+    HttpClientModule,
     Ng2PageScrollModule,
     FormsModule,
     ReactiveFormsModule,
