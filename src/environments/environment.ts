@@ -14,6 +14,7 @@ export const environment = {
   facebookUrl: `${localUrl}:${serverPort}/api/v1/fb/`,
   emailUrl: `${localUrl}:${serverPort}/api/v1/email/`,
   listservUrl: `${localUrl}:${serverPort}/api/v1/email/listserv/`,
+  teamsUrl: `${localUrl}:${serverPort}/api/v1/teams/`,
   emailAddress: 'ufssdc@gmail.com',
   facebookLink: 'https://www.facebook.com/groups/ufssdc/',
   office: 'NEB 225'

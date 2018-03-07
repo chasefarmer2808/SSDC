@@ -22,7 +22,8 @@ export class FacebookService {
 
   getEvents(): Observable<Event[]> {
     return this.http
-      .get<Event[]>(`${this.fbUrl}/getEvents`);
+      .get<Event[]>(`${this.fbUrl}/getEvents`)
+      .catch(this.handleObservableError);
   }
 
   getAlbums(): Observable<Album[]> {

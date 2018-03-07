@@ -1,5 +1,5 @@
 import { TestBed, inject } from '@angular/core/testing';
-import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/Rx';
 
@@ -15,7 +15,7 @@ describe('TeamsService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [TeamsService],
-      imports: [ HttpModule ]
+      imports: [ HttpClientModule ]
     });
 
     serviceInstance = TestBed.get(TeamsService);

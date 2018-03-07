@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Headers, Http, Response } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/map';
@@ -13,17 +14,15 @@ import { Team } from './team';
 @Injectable()
 export class TeamsService {
 
-  constructor(private http: Http) { }
+  constructor(private http: HttpClient) { }
 
   getTeams(): Observable<Team[]> {
     return this.http 
-      .get(`${environment.assetsUrl}/data/teams.json`)
-      .map((response:Response) => <Team[]> response.json().data)
+      .get<Team[]>(environment.teamsUrl)
       .catch(this.handleObservableError);
   }
 
   private handleObservableError(error: Response) {
-    console.error(error);
     let message = `Error status code ${error.status} at ${error.url}`;
     return Observable.throw(message);
   }
