@@ -20,19 +20,18 @@ export class FacebookService {
 
   constructor(private http: HttpClient) { }
 
-  getEvents() {
+  getEvents(): Observable<Event[]> {
     return this.http
-      .get<Event[]>(`${this.fbUrl}/getEvents`)
-      .catch(this.handleObservableError);   
+      .get<Event[]>(`${this.fbUrl}/getEvents`);
   }
 
-  getAlbums() {
+  getAlbums(): Observable<Album[]> {
     return this.http
       .get<Album[]>(`${this.fbUrl}/albums`)
       .catch(this.handleObservableError);
   }
 
-  getAlbum(id:String) {
+  getAlbum(id:String): Observable<Photo[]> {
     return this.http
       .get<Photo[]>(`${this.fbUrl}/album/${id}`)
       .catch(this.handleObservableError);
