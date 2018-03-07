@@ -1,8 +1,11 @@
 import { Injectable } from '@angular/core';
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 // import { Headers, Http, Response } from '@angular/http';
 >>>>>>> implements HttpClient
+=======
+>>>>>>> backend returns data attribute
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 
@@ -24,23 +27,27 @@ export class FacebookService {
 
   constructor(private http: HttpClient) { }
 
-  getEvents() {
+  getEvents(): Observable<Event[]> {
     return this.http
+<<<<<<< HEAD
 <<<<<<< HEAD
       .get<Event[]>(`${this.fbUrl}/getEvents`);
 =======
       .get<Event[]>(`${this.fbUrl}/getEvents`)
       .catch(this.handleObservableError);   
 >>>>>>> implements HttpClient
+=======
+      .get<Event[]>(`${this.fbUrl}/getEvents`);
+>>>>>>> backend returns data attribute
   }
 
-  getAlbums() {
+  getAlbums(): Observable<Album[]> {
     return this.http
       .get<Album[]>(`${this.fbUrl}/albums`)
       .catch(this.handleObservableError);
   }
 
-  getAlbum(id:String) {
+  getAlbum(id:String): Observable<Photo[]> {
     return this.http
       .get<Photo[]>(`${this.fbUrl}/album/${id}`)
       .catch(this.handleObservableError);
