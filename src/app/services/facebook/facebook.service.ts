@@ -1,12 +1,11 @@
 import { Injectable } from '@angular/core';
-// import { Headers, Http, Response } from '@angular/http';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 
 import { environment } from '../../../environments/environment';
 
 import 'rxjs/add/operator/toPromise';
-import 'rxjs/add/operator/map';
+import { map } from 'rxjs/operators';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 
@@ -21,19 +20,18 @@ export class FacebookService {
 
   constructor(private http: HttpClient) { }
 
-  getEvents() {
+  getEvents(): Observable<Event[]> {
     return this.http
-      .get<Event[]>(`${this.fbUrl}/getEvents`)
-      .catch(this.handleObservableError);   
+      .get<Event[]>(`${this.fbUrl}/getEvents`);
   }
 
-  getAlbums() {
+  getAlbums(): Observable<Album[]> {
     return this.http
       .get<Album[]>(`${this.fbUrl}/albums`)
       .catch(this.handleObservableError);
   }
 
-  getAlbum(id:String) {
+  getAlbum(id:String): Observable<Photo[]> {
     return this.http
       .get<Photo[]>(`${this.fbUrl}/album/${id}`)
       .catch(this.handleObservableError);
@@ -43,13 +41,7 @@ export class FacebookService {
     return `https://facebook.com/events/${eventId}`;
   }
 
-  private handleError(error: any): Promise<any> {
-    console.error(error);
-    return Promise.reject(error.message || error);
-  }
-
   private handleObservableError(error: Response) {
-    console.error(error);
     let message = `Error status code ${error.status} at ${error.url}`;
     return Observable.throw(message);
   }
