@@ -43,7 +43,7 @@ export class ContactComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.presEmailAddr = this.officersService.getPresident().email;
+    // this.presEmailAddr = this.officersService.getPresident();
     this.setNextEventLink();
   }
 

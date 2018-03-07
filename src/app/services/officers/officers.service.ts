@@ -1,23 +1,33 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs/Observable';
+
+import { environment } from '../../../environments/environment';
 
 import { Officer } from './officer';
-import { Officers } from './officers';
 
 @Injectable()
 export class OfficersService {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
-  getOfficers(): Officer[] {
-    return Officers;
+  getTeams(): Observable<Officer[]> {
+    return this.http 
+      .get<Officer[]>(environment.officersUrl)
+      .catch(this.handleObservableError);
   }
 
-  getPresident(): Officer {
-    for (let officer of Officers) {
-      if (officer.role == 'President') {
-        return officer;
-      }
-    }
+  getPresident() {
+    // for (let officer of Officers) {
+    //   if (officer.role == 'President') {
+    //     return officer;
+    //   }
+    // }
+  }
+
+  private handleObservableError(error: Response) {
+    let message = `Error status code ${error.status} at ${error.url}`;
+    return Observable.throw(message);
   }
 
 }

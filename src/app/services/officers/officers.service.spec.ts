@@ -1,11 +1,15 @@
-import { TestBed, inject } from '@angular/core/testing';
+import { TestBed, inject, async } from '@angular/core/testing';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
 import { OfficersService } from './officers.service';
 
 describe('OfficersService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [OfficersService]
+      providers: [OfficersService],
+      imports: [
+        HttpClientTestingModule
+      ]
     });
   });
 

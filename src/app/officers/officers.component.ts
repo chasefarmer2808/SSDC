@@ -41,7 +41,15 @@ export class OfficersComponent implements OnInit {
   constructor(private officersService: OfficersService) { }
 
   ngOnInit() {
-    this.officers = this.officersService.getOfficers();
+    this.getOfficers();
+  }
+
+  getOfficers() {
+    this.officersService.getTeams()
+      .subscribe(officers => {
+        console.log(officers);
+        this.officers = officers;
+      });
   }
 
   toggleOfficerInfo(officer: Officer) {

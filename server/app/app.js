@@ -17,6 +17,7 @@ function makeServer() {
   const fb = require('../routes/fb.route.js');
   const email = require('../routes/email.route.js');
   const teams = require('../routes/teams.route.js');
+  const officers = require('../routes/officers.route.js');
 
   app.options('*', cors());
 
@@ -34,6 +35,7 @@ function makeServer() {
   app.use(routeNames.facebookRoute, fb);
   app.use(routeNames.emailRoute, email);
   app.use(routeNames.teamsRoute, teams);
+  app.use(routeNames.officersRoute, officers);
 
   var buildPath = '../../dist/';
 

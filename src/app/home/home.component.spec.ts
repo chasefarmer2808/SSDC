@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed, inject } from '@angular/core/testing';
 import { DebugElement } from '@angular/core';
-import { HttpModule } from '@angular/http';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { Observable } from 'rxjs/Observable';
 import { MockComponent } from 'ng2-mock-component';
 import { By } from '@angular/platform-browser';
@@ -21,7 +21,7 @@ describe('HomeComponent', () => {
       declarations: [ HomeComponent,
                       MockComponent({ selector: 'app-events' }),
                       OfficersComponent ],
-      imports: [ HttpModule, BrowserAnimationsModule ]
+      imports: [ HttpClientTestingModule, BrowserAnimationsModule ]
     })
     .compileComponents();
   }));
