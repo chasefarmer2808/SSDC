@@ -25,8 +25,7 @@ router.get('/getEvents', function (req, res, next) {
       events.data.forEach(function(event) {
         event.link = generateEventLink(event.id);
       })
-
-      res.send(events);
+      res.send(events.data);
     })
     .catch(function(err) {
       next(err);
@@ -48,7 +47,7 @@ router.get('/albums', function(req, res, next) {
     .then(function(albums) {
       res.set('Access-control-Allow-origin', '*');
 
-      res.send(albums);
+      res.send(albums.data);
     })
     .catch(function(err) {
       next(err);
@@ -70,7 +69,7 @@ router.get('/album/:albumId', function(req, res, next) {
     .then(function(album) {
       res.set('Access-control-Allow-origin', '*');
 
-      res.send(album);
+      res.send(album.data);
     })
     .catch(function(err) {
       next(err);
