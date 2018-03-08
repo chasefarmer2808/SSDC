@@ -55,4 +55,10 @@ describe('FacebookService', () => {
       });
 
   })));
+
+  it('should get all events');
+
+  it('should get all albums');
+
+  it('should get all photos');
 });

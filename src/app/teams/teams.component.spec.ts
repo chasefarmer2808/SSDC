@@ -62,4 +62,8 @@ describe('TeamsComponent', () => {
 
     expect(component.isEmpty(testObj)).toBeFalsy();
   });
+
+  it('should call getTeams on init');
+
+  it('should show all teams');
 });

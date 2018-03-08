@@ -4,7 +4,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 import { OfficersComponent } from './officers.component';
 import { OfficersService } from '../services/officers/officers.service';
-import { Officers } from '../services/officers/officers';
+import { OfficersMock } from '../services/officers/officers.mock';
 import { Officer } from '../services/officers/officer';
 
 describe('OfficersComponent', () => {
@@ -37,9 +37,7 @@ describe('OfficersComponent', () => {
     expect(officersService).toBeTruthy();
   });
 
-  it('should have all officers', () => {
-    // expect(component.officers.length).toEqual(Officers.length);
-  });
+  it('should call getOfficers on init');
 
   it('should show all officers', () => {
     // let officerElements = fixture.nativeElement;
