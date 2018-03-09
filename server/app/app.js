@@ -18,6 +18,7 @@ function makeServer() {
   const email = require('../routes/email.route.js');
   const teams = require('../routes/teams.route.js');
   const officers = require('../routes/officers.route.js');
+  const BUILD_PATH = '../../dist/';
 
   app.options('*', cors());
 
@@ -37,13 +38,11 @@ function makeServer() {
   app.use(routeNames.teamsRoute, teams);
   app.use(routeNames.officersRoute, officers);
 
-  var buildPath = '../../dist/';
-
-  app.use(express.static(path.join(__dirname, `${buildPath}`)));
+  app.use(express.static(path.join(__dirname, `${BUILD_PATH}`)));
   app.use(express.static('./'));
 
   app.all('/', function(req, res) {
-    res.sendFile('index.html', { root: path.join(__dirname, `${buildPath}`) });
+    res.sendFile('index.html', { root: path.join(__dirname, `${BUILD_PATH}`) });
   });
 
   app.set('port', port);

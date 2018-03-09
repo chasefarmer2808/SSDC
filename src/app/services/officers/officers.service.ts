@@ -11,18 +11,16 @@ export class OfficersService {
 
   constructor(private http: HttpClient) { }
 
-  getTeams(): Observable<Officer[]> {
+  getOfficers(): Observable<Officer[]> {
     return this.http 
       .get<Officer[]>(environment.officersUrl)
       .catch(this.handleObservableError);
   }
 
-  getPresident() {
-    // for (let officer of Officers) {
-    //   if (officer.role == 'President') {
-    //     return officer;
-    //   }
-    // }
+  getPresident(): Observable<Officer> {
+    return this.http
+      .get<Officer>(`${environment.officersUrl}president`)
+      .catch(this.handleObservableError);
   }
 
   private handleObservableError(error: Response) {

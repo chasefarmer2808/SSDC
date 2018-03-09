@@ -45,7 +45,7 @@ export class OfficersComponent implements OnInit {
   }
 
   getOfficers() {
-    this.officersService.getTeams()
+    this.officersService.getOfficers()
       .subscribe(officers => {
         console.log(officers);
         this.officers = officers;

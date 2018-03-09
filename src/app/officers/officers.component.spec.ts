@@ -39,8 +39,10 @@ describe('OfficersComponent', () => {
 
   it('should call getOfficers on init');
 
-  it('should show all officers', () => {
+  it('should show all officers', () => {  // needs to be async
     // let officerElements = fixture.nativeElement;
     // expect(officerElements.querySelectorAll('.officer').length).toEqual(component.officers.length);
   });
+
+  it('should toggle the showInfo boolean of an officer');
 });
