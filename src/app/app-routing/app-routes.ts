@@ -49,5 +49,10 @@ export const routes: Routes = [
       showSubItems: false,
       subItems: [ ]
     }
+  },
+  {
+    path: '**',
+    redirectTo: '/',
+    pathMatch: 'full'
   }
 ];

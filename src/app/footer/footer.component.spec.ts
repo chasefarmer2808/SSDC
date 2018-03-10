@@ -10,13 +10,17 @@ import { routes } from '../app-routing/app-routes';
 describe('FooterComponent', () => {
   let component: FooterComponent;
   let fixture: ComponentFixture<FooterComponent>;
+  let routeFileterPipe: RouteFilterPipe;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ FooterComponent, RouteFilterPipe ],
+      providers: [ RouteFilterPipe ],
       imports: [ RouterTestingModule ]
     })
     .compileComponents();
+
+    routeFileterPipe = TestBed.get(RouteFilterPipe);
   }));
 
   beforeEach(() => {
@@ -35,6 +39,7 @@ describe('FooterComponent', () => {
 
   it('should have populated footer with routes', () => {
     let navLinks = fixture.nativeElement;
-    expect(navLinks.querySelectorAll('.nav-map-link').length).toEqual(component.myRoutes.length);
+    let visibleRoutes = routeFileterPipe.transform(component.myRoutes);
+    expect(navLinks.querySelectorAll('.nav-map-link').length).toEqual(visibleRoutes.length);
   });
 });
