@@ -1,62 +1,52 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-
-import { NavbarComponent } from './navbar.component';
-import { HomeComponent } from '../home/home.component';
-import { ContactComponent } from '../contact/contact.component';
-import { GalleryComponent } from '../gallery/gallery.component';
-import { TeamsComponent } from '../teams/teams.component';
-import { OfficersComponent } from '../officers/officers.component';
-import { EventsComponent } from '../events/events.component';
-import { GalleryGridComponent } from '../gallery/gallery-grid/gallery-grid.component';
-import { ImageDialogComponent } from '../gallery/gallery-grid/image-dialog/image-dialog.component';
+import { TestBed, async, ComponentFixture } from '@angular/core/testing';
+import { Location } from '@angular/common';
 import { RouterTestingModule } from '@angular/router/testing';
-import { ReactiveFormsModule } from '@angular/forms';
-import { MaterialModule } from '../modules/material.module';
-// import { MatInputModule, MatButtonModule, MatCheckboxModule, MatProgressSpinnerModule, NoConflictStyleCompatibilityMode } from '@angular/material';
-import { Router } from '@angular/router';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Ng2PageScrollModule } from 'ng2-page-scroll';
-import { HttpClientModule } from '@angular/common/http';
+import { Router } from '@angular/router';
+
+// import { HomeComponent } from '../home/home.component';
+// import { ContactComponent } from '../contact/contact.component';
+// import { GalleryComponent } from '../gallery/gallery.component';
+// import { TeamsComponent } from '../teams/teams.component';
+import { NavbarComponent } from '../navbar/navbar.component';
+
+import { TeamsService } from '../services/teams/teams.service';
+
 import { RouteFilterPipe } from '../pipes/route-filter/route-filter.pipe';
 
 import { routes } from '../app-routing/app-routes';
 
 describe('NavbarComponent', () => {
+
   let component: NavbarComponent;
   let fixture: ComponentFixture<NavbarComponent>;
-  let router: Router;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ 
-        NavbarComponent, 
-        HomeComponent,
-        ContactComponent,
-        GalleryComponent,
-        TeamsComponent,
-        OfficersComponent,
-        EventsComponent,
-        GalleryGridComponent,
-        ImageDialogComponent,
-        RouteFilterPipe ],
+      declarations: [
+        NavbarComponent,
+        RouteFilterPipe
+      ],
       imports: [
-        RouterTestingModule.withRoutes(routes),
-        BrowserAnimationsModule,
+        HttpClientTestingModule,
+        RouterTestingModule,
         Ng2PageScrollModule,
-        HttpClientModule,
-        ReactiveFormsModule,
-        MaterialModule
-      ]
+        BrowserAnimationsModule
+      ],
+      providers: [ TeamsService ]
     })
     .compileComponents();
-  }));
+  })); 
 
   beforeEach(() => {
     fixture = TestBed.createComponent(NavbarComponent);
     component = fixture.componentInstance;
-    router = TestBed.get(Router);
-    router.initialNavigation();
+  });
+
+  it('should be created', () => {
+    expect(component).toBeTruthy();
   });
 
   it('should call populateTeamsSubItems on init', () => {
@@ -108,5 +98,4 @@ describe('NavbarComponent', () => {
 
     expect(collapseAllSpy).toHaveBeenCalledTimes(0);
   });
-
 });
