@@ -12,7 +12,7 @@
         </div>
         <ul [@slideDown]="route.data.showSubItems" class="large-scrollables">
           <li *ngFor="let subItem of route.data.subItems" class="large-scrollable-item">
-            <a *ngIf="subItem.selector" class="slide-center" pageScroll [pageScrollOffset]="64" [pageScrollDuration]="500" href="{{subItem.selector}}">{{subItem.name}}</a>
+            <a *ngIf="subItem.selector" class="slide-center" pageScroll [pageScrollOffset]="64" [pageScrollDuration]="500" routerLink="/{{route.path}}" href="{{subItem.selector}}">{{subItem.name}}</a>
             <a *ngIf="subItem.selector == undefined" class="slide-center" (click)="navigate(route.path, subItem)">{{subItem.name}}</a>
           </li>
         </ul>

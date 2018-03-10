@@ -107,6 +107,8 @@ export class NavbarComponent implements OnInit {
         return route;
       }
     }
+
+    return false;
   }
 
   toggleNav() {
@@ -129,7 +131,9 @@ export class NavbarComponent implements OnInit {
 
   collapseAll() {
     for (let route of this.myRoutes) {
-      route.data.showSubItems = false;
+      if (route.data) {
+        route.data.showSubItems = false;
+      }
     }
   }
 
