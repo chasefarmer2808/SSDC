@@ -35,18 +35,4 @@ describe('NavbarComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should have imported routes', async(() => {
-    fixture.whenStable().then(() => {
-      expect(component.myRoutes.length).toBeGreaterThan(0);
-    });
-  }));
-
-  it('should have populated nav bar in view', async(() => {
-    let navLinks = fixture.nativeElement;
-
-    fixture.whenRenderingDone().then(() => {
-      expect(navLinks.querySelectorAll('.nav-link').length).toEqual(component.myRoutes.length);
-    }); 
-  }));
-
 });
