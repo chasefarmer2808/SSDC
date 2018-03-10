@@ -1,5 +1,4 @@
 import { TestBed, inject, async } from '@angular/core/testing';
-import { HttpModule } from '@angular/http';
 import { HttpRequest, HttpParams } from '@angular/common/http';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
@@ -14,7 +13,6 @@ describe('EmailService', () => {
     TestBed.configureTestingModule({
       providers: [EmailService],
       imports: [
-        HttpModule,
         HttpClientTestingModule
       ]
     });

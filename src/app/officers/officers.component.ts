@@ -36,12 +36,19 @@ import { Officer } from '../services/officers/officer';
 })
 export class OfficersComponent implements OnInit {
 
-  officers: Officer[];
+  officers: Officer[] = [];
 
   constructor(private officersService: OfficersService) { }
 
   ngOnInit() {
-    this.officers = this.officersService.getOfficers();
+    this.getOfficers();
+  }
+
+  getOfficers() {
+    this.officersService.getOfficers()
+      .subscribe(officers => {
+        this.officers = officers;
+      });
   }
 
   toggleOfficerInfo(officer: Officer) {

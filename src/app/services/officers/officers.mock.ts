@@ -1,6 +1,6 @@
 import { Officer } from './officer';
 
-export const Officers: Officer[] = [
+export const OfficersMock: Officer[] = [
   {
     name: 'Aastha Rajbhandary',
     role: 'President',

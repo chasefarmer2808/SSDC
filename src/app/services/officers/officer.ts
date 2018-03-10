@@ -1,4 +1,4 @@
-export class Officer {
+export interface Officer {
   name: string;
   role: string;
   pictureUrl: string;

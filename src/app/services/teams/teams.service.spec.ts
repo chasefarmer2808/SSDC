@@ -1,11 +1,13 @@
-import { TestBed, inject } from '@angular/core/testing';
-import { HttpModule } from '@angular/http';
+import { TestBed, inject, async } from '@angular/core/testing';
 import { Observable } from 'rxjs/Observable';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import 'rxjs/Rx';
 
 import { TeamsService } from './teams.service';
 import { Team } from './team';
 import { TeamsMock } from './teams.mock';
+
+import { environment } from '../../../environments/environment';
 
 describe('TeamsService', () => {
 
@@ -15,7 +17,7 @@ describe('TeamsService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [TeamsService],
-      imports: [ HttpModule ]
+      imports: [ HttpClientTestingModule ]
     });
 
     serviceInstance = TestBed.get(TeamsService);
@@ -34,4 +36,16 @@ describe('TeamsService', () => {
       expect(teams).toEqual(TeamsMock);
     });
   });
+
+  it('should create GET request for getTeams', async(inject([TeamsService, HttpTestingController],
+    (service: TeamsService, backend: HttpTestingController) => {
+
+      service.getTeams().subscribe();
+
+      backend.expectOne({
+        url: `${environment.teamsUrl}`,
+        method: 'GET'
+      });
+
+    })));
 });
