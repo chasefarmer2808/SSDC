@@ -36,7 +36,7 @@ import { Officer } from '../services/officers/officer';
 })
 export class OfficersComponent implements OnInit {
 
-  officers: Officer[];
+  officers: Officer[] = [];
 
   constructor(private officersService: OfficersService) { }
 
@@ -47,7 +47,6 @@ export class OfficersComponent implements OnInit {
   getOfficers() {
     this.officersService.getOfficers()
       .subscribe(officers => {
-        console.log(officers);
         this.officers = officers;
       });
   }
