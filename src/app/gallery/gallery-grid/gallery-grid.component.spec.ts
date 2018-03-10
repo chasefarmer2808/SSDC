@@ -32,4 +32,21 @@ describe('GalleryGridComponent', () => {
     expect(component.avgPhotoHeight).toEqual(10);
     expect(component.avgPhotoWidth).toEqual(10);
   }));
+
+  it('should call resetDimentions on init', async(() => {
+    let resetDimentionsSpy = spyOn(component, 'resetDimentions').and.callThrough();
+    fixture.detectChanges();
+
+    fixture.whenStable().then(() => {
+      expect(resetDimentionsSpy).toHaveBeenCalled();
+    });
+  }));
+
+  it('should reset avg width and avg height to 0', () => {
+    component.avgPhotoWidth = 10;
+    component.avgPhotoHeight = 10;
+    component.resetDimentions();
+    expect(component.avgPhotoWidth).toEqual(0);
+    expect(component.avgPhotoHeight).toEqual(0);
+  });
 });

@@ -50,6 +50,7 @@ export class GalleryGridComponent implements OnInit {
   }
 
   setAverages() {
+    this.resetDimentions();
     this.album.forEach((photo:Photo) => {
       this.avgPhotoWidth += photo.width;
       this.avgPhotoHeight += photo.height;
@@ -57,6 +58,11 @@ export class GalleryGridComponent implements OnInit {
 
     this.avgPhotoWidth /= this.album.length;
     this.avgPhotoHeight /= this.album.length;
+  }
+
+  resetDimentions() {
+    this.avgPhotoWidth = 0;
+    this.avgPhotoHeight = 0;
   }
 
   refreshGrid(event, photoIndex:number) {
