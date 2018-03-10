@@ -2,7 +2,19 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
 import { NavbarComponent } from './navbar.component';
+import { HomeComponent } from '../home/home.component';
+import { ContactComponent } from '../contact/contact.component';
+import { GalleryComponent } from '../gallery/gallery.component';
+import { TeamsComponent } from '../teams/teams.component';
+import { OfficersComponent } from '../officers/officers.component';
+import { EventsComponent } from '../events/events.component';
+import { GalleryGridComponent } from '../gallery/gallery-grid/gallery-grid.component';
+import { ImageDialogComponent } from '../gallery/gallery-grid/image-dialog/image-dialog.component';
 import { RouterTestingModule } from '@angular/router/testing';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MaterialModule } from '../modules/material.module';
+// import { MatInputModule, MatButtonModule, MatCheckboxModule, MatProgressSpinnerModule, NoConflictStyleCompatibilityMode } from '@angular/material';
+import { Router } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Ng2PageScrollModule } from 'ng2-page-scroll';
 import { HttpClientModule } from '@angular/common/http';
@@ -13,25 +25,38 @@ import { routes } from '../app-routing/app-routes';
 describe('NavbarComponent', () => {
   let component: NavbarComponent;
   let fixture: ComponentFixture<NavbarComponent>;
+  let router: Router;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ NavbarComponent, RouteFilterPipe ],
+      declarations: [ 
+        NavbarComponent, 
+        HomeComponent,
+        ContactComponent,
+        GalleryComponent,
+        TeamsComponent,
+        OfficersComponent,
+        EventsComponent,
+        GalleryGridComponent,
+        ImageDialogComponent,
+        RouteFilterPipe ],
       imports: [
-        RouterTestingModule,
+        RouterTestingModule.withRoutes(routes),
         BrowserAnimationsModule,
         Ng2PageScrollModule,
-        HttpClientModule
+        HttpClientModule,
+        ReactiveFormsModule,
+        MaterialModule
       ]
     })
     .compileComponents();
   }));
 
-  beforeEach((done) => {
-    setTimeout(done, 1000);
+  beforeEach(() => {
     fixture = TestBed.createComponent(NavbarComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
+    router = TestBed.get(Router);
+    router.initialNavigation();
   });
 
   it('should call populateTeamsSubItems on init', () => {
