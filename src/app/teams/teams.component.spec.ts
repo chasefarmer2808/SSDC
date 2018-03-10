@@ -1,6 +1,6 @@
 import { async, fakeAsync, tick, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute } from '@angular/router';
-import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Observable } from 'rxjs/Observable';
 import { DebugElement } from '@angular/core';
@@ -20,7 +20,7 @@ describe('TeamsComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ TeamsComponent ],
       imports: [ 
-        HttpModule,
+        HttpClientModule,
         RouterTestingModule,
         MaterialModule 
       ],
@@ -42,7 +42,6 @@ describe('TeamsComponent', () => {
     component = fixture.componentInstance;
     de = fixture.debugElement;
     teamsService = de.injector.get(TeamsService);
-    fixture.detectChanges();
   });
 
   it('should create', () => {
@@ -62,4 +61,23 @@ describe('TeamsComponent', () => {
 
     expect(component.isEmpty(testObj)).toBeFalsy();
   });
+
+  it('should call getTeams on init', () => {
+    let getTeamsSpy = spyOn(teamsService, 'getTeams').and.callThrough();
+    fixture.detectChanges()
+    expect(getTeamsSpy).toHaveBeenCalled();
+  });
+
+  it('should show all teams', async(() => {
+    let getTeamsSpy = spyOn(teamsService, 'getTeams')
+                      .and.returnValue(Observable.of(TeamsMock));
+    let teamsElements = fixture.nativeElement;
+
+    fixture.detectChanges();
+
+    fixture.whenStable().then(() => {
+      expect(component.teams).toEqual(TeamsMock);
+      expect(teamsElements.querySelectorAll('.button-large').length).toEqual(component.teams.length);
+    });
+  }));
 });

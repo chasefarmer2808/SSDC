@@ -2,8 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { DebugElement } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule, MatButtonModule, MatCheckboxModule, MatProgressSpinnerModule, NoConflictStyleCompatibilityMode } from '@angular/material';
-import { HttpModule } from '@angular/http';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { Observable } from 'rxjs/Observable';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -12,7 +11,7 @@ import { EmailService } from '../services/email/email.service';
 import { FacebookService } from '../services/facebook/facebook.service';
 import { OfficersService } from '../services/officers/officers.service';
 
-import { MockEvents } from '../events/events.mock';
+import { EventsMock } from '../events/events.mock';
 
 describe('ContactComponent', () => {
   let component: ContactComponent;
@@ -41,8 +40,7 @@ describe('ContactComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ ContactComponent ],
       imports: [ 
-        HttpModule,
-        HttpClientModule,
+        HttpClientTestingModule,
         ReactiveFormsModule,
         MatInputModule,
         MatButtonModule,
@@ -66,16 +64,11 @@ describe('ContactComponent', () => {
     emailService = de.injector.get(EmailService);
 
     getEventsSpy = spyOn(facebookService, 'getEvents')
-                    .and.returnValue(Observable.of(MockEvents));
+                    .and.returnValue(Observable.of(EventsMock));
   });
 
   it('should be created', () => {
     expect(component).toBeTruthy();
-  });
-
-  it('should get the president email', () => {
-    fixture.detectChanges();
-    expect(component.presEmailAddr).toEqual(officersService.getPresident().email);
   });
 
   it('email form should initially be invalid', () => {

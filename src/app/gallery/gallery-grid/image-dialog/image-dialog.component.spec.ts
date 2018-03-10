@@ -3,7 +3,7 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { MaterialModule } from '../../../modules/material.module';
 import { ImageDialogComponent } from './image-dialog.component';
 
-import { MockPhotos } from '../../photos.mock';
+import { PhotosMock } from '../../photos.mock';
 
 describe('ImageDialogComponent', () => {
   let component: ImageDialogComponent;
@@ -18,7 +18,7 @@ describe('ImageDialogComponent', () => {
           provide: MAT_DIALOG_DATA,
           useValue: {
             index: 0,
-            photos: MockPhotos
+            photos: PhotosMock
           }
         }
       ]
@@ -37,7 +37,7 @@ describe('ImageDialogComponent', () => {
   });
 
   it('should initialize to the first photo in the album list', () => {
-    expect(component.selectedPhoto).toEqual(MockPhotos[component.selectedPhotoIndex]);
+    expect(component.selectedPhoto).toEqual(PhotosMock[component.selectedPhotoIndex]);
   });
 
   it('should be on first photo initially', () => {
