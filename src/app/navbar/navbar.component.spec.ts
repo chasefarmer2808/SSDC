@@ -27,7 +27,8 @@ describe('NavbarComponent', () => {
     .compileComponents();
   }));
 
-  beforeEach(() => {
+  beforeEach((done) => {
+    setTimeout(done, 1000);
     fixture = TestBed.createComponent(NavbarComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
