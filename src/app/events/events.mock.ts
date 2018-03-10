@@ -1,6 +1,6 @@
 import { Event } from './event';
 
-export const MockEvents: Event[] = [
+export const EventsMock: Event[] = [
   {
     name: 'event 1',
     description: 'event 1 description',

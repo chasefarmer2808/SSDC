@@ -1,6 +1,6 @@
 import { Album } from './album';
 
-export const MockAlbums: Album[] = [
+export const AlbumsMock: Album[] = [
     {
         name: 'album 1',
         id: '1'

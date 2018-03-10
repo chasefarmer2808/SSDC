@@ -3,7 +3,7 @@ import { async, ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core
 import { GalleryGridComponent } from './gallery-grid.component';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
 import { MaterialModule } from '../../modules/material.module';
-import { MockPhotos } from '../photos.mock';
+import { PhotosMock } from '../photos.mock';
 
 describe('GalleryGridComponent', () => {
   let component: GalleryGridComponent;
@@ -27,7 +27,7 @@ describe('GalleryGridComponent', () => {
   });
 
   it('should set averages on input change', async(() => {
-    component.album = MockPhotos;
+    component.album = PhotosMock;
     fixture.detectChanges();
     expect(component.avgPhotoHeight).toEqual(10);
     expect(component.avgPhotoWidth).toEqual(10);

@@ -42,7 +42,6 @@ describe('TeamsComponent', () => {
     component = fixture.componentInstance;
     de = fixture.debugElement;
     teamsService = de.injector.get(TeamsService);
-    fixture.detectChanges();
   });
 
   it('should create', () => {
@@ -63,7 +62,22 @@ describe('TeamsComponent', () => {
     expect(component.isEmpty(testObj)).toBeFalsy();
   });
 
-  it('should call getTeams on init');
+  it('should call getTeams on init', () => {
+    let getTeamsSpy = spyOn(teamsService, 'getTeams').and.callThrough();
+    fixture.detectChanges()
+    expect(getTeamsSpy).toHaveBeenCalled();
+  });
 
-  it('should show all teams');
+  it('should show all teams', async(() => {
+    let getTeamsSpy = spyOn(teamsService, 'getTeams')
+                      .and.returnValue(Observable.of(TeamsMock));
+    let teamsElements = fixture.nativeElement;
+
+    fixture.detectChanges();
+
+    fixture.whenStable().then(() => {
+      expect(component.teams).toEqual(TeamsMock);
+      expect(teamsElements.querySelectorAll('.button-large').length).toEqual(component.teams.length);
+    });
+  }));
 });

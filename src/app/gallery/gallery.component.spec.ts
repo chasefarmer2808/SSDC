@@ -9,8 +9,8 @@ import 'rxjs/Rx';
 import { GalleryComponent } from './gallery.component';
 import { GalleryGridComponent } from './gallery-grid/gallery-grid.component';
 import { FacebookService } from '../services/facebook/facebook.service';
-import { MockAlbums } from './albums.mock';
-import { MockPhotos } from './photos.mock';
+import { AlbumsMock } from './albums.mock';
+import { PhotosMock } from './photos.mock';
 
 describe('GalleryComponent', () => {
   let component: GalleryComponent;
@@ -36,10 +36,10 @@ describe('GalleryComponent', () => {
     facebookService = de.injector.get(FacebookService);
     
     getAlbumsSpy = spyOn(facebookService, 'getAlbums')
-                    .and.returnValue(Observable.of(MockAlbums));
+                    .and.returnValue(Observable.of(AlbumsMock));
 
     getAlbumSpy = spyOn(facebookService, 'getAlbum')
-                    .and.returnValue(Observable.of(MockPhotos));
+                    .and.returnValue(Observable.of(PhotosMock));
 
   });
 
@@ -56,7 +56,7 @@ describe('GalleryComponent', () => {
 
     fixture.whenStable().then(() => {
       fixture.detectChanges();
-      expect(component.albums.length).toEqual(MockAlbums.length);
+      expect(component.albums.length).toEqual(AlbumsMock.length);
     })
   });
 
@@ -65,7 +65,7 @@ describe('GalleryComponent', () => {
 
     fixture.whenStable().then(() => {
       fixture.detectChanges();
-      expect(component.selectedAlbumName).toEqual(MockAlbums[0].name);
+      expect(component.selectedAlbumName).toEqual(AlbumsMock[0].name);
     });
   });
 

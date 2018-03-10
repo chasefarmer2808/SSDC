@@ -1,6 +1,6 @@
 import { Photo } from './photo';
 
-export const MockPhotos: Photo[] = [
+export const PhotosMock: Photo[] = [
     {
         source: '../../assets/background.jpg',
         width: 10,

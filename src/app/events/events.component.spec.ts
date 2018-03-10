@@ -9,7 +9,7 @@ import 'rxjs/Rx';
 import { EventsComponent } from './events.component';
 import { FacebookService } from '../services/facebook/facebook.service';
 
-import { MockEvents } from './events.mock';
+import { EventsMock } from './events.mock';
 
 describe('EventsComponent', () => {
   let component: EventsComponent;
@@ -37,7 +37,7 @@ describe('EventsComponent', () => {
     facebookService = de.injector.get(FacebookService);
 
     getEventsSpy = spyOn(facebookService, 'getEvents')
-                    .and.returnValue(Observable.of(MockEvents));
+                    .and.returnValue(Observable.of(EventsMock));
   });
 
   it('should be created', () => {
@@ -53,7 +53,7 @@ describe('EventsComponent', () => {
 
     fixture.whenStable().then(() => {
       fixture.detectChanges();
-      expect(component.events.length).toEqual(MockEvents.length);
+      expect(component.events.length).toEqual(EventsMock.length);
     });
   }));
 
