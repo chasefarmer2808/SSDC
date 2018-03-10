@@ -31,17 +31,22 @@ describe('NavbarComponent', () => {
     fixture.detectChanges();
   });
 
-  // it('should be created', () => {
-  //   expect(component).toBeTruthy();
-  // });
+  it('should be created', () => {
+    expect(component).toBeTruthy();
+  });
 
-  // it('should have imported routes', () => {
-  //   expect(component.myRoutes.length).toBeGreaterThan(0);
-  // });
+  it('should have imported routes', async(() => {
+    fixture.whenStable().then(() => {
+      expect(component.myRoutes.length).toBeGreaterThan(0);
+    });
+  }));
 
-  // it('should have populated nav bar in view', () => {
-  //   let navLinks = fixture.nativeElement;
-  //   expect(navLinks.querySelectorAll('.nav-link').length).toEqual(component.myRoutes.length);
-  // });
+  it('should have populated nav bar in view', async(() => {
+    let navLinks = fixture.nativeElement;
+
+    fixture.whenRenderingDone().then(() => {
+      expect(navLinks.querySelectorAll('.nav-link').length).toEqual(component.myRoutes.length);
+    }); 
+  }));
 
 });
