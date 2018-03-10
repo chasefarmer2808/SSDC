@@ -39,9 +39,9 @@ describe('NavbarComponent', () => {
     expect(component.myRoutes.length).toBeGreaterThan(0);
   });
 
-  // it('should have populated nav bar in view', () => {
-  //   let navLinks = fixture.nativeElement;
-  //   expect(navLinks.querySelectorAll('.nav-link').length).toEqual(component.myRoutes.length);
-  // });
+  it('should have populated nav bar in view', () => {
+    let navLinks = fixture.nativeElement;
+    expect(navLinks.querySelectorAll('.nav-link').length).toEqual(component.myRoutes.length);
+  });
 
 });
