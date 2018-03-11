@@ -5,7 +5,7 @@ const config = require('../config.js');
 
 var handler = {
   init: function() {
-    mongoose.connect(config.mongoUrl);
+    mongoose.connect(`${config.mongoUrl}/${config.prodDb}`);
     let db = mongoose.connection;
 
     db.once('open', function() {

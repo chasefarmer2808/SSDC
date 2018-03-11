@@ -17,7 +17,7 @@ var userSchema = mongoose.Schema({
     },
     isAdmin: {
         type: Boolean,
-        required: true
+        default: false
     }
 });
 
@@ -25,18 +25,22 @@ var userSchema = mongoose.Schema({
 userSchema.statics.findByCredentials = function(username, password, callback) {
   this.model(MODEL_NAME).findOne({'username': `${username}`}, function(err, user) {
     if (err) {
-      callback(err);
+      return callback(err);
+    } else if (!user) {
+      var err = new Error('User not found');
+      err.status = 401;
+      return callback(err);
     }
 
-    if (user) {
-      bcrypt.compare(password, user.password).then(function(res) {
-        if (res) {
-          callback({}, user);
-        }
-
-        callback('Invalid password');
-      });
-    }
+    bcrypt.compare(password, user.password).then(function(res) {
+      if (res === true) {
+        return callback(null, user);
+      } else {
+        var err = new Error('Invalid password');
+        err.status = 401;
+        return callback(err);
+      }
+    });
   });
 }
 

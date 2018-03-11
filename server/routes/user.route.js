@@ -22,7 +22,7 @@ router.get('/:username/:password', function(req, res, next) {
   User.findByCredentials(req.params.username, req.params.password,
     function(err, isAuthenticated) {
       if (err) {
-        return res.status(401).send(err);
+        return res.status(err.status).send(err.message);
       }
 
       // do JWT stuff here
