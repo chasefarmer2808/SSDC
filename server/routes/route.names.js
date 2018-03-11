@@ -8,5 +8,6 @@ module.exports = {
     facebookRoute: `${ROUTE_PREFIX}/fb`,
     teamsRoute: `${ROUTE_PREFIX}/teams`,
     officersRoute: `${ROUTE_PREFIX}/officers`,
-    userRoute: `${ROUTE_PREFIX}/user`
+    userRoute: `${ROUTE_PREFIX}/user`,
+    authRoute: `${ROUTE_PREFIX}/auth`
 };

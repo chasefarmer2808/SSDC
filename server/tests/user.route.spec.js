@@ -34,6 +34,4 @@ describe('User Route Integration Tests', function() {
       server.close();
       mongoose.connection.close(done);
     });
-
-
 });

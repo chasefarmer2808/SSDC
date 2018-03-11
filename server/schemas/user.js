@@ -36,7 +36,7 @@ userSchema.statics.findByCredentials = function(username, password, callback) {
       if (res === true) {
         return callback(null, user);
       } else {
-        var err = new Error('Invalid password');
+        var err = new Error('Invalid username or password');
         err.status = 401;
         return callback(err);
       }

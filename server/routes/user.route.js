@@ -8,28 +8,6 @@ const upload = multer();
 
 var User = require('../schemas/user.js');
 
-router.get('/', function(req, res, next) {
-  User.find({}, function(err, users) {
-    if (err) {
-      next(err);
-    } else {
-      res.send(users);
-    }
-  });
-});
-
-router.get('/:username/:password', function(req, res, next) {
-  User.findByCredentials(req.params.username, req.params.password,
-    function(err, isAuthenticated) {
-      if (err) {
-        return res.status(err.status).send(err.message);
-      }
-
-      // do JWT stuff here
-
-  });
-});
-
 router.post('/create', upload.array(), function(req, res, next) {
   var newUser = new User({
     username: req.body.username,

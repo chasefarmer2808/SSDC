@@ -16,6 +16,7 @@ function makeServer() {
   const teams = require('../routes/teams.route.js');
   const officers = require('../routes/officers.route.js');
   const user = require('../routes/user.route.js');
+  const auth = require('../routes/auth.route.js');
   const BUILD_PATH = '../../dist/';
 
   const config = require('../config.js');
@@ -56,6 +57,7 @@ function makeServer() {
   app.use(routeNames.teamsRoute, teams);
   app.use(routeNames.officersRoute, officers);
   app.use(routeNames.userRoute, user);
+  app.use(routeNames.authRoute, auth);
 
   // tell express to serve static content stored in the BUILD_PATH path
   app.use(express.static(path.join(__dirname, `${BUILD_PATH}`)));
