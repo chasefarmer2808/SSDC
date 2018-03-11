@@ -7,5 +7,6 @@ module.exports = {
     listServRoute: `${ROUTE_PREFIX}/email/listserv`,
     facebookRoute: `${ROUTE_PREFIX}/fb`,
     teamsRoute: `${ROUTE_PREFIX}/teams`,
-    officersRoute: `${ROUTE_PREFIX}/officers`
+    officersRoute: `${ROUTE_PREFIX}/officers`,
+    userRoute: `${ROUTE_PREFIX}/user`
 };
