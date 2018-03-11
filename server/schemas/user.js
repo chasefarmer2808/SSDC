@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 
+const MODEL_NAME = 'User'
 const SALT_ROUNDS = 12;
 
 var userSchema = mongoose.Schema({
@@ -20,6 +21,29 @@ var userSchema = mongoose.Schema({
     }
 });
 
+// Instance methds
+userSchema.statics.findByCredentials = function(username, password, callback) {
+  this.model(MODEL_NAME).findOne({'username': `${username}`}, function(err, user) {
+    if (err) {
+      callback(err);
+    }
+
+    if (user) {
+      bcrypt.compare(password, user.password).then(function(res) {
+        if (res) {
+          callback({}, user);
+        }
+
+        callback('Invalid password');
+      });
+    }
+  });
+}
+
+
+// Schema hooks
+userSchema.pre('save', hashPassword);
+
 function hashPassword(next) {
   var newUser = this;
   bcrypt.hash(newUser.password, SALT_ROUNDS, function(err, hash) {
@@ -30,8 +54,6 @@ function hashPassword(next) {
     newUser.password = hash;
     next();
   });
-}
+};
 
-userSchema.pre('save', hashPassword);
-
-var User = module.exports = mongoose.model('User', userSchema);
+var User = module.exports = mongoose.model(MODEL_NAME, userSchema);

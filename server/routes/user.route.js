@@ -2,7 +2,6 @@
 
 const express = require('express');
 const router = express.Router();
-const bcrypt = require('bcrypt')
 const mongoose = require('mongoose');
 const multer = require('multer');
 const upload = multer();
@@ -16,6 +15,18 @@ router.get('/', function(req, res, next) {
     } else {
       res.send(users);
     }
+  });
+});
+
+router.get('/:username/:password', function(req, res, next) {
+  User.findByCredentials(req.params.username, req.params.password,
+    function(err, isAuthenticated) {
+      if (err) {
+        return res.status(401).send(err);
+      }
+
+      // do JWT stuff here
+
   });
 });
 
