@@ -5,6 +5,7 @@ import { EventsComponent } from '../events/events.component';
 import { ContactComponent } from '../contact/contact.component';
 import { GalleryComponent } from 'app/gallery/gallery.component';
 import { TeamsComponent } from 'app/teams/teams.component';
+import { LoginComponent } from '../login/login.component';
 
 export const routes: Routes = [
   {
@@ -37,9 +38,7 @@ export const routes: Routes = [
   {
     path: 'gallery',
     component: GalleryComponent,
-    data: {
-      name: 'Gallery'
-    }
+    data: { name: 'Gallery' }
   },
   {
     path: 'teams',
@@ -49,6 +48,10 @@ export const routes: Routes = [
       showSubItems: false,
       subItems: [ ]
     }
+  },
+  {
+    path: 'login',
+    component: LoginComponent
   },
   {
     path: '**',

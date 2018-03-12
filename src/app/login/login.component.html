@@ -1,0 +1,19 @@
+<div id="login-container">
+  <div class="content-container">
+    <form [formGroup]="loginForm" id="login-form" novalidate>
+      <div class="heading heading-font">Login</div>
+      <div class="form-input-container">
+        <mat-form-field>
+          <input matInput formControlName="username" placeholder="Username" required>
+          <mat-error *ngIf="loginForm.controls['username'].hasError('required')">This field is required</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="form-input-container">
+        <mat-form-field>
+          <input type="password" matInput password formControlName="password" placeholder="Password" required>
+          <mat-error *ngIf="loginForm.controls['password'].hasError('required')">This field is required</mat-error>
+        </mat-form-field>
+      </div>
+    </form>
+  </div>
+</div>

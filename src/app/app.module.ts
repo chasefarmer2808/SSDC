@@ -24,6 +24,7 @@ import { ImageDialogComponent } from './gallery/gallery-grid/image-dialog/image-
 import { TeamsComponent } from './teams/teams.component';
 import { RouteFilterPipe } from './pipes/route-filter/route-filter.pipe';
 import { KeyDirective } from './directives/key/key.directive';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { KeyDirective } from './directives/key/key.directive';
     ImageDialogComponent,
     TeamsComponent,
     RouteFilterPipe,
-    KeyDirective
+    KeyDirective,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
