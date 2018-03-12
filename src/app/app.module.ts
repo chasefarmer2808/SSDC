@@ -7,6 +7,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Ng2PageScrollModule } from 'ng2-page-scroll';
 import { MaterialModule } from './modules/material.module';
+import { JwtModule } from '@auth0/angular-jwt';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -25,6 +26,12 @@ import { TeamsComponent } from './teams/teams.component';
 import { RouteFilterPipe } from './pipes/route-filter/route-filter.pipe';
 import { KeyDirective } from './directives/key/key.directive';
 import { LoginComponent } from './login/login.component';
+
+import { AuthService } from './services/auth/auth.service';
+
+export function tokenGetter() {
+  return localStorage.getItem('token');
+}
 
 @NgModule({
   declarations: [
@@ -54,10 +61,17 @@ import { LoginComponent } from './login/login.component';
     Ng2PageScrollModule,
     FormsModule,
     ReactiveFormsModule,
-    MaterialModule
+    MaterialModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter
+      }
+    })
   ],
   entryComponents: [ ImageDialogComponent ],
-  providers: [],
+  providers: [
+    AuthService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

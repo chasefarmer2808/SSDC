@@ -8,6 +8,7 @@ import {
     MatButtonToggleModule,
     MatChipsModule
 } from '@angular/material';
+import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
@@ -19,7 +20,8 @@ import { MatDialogModule } from '@angular/material/dialog';
         NoConflictStyleCompatibilityMode,
         MatButtonToggleModule,
         MatDialogModule,
-        MatChipsModule
+        MatChipsModule,
+        MatIconModule
     ],
     exports: [
         MatInputModule, 
@@ -29,7 +31,8 @@ import { MatDialogModule } from '@angular/material/dialog';
         NoConflictStyleCompatibilityMode,
         MatButtonToggleModule,
         MatDialogModule,
-        MatChipsModule
+        MatChipsModule,
+        MatIconModule
     ]
 })
 export class MaterialModule{};

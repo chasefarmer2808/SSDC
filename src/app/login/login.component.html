@@ -10,9 +10,16 @@
       </div>
       <div class="form-input-container">
         <mat-form-field>
-          <input type="password" matInput password formControlName="password" placeholder="Password" required>
+          <input type="password" #passwordInput matInput password formControlName="password" placeholder="Password" required>
+          <button mat-button matSuffix mat-icon-button (click)="togglePasswordVisibility()">
+            <i *ngIf="showPassword" class="material-icons">visibility_off</i>
+            <i *ngIf="!showPassword" class="material-icons">visibility</i>
+          </button>
           <mat-error *ngIf="loginForm.controls['password'].hasError('required')">This field is required</mat-error>
         </mat-form-field>
+      </div>
+      <div class="form-submit-container">
+        <button (click)="login()" mat-raised-button color="primary" [disabled]="loginForm.invalid">Submit</button>
       </div>
     </form>
   </div>

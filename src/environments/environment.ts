@@ -16,6 +16,7 @@ export const environment = {
   listservUrl: `${localUrl}:${serverPort}/api/v1/email/listserv/`,
   teamsUrl: `${localUrl}:${serverPort}/api/v1/teams/`,
   officersUrl: `${localUrl}:${serverPort}/api/v1/officers/`,
+  authUrl: `${localUrl}:${serverPort}/api/v1/auth`,  // keep off trailing slash
   emailAddress: 'ufssdc@gmail.com',
   facebookLink: 'https://www.facebook.com/groups/ufssdc/',
   office: 'NEB 225'

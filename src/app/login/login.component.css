@@ -24,3 +24,7 @@
 #login-form .form-input-container {
     margin: 16px;
 }
+
+#login-form .form-submit-container {
+    margin-bottom: 8px;
+}

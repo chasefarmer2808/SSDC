@@ -2,8 +2,15 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../modules/material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { JwtModule } from '@auth0/angular-jwt';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 import { LoginComponent } from './login.component';
+
+import { AuthService } from '../services/auth/auth.service';
+import { JwtHelperService } from '@auth0/angular-jwt';
+
+import { tokenGetter } from '../app.module';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
@@ -15,7 +22,17 @@ describe('LoginComponent', () => {
       imports: [
         ReactiveFormsModule,
         MaterialModule,
-        BrowserAnimationsModule
+        BrowserAnimationsModule,
+        HttpClientTestingModule,
+        JwtModule.forRoot({
+          config: {
+            tokenGetter: tokenGetter
+          }
+        })
+      ],
+      providers: [ 
+        AuthService,
+        JwtHelperService,
       ]
     })
     .compileComponents();
