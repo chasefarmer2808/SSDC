@@ -1,7 +1,6 @@
 import { TestBed, inject } from '@angular/core/testing';
 import { HttpRequest, HttpParams } from '@angular/common/http';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { JwtModule } from '@auth0/angular-jwt';
 
 import * as moment from 'moment';
  
