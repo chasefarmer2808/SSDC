@@ -22,12 +22,14 @@ router.post('/login', upload.array(), function(req, res, next) {
         expiresIn: TWENTY_FOUR_HOURS
       });
 
-      res.status(200).send({auth: true, token: token});
+      res.status(200).send({auth: true,
+                            idToken: token,
+                            expiresIn: TWENTY_FOUR_HOURS});
   });
 });
 
 router.get('/logout', function(req, res, next) {
-  res.status(200).send({auth: false, token: null});
+  res.status(200).send({auth: false});
 });
 
 module.exports = router;

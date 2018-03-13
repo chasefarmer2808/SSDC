@@ -20,14 +20,14 @@ var userSchema = mongoose.Schema({
     }
 });
 
-// Instance methds
+// Instance methods
 userSchema.statics.findByCredentials = function(username, password, callback) {
   this.model(MODEL_NAME).findOne({'username': `${username}`}, function(err, user) {
     if (err) {
       return callback(err);
     } else if (!user) {
       var err = new Error('User not found');
-      err.status = 401;
+      err.status = 404;
       return callback(err);
     }
 

@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild, Renderer2, ElementRef } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import { AuthService } from '../services/auth/auth.service';
 
@@ -13,15 +14,14 @@ import { User } from '../services/auth/user';
 export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
-  user: User;
   showPassword: boolean = false;
 
   @ViewChild('passwordInput') passwordInput: ElementRef;
 
   constructor(private formBuilder: FormBuilder, 
               private authService: AuthService, 
-              private renderer: Renderer2) {
-    this.user = new User();
+              private renderer: Renderer2,
+              private router: Router) {
     this.createLoginForm();
   }
 
@@ -30,15 +30,21 @@ export class LoginComponent implements OnInit {
 
   createLoginForm() {
     this.loginForm = this.formBuilder.group({
-      username: [this.user.username, [Validators.required]],
-      password: [this.user.password, [Validators.required]]
+      username: ['', [Validators.required]],
+      password: ['', [Validators.required]]
     });
   }
 
   login() {
-    this.authService.login(this.user).subscribe((res) => {
-      console.log(res);
-    });
+    this.authService.login(this.loginForm.value)
+    .subscribe(
+      (res) => {
+        this.router.navigateByUrl('/');
+      },
+      (err) => {
+        console.log(err);
+        // handle errors here
+      });
   }
 
   togglePasswordVisibility() {

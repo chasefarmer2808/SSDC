@@ -6,10 +6,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Ng2PageScrollModule } from 'ng2-page-scroll';
 import { Router } from '@angular/router';
 
-// import { HomeComponent } from '../home/home.component';
-// import { ContactComponent } from '../contact/contact.component';
-// import { GalleryComponent } from '../gallery/gallery.component';
-// import { TeamsComponent } from '../teams/teams.component';
 import { NavbarComponent } from '../navbar/navbar.component';
 
 import { TeamsService } from '../services/teams/teams.service';
