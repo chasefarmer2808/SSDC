@@ -15,6 +15,8 @@ export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
   showPassword: boolean = false;
+  loading: boolean = false;
+  loginFail: boolean = false;
 
   @ViewChild('passwordInput') passwordInput: ElementRef;
 
@@ -36,12 +38,17 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
+    this.loading = true;
     this.authService.login(this.loginForm.value)
     .subscribe(
       (res) => {
+        this.loading = false;
+        this.loginFail = false;
         this.router.navigateByUrl('/');
       },
       (err) => {
+        this.loading = false;
+        this.loginFail = true;
         console.log(err);
         // handle errors here
       });

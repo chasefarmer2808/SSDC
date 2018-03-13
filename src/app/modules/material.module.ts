@@ -6,7 +6,8 @@ import {
     MatProgressSpinnerModule, 
     NoConflictStyleCompatibilityMode,
     MatButtonToggleModule,
-    MatChipsModule
+    MatChipsModule,
+    MatCardModule,
 } from '@angular/material';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -21,7 +22,8 @@ import { MatDialogModule } from '@angular/material/dialog';
         MatButtonToggleModule,
         MatDialogModule,
         MatChipsModule,
-        MatIconModule
+        MatIconModule,
+        MatCardModule
     ],
     exports: [
         MatInputModule, 
@@ -32,7 +34,8 @@ import { MatDialogModule } from '@angular/material/dialog';
         MatButtonToggleModule,
         MatDialogModule,
         MatChipsModule,
-        MatIconModule
+        MatIconModule,
+        MatCardModule
     ]
 })
 export class MaterialModule{};

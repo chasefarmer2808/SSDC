@@ -21,6 +21,11 @@
     border-radius: 15px;
 }
 
+.login-error {
+    color: #a94442;
+    background-color: #f2dede;
+}
+
 #login-form .form-input-container {
     margin: 16px;
 }
