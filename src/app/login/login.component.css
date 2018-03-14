@@ -18,12 +18,14 @@
 
 #login-form {
     background: rgba(255, 255, 255, 0.8);
-    border-radius: 15px;
+    padding: 0;
+    width: 350px;
 }
 
 .login-error {
     color: #a94442;
     background-color: #f2dede;
+    max-width: 100%;
 }
 
 #login-form .form-input-container {

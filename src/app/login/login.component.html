@@ -1,34 +1,38 @@
 <div id="login-container">
-  <div class="content-container">
-    <form [formGroup]="loginForm" id="login-form" novalidate>
-      <mat-card *ngIf="loginFail" class="login-error">
-        <mat-card-header>
-          <mat-card-title>Username or password is incorrect</mat-card-title>
-        </mat-card-header>
-      </mat-card>
-      <div class="heading heading-font">Login</div>
-      <div class="form-input-container">
-        <mat-form-field>
-          <input matInput formControlName="username" placeholder="Username" required>
-          <mat-error *ngIf="loginForm.controls['username'].hasError('required')">This field is required</mat-error>
-        </mat-form-field>
-      </div>
-      <div class="form-input-container">
-        <mat-form-field>
-          <input type="password" #passwordInput matInput password formControlName="password" placeholder="Password" required>
-          <button mat-button matSuffix mat-icon-button (click)="togglePasswordVisibility()">
-            <i *ngIf="showPassword" class="material-icons">visibility_off</i>
-            <i *ngIf="!showPassword" class="material-icons">visibility</i>
-          </button>
-          <mat-error *ngIf="loginForm.controls['password'].hasError('required')">This field is required</mat-error>
-        </mat-form-field>
-      </div>
-      <div class="form-submit-container">
-        <button class="submit-button" (click)="login()" mat-raised-button color="accent" [disabled]="loginForm.invalid">
-          <div *ngIf="!loading">Submit</div>
-          <mat-spinner [diameter]="60" *ngIf="loading"></mat-spinner>
-        </button>
-      </div>
-    </form>
+  <div class="content-container" (keydown.enter)="login()">
+    <mat-card id="login-form">
+      <mat-toolbar class="login-error" *ngIf="loginFail">
+        <div class="toolbar-content">
+          <h3>Username or password is incorrect!</h3>
+        </div>
+      </mat-toolbar>
+      <md-card-content>
+        <form [formGroup]="loginForm" novalidate>
+          <div class="heading heading-font">Login</div>
+          <div class="form-input-container">
+            <mat-form-field>
+              <input type="text" #usernameInput matInput formControlName="username" placeholder="Username" required>
+              <mat-error *ngIf="loginForm.controls['username'].hasError('required')">This field is required</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="form-input-container">
+            <mat-form-field>
+              <input type="password" #passwordInput matInput password formControlName="password" placeholder="Password" required>
+              <button mat-button matSuffix mat-icon-button (click)="togglePasswordVisibility()">
+                <i *ngIf="showPassword" class="material-icons">visibility_off</i>
+                <i *ngIf="!showPassword" class="material-icons">visibility</i>
+              </button>
+              <mat-error *ngIf="loginForm.controls['password'].hasError('required')">This field is required</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="form-submit-container">
+            <button class="submit-button" (click)="login()" mat-raised-button color="accent" [disabled]="loginForm.invalid">
+              <div *ngIf="!loading">Submit</div>
+              <mat-spinner [diameter]="60" *ngIf="loading"></mat-spinner>
+            </button>
+          </div>
+        </form>
+      </md-card-content>
+    </mat-card>
   </div>
 </div>

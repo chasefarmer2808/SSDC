@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, Renderer2, ElementRef } from '@angular/core';
+import { Component, OnInit, AfterContentInit, ViewChild, Renderer2, ElementRef } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -11,13 +11,14 @@ import { User } from '../services/auth/user';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css', '../app.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, AfterContentInit {
 
   loginForm: FormGroup;
   showPassword: boolean = false;
   loading: boolean = false;
   loginFail: boolean = false;
 
+  @ViewChild('usernameInput') usernameInput: ElementRef;
   @ViewChild('passwordInput') passwordInput: ElementRef;
 
   constructor(private formBuilder: FormBuilder, 
@@ -28,6 +29,10 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  ngAfterContentInit() {
+    this.usernameInput.nativeElement.focus();
   }
 
   createLoginForm() {
@@ -49,8 +54,6 @@ export class LoginComponent implements OnInit {
       (err) => {
         this.loading = false;
         this.loginFail = true;
-        console.log(err);
-        // handle errors here
       });
   }
 

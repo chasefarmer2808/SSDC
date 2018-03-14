@@ -8,6 +8,7 @@ import {
     MatButtonToggleModule,
     MatChipsModule,
     MatCardModule,
+    MatToolbarModule
 } from '@angular/material';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -23,7 +24,8 @@ import { MatDialogModule } from '@angular/material/dialog';
         MatDialogModule,
         MatChipsModule,
         MatIconModule,
-        MatCardModule
+        MatCardModule,
+        MatToolbarModule
     ],
     exports: [
         MatInputModule, 
@@ -35,7 +37,8 @@ import { MatDialogModule } from '@angular/material/dialog';
         MatDialogModule,
         MatChipsModule,
         MatIconModule,
-        MatCardModule
+        MatCardModule,
+        MatToolbarModule
     ]
 })
 export class MaterialModule{};
