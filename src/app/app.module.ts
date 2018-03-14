@@ -27,6 +27,8 @@ import { KeyDirective } from './directives/key/key.directive';
 import { LoginComponent } from './login/login.component';
 
 import { AuthService } from './services/auth/auth.service';
+import { RouteGuardService } from './services/route-guard/route-guard.service';
+import { DashboardComponent } from './dashboard/dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +47,8 @@ import { AuthService } from './services/auth/auth.service';
     TeamsComponent,
     RouteFilterPipe,
     KeyDirective,
-    LoginComponent
+    LoginComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -60,7 +63,8 @@ import { AuthService } from './services/auth/auth.service';
   ],
   entryComponents: [ ImageDialogComponent ],
   providers: [
-    AuthService
+    AuthService,
+    RouteGuardService
   ],
   bootstrap: [AppComponent]
 })

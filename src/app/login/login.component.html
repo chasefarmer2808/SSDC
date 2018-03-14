@@ -7,14 +7,14 @@
         </div>
       </mat-toolbar>
       <md-card-content>
-        <form [formGroup]="loginForm" novalidate>
+        <form [formGroup]="loginForm" (keydown.enter)="$event.preventDefault()" novalidate>
           <div class="heading heading-font">Login</div>
           <div class="form-input-container">
             <mat-form-field>
               <input type="text" #usernameInput matInput formControlName="username" placeholder="Username" required>
               <mat-error *ngIf="loginForm.controls['username'].hasError('required')">This field is required</mat-error>
             </mat-form-field>
-          </div>
+          </div> 
           <div class="form-input-container">
             <mat-form-field>
               <input type="password" #passwordInput matInput password formControlName="password" placeholder="Password" required>
