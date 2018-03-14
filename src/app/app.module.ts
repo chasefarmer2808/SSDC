@@ -3,7 +3,8 @@ import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { HttpModule } from '@angular/http';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from 'app/services/auth/auth.interceptor';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Ng2PageScrollModule } from 'ng2-page-scroll';
 import { MaterialModule } from './modules/material.module';
@@ -30,6 +31,7 @@ import { RouteFilterPipe } from './pipes/route-filter/route-filter.pipe';
 
 import { AuthService } from './services/auth/auth.service';
 import { RouteGuardService } from './services/route-guard/route-guard.service';
+import { UserService } from 'app/services/user/user.service';
 
 @NgModule({
   declarations: [
@@ -70,7 +72,13 @@ import { RouteGuardService } from './services/route-guard/route-guard.service';
   entryComponents: [ ImageDialogComponent ],
   providers: [
     AuthService,
-    RouteGuardService
+    RouteGuardService,
+    UserService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })

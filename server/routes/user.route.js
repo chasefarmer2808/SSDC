@@ -7,6 +7,12 @@ const multer = require('multer');
 const upload = multer();
 const verifyToken = require('../app/verifyToken.js');
 
+const ROLES = {
+  admin: 'admin',
+  dev: 'dev',
+  user: 'user'
+};
+
 var User = require('../schemas/user.js');
 
 function isAdmin(req, res, next) {
@@ -19,7 +25,7 @@ function isAdmin(req, res, next) {
       return res.status(401).send('No user found');
     }
 
-    if (user.isAdmin) {
+    if (user.role === ROLES.admin) {
       next();
     } else {
       return res.status(401).send('Not authorized');
@@ -31,7 +37,7 @@ router.post('/create', upload.array(), verifyToken, isAdmin, function(req, res, 
   var newUser = new User({
     username: req.body.username,
     password: req.body.password,
-    isAdmin: req.body.isAdmin
+    role: req.body.role
   });
 
   newUser.save(function(err) {

@@ -8,7 +8,6 @@ export class RouteGuardService implements CanActivate {
   constructor(public auth: AuthService, public router: Router) { }
 
   canActivate(): boolean {
-    console.log('here');
     if (this.auth.isLoggedIn()) {
       return true;
     }

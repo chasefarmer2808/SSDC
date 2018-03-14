@@ -6,7 +6,7 @@ import * as moment from 'moment';
  
 import { AuthService } from './auth.service';
 
-import { User } from './user';  
+import { User } from '../user/user';  
 
 describe('AuthService', () => {
   beforeEach(() => {

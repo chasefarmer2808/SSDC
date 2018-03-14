@@ -7,7 +7,7 @@ import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/shareReplay';
 
 
-import { User } from './user';
+import { User } from '../user/user';
 import { AuthRes } from './authres';
 
 import { environment } from '../../../environments/environment';
