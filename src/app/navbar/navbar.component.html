@@ -18,10 +18,10 @@
         </ul>
       </div>
       <div *ngIf="!isLoggedIn" class="login-button vert-center">
-        <button (click)="navigate('login')" mat-raised-button>Login</button>
+        <button (click)="navigate('login')" mat-raised-button>Log in</button>
       </div>
       <div *ngIf="isLoggedIn" class="login-button vert-center">
-          <button (click)="logout()" mat-raised-button>Logout</button>
+          <button (click)="logout()" mat-raised-button>Log out</button>
         </div>
     </div>
   </div>
@@ -39,10 +39,10 @@
       </div>
     </div>
     <div *ngIf="!isLoggedIn" class="login-button single-column-center">
-      <button (click)="navigate('login')" mat-raised-button>Login</button>
+      <button (click)="navigate('login')" mat-raised-button>Log in</button>
     </div>
     <div *ngIf="isLoggedIn" class="login-button single-column-center">
-        <button (click)="logout()" mat-raised-button>Logout</button>
+        <button (click)="logout()" mat-raised-button>Log out</button>
       </div>
     <div class="social-media-container">
       <div class="social-media-icon">

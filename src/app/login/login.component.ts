@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterContentInit, ViewChild, Renderer2, ElementRef } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild, Renderer2, ElementRef } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -11,12 +11,14 @@ import { User } from '../services/user/user';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css', '../app.component.css']
 })
-export class LoginComponent implements OnInit, AfterContentInit {
+export class LoginComponent implements OnInit, AfterViewInit {
 
   loginForm: FormGroup;
+  signUpForm: FormGroup;
   showPassword: boolean = false;
   loading: boolean = false;
   loginFail: boolean = false;
+  signUp: boolean = false;
 
   @ViewChild('usernameInput') usernameInput: ElementRef;
   @ViewChild('passwordInput') passwordInput: ElementRef;
@@ -26,13 +28,13 @@ export class LoginComponent implements OnInit, AfterContentInit {
               private renderer: Renderer2,
               private router: Router) {
     this.createLoginForm();
+    this.createSignUpForm();
   }
 
   ngOnInit() {
   }
 
-  ngAfterContentInit() {
-    this.usernameInput.nativeElement.focus();
+  ngAfterViewInit() {
   }
 
   createLoginForm() {
@@ -40,6 +42,14 @@ export class LoginComponent implements OnInit, AfterContentInit {
       username: ['', [Validators.required]],
       password: ['', [Validators.required]]
     });
+  }
+
+  createSignUpForm() {
+    this.signUpForm = this.formBuilder.group({
+      username: ['', [Validators.required]],
+      firstPassword: ['', [Validators.required]],
+      secondPassword: ['', [Validators.required]],
+    })
   }
 
   login() {
@@ -65,6 +75,10 @@ export class LoginComponent implements OnInit, AfterContentInit {
     } else {
       this.renderer.setAttribute(this.passwordInput.nativeElement, 'type', 'password');
     }
+  }
+
+  toggleSignUpForm() {
+    this.signUp = !this.signUp;
   }
 
 }

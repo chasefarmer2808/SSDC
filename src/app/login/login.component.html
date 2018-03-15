@@ -1,6 +1,6 @@
 <div id="login-container">
   <div class="content-container" (keydown.enter)="login()">
-    <mat-card id="login-form">
+    <mat-card *ngIf="!signUp" id="login-form">
       <mat-toolbar class="login-error" *ngIf="loginFail">
         <div class="toolbar-content">
           <h3>Username or password is incorrect!</h3>
@@ -8,7 +8,7 @@
       </mat-toolbar>
       <md-card-content>
         <form [formGroup]="loginForm" (keydown.enter)="$event.preventDefault()" novalidate>
-          <div class="heading heading-font">Login</div>
+          <div class="heading heading-font">Log in</div>
           <div class="form-input-container">
             <mat-form-field>
               <input type="text" #usernameInput matInput formControlName="username" placeholder="Username" required>
@@ -25,12 +25,49 @@
               <mat-error *ngIf="loginForm.controls['password'].hasError('required')">This field is required</mat-error>
             </mat-form-field>
           </div>
-          <div class="form-submit-container">
+          <mat-card-actions>
+            <button class="sign-up-button" (click)="toggleSignUpForm()" mat-raised-button color="primary">
+              Sign Up
+            </button>
             <button class="submit-button" (click)="login()" mat-raised-button color="accent" [disabled]="loginForm.invalid">
               <div *ngIf="!loading">Submit</div>
               <mat-spinner [diameter]="60" *ngIf="loading"></mat-spinner>
             </button>
+          </mat-card-actions>
+        </form>
+      </md-card-content>
+    </mat-card>
+    <mat-card *ngIf="signUp" id="sign-up-form">
+      <md-card-content>
+        <form [formGroup]="signUpForm" novalidate>
+          <div class="heading heading-font">Sign up</div>
+          <div class="form-input-container">
+            <mat-form-field>
+              <input type="text" matInput formControlName="username" placeholder="Username" required>
+              <mat-error *ngIf="signUpForm.controls['username'].hasError('required')">This field is required</mat-error>
+            </mat-form-field>
           </div>
+          <div class="form-input-container">
+            <mat-form-field>
+              <input type="password" matInput formControlName="firstPassword" placeholder="Password" required>
+              <mat-error *ngIf="signUpForm.controls['firstPassword'].hasError('required')">This field is required</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="form-input-container">
+            <mat-form-field>
+              <input type="password" matInput formControlName="secondPassword" placeholder="Retype Password" required>
+              <mat-error *ngIf="signUpForm.controls['secondPassword'].hasError('required')">This field is required</mat-error>
+            </mat-form-field>
+          </div>
+          <mat-card-actions>
+            <button class="sign-up-button" (click)="toggleSignUpForm()" mat-raised-button color="primary">
+              Cancel
+            </button>
+            <button class="signup-button" mat-raised-button color="accent" [disabled]="signUpForm.invalid">
+              <div *ngIf="!loading">Blast off!</div>
+              <mat-spinner [diameter]="60" *ngIf="loading"></mat-spinner>
+            </button>
+          </mat-card-actions>
         </form>
       </md-card-content>
     </mat-card>

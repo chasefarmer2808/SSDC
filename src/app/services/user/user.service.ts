@@ -8,7 +8,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 
-import { User } from './User';
+import { User } from './user';
 
 import { environment } from '../../../environments/environment';
 
