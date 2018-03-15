@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms'
 import { Router } from '@angular/router';
 
 import { AuthService } from '../services/auth/auth.service';
+import { UserService } from 'app/services/user/user.service';
 
 import { User } from '../services/user/user';
 
@@ -24,7 +25,8 @@ export class LoginComponent implements OnInit, AfterViewInit {
   @ViewChild('passwordInput') passwordInput: ElementRef;
 
   constructor(private formBuilder: FormBuilder, 
-              private authService: AuthService, 
+              private authService: AuthService,
+              private userService: UserService, 
               private renderer: Renderer2,
               private router: Router) {
     this.createLoginForm();
@@ -65,6 +67,21 @@ export class LoginComponent implements OnInit, AfterViewInit {
         this.loading = false;
         this.loginFail = true;
       });
+  }
+
+  createUser() {
+    // TODO: make sure password matches and username does not already exist.
+    let user = new User(this.signUpForm.value.username, this.signUpForm.value.firstPassword);
+    this.userService.createUser(user)
+      .subscribe(
+        (res) => {
+          console.log(res);
+          this.router.navigate(['home']);
+        },
+        (err) => {
+          console.log(err);
+        }
+      );
   }
 
   togglePasswordVisibility() {

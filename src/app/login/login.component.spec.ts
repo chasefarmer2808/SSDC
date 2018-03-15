@@ -9,6 +9,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { LoginComponent } from './login.component';
 
 import { AuthService } from '../services/auth/auth.service';
+import { UserService } from 'app/services/user/user.service';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
@@ -28,6 +29,7 @@ describe('LoginComponent', () => {
       ],
       providers: [ 
         AuthService,
+        UserService
       ]
     })
     .compileComponents();

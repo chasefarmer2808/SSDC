@@ -33,11 +33,11 @@ function isAdmin(req, res, next) {
   })
 }
 
-router.post('/create', upload.array(), verifyToken, isAdmin, function(req, res, next) {
+router.post('/create', upload.array(), function(req, res, next) {
   var newUser = new User({
     username: req.body.username,
     password: req.body.password,
-    role: req.body.role
+    role: req.body.role || ROLES.user
   });
 
   newUser.save(function(err) {
