@@ -17,6 +17,12 @@
           </li>
         </ul>
       </div>
+      <div *ngIf="!isLoggedIn" class="login-button vert-center">
+        <button (click)="navigate('login')" mat-raised-button>Login</button>
+      </div>
+      <div *ngIf="isLoggedIn" class="login-button vert-center">
+          <button (click)="logout()" mat-raised-button>Logout</button>
+        </div>
     </div>
   </div>
   <div class="nav-links-container" [@dropDown]="navDropDown">
@@ -32,6 +38,12 @@
         </ul>
       </div>
     </div>
+    <div *ngIf="!isLoggedIn" class="login-button single-column-center">
+      <button (click)="navigate('login')" mat-raised-button>Login</button>
+    </div>
+    <div *ngIf="isLoggedIn" class="login-button single-column-center">
+        <button (click)="logout()" mat-raised-button>Logout</button>
+      </div>
     <div class="social-media-container">
       <div class="social-media-icon">
         <a class="no-decorate" href="{{fbLink}}" target="_blank"><i class="fa fa-facebook-square fa-2x" aria-hidden="true"></i></a>

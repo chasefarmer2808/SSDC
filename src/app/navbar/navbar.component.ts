@@ -4,6 +4,7 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
 import { routes } from '../app-routing/app-routes';
 import { ClickOutsideDirective } from '../directives/click-outside/click-outside.directive';
 import { TeamsService } from '../services/teams/teams.service';
+import { AuthService } from 'app/services/auth/auth.service';
 
 @Component({
   selector: 'app-navbar',
@@ -54,8 +55,12 @@ export class NavbarComponent implements OnInit {
   fbLink:string;
   emailAddr:string;
   currentRoute:string;
+  isLoggedIn: boolean;
 
-  constructor(zone: NgZone, private router: Router, private teamsService: TeamsService) {
+  constructor(zone: NgZone, 
+              private router: Router, 
+              private teamsService: TeamsService,
+              private authService: AuthService) {
     window.onscroll = () => {
       zone.run(() => {
         if (window.pageYOffset > 0) {
@@ -73,17 +78,21 @@ export class NavbarComponent implements OnInit {
     this.myRoutes = routes;
     this.fbLink = 'https://www.facebook.com/groups/ufssdc/';
     this.emailAddr = 'ufssdc@gmail.com';
-
     this.router.events.subscribe((evt) => {
       if (evt instanceof NavigationEnd) {
         this.currentRoute = evt.url;
+        this.updateLogin();
       }
     });
 
     this.populateTeamsSubItems();
   }
 
-  navigate(routePath: string, params:any) {
+  updateLogin() {
+    this.isLoggedIn = this.authService.isLoggedIn();
+  }
+
+  navigate(routePath: string, params:any={}) {
     this.router.navigate([routePath, params]);
     this.closeNav(false, '');
   }
@@ -157,6 +166,11 @@ export class NavbarComponent implements OnInit {
     if (routePath == this.currentRoute) {
       window.scrollTo(0,0);
     }
+  }
+
+  logout() {
+    this.authService.logout();
+    this.navigate('login');
   }
 
 }

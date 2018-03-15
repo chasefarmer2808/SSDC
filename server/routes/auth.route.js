@@ -10,6 +10,8 @@ const upload = multer();
 var User = require('../schemas/user.js');
 
 const TWENTY_FOUR_HOURS = 86400;
+const FIFTEEN_MINUTES = 900;
+const EXPIRE_IN_SECONDS = FIFTEEN_MINUTES;
 
 router.post('/login', upload.array(), function(req, res, next) {
   User.findByCredentials(req.body.username, req.body.password,
@@ -19,12 +21,12 @@ router.post('/login', upload.array(), function(req, res, next) {
       }
 
       var token = jwt.sign({id: user._id}, process.env.JWT_SECRET, {
-        expiresIn: TWENTY_FOUR_HOURS
+        expiresIn: EXPIRE_IN_SECONDS
       });
 
       res.status(200).send({auth: true,
                             idToken: token,
-                            expiresIn: TWENTY_FOUR_HOURS});
+                            expiresIn: EXPIRE_IN_SECONDS});
   });
 });
 

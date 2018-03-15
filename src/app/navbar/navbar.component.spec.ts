@@ -5,10 +5,12 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Ng2PageScrollModule } from 'ng2-page-scroll';
 import { Router } from '@angular/router';
+import { DebugElement } from '@angular/core';
 
 import { NavbarComponent } from '../navbar/navbar.component';
 
 import { TeamsService } from '../services/teams/teams.service';
+import { AuthService } from 'app/services/auth/auth.service';
 
 import { RouteFilterPipe } from '../pipes/route-filter/route-filter.pipe';
 
@@ -18,6 +20,8 @@ describe('NavbarComponent', () => {
 
   let component: NavbarComponent;
   let fixture: ComponentFixture<NavbarComponent>;
+  let de: DebugElement;
+  let authService: AuthService;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -31,7 +35,7 @@ describe('NavbarComponent', () => {
         Ng2PageScrollModule,
         BrowserAnimationsModule
       ],
-      providers: [ TeamsService ]
+      providers: [ TeamsService, AuthService ]
     })
     .compileComponents();
   })); 
@@ -39,6 +43,8 @@ describe('NavbarComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(NavbarComponent);
     component = fixture.componentInstance;
+    de = fixture.debugElement;
+    authService = de.injector.get(AuthService);
   });
 
   it('should be created', () => {
