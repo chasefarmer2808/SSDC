@@ -1,6 +1,6 @@
 <div id="login-container">
   <div class="content-container" (keydown.enter)="login()">
-    <mat-card *ngIf="!signUp" id="login-form">
+    <mat-card *ngIf="signUp" id="login-form">
       <mat-toolbar class="login-error" *ngIf="loginFail">
         <div class="toolbar-content">
           <h3>Username or password is incorrect!</h3>
@@ -37,13 +37,14 @@
         </form>
       </md-card-content>
     </mat-card>
-    <mat-card *ngIf="signUp" id="sign-up-form">
+    <mat-card *ngIf="!signUp" id="sign-up-form">
       <md-card-content>
         <form [formGroup]="signUpForm" novalidate>
           <div class="heading heading-font">Sign up</div>
           <div class="form-input-container">
             <mat-form-field>
               <input type="text" matInput formControlName="username" placeholder="Username" required>
+              <mat-error *ngIf="signUpForm.controls['username'].hasError('exists')">This username already exists</mat-error>
               <mat-error *ngIf="signUpForm.controls['username'].hasError('required')">This field is required</mat-error>
             </mat-form-field>
           </div>

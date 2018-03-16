@@ -41,6 +41,28 @@ export class LoginComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
   }
 
+  private usernameUnique(input: FormControl) {
+    // if (!input.touched) {
+    //   console.log('here')
+    //   return null;
+    // }
+
+    return this.userService.checkUserExist(input.value)
+      .map(
+        (res) => {
+          console.log(res)
+          if (res) {
+            return { exists: true };
+          } else {
+            return null;
+          }
+        },
+        (err) => {
+          console.error(err);
+        }
+      );
+  }
+
   private passwordMatchValidator(input: FormControl) {
     if (!input.parent) {
       return null;
@@ -61,11 +83,15 @@ export class LoginComponent implements OnInit, AfterViewInit {
   }
 
   createSignUpForm() {
-    this.signUpForm = this.formBuilder.group({
-      username: ['', [Validators.required]],
-      firstPassword: ['', [Validators.required]],
-      secondPassword: ['', [Validators.required, this.passwordMatchValidator]]
-    });
+    // this.signUpForm = this.formBuilder.group({
+    //   username: ['', [Validators.required], this.usernameUnique.bind(this), {validateEvent: 'blur'}],
+    //   firstPassword: ['', [Validators.required]],
+    //   secondPassword: ['', [Validators.required, this.passwordMatchValidator]]
+    // });
+
+    // this.signUpForm = new FormGroup({
+    //   username: new FormControl('', {updateOn: 'blur', asyncValidators: this.usernameUnique})
+    // });
   }
 
   login() {
@@ -84,7 +110,6 @@ export class LoginComponent implements OnInit, AfterViewInit {
   }
 
   createUser() {
-    // TODO: make sure password matches and username does not already exist.
     let user = new User(this.signUpForm.value.username, this.signUpForm.value.firstPassword);
     this.userService.createUser(user)
       .subscribe(

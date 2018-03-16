@@ -16,12 +16,19 @@ import { environment } from '../../../environments/environment';
 export class UserService {
 
   private createUserUrl: string = `${environment.userUrl}/create`;
+  private existUrl: string = `${environment.userUrl}/exist`;
 
   constructor(private http: HttpClient) { }
 
   createUser(user: User): Observable<any> {
     return this.http
       .post<any>(this.createUserUrl, user)
+      .catch((err: any) => Observable.throw(err));
+  }
+
+  checkUserExist(username: string): Observable<boolean> {
+    return this.http
+      .get<boolean>(`${this.existUrl}/${username}`)
       .catch((err: any) => Observable.throw(err));
   }
 

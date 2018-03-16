@@ -54,4 +54,16 @@ router.post('/create', upload.array(), function(req, res, next) {
   })
 });
 
+router.get('/exist/:username', function(req, res, next) {
+  User.findOne({'username': `${req.params.username}`}, function(err, user) {
+    if (err) {
+      next(err);
+    }
+
+    var doesExist = user != undefined;
+
+    res.status(200).send(doesExist);
+  });
+});
+
 module.exports = router;
