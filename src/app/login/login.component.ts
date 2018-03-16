@@ -1,5 +1,5 @@
 import { Component, OnInit, AfterViewInit, ViewChild, Renderer2, ElementRef } from '@angular/core';
-import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl, Validators, ValidatorFn, AbstractControl } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { AuthService } from '../services/auth/auth.service';
@@ -24,6 +24,8 @@ export class LoginComponent implements OnInit, AfterViewInit {
   @ViewChild('usernameInput') usernameInput: ElementRef;
   @ViewChild('passwordInput') passwordInput: ElementRef;
 
+
+
   constructor(private formBuilder: FormBuilder, 
               private authService: AuthService,
               private userService: UserService, 
@@ -39,6 +41,18 @@ export class LoginComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
   }
 
+  private passwordMatchValidator(input: FormControl) {
+    if (!input.parent) {
+      return null;
+    }
+
+    let firstPassword = input.parent.value.firstPassword;
+    let secondPassword = input.value;
+
+    const match = firstPassword === secondPassword;
+    return match ? null : { mismatch: true };
+  }
+
   createLoginForm() {
     this.loginForm = this.formBuilder.group({
       username: ['', [Validators.required]],
@@ -50,8 +64,8 @@ export class LoginComponent implements OnInit, AfterViewInit {
     this.signUpForm = this.formBuilder.group({
       username: ['', [Validators.required]],
       firstPassword: ['', [Validators.required]],
-      secondPassword: ['', [Validators.required]],
-    })
+      secondPassword: ['', [Validators.required, this.passwordMatchValidator]]
+    });
   }
 
   login() {

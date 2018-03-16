@@ -141,6 +141,22 @@ describe('LoginComponent', () => {
 
   }));
 
+  it('should create mismatch error when passwords do not match', () => {
+    let firstPasswordField = component.signUpForm.controls['firstPassword'];
+    let secondPasswordField = component.signUpForm.controls['secondPassword'];
+
+    component.toggleSignUpForm();
+
+    fixture.whenStable().then(() => {
+      fixture.detectChanges();
+      firstPasswordField.setValue('test');
+      secondPasswordField.setValue('test1');
+      fixture.detectChanges();
+
+      expect(secondPasswordField.errors['mismatch']).toBeTruthy();
+    });
+  });
+
   it('should have valid signup form when all fields are filled in', () => {
     expect(component.signUpForm.invalid).toBeTruthy();
 
