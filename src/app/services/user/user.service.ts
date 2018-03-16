@@ -26,7 +26,7 @@ export class UserService {
       .catch((err: any) => Observable.throw(err));
   }
 
-  checkUserExist(username: string): Observable<boolean> {
+  checkUserExist(username: string = ''): Observable<boolean> {
     return this.http
       .get<boolean>(`${this.existUrl}/${username}`)
       .catch((err: any) => Observable.throw(err));

@@ -23,15 +23,13 @@ export class EmailService {
 
   sendEmail(emailObj: Email): Observable<any> {
     return this.http
-      .post(this.emailUrl, emailObj)
-      .map((response:Response) => response)
+      .post<any>(this.emailUrl, emailObj)
       .catch((err: any) => Observable.of(false));
   }
 
   addUserToListserv(user: Email): Observable<any> {
     return this.http
-      .post(this.listservUrl, user)
-      .map((response:Response) => response)
+      .post<any>(this.listservUrl, user)
       .catch((err: any) => Observable.of(false));
   }
 

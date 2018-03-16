@@ -1,6 +1,7 @@
 import { Component, OnInit, AfterViewInit, ViewChild, Renderer2, ElementRef } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators, ValidatorFn, AbstractControl } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs/Observable';
 
 import { AuthService } from '../services/auth/auth.service';
 import { UserService } from 'app/services/user/user.service';
@@ -42,10 +43,10 @@ export class LoginComponent implements OnInit, AfterViewInit {
   }
 
   private usernameUnique(input: FormControl) {
-    // if (!input.touched) {
-    //   console.log('here')
-    //   return null;
-    // }
+    if (!input.parent || !this.userService) {
+      console.log('here')
+      return Observable.of(null);
+    }
 
     return this.userService.checkUserExist(input.value)
       .map(
@@ -83,15 +84,11 @@ export class LoginComponent implements OnInit, AfterViewInit {
   }
 
   createSignUpForm() {
-    // this.signUpForm = this.formBuilder.group({
-    //   username: ['', [Validators.required], this.usernameUnique.bind(this), {validateEvent: 'blur'}],
-    //   firstPassword: ['', [Validators.required]],
-    //   secondPassword: ['', [Validators.required, this.passwordMatchValidator]]
-    // });
-
-    // this.signUpForm = new FormGroup({
-    //   username: new FormControl('', {updateOn: 'blur', asyncValidators: this.usernameUnique})
-    // });
+    this.signUpForm = new FormGroup({
+      username: new FormControl('', {updateOn: 'blur', validators: Validators.required, asyncValidators: [this.usernameUnique.bind(this)]}),
+      firstPassword: new FormControl('', Validators.required),
+      secondPassword: new FormControl('', [Validators.required, this.passwordMatchValidator])
+    });
   }
 
   login() {
