@@ -44,14 +44,12 @@ export class LoginComponent implements OnInit, AfterViewInit {
 
   private usernameUnique(input: FormControl) {
     if (!input.parent || !this.userService) {
-      console.log('here')
       return Observable.of(null);
     }
 
     return this.userService.checkUserExist(input.value)
       .map(
         (res) => {
-          console.log(res)
           if (res) {
             return { exists: true };
           } else {

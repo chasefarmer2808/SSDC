@@ -1,4 +1,4 @@
-import { async, fakeAsync, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, fakeAsync, tick, ComponentFixture, TestBed } from '@angular/core/testing';
 import { DebugElement } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../modules/material.module';
@@ -166,36 +166,36 @@ describe('LoginComponent', () => {
     });
   });
 
-  // it('should have valid signup form when all fields are filled in', () => {
-  //   expect(component.signUpForm.invalid).toBeTruthy();
+  it('should have valid signup form when all fields are filled in', fakeAsync(() => {
+    fixture.detectChanges();
+    expect(component.signUpForm.invalid).toBeTruthy();
 
-  //   let checkUserExistSpy = spyOn(userService, 'checkUserExist').and.returnValue(Observable.of(true));
+    let checkUserExistSpy = spyOn(userService, 'checkUserExist').and.returnValue(Observable.of(false));
 
-  //   let usernameField = component.signUpForm.controls['username'];
-  //   let firstPasswordField = component.signUpForm.controls['firstPassword'];
-  //   let secondPasswordField = component.signUpForm.controls['secondPassword'];
-  //   let submitButton;
-  //   let usernameInput;
+    let usernameField = component.signUpForm.controls['username'];
+    let firstPasswordField = component.signUpForm.controls['firstPassword'];
+    let secondPasswordField = component.signUpForm.controls['secondPassword'];
+    let submitButton;
+    let usernameInput;
 
-  //   component.toggleSignUpForm();
+    component.toggleSignUpForm();
+    fixture.detectChanges();
 
-  //   fixture.whenStable().then(() => {
-  //     fixture.detectChanges();
-  //     usernameInput = de.query(By.css('#signup-username')).nativeElement;
-  //     usernameField.setValue('dummy');
-  //     usernameInput.dispatchEvent(new Event('blur'));
-  //     firstPasswordField.setValue('dummy-password');
-  //     secondPasswordField.setValue('dummy-password');
-  //     fixture.detectChanges();
+    tick();
 
-  //     fixture.whenStable().then(() => {
-  //       fixture.detectChanges();
-  //       submitButton = fixture.nativeElement.querySelector('.signup-button');
+    usernameInput = de.query(By.css('#signup-username')).nativeElement;
+    usernameField.setValue('dummy');
+    usernameInput.blur();
+    firstPasswordField.setValue('dummy-password');
+    secondPasswordField.setValue('dummy-password');
+    fixture.detectChanges();
+
+    tick();
+
+    submitButton = fixture.nativeElement.querySelector('.signup-button');
   
-  //       expect(component.signUpForm.valid).toBeTruthy();
-  //       expect(submitButton.disabled).toBeFalsy();
-  //     })
-  //   });
-  // });
+    expect(component.signUpForm.valid).toBeTruthy();
+    expect(submitButton.disabled).toBeFalsy();
+  }));
 
 });
