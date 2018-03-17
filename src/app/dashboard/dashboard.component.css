@@ -19,3 +19,11 @@
 .control {
     grid-column-start: 1;
 }
+
+.dashboard {
+    padding-top: 56px;
+}
+
+.dashboard-container {
+    border: solid 2px;
+}

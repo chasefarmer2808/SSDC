@@ -7,6 +7,9 @@ import { GalleryComponent } from 'app/gallery/gallery.component';
 import { TeamsComponent } from 'app/teams/teams.component';
 import { LoginComponent } from '../login/login.component';
 import { DashboardComponent } from '../dashboard/dashboard.component';
+import { UserDashboardComponent } from 'app/dashboard/user-dashboard/user-dashboard.component';
+import { OfficersDashboardComponent } from 'app/dashboard/officers-dashboard/officers-dashboard.component';
+import { TeamsDashboardComponent } from 'app/dashboard/teams-dashboard/teams-dashboard.component';
 import { RouteGuardService } from '../services/route-guard/route-guard.service';
 
 export const routes: Routes = [
@@ -61,7 +64,21 @@ export const routes: Routes = [
     canActivate: [RouteGuardService],
     data: { 
       name: 'Dashboard'
-    }
+    },
+    children: [
+      {
+        path: 'user',
+        component: UserDashboardComponent
+      },
+      {
+        path: 'officer',
+        component: OfficersDashboardComponent
+      },
+      {
+        path: 'team',
+        component: TeamsDashboardComponent
+      }
+    ]
   },
   {
     path: '**',

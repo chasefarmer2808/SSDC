@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 import { UserService } from 'app/services/user/user.service';
 
@@ -9,8 +10,12 @@ import { UserService } from 'app/services/user/user.service';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor(private userService: UserService) { }
+  dashboards: Array<any>;
+
+  constructor(private userService: UserService,
+              private router: ActivatedRoute) { }
 
   ngOnInit() {
+    this.dashboards = this.router.routeConfig.children;
   }
 }
