@@ -1,5 +1,7 @@
 'use strict';
 
+process.env.NODE_ENV = 'TEST';
+
 const request = require('supertest');
 const expect = require('chai').expect;
 const sinon = require('sinon');
@@ -21,8 +23,11 @@ describe('Email Route Integration Tests', function() {
     });
 
     afterEach(function(done) {
-        server.close();
-        mongoose.connection.close(done);
+        server.close(done);
+    });
+
+    after(function(done) {
+      mongoose.connection.close(done);
     });
 
     it('should send email to SSDC gmail and return 200 when valid email parameters', function(done) {

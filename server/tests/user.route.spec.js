@@ -1,5 +1,7 @@
 'use strict';
 
+process.env.NODE_ENV = 'TEST';
+
 const request = require('supertest');
 const expect = require('chai').expect;
 const sinon = require('sinon');
@@ -13,17 +15,17 @@ const CONN_STRING = `mongodb://${process.env.DB_USERNAME}:${process.env.DB_PASSW
 describe('User Route Integration Tests', function() {
     var server, dbConnection;
 
-    beforeEach(function(done) {
+    beforeEach(function() {
       server = require('../app/app.js')();
 
       // make a test database
-      mongoose.connect(CONN_STRING);
-      dbConnection = mongoose.connection;
-      dbConnection.on('error', console.error.bind(console, 'connection error'));
-      dbConnection.once('open', function() {
-        console.log(`Connected to database ${config.testDb}`);
-        done();
-      });
+      // mongoose.connect(CONN_STRING);
+      // dbConnection = mongoose.connection;
+      // dbConnection.on('error', console.error.bind(console, 'connection error'));
+      // dbConnection.once('open', function() {
+      //   console.log(`Connected to database ${config.testDb}`);
+      //   done();
+      // });
     });
 
     it('pass', function(done) {
@@ -31,7 +33,7 @@ describe('User Route Integration Tests', function() {
     });
 
     afterEach(function(done) {
-      server.close();
-      mongoose.connection.close(done);
+      mongoose.connection.close();
+      server.close(done);
     });
 });
