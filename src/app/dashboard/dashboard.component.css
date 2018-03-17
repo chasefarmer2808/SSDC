@@ -20,10 +20,18 @@
     grid-column-start: 1;
 }
 
+.control-button {
+    width: 100%;
+}
+
 .dashboard {
     padding-top: 56px;
 }
 
 .dashboard-container {
     border: solid 2px;
+}
+
+.dashboard-link {
+    text-decoration: none;
 }

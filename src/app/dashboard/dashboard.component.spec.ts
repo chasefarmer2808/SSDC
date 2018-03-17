@@ -26,7 +26,8 @@ describe('DashboardComponent', () => {
         HttpClientTestingModule, 
         RouterTestingModule,
         ReactiveFormsModule,
-        MaterialModule
+        MaterialModule,
+        BrowserAnimationsModule
       ]
     })
     .compileComponents();
