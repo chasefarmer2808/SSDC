@@ -58,7 +58,10 @@ export const routes: Routes = [
   {
     path: 'dashboard',
     component: DashboardComponent,
-    canActivate: [RouteGuardService]
+    canActivate: [RouteGuardService],
+    data: { 
+      name: 'Dashboard'
+    }
   },
   {
     path: '**',
