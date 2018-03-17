@@ -16,6 +16,9 @@
     grid-row-start: 1;
 }
 
+.controls-menu {
+}
+
 .control {
     grid-column-start: 1;
 }

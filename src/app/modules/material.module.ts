@@ -8,7 +8,8 @@ import {
     MatButtonToggleModule,
     MatChipsModule,
     MatCardModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatMenuModule
 } from '@angular/material';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -25,7 +26,8 @@ import { MatDialogModule } from '@angular/material/dialog';
         MatChipsModule,
         MatIconModule,
         MatCardModule,
-        MatToolbarModule
+        MatToolbarModule,
+        MatMenuModule
     ],
     exports: [
         MatInputModule, 
@@ -38,7 +40,8 @@ import { MatDialogModule } from '@angular/material/dialog';
         MatChipsModule,
         MatIconModule,
         MatCardModule,
-        MatToolbarModule
+        MatToolbarModule,
+        MatMenuModule
     ]
 })
 export class MaterialModule{};
