@@ -1,15 +1,15 @@
 <div id="dashboard-container">
-    <div class="controls-container" [@slideIn]="controlsSlideIn">
-        <div class="control">
+    <div class="controls-container">
+        <button class="controls-menu" mat-icon-button [matMenuTriggerFor]="menu">
+            <i class="material-icons">more_vert</i>
+        </button>
+        <mat-menu #menu="matMenu">
             <a *ngFor="let dashboard of dashboards" [routerLink]="dashboard.path" class="dashboard-link">
-                <button class="control-button" mat-button mat-raised-button>
-                    {{dashboard.path | titlecase}}
+                <button mat-menu-item>
+                    <span>{{dashboard.path | titlecase}}</span>
                 </button>
             </a>
-        </div>
-        <div class="control-arrow">
-            <i [@rotate180]="controlsSlideIn" class="med-icon material-icons" (click)="toggleControls()">keyboard_arrow_right</i>
-        </div>
+        </mat-menu>
     </div>
     <div class="dashboard">
         <router-outlet></router-outlet>
