@@ -1,9 +1,11 @@
 <div id="dashboard-container">
     <div class="controls-container" [@slideIn]="controlsSlideIn">
         <div class="control">
-            <button class="control-button" *ngFor="let dashboard of dashboards" mat-button mat-raised-button>
-                <a [routerLink]="dashboard.path" class="dashboard-link">{{dashboard.path | titlecase}}</a>
-            </button>
+            <a *ngFor="let dashboard of dashboards" [routerLink]="dashboard.path" class="dashboard-link">
+                <button class="control-button" mat-button mat-raised-button>
+                    {{dashboard.path | titlecase}}
+                </button>
+            </a>
         </div>
         <div class="control-arrow">
             <i [@rotate180]="controlsSlideIn" class="med-icon material-icons" (click)="toggleControls()">keyboard_arrow_right</i>

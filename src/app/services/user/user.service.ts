@@ -20,6 +20,12 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
+  getAll(): Observable<User[]> {
+    return this.http
+      .get<User[]>(environment.userUrl)
+      .catch((err: any) => Observable.throw(err));
+  }
+
   createUser(user: User): Observable<User> {
     return this.http
       .post<User>(this.createUserUrl, user)

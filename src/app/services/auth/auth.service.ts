@@ -23,6 +23,7 @@ export class AuthService {
     const expiresAt = moment().add(authRes.expiresIn, 'second');
     localStorage.setItem('id_token', authRes.idToken);
     localStorage.setItem('expires_at', JSON.stringify(expiresAt.valueOf()));
+    localStorage.setItem('role', authRes.role);
   }
 
   login(user: User): Observable<any> {
@@ -36,6 +37,7 @@ export class AuthService {
   logout() {
     localStorage.removeItem('id_token');
     localStorage.removeItem('expires_at');
+    localStorage.removeItem('role');
   }
 
   isLoggedIn(): boolean {
@@ -45,5 +47,10 @@ export class AuthService {
   getExpiration() {
     const expiration = localStorage.getItem('expires_at');
     return moment(JSON.parse(expiration));
+  }
+
+  hasRole(role: string): boolean {
+    let sessionRole = localStorage.getItem('role');
+    return sessionRole === role;
   }
 }
