@@ -35,8 +35,13 @@
 }
 
 .toolbar-content {
-    width: 100%;
+    padding: 8px;
     text-align: center;
+    overflow-wrap: break-word;
+}
+
+.warning-message {
+    background-color: #FEEFB3;
 }
 
 #login-form .form-input-container {

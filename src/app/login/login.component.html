@@ -49,6 +49,7 @@
           <div class="form-input-container">
             <mat-form-field>
               <input type="text" id="signup-username" matInput formControlName="username" placeholder="Username" required>
+              <mat-spinner matSuffix [diameter]="30" [strokeWidth]="3" *ngIf="checkingUsername"></mat-spinner>
               <mat-error *ngIf="signUpForm.controls['username'].hasError('exists')">This username already exists</mat-error>
               <mat-error *ngIf="signUpForm.controls['username'].hasError('required')">This field is required</mat-error>
             </mat-form-field>
@@ -75,6 +76,11 @@
               <mat-spinner [diameter]="60" *ngIf="loading"></mat-spinner>
             </button>
           </mat-card-actions>
+          <div color="warn" class="warning-message">
+            <div class="toolbar-content">
+              <p>Warning: This site does not use HTTPS.  Do not re-use password</p>
+            </div>
+          </div>
         </form>
       </md-card-content>
     </mat-card>

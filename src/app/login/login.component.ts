@@ -19,6 +19,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
   signUpForm: FormGroup;
   showPassword: boolean = false;
   loading: boolean = false;
+  checkingUsername: boolean = false;
   loginFail: boolean = false;
   signupFail: boolean = false;
   signUp: boolean = false;
@@ -48,16 +49,21 @@ export class LoginComponent implements OnInit, AfterViewInit {
       return Observable.of(null);
     }
 
+    this.checkingUsername = true;
+
     return this.userService.checkUserExist(input.value)
       .map(
         (res) => {
           if (res) {
+            this.checkingUsername = false;
             return { exists: true };
           } else {
+            this.checkingUsername = false;
             return null;
           }
         },
         (err) => {
+          this.checkingUsername = false;
           console.error(err);
         }
       );
