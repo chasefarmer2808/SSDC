@@ -42,7 +42,7 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     this.dashboards = this.router.routeConfig.children;
-    this.controlsSlideIn = true;
+    this.controlsSlideIn = false;
   }
 
   toggleControls() {

@@ -25,11 +25,15 @@
 }
 
 .dashboard {
-    padding-top: 56px;
+    padding-top: 96px;
+    padding-left: 8px;
+    padding-right: 8px;
 }
 
 .dashboard-container {
-    border: solid 2px;
+    border: solid 1px;
+    background-color: rgba(0, 0, 0, 0.2);
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
 }
 
 .dashboard-link {

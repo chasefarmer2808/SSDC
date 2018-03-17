@@ -43,6 +43,16 @@ userSchema.statics.findByCredentials = function(username, password, callback) {
   });
 }
 
+userSchema.statics.getAll = function(callback) {
+  this.model(MODEL_NAME).find({}, {password: 0}, function(err, users) {
+    if (err) {
+      return callback(err);
+    }
+
+    return callback(undefined, users);
+  });
+}
+
 
 // Schema hooks
 userSchema.pre('save', hashPassword);

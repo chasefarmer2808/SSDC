@@ -16,7 +16,8 @@ const ROLES = {
 var User = require('../schemas/user.js');
 
 function isAdmin(req, res, next) {
-  User.findById(req.userId, {password: 0}, function(err, user) {
+  var userId = req.headers['x-access-token'];
+  User.findById(userId, {password: 0}, function(err, user) {
     if (err) {
       return res.status(500).send('Error finding the user');
     }
@@ -32,6 +33,34 @@ function isAdmin(req, res, next) {
     }
   })
 }
+
+function isDev(userId, req, res, next) {
+  User.findById(userId, {password: 0}, function(err, user) {
+    if (err) {
+      return res.status(500).send('Error finding the user');
+    }
+
+    if (!user) {
+      return res.status(401).send('No user found');
+    }
+
+    if (user.role === ROLES.dev || user.role === ROLES.admin) {
+      next();
+    } else {
+      return res.status(401).send('Not authorized');
+    }
+  })
+}
+
+router.get('/', verifyToken, isDev, function(req, res, next) {
+  User.getAll(function(err, users) {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.status(200).send(users);
+    }
+  });
+});
 
 router.post('/create', upload.array(), function(req, res, next) {
   var newUser = new User({
