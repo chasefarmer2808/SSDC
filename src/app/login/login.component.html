@@ -1,5 +1,5 @@
 <div id="login-container">
-  <div class="content-container" (keydown.enter)="login()">
+  <div class="content-container" (keydown.enter)="login(loginForm.value)">
     <mat-card *ngIf="!signUp" id="login-form">
       <mat-toolbar class="login-error" *ngIf="loginFail">
         <div class="toolbar-content">
@@ -29,7 +29,7 @@
             <button class="sign-up-button" (click)="toggleSignUpForm()" mat-raised-button color="primary">
               Sign Up
             </button>
-            <button class="submit-button" (click)="login()" mat-raised-button color="accent" [disabled]="loginForm.invalid">
+            <button class="submit-button" (click)="login(loginForm.value)" mat-raised-button color="accent" [disabled]="loginForm.invalid">
               <div *ngIf="!loading">Submit</div>
               <mat-spinner [diameter]="60" *ngIf="loading"></mat-spinner>
             </button>
@@ -38,6 +38,11 @@
       </md-card-content>
     </mat-card>
     <mat-card *ngIf="signUp" id="sign-up-form">
+      <mat-toolbar class="login-error" *ngIf="loginFail || signupFail">
+        <div class="toolbar-content">
+          <h3>Problem creating the user</h3>
+        </div>
+      </mat-toolbar>
       <md-card-content>
         <form [formGroup]="signUpForm" novalidate>
           <div class="heading heading-font">Sign up</div>

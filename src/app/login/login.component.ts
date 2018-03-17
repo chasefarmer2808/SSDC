@@ -20,6 +20,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
   showPassword: boolean = false;
   loading: boolean = false;
   loginFail: boolean = false;
+  signupFail: boolean = false;
   signUp: boolean = false;
 
   @ViewChild('usernameInput') usernameInput: ElementRef;
@@ -89,9 +90,9 @@ export class LoginComponent implements OnInit, AfterViewInit {
     });
   }
 
-  login() {
+  login(user: User) {
     this.loading = true;
-    this.authService.login(this.loginForm.value)
+    this.authService.login(user)
     .subscribe(
       (res) => {
         this.loading = false;
@@ -109,10 +110,11 @@ export class LoginComponent implements OnInit, AfterViewInit {
     this.userService.createUser(user)
       .subscribe(
         (res) => {
-          console.log(res);
-          this.router.navigate(['home']);
+          res.password = this.signUpForm.value.firstPassword;
+          this.login(res);
         },
         (err) => {
+          this.signupFail = true;
           console.log(err);
         }
       );

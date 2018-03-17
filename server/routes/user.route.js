@@ -42,14 +42,14 @@ router.post('/create', upload.array(), function(req, res, next) {
 
   newUser.save(function(err) {
     if (err) {
-      next(err);
+      return next(err);
     } else {
       newUser.validate(function(err) {
         if (err) {
-            next(err);
+            return next(err);
         }
+        res.status(200).send({username: newUser.username, role: newUser.role});
       });
-      res.status(200).send(newUser.username);
     }
   })
 });
