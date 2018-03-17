@@ -10,15 +10,22 @@ function makeServer() {
   const cors = require('cors');
   const errorHandler = require('./error.handler.js');
 
-  const app = express();
-  const port = process.env.PORT || 5000;
-
   const routeNames = require('../routes/route.names.js');
   const fb = require('../routes/fb.route.js');
   const email = require('../routes/email.route.js');
   const teams = require('../routes/teams.route.js');
   const officers = require('../routes/officers.route.js');
+  const user = require('../routes/user.route.js');
+  const auth = require('../routes/auth.route.js');
   const BUILD_PATH = '../../dist/';
+
+  const config = require('../config.js');
+
+  const dbHandler = require('./db.handler.js');
+  dbHandler.init();
+
+  const app = express();
+  const port = process.env.PORT || 5000;
 
   function redirectToHomePage(req, res) {
     res.redirect('/');
@@ -49,6 +56,8 @@ function makeServer() {
   app.use(routeNames.emailRoute, email);
   app.use(routeNames.teamsRoute, teams);
   app.use(routeNames.officersRoute, officers);
+  app.use(routeNames.userRoute, user);
+  app.use(routeNames.authRoute, auth);
 
   // tell express to serve static content stored in the BUILD_PATH path
   app.use(express.static(path.join(__dirname, `${BUILD_PATH}`)));

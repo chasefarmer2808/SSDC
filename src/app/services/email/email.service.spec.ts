@@ -62,7 +62,7 @@ describe('EmailService', () => {
         expect(next).toBeTruthy();
       });
 
-      backend.expectOne(environment.emailUrl).flush(null, { status: 200, statusText: 'ok'});
+      backend.expectOne(environment.emailUrl).flush({ status: 200, statusText: 'ok'});
   })));
 
   it('should send an expected listserv request', async(inject([EmailService, HttpTestingController],
@@ -101,7 +101,7 @@ describe('EmailService', () => {
         expect(next).toBeTruthy();
       });
 
-      backend.expectOne(environment.listservUrl).flush(null, { status: 200, statusText: 'ok'});
+      backend.expectOne(environment.listservUrl).flush({ status: 200, statusText: 'ok'});
   })));
 
 

@@ -7,6 +7,8 @@ export const environment = {
   listservUrl: '/api/v1/email/listserv/',
   teamsUrl: '/api/v1/teams/',  
   officersUrl: '/api/v1/officers/',  
+  authUrl: '/api/v1/auth',
+  userUrl: '/api/v1/user',
   emailAddress: 'ufssdc@gmail.com',
   facebookLink: 'https://www.facebook.com/groups/ufssdc/',
   office: 'NEB 225'
