@@ -1,5 +1,7 @@
 'use strict';
 
+process.env.NODE_ENV = 'TEST';
+
 const request = require('supertest');
 const mongoose = require('mongoose');
 
@@ -11,8 +13,8 @@ describe('SSDC Server Integration Tests', function() {
   });
 
   afterEach(function(done) {
-    server.close();
-    mongoose.connection.close(done);
+    mongoose.connection.close();
+    server.close(done);
   });
 
   it('should respond to / with 200', function(done) {

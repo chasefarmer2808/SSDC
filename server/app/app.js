@@ -22,7 +22,10 @@ function makeServer() {
   const config = require('../config.js');
 
   const dbHandler = require('./db.handler.js');
-  dbHandler.init();
+
+  if (process.env.NODE_ENV != 'TEST') {
+    dbHandler.init();
+  }
 
   const app = express();
   const port = process.env.PORT || 5000;
