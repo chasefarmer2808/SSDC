@@ -4,12 +4,12 @@ import {
     MatButtonModule, 
     MatCheckboxModule, 
     MatProgressSpinnerModule, 
-    NoConflictStyleCompatibilityMode,
     MatButtonToggleModule,
     MatChipsModule,
     MatCardModule,
     MatToolbarModule,
-    MatMenuModule
+    MatMenuModule,
+    MatTableModule
 } from '@angular/material';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -20,28 +20,28 @@ import { MatDialogModule } from '@angular/material/dialog';
         MatButtonModule, 
         MatCheckboxModule, 
         MatProgressSpinnerModule, 
-        NoConflictStyleCompatibilityMode,
         MatButtonToggleModule,
         MatDialogModule,
         MatChipsModule,
         MatIconModule,
         MatCardModule,
         MatToolbarModule,
-        MatMenuModule
+        MatMenuModule,
+        MatTableModule
     ],
     exports: [
         MatInputModule, 
         MatButtonModule, 
         MatCheckboxModule, 
         MatProgressSpinnerModule, 
-        NoConflictStyleCompatibilityMode,
         MatButtonToggleModule,
         MatDialogModule,
         MatChipsModule,
         MatIconModule,
         MatCardModule,
         MatToolbarModule,
-        MatMenuModule
+        MatMenuModule,
+        MatTableModule
     ]
 })
 export class MaterialModule{};

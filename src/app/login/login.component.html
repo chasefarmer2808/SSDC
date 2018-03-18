@@ -6,7 +6,7 @@
           <h3>Username or password is incorrect!</h3>
         </div>
       </mat-toolbar>
-      <md-card-content>
+      <mat-card-content>
         <form [formGroup]="loginForm" (keydown.enter)="$event.preventDefault()" novalidate>
           <div class="heading heading-font">Log in</div>
           <div class="form-input-container">
@@ -35,7 +35,7 @@
             </button>
           </mat-card-actions>
         </form>
-      </md-card-content>
+      </mat-card-content>
     </mat-card>
     <mat-card *ngIf="signUp" id="sign-up-form">
       <mat-toolbar class="login-error" *ngIf="loginFail || signupFail">
@@ -43,7 +43,7 @@
           <h3>Problem creating the user</h3>
         </div>
       </mat-toolbar>
-      <md-card-content>
+      <mat-card-content>
         <form [formGroup]="signUpForm" novalidate>
           <div class="heading heading-font">Sign up</div>
           <div class="form-input-container">
@@ -76,13 +76,8 @@
               <mat-spinner [diameter]="60" *ngIf="loading"></mat-spinner>
             </button>
           </mat-card-actions>
-          <div color="warn" class="warning-message">
-            <div class="toolbar-content">
-              <p>Warning: This site does not use HTTPS.  Do not re-use password</p>
-            </div>
-          </div>
         </form>
-      </md-card-content>
+      </mat-card-content>
     </mat-card>
   </div>
 </div>
