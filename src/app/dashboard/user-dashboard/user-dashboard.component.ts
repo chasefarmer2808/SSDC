@@ -5,6 +5,7 @@ import { UserService } from 'app/services/user/user.service';
 
 import { User } from 'app/services/user/user';
 import { ROLES } from 'app/services/user/roles';
+import { GenericSet } from 'app/utility/generic-set';
 
 @Component({
   selector: 'app-user-dashboard',
@@ -20,7 +21,11 @@ export class UserDashboardComponent implements OnInit {
   usersDataSource: MatTableDataSource<User>;
   roleOptions: Array<string> = [];
 
-  constructor(private userService: UserService) { }
+  private usersToUpdate: GenericSet<User>;
+
+  constructor(private userService: UserService) {
+    this.usersToUpdate = new Set<User>();
+  }
 
   ngOnInit() {
     this.usersDataSource = new MatTableDataSource();
@@ -36,6 +41,14 @@ export class UserDashboardComponent implements OnInit {
       )
   }
 
+  updateChangeList(username: string, role: string) {
+    this.getUserByUsername(username, (user:User) => {
+      if (user) {
+        this.usersToUpdate.add(user);
+      }
+    });
+  }
+
   public objectToValueArray(object): Array<any> {
     let values = [];
     Object.keys(object).forEach(key => {
@@ -43,6 +56,16 @@ export class UserDashboardComponent implements OnInit {
     });
 
     return values;
+  }
+
+  private getUserByUsername(username: string, callback) {
+    this.usersDataSource.data.forEach(user => {
+      if (user.username === username) {
+        callback(user)
+      }
+    });
+
+    callback(undefined);
   }
 
 }
