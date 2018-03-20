@@ -49,6 +49,18 @@ export class UserDashboardComponent implements OnInit {
     });
   }
 
+  saveChanges() {
+    this.userService.updateRoleMany(this.usersToUpdate)
+      .subscribe(
+        (res) => {
+          console.log(res);
+        },
+        (err) => {
+          console.log(err);
+        }
+      )
+  }
+
   public objectToValueArray(object): Array<any> {
     let values = [];
     Object.keys(object).forEach(key => {

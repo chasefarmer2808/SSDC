@@ -15,8 +15,7 @@ const ROLES = {
 
 var User = require('../schemas/user.js');
 
-function isAdmin(req, res, next) {
-  var userId = req.headers['x-access-token'];
+function isAdmin(userId, req, res, next) {
   User.findById(userId, {password: 0}, function(err, user) {
     if (err) {
       return res.status(500).send('Error finding the user');
@@ -93,6 +92,19 @@ router.get('/exist/:username', function(req, res, next) {
 
     res.status(200).send(doesExist);
   });
+});
+
+router.put('/role', upload.array(), verifyToken, isAdmin, function(req, res, next) {
+  var query = {username: req.body.username};
+  User.findOneAndUpdate(query,
+                        {role: req.body.role},
+                        {new: true},
+                        function(err, updatedUser) {
+                          if (err) {
+                            return res.status(500).send(new Error('Error updating user'));
+                          }
+                          res.status(200).send(updatedUser);
+                        });
 });
 
 module.exports = router;
