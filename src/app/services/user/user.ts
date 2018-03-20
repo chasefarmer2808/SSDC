@@ -1,6 +1,7 @@
 import { ROLES } from './roles';
+import { SetItem } from 'app/utility/generic-set';
 
-export class User {
+export class User implements SetItem {
     username: string;
     password: string;
     role: string;
@@ -9,6 +10,10 @@ export class User {
         this.username = username || '';
         this.password = password || '';
         this.role = ROLES.USER;
+    }
+
+    equals(other: User): boolean {
+        return other == this;
     }
 };
 
