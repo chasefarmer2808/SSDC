@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {MatTableDataSource } from '@angular/material';
+import { MatTableDataSource } from '@angular/material';
 
 import { UserService } from 'app/services/user/user.service'; 
 
 import { User } from 'app/services/user/user';
+import { ROLES } from 'app/services/user/roles';
 
 @Component({
   selector: 'app-user-dashboard',
@@ -15,15 +16,15 @@ import { User } from 'app/services/user/user';
   ]
 })
 export class UserDashboardComponent implements OnInit {
-
-  users: User[];
   columnsToDisplay: Array<string> = ['username', 'role'];
   usersDataSource: MatTableDataSource<User>;
+  roleOptions: Array<string> = [];
 
   constructor(private userService: UserService) { }
 
   ngOnInit() {
     this.usersDataSource = new MatTableDataSource();
+    this.roleOptions = this.objectToValueArray(ROLES);
     this.userService.getAll()
       .subscribe(
         users => {
@@ -33,6 +34,15 @@ export class UserDashboardComponent implements OnInit {
           console.error(err);
         }
       )
+  }
+
+  public objectToValueArray(object): Array<any> {
+    let values = [];
+    Object.keys(object).forEach(key => {
+      values.push(object[key]);
+    });
+
+    return values;
   }
 
 }

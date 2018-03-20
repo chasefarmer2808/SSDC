@@ -33,4 +33,16 @@ describe('UserDashboardComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should return array of string values from input object', () => {
+    let testObj = {
+      a: 'test1',
+      b: 'test2',
+      c: 'test3'
+    }
+    let expectedResult = ['test1', 'test2', 'test3'];
+
+    let testResult = component.objectToValueArray(testObj);
+    expect(expectedResult).toEqual(testResult);
+  });
 });
