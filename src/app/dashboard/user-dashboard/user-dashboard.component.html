@@ -1,15 +1,39 @@
 <div class="dashboard-container">
   <div class="table-container">
-    <mat-table [dataSource]="usersDataSource">
+    <mat-card class="user-table-card">
+      <mat-card-header>
+        <mat-card-title>
+          <mat-toolbar class="table-title-container">
+            <span>Users</span>
+            <span class="fill-space"></span>
+            <span class="header-actions">
+              <button mat-button>
+                <i class="material-icons">save</i>
+              </button>
+            </span>
+          </mat-toolbar>
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-table [dataSource]="usersDataSource">
 
-      <!-- Username Column -->
-      <ng-container matColumnDef="username">
-        <mat-header-cell *matHeaderCellDef>User</mat-header-cell>
-        <mat-cell *matCellDef="let user">{{user.username}}</mat-cell>
-      </ng-container>
-
-      <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
-      <mat-row *matRowDef="let users; columns: columnsToDisplay"></mat-row>
-    </mat-table>
+          <!-- Username Column -->
+          <ng-container matColumnDef="username">
+            <mat-header-cell *matHeaderCellDef>User</mat-header-cell>
+            <mat-cell *matCellDef="let user">{{user.username}}</mat-cell>
+          </ng-container>
+    
+          <!-- Role Column -->
+          <ng-container matColumnDef="role">
+            <mat-header-cell *matHeaderCellDef>Role</mat-header-cell>
+            <mat-cell *matCellDef="let user">{{user.role}}</mat-cell>
+          </ng-container>
+    
+          <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
+          <mat-row *matRowDef="let users; columns: columnsToDisplay"></mat-row>
+        </mat-table>
+      </mat-card-content>
+    </mat-card>
+    
   </div>
 </div>
