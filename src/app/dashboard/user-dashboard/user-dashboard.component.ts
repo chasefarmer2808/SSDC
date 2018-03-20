@@ -8,12 +8,16 @@ import { User } from 'app/services/user/user';
 @Component({
   selector: 'app-user-dashboard',
   templateUrl: './user-dashboard.component.html',
-  styleUrls: ['./user-dashboard.component.css', '../dashboard.component.css']
+  styleUrls: [
+    './user-dashboard.component.css', 
+    '../dashboard.component.css',
+    '../../app.component.css'
+  ]
 })
 export class UserDashboardComponent implements OnInit {
 
   users: User[];
-  columnsToDisplay: Array<string> = ['username'];
+  columnsToDisplay: Array<string> = ['username', 'role'];
   usersDataSource: MatTableDataSource<User>;
 
   constructor(private userService: UserService) { }

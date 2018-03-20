@@ -161,6 +161,11 @@
   justify-content: center;
 }
 
+.fill-space {
+  display: flex;
+  flex: 1 1 auto;
+}
+
 /* Fonts */
 
 .heading-font {
@@ -199,4 +204,18 @@
 
 .med-icon {
   font-size: 48px;
+}
+
+.flex-toolbar {
+  display: flex;
+  width: 100%;
+}
+
+mat-table {
+  overflow: auto;
+}
+
+.table-title-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
 }
