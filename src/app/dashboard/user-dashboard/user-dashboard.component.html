@@ -7,14 +7,18 @@
             <span>Users</span>
             <span class="fill-space"></span>
             <span class="header-actions">
-              <button mat-icon-button (click)="saveChanges()">
+              <button *ngIf="!dataSaving" mat-icon-button (click)="saveChanges()" [disabled]="usersToUpdate.size == 0">
                 <i class="material-icons">save</i>
               </button>
+              <mat-spinner [diameter]="60" *ngIf="dataSaving"></mat-spinner>
             </span>
           </mat-toolbar>
         </mat-card-title>
       </mat-card-header>
       <mat-card-content>
+        <div class="flex-center spinner-container" *ngIf="dataLoading">
+          <mat-spinner></mat-spinner>
+        </div>
         <mat-table [dataSource]="usersDataSource">
 
           <!-- Username Column -->

@@ -23,6 +23,8 @@ export class UserDashboardComponent implements OnInit {
   roleOptions: Array<string> = [];
   usersToUpdate: GenericSet<User>;
   changedRows: SelectionModel<User>;
+  dataLoading: boolean = true;
+  dataSaving: boolean = false;
 
   constructor(private userService: UserService) {
     this.usersToUpdate = new Set<User>();
@@ -36,6 +38,7 @@ export class UserDashboardComponent implements OnInit {
       .subscribe(
         users => {
           this.usersDataSource.data = users;
+          this.dataLoading = false;
         },
         err => {
           console.error(err);
@@ -56,13 +59,17 @@ export class UserDashboardComponent implements OnInit {
   }
 
   saveChanges() {
+    this.dataSaving = this.usersToUpdate.size > 0;
     this.userService.updateRoleMany(this.usersToUpdate)
       .subscribe(
         (res) => {
           console.log(res);
+          this.dataSaving = false;
+          this.usersToUpdate.clear();
           this.changedRows.clear();
         },
         (err) => {
+          this.dataSaving = false;
           console.log(err);
         }
       )
