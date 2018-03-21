@@ -9,6 +9,7 @@
     padding-top: 48px;
     display: grid;
     grid-template-columns: 1fr 1fr;
+    z-index: 1;
 }
 
 .control-arrow {
@@ -34,6 +35,7 @@
 }
 
 .dashboard-container {
+    z-index: -1;
     background-color: rgba(0, 0, 0, 0.2);
     box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
 }
