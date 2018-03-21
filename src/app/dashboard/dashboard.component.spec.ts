@@ -4,7 +4,6 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from 'app/modules/material.module';
 import { Router } from '@angular/router';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { DashboardComponent } from './dashboard.component';
 
@@ -26,8 +25,7 @@ describe('DashboardComponent', () => {
         HttpClientTestingModule, 
         RouterTestingModule,
         ReactiveFormsModule,
-        MaterialModule,
-        BrowserAnimationsModule
+        MaterialModule
       ]
     })
     .compileComponents();
