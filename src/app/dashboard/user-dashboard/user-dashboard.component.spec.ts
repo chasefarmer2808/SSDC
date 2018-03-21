@@ -8,6 +8,7 @@ import { Observable } from 'rxjs/Observable';
 import { UserDashboardComponent } from './user-dashboard.component';
 
 import { UserService } from 'app/services/user/user.service';
+import { AuthService } from 'app/services/auth/auth.service';
 
 import { User } from 'app/services/user/user';
 import { UsersMock } from 'app/services/user/users.mock';
@@ -22,7 +23,8 @@ describe('UserDashboardComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ UserDashboardComponent ],
       providers: [
-        UserService
+        UserService,
+        AuthService
       ],
       imports: [
         HttpClientTestingModule,

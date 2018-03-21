@@ -3,6 +3,7 @@ import { MatTableDataSource } from '@angular/material';
 import { SelectionModel } from '@angular/cdk/collections';
 
 import { UserService } from 'app/services/user/user.service'; 
+import { AuthService } from 'app/services/auth/auth.service';
 
 import { User } from 'app/services/user/user';
 import { ROLES } from 'app/services/user/roles';
@@ -25,8 +26,11 @@ export class UserDashboardComponent implements OnInit {
   changedRows: SelectionModel<User>;
   dataLoading: boolean = true;
   dataSaving: boolean = false;
+  sessionIsAdmin: boolean;
 
-  constructor(private userService: UserService) {
+  constructor(
+    private userService: UserService,
+    private authService: AuthService) {
     this.usersToUpdate = new Set<User>();
     this.changedRows = new SelectionModel<User>(true, []);
   }
@@ -34,6 +38,7 @@ export class UserDashboardComponent implements OnInit {
   ngOnInit() {
     this.usersDataSource = new MatTableDataSource();
     this.roleOptions = this.objectToValueArray(ROLES);
+    this.sessionIsAdmin = this.authService.hasRole(ROLES.ADMIN);
     this.userService.getAll()
       .subscribe(
         users => {

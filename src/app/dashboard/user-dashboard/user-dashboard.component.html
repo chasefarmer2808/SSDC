@@ -31,7 +31,7 @@
           <ng-container matColumnDef="role">
             <mat-header-cell *matHeaderCellDef>Role</mat-header-cell>
             <mat-cell *matCellDef="let user">
-              <mat-form-field>
+              <mat-form-field *ngIf="sessionIsAdmin">
                 <mat-select [(value)]="user.role" 
                             (selectionChange)="updateChangeList(user.username, $event.value)">
                   <mat-option *ngFor="let role of roleOptions" [value]="role">
@@ -39,6 +39,7 @@
                   </mat-option>
                 </mat-select>
               </mat-form-field>
+              <div *ngIf="!sessionIsAdmin" class="table-cell">{{user.role}}</div>
             </mat-cell>
           </ng-container>
     
