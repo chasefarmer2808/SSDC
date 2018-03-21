@@ -20,8 +20,7 @@ export class UserDashboardComponent implements OnInit {
   columnsToDisplay: Array<string> = ['username', 'role'];
   usersDataSource: MatTableDataSource<User>;
   roleOptions: Array<string> = [];
-
-  private usersToUpdate: GenericSet<User>;
+  usersToUpdate: GenericSet<User>;
 
   constructor(private userService: UserService) {
     this.usersToUpdate = new Set<User>();
@@ -42,11 +41,10 @@ export class UserDashboardComponent implements OnInit {
   }
 
   updateChangeList(username: string, role: string) {
-    this.getUserByUsername(username, (user:User) => {
-      if (user) {
-        this.usersToUpdate.add(user);
-      }
-    });
+    let user = this.getUserByUsername(username);
+    if (user) {
+      this.usersToUpdate.add(user);
+    }
   }
 
   saveChanges() {
@@ -70,14 +68,14 @@ export class UserDashboardComponent implements OnInit {
     return values;
   }
 
-  private getUserByUsername(username: string, callback) {
+  public getUserByUsername(username: string):User {
     this.usersDataSource.data.forEach(user => {
       if (user.username === username) {
-        callback(user)
+        return user;
       }
     });
 
-    callback(undefined);
+    return undefined;
   }
 
 }
