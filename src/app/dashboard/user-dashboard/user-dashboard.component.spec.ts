@@ -79,6 +79,14 @@ describe('UserDashboardComponent', () => {
     expect(component.usersDataSource.data).toEqual(UsersMock);
   });
 
+  it('should return user by username', () => {
+    let trueUser:User = UsersMock[0];
+    fixture.detectChanges();
+    component.usersDataSource.data = UsersMock;
+
+    expect(component.getUserByUsername(trueUser.username)).toEqual(trueUser);
+  });
+
   it('should return undefined if no user found', () => {
     fixture.detectChanges();
 

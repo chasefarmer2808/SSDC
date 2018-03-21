@@ -28,7 +28,8 @@
             <mat-header-cell *matHeaderCellDef>Role</mat-header-cell>
             <mat-cell *matCellDef="let user">
               <mat-form-field>
-                <mat-select [(value)]="user.role" (selectionChange)="updateChangeList(user.username, $event.value)">
+                <mat-select [(value)]="user.role" 
+                            (selectionChange)="updateChangeList(user.username, $event.value)">
                   <mat-option *ngFor="let role of roleOptions" [value]="role">
                     {{role}}
                   </mat-option>
@@ -38,7 +39,7 @@
           </ng-container>
     
           <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
-          <mat-row *matRowDef="let users; columns: columnsToDisplay"></mat-row>
+          <mat-row [ngClass]="{'highlight': changedRows.isSelected(users)}" *matRowDef="let users; columns: columnsToDisplay"></mat-row>
         </mat-table>
       </mat-card-content>
     </mat-card>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material';
+import { SelectionModel } from '@angular/cdk/collections';
 
 import { UserService } from 'app/services/user/user.service'; 
 
@@ -21,9 +22,11 @@ export class UserDashboardComponent implements OnInit {
   usersDataSource: MatTableDataSource<User>;
   roleOptions: Array<string> = [];
   usersToUpdate: GenericSet<User>;
+  changedRows: SelectionModel<User>;
 
   constructor(private userService: UserService) {
     this.usersToUpdate = new Set<User>();
+    this.changedRows = new SelectionModel<User>(true, []);
   }
 
   ngOnInit() {
@@ -44,7 +47,12 @@ export class UserDashboardComponent implements OnInit {
     let user = this.getUserByUsername(username);
     if (user) {
       this.usersToUpdate.add(user);
+      this.updateChangeRow(user);
     }
+  }
+
+  updateChangeRow(user: User) {
+    this.changedRows.select(user);
   }
 
   saveChanges() {
@@ -52,6 +60,7 @@ export class UserDashboardComponent implements OnInit {
       .subscribe(
         (res) => {
           console.log(res);
+          this.changedRows.clear();
         },
         (err) => {
           console.log(err);
@@ -69,13 +78,13 @@ export class UserDashboardComponent implements OnInit {
   }
 
   public getUserByUsername(username: string):User {
-    this.usersDataSource.data.forEach(user => {
+
+    for (let user of this.usersDataSource.data) {
       if (user.username === username) {
         return user;
       }
-    });
+    }
 
     return undefined;
   }
-
 }
