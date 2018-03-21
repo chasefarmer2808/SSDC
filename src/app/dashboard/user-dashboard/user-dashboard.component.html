@@ -12,6 +12,14 @@
               </button>
               <mat-spinner [diameter]="60" *ngIf="dataSaving"></mat-spinner>
             </span>
+            <div class="status-message-container">
+              <div *ngIf="saveSuccess" class="status-message success-message">
+                Success
+              </div>
+              <div *ngIf="saveSuccess == false" class="status-message fail-message" >
+                Fail
+              </div>
+            </div>
           </mat-toolbar>
         </mat-card-title>
       </mat-card-header>

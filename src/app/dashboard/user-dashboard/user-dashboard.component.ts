@@ -26,6 +26,7 @@ export class UserDashboardComponent implements OnInit {
   changedRows: SelectionModel<User>;
   dataLoading: boolean = true;
   dataSaving: boolean = false;
+  saveSuccess: boolean;
   sessionIsAdmin: boolean;
 
   constructor(
@@ -70,11 +71,13 @@ export class UserDashboardComponent implements OnInit {
         (res) => {
           console.log(res);
           this.dataSaving = false;
+          this.saveSuccess = true;
           this.usersToUpdate.clear();
           this.changedRows.clear();
         },
         (err) => {
           this.dataSaving = false;
+          this.saveSuccess = false;
           console.log(err);
         }
       )

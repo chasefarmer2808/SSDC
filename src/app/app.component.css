@@ -217,5 +217,19 @@ mat-table {
 
 .table-title-container {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 3fr;
+}
+
+/* message boxes */
+
+.status-message {
+  text-align: center;
+}
+
+.success-message {
+  background-color: rgba(76,175,80, 0.3);
+}
+
+.fail-message {
+  background-color: rgba(211,47,47, 0.3)
 }
