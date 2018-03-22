@@ -6,6 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Observable } from 'rxjs/Observable';
 
 import { UserDashboardComponent } from './user-dashboard.component';
+import { ProfileComponent } from './profile/profile.component';
 
 import { UserService } from 'app/services/user/user.service';
 import { AuthService } from 'app/services/auth/auth.service';
@@ -21,7 +22,10 @@ describe('UserDashboardComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ UserDashboardComponent ],
+      declarations: [ 
+        UserDashboardComponent,
+        ProfileComponent 
+      ],
       providers: [
         UserService,
         AuthService

@@ -25,6 +25,7 @@ import { DashboardComponent } from 'app/dashboard/dashboard.component';
 import { UserDashboardComponent } from 'app/dashboard/user-dashboard/user-dashboard.component';
 import { OfficersDashboardComponent } from 'app/dashboard/officers-dashboard/officers-dashboard.component';
 import { TeamsDashboardComponent } from 'app/dashboard/teams-dashboard/teams-dashboard.component';
+import { ProfileComponent } from 'app/dashboard/user-dashboard/profile/profile.component';
 
 import { KeyDirective } from 'app/directives/key/key.directive';
 import { ClickOutsideDirective } from 'app/directives/click-outside/click-outside.directive';
@@ -60,6 +61,7 @@ describe('RouteGuardService', () => {
         UserDashboardComponent,
         OfficersDashboardComponent,
         TeamsDashboardComponent,
+        ProfileComponent,
         KeyDirective,
         ClickOutsideDirective,
         ScrollInfoDirective,
