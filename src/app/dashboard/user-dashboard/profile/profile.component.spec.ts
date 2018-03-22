@@ -1,15 +1,15 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { MaterialModule } from 'app/modules/material.module';
 
-import { ProfileComponent } from './profile.component';
+import { ProfileComponent, ChangePasswordDialog } from './profile.component';
 
 describe('ProfileComponent', () => {
-  let component: ProfileComponent;
-  let fixture: ComponentFixture<ProfileComponent>;
+  let profileComponent: ProfileComponent;
+  let profileFixture: ComponentFixture<ProfileComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ProfileComponent ],
+      declarations: [ ProfileComponent, ChangePasswordDialog ],
       imports: [
         MaterialModule
       ]
@@ -18,11 +18,11 @@ describe('ProfileComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ProfileComponent);
-    component = fixture.componentInstance;
+    profileFixture = TestBed.createComponent(ProfileComponent);
+    profileComponent = profileFixture.componentInstance;
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(profileComponent).toBeTruthy();
   });
 });

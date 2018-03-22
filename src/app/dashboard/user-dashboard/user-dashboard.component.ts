@@ -48,7 +48,6 @@ export class UserDashboardComponent implements OnInit {
         users => {
           this.usersDataSource.data = users;
           this.currentUser = this.getSelf();
-          console.log(this.currentUser);
           this.dataLoading = false;
         },
         err => {
