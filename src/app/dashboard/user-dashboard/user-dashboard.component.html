@@ -1,4 +1,5 @@
 <div class="dashboard-container">
+  <app-profile *ngIf="currentUser" [user]="currentUser"></app-profile>
   <div class="table-container">
     <mat-card class="user-table-card">
       <mat-card-header>
@@ -6,12 +7,6 @@
           <mat-toolbar class="table-title-container">
             <span>Users</span>
             <span class="fill-space"></span>
-            <span class="header-actions">
-              <button *ngIf="!dataSaving" mat-icon-button (click)="saveChanges()" [disabled]="usersToUpdate.size == 0">
-                <i class="material-icons">save</i>
-              </button>
-              <mat-spinner [diameter]="60" *ngIf="dataSaving"></mat-spinner>
-            </span>
             <div class="status-message-container">
               <div *ngIf="saveSuccess" class="status-message success-message">
                 Success
@@ -20,6 +15,12 @@
                 Fail
               </div>
             </div>
+            <span class="header-actions">
+              <button *ngIf="!dataSaving" mat-icon-button (click)="saveChanges()" [disabled]="usersToUpdate.size == 0">
+                <i class="material-icons">save</i>
+              </button>
+              <mat-spinner [diameter]="60" *ngIf="dataSaving"></mat-spinner>
+            </span>
           </mat-toolbar>
         </mat-card-title>
       </mat-card-header>

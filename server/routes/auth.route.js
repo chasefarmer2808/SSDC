@@ -27,6 +27,7 @@ router.post('/login', upload.array(), function(req, res, next) {
       res.status(200).send({auth: true,
                             idToken: token,
                             expiresIn: EXPIRE_IN_SECONDS,
+                            username: user.username,
                             role: user.role});
   });
 });

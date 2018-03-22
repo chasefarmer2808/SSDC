@@ -5,6 +5,8 @@ import { SelectionModel } from '@angular/cdk/collections';
 import { UserService } from 'app/services/user/user.service'; 
 import { AuthService } from 'app/services/auth/auth.service';
 
+import { ProfileComponent } from 'app/dashboard/user-dashboard/profile/profile.component';
+
 import { User } from 'app/services/user/user';
 import { ROLES } from 'app/services/user/roles';
 import { GenericSet } from 'app/utility/generic-set';
@@ -23,6 +25,7 @@ export class UserDashboardComponent implements OnInit {
   usersDataSource: MatTableDataSource<User>;
   roleOptions: Array<string> = [];
   usersToUpdate: GenericSet<User>;
+  currentUser: User;
   changedRows: SelectionModel<User>;
   dataLoading: boolean = true;
   dataSaving: boolean = false;
@@ -44,6 +47,8 @@ export class UserDashboardComponent implements OnInit {
       .subscribe(
         users => {
           this.usersDataSource.data = users;
+          this.currentUser = this.getSelf();
+          console.log(this.currentUser);
           this.dataLoading = false;
         },
         err => {
@@ -101,5 +106,11 @@ export class UserDashboardComponent implements OnInit {
     }
 
     return undefined;
+  }
+
+  public getSelf(): User {
+    let currentUsername = this.authService.getSessionUsername();
+  
+    return this.getUserByUsername(currentUsername);
   }
 }
