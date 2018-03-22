@@ -19,6 +19,7 @@ export class UserService {
   private createUserUrl: string = `${environment.userUrl}/create`;
   private existUrl: string = `${environment.userUrl}/exist`;
   private updateRoleUrl: string = `${environment.userUrl}/role`;
+  private updatePasswordUrl: string = `${environment.userUrl}/password`;
 
   constructor(private http: HttpClient) { }
 
@@ -54,6 +55,17 @@ export class UserService {
     })
 
     return Observable.forkJoin(requests)
+  }
+
+  updatePassword(oldPass: string, newPass: string): Observable<any> {
+    let body = {
+      oldPassword: oldPass,
+      newPassword: newPass
+    };
+
+    return this.http
+      .put<any>(this.updatePasswordUrl, body)
+      .catch((err: any) => Observable.throw(err));
   }
 
 }

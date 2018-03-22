@@ -35,7 +35,7 @@ import { UserService } from 'app/services/user/user.service';
 import { UserDashboardComponent } from './dashboard/user-dashboard/user-dashboard.component';
 import { OfficersDashboardComponent } from './dashboard/officers-dashboard/officers-dashboard.component';
 import { TeamsDashboardComponent } from './dashboard/teams-dashboard/teams-dashboard.component';
-import { ProfileComponent } from './dashboard/user-dashboard/profile/profile.component';
+import { ProfileComponent, ChangePasswordDialog } from './dashboard/user-dashboard/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +64,8 @@ import { ProfileComponent } from './dashboard/user-dashboard/profile/profile.com
     UserDashboardComponent,
     OfficersDashboardComponent,
     TeamsDashboardComponent,
-    ProfileComponent
+    ProfileComponent,
+    ChangePasswordDialog
   ],
   imports: [
     BrowserModule,
@@ -77,7 +78,7 @@ import { ProfileComponent } from './dashboard/user-dashboard/profile/profile.com
     ReactiveFormsModule,
     MaterialModule
   ],
-  entryComponents: [ ImageDialogComponent ],
+  entryComponents: [ ImageDialogComponent, ChangePasswordDialog ],
   providers: [
     AuthService,
     RouteGuardService,
