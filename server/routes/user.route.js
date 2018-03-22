@@ -6,6 +6,7 @@ const mongoose = require('mongoose');
 const multer = require('multer');
 const upload = multer();
 const verifyToken = require('../app/verifyToken.js');
+const hashPassword = require('../app/hashPassword.js');
 
 const ROLES = {
   admin: 'admin',
@@ -68,18 +69,25 @@ router.post('/create', upload.array(), function(req, res, next) {
     role: req.body.role || ROLES.user
   });
 
-  newUser.save(function(err) {
+  hashPassword(req.body.password, function(err, hash) {
     if (err) {
-      return next(err);
-    } else {
-      newUser.validate(function(err) {
-        if (err) {
-            return next(err);
-        }
-        res.status(200).send({username: newUser.username, role: newUser.role});
-      });
+      return res.status(500).send('Error hashing password');
     }
-  })
+
+    newUser.password = hash;
+    newUser.save(function(err) {
+      if (err) {
+        return next(err);
+      } else {
+        newUser.validate(function(err) {
+          if (err) {
+              return next(err);
+          }
+          res.status(200).send({username: newUser.username, role: newUser.role});
+        });
+      }
+    })
+  });
 });
 
 router.get('/exist/:username', function(req, res, next) {
@@ -105,6 +113,41 @@ router.put('/role', upload.array(), verifyToken, isAdmin, function(req, res, nex
                           }
                           res.status(200).send(updatedUser);
                         });
+});
+
+router.put('/password', upload.array(), verifyToken, function(userId, req, res, next) {
+  var query = {_id: userId};
+  User.findById(query, function(err, user) {
+    if (err) {
+      return res.status(500).send('Error finding user');
+    }
+
+    if (!user) {
+      return res.status(404).send('No user found');
+    }
+
+    user.comparePassword(req.body.oldPassword, function(err, matches) {
+      if (err) {
+        return res.status(500).send('Error updating password');
+      }
+
+      if (!matches) {
+        return res.status(400).send('Unauthorized');
+      }
+
+      hashPassword(req.body.newPassword, function(err, hash) {
+        if (err) {
+          return res.status(500).send('Error hashing password');
+        }
+
+        user.password = hash;
+        user.save(function(user) {
+          return res.status(200).send(user);
+        });
+      });
+
+    });
+  });
 });
 
 module.exports = router;

@@ -59,20 +59,13 @@ userSchema.methods.toJSON = function() {
   return obj;
 }
 
-
-// Schema hooks
-userSchema.pre('save', hashPassword);
-
-function hashPassword(next) {
-  var newUser = this;
-  bcrypt.hash(newUser.password, SALT_ROUNDS, function(err, hash) {
+userSchema.methods.comparePassword = function(candidate, callback) {
+  bcrypt.compare(candidate, this.password, function(err, match) {
     if (err) {
-      return next(err);
+      return callback(err);
     }
-
-    newUser.password = hash;
-    next();
-  });
-};
+    callback(null, match);
+  })
+}
 
 var User = module.exports = mongoose.model(MODEL_NAME, userSchema);
