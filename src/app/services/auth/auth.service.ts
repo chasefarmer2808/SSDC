@@ -23,7 +23,9 @@ export class AuthService {
     const expiresAt = moment().add(authRes.expiresIn, 'second');
     localStorage.setItem('id_token', authRes.idToken);
     localStorage.setItem('expires_at', JSON.stringify(expiresAt.valueOf()));
+    localStorage.setItem('username', authRes.username);
     localStorage.setItem('role', authRes.role);
+    
   }
 
   login(user: User): Observable<any> {
@@ -52,5 +54,12 @@ export class AuthService {
   hasRole(role: string): boolean {
     let sessionRole = localStorage.getItem('role');
     return sessionRole === role;
+  }
+
+  getSessionUsername(): string {
+    if (this.isLoggedIn()) {
+      return localStorage.getItem('username');
+    }
+    return undefined;
   }
 }

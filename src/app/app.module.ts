@@ -35,6 +35,7 @@ import { UserService } from 'app/services/user/user.service';
 import { UserDashboardComponent } from './dashboard/user-dashboard/user-dashboard.component';
 import { OfficersDashboardComponent } from './dashboard/officers-dashboard/officers-dashboard.component';
 import { TeamsDashboardComponent } from './dashboard/teams-dashboard/teams-dashboard.component';
+import { ProfileComponent } from './dashboard/user-dashboard/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,8 @@ import { TeamsDashboardComponent } from './dashboard/teams-dashboard/teams-dashb
     GalleryGridComponent,
     UserDashboardComponent,
     OfficersDashboardComponent,
-    TeamsDashboardComponent
+    TeamsDashboardComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
