@@ -36,10 +36,17 @@ export class ProfileComponent implements OnInit {
 
 @Component({
   selector: 'change-password-dialog',
-  templateUrl: 'change-password-dialog.html'
+  templateUrl: 'change-password-dialog.html',
+  styleUrls: [
+    '../../dashboard.component.css',
+    '../../../app.component.css'
+  ]
 })
 export class ChangePasswordDialog {
   changePasswordForm: FormGroup;
+  loading: boolean = false;
+  changePasswordSuccess: boolean;
+  failMessage: string;
   
   constructor(
     public dialogRef: MatDialogRef<ChangePasswordDialog>,
@@ -58,14 +65,18 @@ export class ChangePasswordDialog {
   updatePassword() {
     let oldPassword = this.changePasswordForm.get('oldPassword').value;
     let newPassword = this.changePasswordForm.get('firstPassword').value;
+    this.loading = true;
 
     this.userService.updatePassword(oldPassword, newPassword)
       .subscribe(
         (res) => {
-          console.log(res);
+          this.loading = false;
+          this.changePasswordSuccess = true;
         },
         (err) => {
-          console.log(err);
+          this.loading = false;
+          this.changePasswordSuccess = false;
+          this.failMessage = err.error;
         }
       )
   }
