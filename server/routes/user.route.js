@@ -132,7 +132,7 @@ router.put('/password', upload.array(), verifyToken, function(userId, req, res, 
       }
 
       if (!matches) {
-        return res.status(400).send('Unauthorized');
+        return res.status(400).send('Invalid Password');
       }
 
       hashPassword(req.body.newPassword, function(err, hash) {
