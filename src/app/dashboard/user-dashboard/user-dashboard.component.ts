@@ -10,6 +10,7 @@ import { ProfileComponent } from 'app/dashboard/user-dashboard/profile/profile.c
 import { User } from 'app/services/user/user';
 import { ROLES } from 'app/services/user/roles';
 import { GenericSet } from 'app/utility/generic-set';
+import { UserDataSource } from 'app/services/user/user-data-source';
 
 @Component({
   selector: 'app-user-dashboard',
@@ -22,7 +23,7 @@ import { GenericSet } from 'app/utility/generic-set';
 })
 export class UserDashboardComponent implements OnInit {
   columnsToDisplay: Array<string> = ['select', 'username', 'role'];
-  usersDataSource: MatTableDataSource<User>;
+  usersDataSource: UserDataSource;
   roleOptions: Array<string> = [];
   usersToUpdate: GenericSet<User>;
   currentUser: User;
@@ -43,21 +44,11 @@ export class UserDashboardComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.usersDataSource = new MatTableDataSource();
+    this.currentUser = this.authService.getSessionUser()
+    this.usersDataSource = new UserDataSource(this.userService, this.currentUser.username);
+    this.usersDataSource.loadUsers();
     this.roleOptions = this.objectToValueArray(ROLES);
     this.sessionIsAdmin = this.authService.hasRole(ROLES.ADMIN);
-    this.userService.getAll()
-      .subscribe(
-        users => {
-          this.currentUser = this.authService.getSessionUser();
-          this.removeUserByUsername(users, this.authService.getSessionUsername());
-          this.usersDataSource.data = users; // must be done after session user is removed
-          this.dataLoading = false;
-        },
-        err => {
-          console.error(err);
-        }
-      )
   }
 
   updateChangeList(username: string) {
@@ -97,6 +88,8 @@ export class UserDashboardComponent implements OnInit {
       .subscribe(
         (res) => {
           this.deleting = false;
+          this.usersDataSource.loadUsers();
+          this.selectedRows.clear();
           console.log(res);
         },
         (err) => {
@@ -117,7 +110,7 @@ export class UserDashboardComponent implements OnInit {
 
   public getUserByUsername(username: string):User {
 
-    for (let user of this.usersDataSource.data) {
+    for (let user of this.usersDataSource.getUsers()) {
       if (user.username === username) {
         return user;
       }

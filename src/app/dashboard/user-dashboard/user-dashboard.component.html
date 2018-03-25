@@ -28,7 +28,7 @@
         </mat-card-title>
       </mat-card-header>
       <mat-card-content>
-        <div class="flex-center spinner-container" *ngIf="dataLoading">
+        <div class="flex-center spinner-container" *ngIf="usersDataSource.loading$ | async">
           <mat-spinner></mat-spinner>
         </div>
         <mat-table [dataSource]="usersDataSource">
