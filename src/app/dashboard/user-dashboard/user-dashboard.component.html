@@ -19,6 +19,9 @@
               <button *ngIf="!dataSaving" mat-icon-button (click)="saveChanges()" [disabled]="usersToUpdate.size == 0">
                 <i class="material-icons">save</i>
               </button>
+              <button mat-icon-button (click)="deleteSelectedUsers()" [disabled]="selectedRows.selected.length == 0">
+                <i class="material-icons">delete</i>
+              </button>
               <mat-spinner [diameter]="60" *ngIf="dataSaving"></mat-spinner>
             </span>
           </mat-toolbar>
@@ -29,6 +32,17 @@
           <mat-spinner></mat-spinner>
         </div>
         <mat-table [dataSource]="usersDataSource">
+
+          <!-- Select Checkbox -->
+          <ng-container matColumnDef="select">
+            <mat-header-cell *matHeaderCellDef>Select</mat-header-cell>
+              <mat-cell *matCellDef="let row">
+                <mat-checkbox (click)="$event.stopPropagation()"
+                              (change)="$event ? selectedRows.toggle(row) : null"
+                              [checked]="selectedRows.isSelected(row)">
+                </mat-checkbox>
+              </mat-cell>
+          </ng-container>
 
           <!-- Username Column -->
           <ng-container matColumnDef="username">
@@ -42,7 +56,7 @@
             <mat-cell *matCellDef="let user">
               <mat-form-field *ngIf="sessionIsAdmin">
                 <mat-select [(value)]="user.role" 
-                            (selectionChange)="updateChangeList(user.username, $event.value)">
+                            (selectionChange)="updateChangeList(user.username)">
                   <mat-option *ngFor="let role of roleOptions" [value]="role">
                     {{role}}
                   </mat-option>
