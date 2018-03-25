@@ -21,12 +21,13 @@ import { GenericSet } from 'app/utility/generic-set';
   ]
 })
 export class UserDashboardComponent implements OnInit {
-  columnsToDisplay: Array<string> = ['username', 'role'];
+  columnsToDisplay: Array<string> = ['select', 'username', 'role'];
   usersDataSource: MatTableDataSource<User>;
   roleOptions: Array<string> = [];
   usersToUpdate: GenericSet<User>;
   currentUser: User;
   changedRows: SelectionModel<User>;
+  selectedRows: SelectionModel<User>;
   dataLoading: boolean = true;
   dataSaving: boolean = false;
   saveSuccess: boolean;
@@ -37,6 +38,7 @@ export class UserDashboardComponent implements OnInit {
     private authService: AuthService) {
     this.usersToUpdate = new Set<User>();
     this.changedRows = new SelectionModel<User>(true, []);
+    this.selectedRows = new SelectionModel<User>(true, []);
   }
 
   ngOnInit() {
@@ -57,7 +59,7 @@ export class UserDashboardComponent implements OnInit {
       )
   }
 
-  updateChangeList(username: string, role: string) {
+  updateChangeList(username: string) {
     let user = this.getUserByUsername(username);
     if (user) {
       this.usersToUpdate.add(user);
@@ -86,6 +88,18 @@ export class UserDashboardComponent implements OnInit {
           console.log(err);
         }
       )
+  }
+
+  deleteSelectedUsers() {
+    this.userService.deleteUserMany(this.selectedRows.selected)
+      .subscribe(
+        (res) => {
+          console.log(res);
+        },
+        (err) => {
+          console.log(err);
+        }
+      );
   }
 
   public objectToValueArray(object): Array<any> {

@@ -68,4 +68,20 @@ export class UserService {
       .catch((err: any) => Observable.throw(err));
   }
 
+  deleteUser(username: string): Observable<any> {
+    return this.http
+      .delete<any>(`${environment.userUrl}/${username}`)
+      .catch((err: any) => Observable.throw(err));
+  }
+
+  deleteUserMany(users: User[]): Observable<any> {
+    let requests: Array<Observable<any>> = [];
+
+    users.forEach(user => {
+      requests.push(this.deleteUser(user.username));
+    });
+
+    return Observable.forkJoin(requests);
+  }
+
 }
