@@ -1,0 +1,76 @@
+<div class="dashboard-container">
+  <app-profile *ngIf="currentUser" [user]="currentUser"></app-profile>
+  <div class="table-container">
+    <mat-card class="user-table-card">
+      <mat-card-header>
+        <mat-card-title>
+          <mat-toolbar class="table-title-container">
+            <span>Users</span>
+            <span class="fill-space"></span>
+            <div class="status-message-container">
+              <div *ngIf="saveSuccess" class="status-message success-message">
+                Success
+              </div>
+              <div *ngIf="saveSuccess == false" class="status-message fail-message" >
+                Fail
+              </div>
+            </div>
+            <span class="header-actions">
+              <button *ngIf="!dataSaving" mat-icon-button (click)="saveChanges()" [disabled]="usersToUpdate.size == 0">
+                <i class="material-icons">save</i>
+              </button>
+              <button *ngIf="!deleting" mat-icon-button (click)="deleteSelectedUsers()" [disabled]="selectedRows.selected.length == 0">
+                <i class="material-icons">delete</i>
+              </button>
+              <mat-spinner [diameter]="60" *ngIf="dataSaving || deleting"></mat-spinner>
+            </span>
+          </mat-toolbar>
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="flex-center spinner-container" *ngIf="usersDataSource.loading$ | async">
+          <mat-spinner></mat-spinner>
+        </div>
+        <mat-table [dataSource]="usersDataSource">
+
+          <!-- Select Checkbox -->
+          <ng-container matColumnDef="select">
+            <mat-header-cell *matHeaderCellDef>Select</mat-header-cell>
+              <mat-cell *matCellDef="let row">
+                <mat-checkbox (click)="$event.stopPropagation()"
+                              (change)="$event ? selectedRows.toggle(row) : null"
+                              [checked]="selectedRows.isSelected(row)">
+                </mat-checkbox>
+              </mat-cell>
+          </ng-container>
+
+          <!-- Username Column -->
+          <ng-container matColumnDef="username">
+            <mat-header-cell *matHeaderCellDef>User</mat-header-cell>
+            <mat-cell *matCellDef="let user">{{user.username}}</mat-cell>
+          </ng-container>
+    
+          <!-- Role Column -->
+          <ng-container matColumnDef="role">
+            <mat-header-cell *matHeaderCellDef>Role</mat-header-cell>
+            <mat-cell *matCellDef="let user">
+              <mat-form-field *ngIf="sessionIsAdmin">
+                <mat-select [(value)]="user.role" 
+                            (selectionChange)="updateChangeList(user.username)">
+                  <mat-option *ngFor="let role of roleOptions" [value]="role">
+                    {{role}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+              <div *ngIf="!sessionIsAdmin" class="table-cell">{{user.role}}</div>
+            </mat-cell>
+          </ng-container>
+    
+          <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
+          <mat-row [ngClass]="{'highlight': changedRows.isSelected(users)}" *matRowDef="let users; columns: columnsToDisplay"></mat-row>
+        </mat-table>
+      </mat-card-content>
+    </mat-card>
+    
+  </div>
+</div>

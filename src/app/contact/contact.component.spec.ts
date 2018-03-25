@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { DebugElement } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MatInputModule, MatButtonModule, MatCheckboxModule, MatProgressSpinnerModule, NoConflictStyleCompatibilityMode } from '@angular/material';
+import { MatInputModule, MatButtonModule, MatCheckboxModule, MatProgressSpinnerModule } from '@angular/material';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { Observable } from 'rxjs/Observable';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -46,7 +46,6 @@ describe('ContactComponent', () => {
         MatButtonModule,
         MatCheckboxModule,
         MatProgressSpinnerModule,
-        NoConflictStyleCompatibilityMode,
         BrowserAnimationsModule
       ],
       providers: [EmailService, OfficersService, FacebookService]

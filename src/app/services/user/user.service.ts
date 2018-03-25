@@ -7,6 +7,7 @@ import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
+import 'rxjs/add/observable/forkJoin';
 
 import { User } from './user';
 
@@ -17,8 +18,16 @@ export class UserService {
 
   private createUserUrl: string = `${environment.userUrl}/create`;
   private existUrl: string = `${environment.userUrl}/exist`;
+  private updateRoleUrl: string = `${environment.userUrl}/role`;
+  private updatePasswordUrl: string = `${environment.userUrl}/password`;
 
   constructor(private http: HttpClient) { }
+
+  getAll(): Observable<User[]> {
+    return this.http
+      .get<User[]>(environment.userUrl)
+      .catch((err: any) => Observable.throw(err));
+  }
 
   createUser(user: User): Observable<User> {
     return this.http
@@ -30,6 +39,49 @@ export class UserService {
     return this.http
       .get<boolean>(`${this.existUrl}/${username}`)
       .catch((err: any) => Observable.throw(err));
+  }
+
+  updateRole(user: User): Observable<User> {
+    return this.http
+      .put<User>(`${this.updateRoleUrl}`, user)
+      .catch((err: any) => Observable.throw(err));
+  }
+
+  updateRoleMany(users: Set<User>): Observable<any> {
+    let requests: Array<Observable<User>> = [];
+
+    users.forEach(user => {
+      requests.push(this.updateRole(user));
+    })
+
+    return Observable.forkJoin(requests)
+  }
+
+  updatePassword(oldPass: string, newPass: string): Observable<any> {
+    let body = {
+      oldPassword: oldPass,
+      newPassword: newPass
+    };
+
+    return this.http
+      .put<any>(this.updatePasswordUrl, body)
+      .catch((err: any) => Observable.throw(err));
+  }
+
+  deleteUser(username: string): Observable<any> {
+    return this.http
+      .delete<any>(`${environment.userUrl}/${username}`)
+      .catch((err: any) => Observable.throw(err));
+  }
+
+  deleteUserMany(users: User[]): Observable<any> {
+    let requests: Array<Observable<any>> = [];
+
+    users.forEach(user => {
+      requests.push(this.deleteUser(user.username));
+    });
+
+    return Observable.forkJoin(requests);
   }
 
 }

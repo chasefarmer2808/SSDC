@@ -22,6 +22,10 @@ import { ImageDialogComponent } from 'app/gallery/gallery-grid/image-dialog/imag
 import { TeamsComponent } from 'app/teams/teams.component';
 import { LoginComponent } from 'app/login/login.component';
 import { DashboardComponent } from 'app/dashboard/dashboard.component';
+import { UserDashboardComponent } from 'app/dashboard/user-dashboard/user-dashboard.component';
+import { OfficersDashboardComponent } from 'app/dashboard/officers-dashboard/officers-dashboard.component';
+import { TeamsDashboardComponent } from 'app/dashboard/teams-dashboard/teams-dashboard.component';
+import { ProfileComponent } from 'app/dashboard/user-dashboard/profile/profile.component';
 
 import { KeyDirective } from 'app/directives/key/key.directive';
 import { ClickOutsideDirective } from 'app/directives/click-outside/click-outside.directive';
@@ -54,6 +58,10 @@ describe('RouteGuardService', () => {
         AppComponent,
         NavbarComponent,
         FooterComponent,
+        UserDashboardComponent,
+        OfficersDashboardComponent,
+        TeamsDashboardComponent,
+        ProfileComponent,
         KeyDirective,
         ClickOutsideDirective,
         ScrollInfoDirective,

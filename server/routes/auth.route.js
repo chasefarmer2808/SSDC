@@ -14,7 +14,7 @@ const FIFTEEN_MINUTES = 900;
 const EXPIRE_IN_SECONDS = FIFTEEN_MINUTES;
 
 router.post('/login', upload.array(), function(req, res, next) {
-User.findByCredentials(req.body.username, req.body.password,
+  User.findByCredentials(req.body.username, req.body.password,
     function(err, user) {
       if (err) {
         return res.status(err.status).send({auth: false, message: err.message});
@@ -26,7 +26,9 @@ User.findByCredentials(req.body.username, req.body.password,
 
       res.status(200).send({auth: true,
                             idToken: token,
-                            expiresIn: EXPIRE_IN_SECONDS});
+                            expiresIn: EXPIRE_IN_SECONDS,
+                            username: user.username,
+                            role: user.role});
   });
 });
 

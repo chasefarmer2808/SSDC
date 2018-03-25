@@ -23,6 +23,9 @@ export class AuthService {
     const expiresAt = moment().add(authRes.expiresIn, 'second');
     localStorage.setItem('id_token', authRes.idToken);
     localStorage.setItem('expires_at', JSON.stringify(expiresAt.valueOf()));
+    localStorage.setItem('username', authRes.username);
+    localStorage.setItem('role', authRes.role);
+    
   }
 
   login(user: User): Observable<any> {
@@ -36,6 +39,7 @@ export class AuthService {
   logout() {
     localStorage.removeItem('id_token');
     localStorage.removeItem('expires_at');
+    localStorage.removeItem('role');
   }
 
   isLoggedIn(): boolean {
@@ -45,5 +49,32 @@ export class AuthService {
   getExpiration() {
     const expiration = localStorage.getItem('expires_at');
     return moment(JSON.parse(expiration));
+  }
+
+  hasRole(role: string): boolean {
+    let sessionRole = localStorage.getItem('role');
+    return sessionRole === role;
+  }
+
+  getSessionUsername(): string {
+    if (this.isLoggedIn()) {
+      return localStorage.getItem('username');
+    }
+    return undefined;
+  }
+
+  getSessionItemIfLoggedIn(itemKey): string {
+    if (this.isLoggedIn()) {
+      return localStorage.getItem(itemKey);
+    }
+    return undefined;
+  }
+
+  getSessionUser(): any {
+    if (this.isLoggedIn()) {
+      let username = this.getSessionItemIfLoggedIn('username');
+      let role = this.getSessionItemIfLoggedIn('role');
+      return {username: username, role: role};
+    }
   }
 }

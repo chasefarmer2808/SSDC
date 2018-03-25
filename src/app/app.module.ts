@@ -32,6 +32,10 @@ import { RouteFilterPipe } from './pipes/route-filter/route-filter.pipe';
 import { AuthService } from './services/auth/auth.service';
 import { RouteGuardService } from './services/route-guard/route-guard.service';
 import { UserService } from 'app/services/user/user.service';
+import { UserDashboardComponent } from './dashboard/user-dashboard/user-dashboard.component';
+import { OfficersDashboardComponent } from './dashboard/officers-dashboard/officers-dashboard.component';
+import { TeamsDashboardComponent } from './dashboard/teams-dashboard/teams-dashboard.component';
+import { ProfileComponent, ChangePasswordDialog } from './dashboard/user-dashboard/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +60,12 @@ import { UserService } from 'app/services/user/user.service';
     TeamsComponent,
     ImageDialogComponent,
     FooterComponent,
-    GalleryGridComponent
+    GalleryGridComponent,
+    UserDashboardComponent,
+    OfficersDashboardComponent,
+    TeamsDashboardComponent,
+    ProfileComponent,
+    ChangePasswordDialog
   ],
   imports: [
     BrowserModule,
@@ -69,7 +78,7 @@ import { UserService } from 'app/services/user/user.service';
     ReactiveFormsModule,
     MaterialModule
   ],
-  entryComponents: [ ImageDialogComponent ],
+  entryComponents: [ ImageDialogComponent, ChangePasswordDialog ],
   providers: [
     AuthService,
     RouteGuardService,

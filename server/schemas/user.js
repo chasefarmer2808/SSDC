@@ -43,20 +43,29 @@ userSchema.statics.findByCredentials = function(username, password, callback) {
   });
 }
 
-
-// Schema hooks
-userSchema.pre('save', hashPassword);
-
-function hashPassword(next) {
-  var newUser = this;
-  bcrypt.hash(newUser.password, SALT_ROUNDS, function(err, hash) {
+userSchema.statics.getAll = function(callback) {
+  this.model(MODEL_NAME).find({}, {password: 0}, function(err, users) {
     if (err) {
-      return next(err);
+      return callback(err);
     }
 
-    newUser.password = hash;
-    next();
+    return callback(undefined, users);
   });
-};
+}
+
+userSchema.methods.toJSON = function() {
+  var obj = this.toObject();
+  delete obj.password;
+  return obj;
+}
+
+userSchema.methods.comparePassword = function(candidate, callback) {
+  bcrypt.compare(candidate, this.password, function(err, match) {
+    if (err) {
+      return callback(err);
+    }
+    callback(null, match);
+  })
+}
 
 var User = module.exports = mongoose.model(MODEL_NAME, userSchema);

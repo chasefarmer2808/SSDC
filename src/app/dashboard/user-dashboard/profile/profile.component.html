@@ -1,0 +1,20 @@
+<div class="profile-container">
+  <mat-card class="profile">
+    <div class="username-container">
+      {{user.username}}
+    </div>
+    <div class="role-container">
+      {{user.role}}
+    </div>
+    <div class="menu-container">
+      <button mat-icon-button [matMenuTriggerFor]="menu">
+          <i class="material-icons">more_vert</i>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button *ngFor="let item of menuItems" (click)="item.action()" mat-menu-item>
+          {{item.name}}
+        </button>
+      </mat-menu>
+    </div>
+  </mat-card>
+</div>

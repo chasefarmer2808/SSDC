@@ -1,0 +1,10 @@
+.profile {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: center;
+}
+
+.menu-container {
+    display: flex;
+    justify-content: flex-end;
+}

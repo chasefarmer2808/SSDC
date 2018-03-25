@@ -6,6 +6,7 @@ const mongoose = require('mongoose');
 const multer = require('multer');
 const upload = multer();
 const verifyToken = require('../app/verifyToken.js');
+const hashPassword = require('../app/hashPassword.js');
 
 const ROLES = {
   admin: 'admin',
@@ -15,8 +16,8 @@ const ROLES = {
 
 var User = require('../schemas/user.js');
 
-function isAdmin(req, res, next) {
-  User.findById(req.userId, {password: 0}, function(err, user) {
+function isAdmin(userId, req, res, next) {
+  User.findById(userId, {password: 0}, function(err, user) {
     if (err) {
       return res.status(500).send('Error finding the user');
     }
@@ -33,6 +34,34 @@ function isAdmin(req, res, next) {
   })
 }
 
+function isDev(userId, req, res, next) {
+  User.findById(userId, {password: 0}, function(err, user) {
+    if (err) {
+      return res.status(500).send('Error finding the user');
+    }
+
+    if (!user) {
+      return res.status(401).send('No user found');
+    }
+
+    if (user.role === ROLES.dev || user.role === ROLES.admin) {
+      next();
+    } else {
+      return res.status(401).send('Not authorized');
+    }
+  })
+}
+
+router.get('/', verifyToken, isDev, function(req, res, next) {
+  User.getAll(function(err, users) {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.status(200).send(users);
+    }
+  });
+});
+
 router.post('/create', upload.array(), function(req, res, next) {
   var newUser = new User({
     username: req.body.username,
@@ -40,18 +69,25 @@ router.post('/create', upload.array(), function(req, res, next) {
     role: req.body.role || ROLES.user
   });
 
-  newUser.save(function(err) {
+  hashPassword(req.body.password, function(err, hash) {
     if (err) {
-      return next(err);
-    } else {
-      newUser.validate(function(err) {
-        if (err) {
-            return next(err);
-        }
-        res.status(200).send({username: newUser.username, role: newUser.role});
-      });
+      return res.status(500).send('Error hashing password');
     }
-  })
+
+    newUser.password = hash;
+    newUser.save(function(err) {
+      if (err) {
+        return next(err);
+      } else {
+        newUser.validate(function(err) {
+          if (err) {
+              return next(err);
+          }
+          res.status(200).send({username: newUser.username, role: newUser.role});
+        });
+      }
+    })
+  });
 });
 
 router.get('/exist/:username', function(req, res, next) {
@@ -63,6 +99,64 @@ router.get('/exist/:username', function(req, res, next) {
     var doesExist = user != undefined;
 
     res.status(200).send(doesExist);
+  });
+});
+
+router.put('/role', upload.array(), verifyToken, isAdmin, function(req, res, next) {
+  var query = {username: req.body.username};
+  User.findOneAndUpdate(query,
+                        {role: req.body.role},
+                        {new: true},
+                        function(err, updatedUser) {
+                          if (err) {
+                            return res.status(500).send(new Error('Error updating user'));
+                          }
+                          res.status(200).send(updatedUser);
+                        });
+});
+
+router.put('/password', upload.array(), verifyToken, function(userId, req, res, next) {
+  var query = {_id: userId};
+  User.findById(query, function(err, user) {
+    if (err) {
+      return res.status(500).send('Error finding user');
+    }
+
+    if (!user) {
+      return res.status(404).send('No user found');
+    }
+
+    user.comparePassword(req.body.oldPassword, function(err, matches) {
+      if (err) {
+        return res.status(500).send('Error updating password');
+      }
+
+      if (!matches) {
+        return res.status(400).send('Invalid Password');
+      }
+
+      hashPassword(req.body.newPassword, function(err, hash) {
+        if (err) {
+          return res.status(500).send('Error hashing password');
+        }
+
+        user.password = hash;
+        user.save(function(user) {
+          return res.status(200).send(user);
+        });
+      });
+
+    });
+  });
+});
+
+router.delete('/:username', verifyToken, isAdmin, function(req, res, next) {
+  User.deleteOne({username: req.params.username}, function(err) {
+    if (err) {
+      return res.status(500).send('Could not delete user');
+    }
+
+    return res.status(200).send({message: `${req.params.username} successfully deleted`});
   });
 });
 

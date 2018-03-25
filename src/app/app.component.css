@@ -14,6 +14,15 @@
   border-bottom: 1px solid black;
 }
 
+.subheading {
+  display: inline-block;
+  margin-bottom: 24px;
+  margin-top: 16px;
+  font-size: 24px;
+  font-weight: bold;
+  border-bottom: 1px solid black;
+}
+
 .text-block {
   word-wrap: normal;
   margin-left: 16px;
@@ -161,6 +170,17 @@
   justify-content: center;
 }
 
+.flex-center-vert {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.fill-space {
+  display: flex;
+  flex: 1 1 auto;
+}
+
 /* Fonts */
 
 .heading-font {
@@ -195,4 +215,41 @@
 
 .chip-text {
   margin-left: 8px;
+}
+
+.med-icon {
+  font-size: 48px;
+}
+
+.flex-toolbar {
+  display: flex;
+  width: 100%;
+}
+
+mat-table {
+  overflow: auto;
+  max-height: 500px;
+}
+
+.table-title-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 3fr 1fr;
+}
+
+.mat-column-select {
+  overflow: visible;
+}
+
+/* message boxes */
+
+.status-message {
+  text-align: center;
+}
+
+.success-message {
+  background-color: rgba(76,175,80, 0.3);
+}
+
+.fail-message {
+  background-color: rgba(211,47,47, 0.3)
 }
