@@ -150,4 +150,14 @@ router.put('/password', upload.array(), verifyToken, function(userId, req, res, 
   });
 });
 
+router.delete('/:username', verifyToken, isAdmin, function(req, res, next) {
+  User.deleteOne({username: req.params.username}, function(err) {
+    if (err) {
+      return res.status(500).send('Could not delete user');
+    }
+
+    return res.status(200).send(`${req.params.username} successfully deleted`);
+  });
+});
+
 module.exports = router;
