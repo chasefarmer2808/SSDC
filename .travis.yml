@@ -1,20 +1,16 @@
 language: node_js
 node_js:
 - lts/*
-
 script: node_modules/karma/bin/karma start karma.conf.js --single-run
-
 before_install:
-  # - export CHROME_BIN=chromium_browser
-  - export DISPLAY=:99.0
-  - sh -e /etc/init.d/xvfb start
-  - sleep 3
-
+- export DISPLAY=:99.0
+- sh -e /etc/init.d/xvfb start
+- sleep 3
 before_deploy:
-  - npm run test:int
+- npm run test:int
 deploy:
   provider: heroku
   api_key:
-    secure: OMV4qA+TVti0Y2f/OEz8IYyrougZqCwvkl+4E0xIyfgj/9X48IRgxGlT8dfZk3Bcvp6nULpGs/X8K8Zw8OmpZwiQ4RB3phxp5HPdV8csjZn7XNZHnle+rQzp5o1qfvAI8z1ehEcef7a/UD16P8E9UdmsaRuLt2UbfxS5MXyTI7DBnQi01h2/1pNvnEsTuPE4L7exdN2pso+457pmDCsq4hPrnD25FW6WxXgU2qDRYTd4dyv0p7VV9auG21wc8wU4P83CfiQOiEoz/2t9YUAUz/LPlkhPotcTF+bA8hdZvV7hEthc7RNavxqXue1iLzQpsT9XohWjgx/ZPnAMIIulGNqRP5T6yYxt8AMQIcltYT1eHytEp8/JHSDPiY2y6CkBT8k8FHyFyqaGPx1EGcDe3qaJsfoefPUFkUl0Gv5lsQqpfnNdYInHQa9N7QfouBIUYaPWm6Zh1IPJvr73tHu8DAzjdaERGeDOGyj0Dk50Npj4MpzN78RNqtswSn+7pLkyxcdTVbrwABHaXjAFXIa+3lmbnh/Ul/kEDDk/kragokHOmHTG+DDjfxZnHnXlnwvj5dU7qvDUaEeM45dAkVpovGh1SL2ql9jr2IwkPSQkV/jHvxU2Ap/K6YHCRaTM85GcI59MrC2YkXGTMQDaEE4FSp6x4odTGTazAX646TUydaU=
+    secure: gDJ/dz5hkQI9aYQE3S8UPKmUS4rSCeuak1S4hC4ePr0UndSnGKdQRM4Jz2F4k95glFj00hxE8WVsWPs07ybYDcxTNQ03IFq6TIo+Ly+AVNBrRpvFfaHiAIgsIXFPKra58d46zqi+jK/aCRO+12exnOszpp7faIuu56ZoaMm/jdEXOStd9+1P4SiOz0VmqrbDepAUKEOenYhYhHVJuODVWy1XmcnY3f8Ti2jvni89uBPlyNkCJdX4A7XFzz1ZZa9vD5mCi2uT3f5hP7X1EBj4QNlrxedQX3HGh8tdqul7OGlGczbfPKr54sR2Dacwqsk9Bq1Q4qGiGjCMdkVkbozbB0JHGl4v7+PSaQIFHE3xOT8UGGYG9l01msaMMSLqREtFNeIjYfrXKB3BTyvvwY1mK9jQQrDqwQC+5hM/6Kxh5+MmWh+cWxgI0rNiufVpqLX6trwpa8NykAUyEYqq6GCDqZWs3oTPwVNH0yqqplEjnYuGVAVLN/8fZpk2kML/2qUlxTnWXhhcdnju5LnowDCOzNq22mbby7Mzz2ng+/KdupZG1bnwwPvN24E+my7XedjZciQpwy6WeOIrzipxGqxV4u06ri8fx/GDttYcwo61FhjXINessXodrw9hI/dekWin37DjXh/c7Ee95K4HLIxovh5DX/zC+YAyacFUk1fQ8JU=
   app:
     master: ssdc-website
