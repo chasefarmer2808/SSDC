@@ -46,8 +46,9 @@ export class UserDashboardComponent implements OnInit {
     this.userService.getAll()
       .subscribe(
         users => {
-          this.usersDataSource.data = users;
-          this.currentUser = this.getSelf();
+          this.currentUser = this.authService.getSessionUser();
+          this.removeUserByUsername(users, this.authService.getSessionUsername());
+          this.usersDataSource.data = users; // must be done after session user is removed
           this.dataLoading = false;
         },
         err => {
@@ -111,5 +112,14 @@ export class UserDashboardComponent implements OnInit {
     let currentUsername = this.authService.getSessionUsername();
   
     return this.getUserByUsername(currentUsername);
+  }
+
+  private removeUserByUsername(users: User[], username: string) {
+    for (let i in users) {
+      let user = users[i];
+      if (user.username === username) {
+        users.splice(+i, 1);
+      }
+    }
   }
 }

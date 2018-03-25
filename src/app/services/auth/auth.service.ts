@@ -62,4 +62,19 @@ export class AuthService {
     }
     return undefined;
   }
+
+  getSessionItemIfLoggedIn(itemKey): string {
+    if (this.isLoggedIn()) {
+      return localStorage.getItem(itemKey);
+    }
+    return undefined;
+  }
+
+  getSessionUser(): any {
+    if (this.isLoggedIn()) {
+      let username = this.getSessionItemIfLoggedIn('username');
+      let role = this.getSessionItemIfLoggedIn('role');
+      return {username: username, role: role};
+    }
+  }
 }
