@@ -156,7 +156,7 @@ router.delete('/:username', verifyToken, isAdmin, function(req, res, next) {
       return res.status(500).send('Could not delete user');
     }
 
-    return res.status(200).send(`${req.params.username} successfully deleted`);
+    return res.status(200).send({message: `${req.params.username} successfully deleted`});
   });
 });
 

@@ -19,6 +19,7 @@ describe('UserDashboardComponent', () => {
   let fixture: ComponentFixture<UserDashboardComponent>;
   let de: DebugElement;
   let userService: UserService;
+  let authService: AuthService;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -44,6 +45,9 @@ describe('UserDashboardComponent', () => {
     component = fixture.componentInstance;
     de = fixture.debugElement;
     userService = de.injector.get(UserService);
+    authService = de.injector.get(AuthService);
+
+    spyOn(authService, 'getSessionUser').and.returnValue(new User('test', 'test'));
   });
 
   it('should create', () => {
@@ -82,13 +86,13 @@ describe('UserDashboardComponent', () => {
     let getAllSpy = spyOn(userService, 'getAll').and.returnValue(Observable.of(UsersMock));
     fixture.detectChanges();
 
-    expect(component.usersDataSource.data).toEqual(UsersMock);
+    expect(component.usersDataSource.getUsers()).toEqual(UsersMock);
   });
 
   it('should return user by username', () => {
     let trueUser:User = UsersMock[0];
+    let getAllSpy = spyOn(userService, 'getAll').and.returnValue(Observable.of(UsersMock));
     fixture.detectChanges();
-    component.usersDataSource.data = UsersMock;
 
     expect(component.getUserByUsername(trueUser.username)).toEqual(trueUser);
   });
