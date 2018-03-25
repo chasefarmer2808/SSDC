@@ -19,10 +19,10 @@
               <button *ngIf="!dataSaving" mat-icon-button (click)="saveChanges()" [disabled]="usersToUpdate.size == 0">
                 <i class="material-icons">save</i>
               </button>
-              <button mat-icon-button (click)="deleteSelectedUsers()" [disabled]="selectedRows.selected.length == 0">
+              <button *ngIf="!deleting" mat-icon-button (click)="deleteSelectedUsers()" [disabled]="selectedRows.selected.length == 0">
                 <i class="material-icons">delete</i>
               </button>
-              <mat-spinner [diameter]="60" *ngIf="dataSaving"></mat-spinner>
+              <mat-spinner [diameter]="60" *ngIf="dataSaving || deleting"></mat-spinner>
             </span>
           </mat-toolbar>
         </mat-card-title>

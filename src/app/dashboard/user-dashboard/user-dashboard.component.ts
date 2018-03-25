@@ -30,6 +30,7 @@ export class UserDashboardComponent implements OnInit {
   selectedRows: SelectionModel<User>;
   dataLoading: boolean = true;
   dataSaving: boolean = false;
+  deleting: boolean = false;
   saveSuccess: boolean;
   sessionIsAdmin: boolean;
 
@@ -91,12 +92,15 @@ export class UserDashboardComponent implements OnInit {
   }
 
   deleteSelectedUsers() {
+    this.deleting = true;
     this.userService.deleteUserMany(this.selectedRows.selected)
       .subscribe(
         (res) => {
+          this.deleting = false;
           console.log(res);
         },
         (err) => {
+          this.deleting = false;
           console.log(err);
         }
       );
