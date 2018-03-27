@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 
-const MODEL_NAME = 'User'
+const MODEL_NAME = 'User';
 const SALT_ROUNDS = 12;
 
 var userSchema = mongoose.Schema({
