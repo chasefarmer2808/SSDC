@@ -29,6 +29,7 @@ import { ScrollInfoDirective } from './directives/onscroll/onscroll.directive';
 
 import { RouteFilterPipe } from './pipes/route-filter/route-filter.pipe';
 
+import { OfficersService } from 'app/services/officers/officers.service';
 import { AuthService } from './services/auth/auth.service';
 import { RouteGuardService } from './services/route-guard/route-guard.service';
 import { UserService } from 'app/services/user/user.service';
@@ -83,6 +84,7 @@ import { ProfileComponent, ChangePasswordDialog } from './dashboard/user-dashboa
     AuthService,
     RouteGuardService,
     UserService,
+    OfficersService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
