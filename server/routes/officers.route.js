@@ -5,7 +5,12 @@ const officers = require('../assets/data/officers.json');
 const ROLES = require('../config').roles;
 
 var multer = require('multer');
-var upload = multer({dest: 'uploads/'});
+
+var storage = require('../app/file.handler').imageStorage;
+
+var upload = multer({
+  storage: storage
+});
 
 var verifyToken = require('../middleware/verifyToken');
 var isRole = require('../middleware/isRole');
@@ -15,8 +20,18 @@ var Officer = require('../schemas/officer');
 
 const router = express.Router();
 
-router.get('/', verifyToken, isRole.isDev, function(req, res, next) {
+router.get('/', function(req, res, next) {
   Officer.getAll(function(err, officers) {
+    if (err) {
+      return res.status(500).send(err);
+    }
+
+    res.status(200).send(officers);
+  });
+});
+
+router.get('/photos', function(req, res, next) {
+  Officer.getAllPhotos(function(err, officers) {
     if (err) {
       return res.status(500).send(err);
     }
@@ -41,14 +56,14 @@ router.get('/president', function(req, res, next) {
   }
 });
 
-router.post('/create', upload.single('photo'), verifyToken, isRole.isDev, imageFilter, function(req, res, next) {
+router.post('/create', upload.single('photo'), /*verifyToken, isRole.isDev, imageFilter,*/ function(req, res, next) {
   var newOfficer = new Officer({
     name: req.body.name,
     role: req.body.role,
     emailAddress: req.body.emailAddress,
     bio: req.body.bio,
     photo: {
-      data: req.file.path,
+      filename: req.file.filename,
       contentType: req.file.mimetype
     }
   });

@@ -21,7 +21,7 @@ var officerSchema = mongoose.Schema({
     type: String
   },
   photo: {
-    data: Buffer,
+    filename: String,
     contentType: String
   }
 });

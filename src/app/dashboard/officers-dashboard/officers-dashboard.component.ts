@@ -4,6 +4,7 @@ import { OfficersService } from 'app/services/officers/officers.service';
 import { OfficerDataSource } from 'app/services/officers/officer-data-source';
 
 import { Officer } from 'app/services/officers/officer';
+import { environment } from 'environments/environment';
 
 @Component({
   selector: 'app-officers-dashboard',
@@ -13,19 +14,11 @@ import { Officer } from 'app/services/officers/officer';
 export class OfficersDashboardComponent implements OnInit {
 
   officersDataSource: OfficerDataSource;
+  serverUrl: string = environment.serverUrl;
 
   constructor(private officersService: OfficersService) { }
 
   ngOnInit() {
-    // this.officersService.getOfficers()
-    //   .subscribe(
-    //     (res) => {
-    //       console.log(res);
-    //     },
-    //     (err) => {
-    //       console.log('Error: ', err);
-    //     }
-    //   );
     this.officersDataSource = new OfficerDataSource(this.officersService);
     this.officersDataSource.loadOfficers();
   }

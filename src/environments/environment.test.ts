@@ -11,6 +11,7 @@ let testPort = 9876;
 export const environment = {
   production: false,
   envName: 'test',
+  serverUrl: `${localUrl}:${serverPort}`,
   assetsUrl: `${localUrl}:${testPort}/assets`,
   facebookUrl: `${localUrl}:${serverPort}/api/v1/fb/`,
   emailUrl: `${localUrl}:${serverPort}/api/v1/email/`,

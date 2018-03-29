@@ -65,6 +65,9 @@ function makeServer() {
   // tell express to serve static content stored in the BUILD_PATH path
   app.use(express.static(path.join(__dirname, `${BUILD_PATH}`)));
 
+  // enables http://localhost:5000/image.jpg
+  app.use(express.static(path.join(__dirname, '../assets/images')));
+
   // allow express to serve the app on any valid route
   app.all('/*', getHomePage);
 

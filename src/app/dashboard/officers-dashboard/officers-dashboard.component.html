@@ -3,6 +3,6 @@
 </p>
 <div class="dashboard-container">
   <div class="officers" *ngFor="let officer of officersDataSource.getOfficers()">
-    <img src="{{officer.photo.data.data}}">
+    <img src="{{serverUrl}}/{{officer.photo.filename}}">
   </div>
 </div>
