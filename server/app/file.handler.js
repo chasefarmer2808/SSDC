@@ -1,6 +1,7 @@
 'use strict';
 
 var multer = require('multer');
+var imageFileFilter = require('../middleware/imageFilter');
 
 var handler = {
   imageStorage: multer.diskStorage({
@@ -11,7 +12,8 @@ var handler = {
       var extention = getFileExtention(file.mimetype);
       cb(null, `${req.body.name}${extention}`)
     }
-  })
+  }),
+  imageFilter: imageFileFilter
 }
 
 module.exports = handler;
@@ -23,6 +25,11 @@ function getFileExtention(mimeType) {
     case 'image/jpg':
       extention = '.jpg';
       break;
+
+    case 'image/png':
+      extended = '.jpg';
+      break;
+
     default:
       extention = '.jpg';
   }

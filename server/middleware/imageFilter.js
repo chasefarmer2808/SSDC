@@ -1,17 +1,17 @@
 'use strict';
 
-function imageFilter(req, res, next) {
-  if (!req.file) {
-    return res.status(403).send('No file provided');
+function imageFilter(req, file, next) {
+  if (!file) {
+    return next(new Error('No file provided'), false);
   }
 
   var extentionRegEx = '/\.(jpg|jpeg|png|gif)$/';
 
   if (!file.originalname.match(extentionRegEx)) {
-    return res.status(403).send('File must be an image');
+    return next(new Error('File must be an image'), false);
   }
 
-  next();
+  next(null, true);
 }
 
 module.exports = imageFilter;

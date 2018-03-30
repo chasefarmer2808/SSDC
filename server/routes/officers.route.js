@@ -6,19 +6,18 @@ const ROLES = require('../config').roles;
 
 var multer = require('multer');
 
-var storage = require('../app/file.handler').imageStorage;
-
-var upload = multer({
-  storage: storage
-});
-
+var fileHandler = require('../app/file.handler');
 var verifyToken = require('../middleware/verifyToken');
 var isRole = require('../middleware/isRole');
-var imageFilter = require('../middleware/imageFilter');
 
 var Officer = require('../schemas/officer');
 
 const router = express.Router();
+
+var upload = multer({
+  storage: fileHandler.imageStorage,
+  fileFilter: fileHandler.imageFilter
+});
 
 router.get('/', function(req, res, next) {
   Officer.getAll(function(err, officers) {
@@ -56,7 +55,7 @@ router.get('/president', function(req, res, next) {
   }
 });
 
-router.post('/create', upload.single('photo'), /*verifyToken, isRole.isDev, imageFilter,*/ function(req, res, next) {
+router.post('/create', upload.single('photo'), /*verifyToken, isRole.isDev*/ function(req, res, next) {
   var newOfficer = new Officer({
     name: req.body.name,
     role: req.body.role,

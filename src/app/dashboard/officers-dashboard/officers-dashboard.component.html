@@ -1,8 +1,47 @@
-<p>
-  officers-dashboard works!
-</p>
 <div class="dashboard-container">
-  <div class="officers" *ngFor="let officer of officersDataSource.getOfficers()">
-    <img src="{{serverUrl}}/{{officer.photo.filename}}">
+  <div class="table-container">
+    <mat-card class="user-table-card">
+      <mat-card-header>
+        <mat-card-title>
+          <mat-toolbar class="table-title-container">
+            <span>Officers</span>
+            <span class="fill-space"></span>
+            <div class="status-message-container">
+              <!-- TODO -->
+            </div>
+            <span class="header-actions">
+              <button *ngIf="!dataSaving" mat-icon-button>
+                <i class="material-icons">save</i>
+              </button>
+              <button *ngIf="!deleting" mat-icon-button>
+                <i class="material-icons">delete</i>
+              </button>
+              <mat-spinner [diameter]="60" *ngIf="dataSaving || deleting"></mat-spinner>
+            </span>
+          </mat-toolbar>
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="flex-center spinner-container" *ngIf="officersDataSource.loading$ | async">
+          <mat-spinner></mat-spinner>
+        </div>
+        <mat-table [dataSource]="officersDataSource">
+
+          <!-- Photo Column -->
+          <ng-container matColumnDef="photo">
+            <mat-header-cell *matHeaderCellDef>Photo</mat-header-cell>
+            <mat-cell *matCellDef="let officer">
+              <div class="officer-photo-small">
+                <img src="{{serverUrl}}/{{officer.photo.filename}}">
+              </div>
+            </mat-cell>
+          </ng-container>
+
+          <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
+          <mat-row *matRowDef="let officers; columns: columnsToDisplay"></mat-row>
+
+        </mat-table>
+      </mat-card-content>
+    </mat-card>
   </div>
 </div>

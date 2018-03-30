@@ -9,12 +9,19 @@ import { environment } from 'environments/environment';
 @Component({
   selector: 'app-officers-dashboard',
   templateUrl: './officers-dashboard.component.html',
-  styleUrls: ['./officers-dashboard.component.css']
+  styleUrls: [
+    './officers-dashboard.component.css',
+    '../dashboard.component.css',
+    '../../app.component.css'
+  ]
 })
 export class OfficersDashboardComponent implements OnInit {
 
+  columnsToDisplay: Array<string> = ['photo'];
   officersDataSource: OfficerDataSource;
   serverUrl: string = environment.serverUrl;
+  dataSaving: boolean = false;
+  deleting: boolean = false;
 
   constructor(private officersService: OfficersService) { }
 
