@@ -8,7 +8,11 @@ export const OfficersMock: Officer[] = [
     bio: `Aastha is a 3th year Aerospace Engineering major at the University of
           Florida.`,
     email: 'aasthar@ufl.edu',
-    showInfo: false
+    showInfo: false,
+    photo: {
+      filename: 'test.jpg',
+      contentType: 'image/jpeg'
+    }
   },
   {
     name: 'John Kempienski',
@@ -17,7 +21,11 @@ export const OfficersMock: Officer[] = [
     bio: `John Kempienski is a 4th year Mechanical Engineering major at the
           University of Florida.`,
     email: 'kempienski@ufl.edu',
-    showInfo: false
+    showInfo: false,
+    photo: {
+      filename: 'test.jpg',
+      contentType: 'image/jpeg'
+    }
   },
   {
     name: 'Kevin Almanzar',
@@ -26,7 +34,11 @@ export const OfficersMock: Officer[] = [
     bio: `Kevin Almanzar is a 4th year Aerospace Engineering major at the
           University of Florida.`,
     email: 'kalmanzar5@ufl.edu',
-    showInfo: false
+    showInfo: false,
+    photo: {
+      filename: 'test.jpg',
+      contentType: 'image/jpeg'
+    }
   },
   {
     name: 'Zane Gyorko',
@@ -35,7 +47,11 @@ export const OfficersMock: Officer[] = [
     bio: `Zane Gyorko is a 2nd year Electrical Engineering major at the
           University of Florida.`,
     email: 'zgyorko@ufl.edu',
-    showInfo: false
+    showInfo: false,
+    photo: {
+      filename: 'test.jpg',
+      contentType: 'image/jpeg'
+    }
   },
   {
     name: 'Chris Charters',
@@ -43,7 +59,11 @@ export const OfficersMock: Officer[] = [
     pictureUrl: '../../../assets/images/chris.jpg',
     bio: 'Chris Charters has the best mom in the whole wide world',
     email: 'chartersauce25@ufl.edu',
-    showInfo: false
+    showInfo: false,
+    photo: {
+      filename: 'test.jpg',
+      contentType: 'image/jpeg'
+    }
   },
   {
     name: 'Logan Sprole',
@@ -53,7 +73,11 @@ export const OfficersMock: Officer[] = [
           Florida.  He uses a CM QuickFile Rapid keyboad with Cherry MX red
           switches.`,
     email: 'lsprole@ufl.edu',
-    showInfo: false
+    showInfo: false,
+    photo: {
+      filename: 'test.jpg',
+      contentType: 'image/jpeg'
+    }
   },
   {
     name: 'Chase Farmer',
@@ -63,6 +87,10 @@ export const OfficersMock: Officer[] = [
           of Florida.  He has a passion for IoT and full stack development.  He
           spends his free time running, rock climbing, and making websites.`,
     email: 'chasefarmer2808@ufl.edu',
-    showInfo: false
+    showInfo: false,
+    photo: {
+      filename: 'test.jpg',
+      contentType: 'image/jpeg'
+    }
   }
 ];

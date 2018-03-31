@@ -5,4 +5,8 @@ export interface Officer {
   bio: string;
   email: string;
   showInfo: boolean;
+  photo: {
+    filename: string;
+    contentType: string;
+  }
 }

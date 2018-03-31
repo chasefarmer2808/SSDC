@@ -1,4 +1,31 @@
-.officer-photo-small img {
-    width: 100px;
-    max-height: 150px;
+.profile-picture-small {
+    overflow: hidden;
+    width: 80px;
+    height: auto;
+    margin: 0 auto;
+    position: relative;
+}
+
+.profile-picture-small img {
+    width: 100%;
+    height: auto;
+}
+
+@media screen and (min-width: 720px) {
+    .profile-picture-small {
+        overflow: hidden;
+        width: 200px;
+        height: 200px;
+        margin: 0 auto;
+        position: relative;
+    }
+
+    .profile-picture-small img {
+        width: 100%;
+        height: auto;
+    }
+
+    .md-font-size {
+        font-size: 16px;
+    }
 }

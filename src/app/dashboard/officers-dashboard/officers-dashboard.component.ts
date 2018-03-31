@@ -17,7 +17,7 @@ import { environment } from 'environments/environment';
 })
 export class OfficersDashboardComponent implements OnInit {
 
-  columnsToDisplay: Array<string> = ['photo'];
+  columnsToDisplay: Array<string> = ['photo', 'name', 'role'];
   officersDataSource: OfficerDataSource;
   serverUrl: string = environment.serverUrl;
   dataSaving: boolean = false;
