@@ -34,7 +34,7 @@ import { AuthService } from './services/auth/auth.service';
 import { RouteGuardService } from './services/route-guard/route-guard.service';
 import { UserService } from 'app/services/user/user.service';
 import { UserDashboardComponent } from './dashboard/user-dashboard/user-dashboard.component';
-import { OfficersDashboardComponent } from './dashboard/officers-dashboard/officers-dashboard.component';
+import { OfficersDashboardComponent, AddOfficerDialog } from './dashboard/officers-dashboard/officers-dashboard.component';
 import { TeamsDashboardComponent } from './dashboard/teams-dashboard/teams-dashboard.component';
 import { ProfileComponent, ChangePasswordDialog } from './dashboard/user-dashboard/profile/profile.component';
 
@@ -66,7 +66,8 @@ import { ProfileComponent, ChangePasswordDialog } from './dashboard/user-dashboa
     OfficersDashboardComponent,
     TeamsDashboardComponent,
     ProfileComponent,
-    ChangePasswordDialog
+    ChangePasswordDialog,
+    AddOfficerDialog
   ],
   imports: [
     BrowserModule,
@@ -79,7 +80,11 @@ import { ProfileComponent, ChangePasswordDialog } from './dashboard/user-dashboa
     ReactiveFormsModule,
     MaterialModule
   ],
-  entryComponents: [ ImageDialogComponent, ChangePasswordDialog ],
+  entryComponents: [ 
+    ImageDialogComponent, 
+    ChangePasswordDialog,
+    AddOfficerDialog
+  ],
   providers: [
     AuthService,
     RouteGuardService,

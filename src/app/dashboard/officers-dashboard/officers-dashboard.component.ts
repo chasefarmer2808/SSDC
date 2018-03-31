@@ -1,10 +1,15 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, FormControl, Validators, ValidatorFn, AbstractControl } from '@angular/forms';
+import { MatDialogRef, MatDialog } from '@angular/material';
 
 import { OfficersService } from 'app/services/officers/officers.service';
 import { OfficerDataSource } from 'app/services/officers/officer-data-source';
 
 import { Officer } from 'app/services/officers/officer';
 import { environment } from 'environments/environment';
+
+const emailPattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+const lettersOnlyRegex = /^[a-zA-Z]+$/;
 
 @Component({
   selector: 'app-officers-dashboard',
@@ -23,11 +28,40 @@ export class OfficersDashboardComponent implements OnInit {
   dataSaving: boolean = false;
   deleting: boolean = false;
 
-  constructor(private officersService: OfficersService) { }
+  constructor(private officersService: OfficersService, private addOfficerDialog: MatDialog) { }
 
   ngOnInit() {
     this.officersDataSource = new OfficerDataSource(this.officersService);
     this.officersDataSource.loadOfficers();
   }
 
+  openAddOfficerDialog() {
+    this.addOfficerDialog.open(AddOfficerDialog);
+  }
+
+}
+
+@Component({
+  selector: 'add-officer-dialog',
+  templateUrl: 'add-officer-dialog.html',
+  styleUrls: [
+    '../dashboard.component.css',
+    '../../app.component.css'
+  ]
+})
+export class AddOfficerDialog {
+  addOfficerForm: FormGroup;
+
+  constructor(public dialogRef: MatDialogRef<AddOfficerDialog>) {
+    this.createAddOfficerForm();
+  }
+
+  createAddOfficerForm() {
+    this.addOfficerForm = new FormGroup({
+      name: new FormControl('', [Validators.required, Validators.pattern(lettersOnlyRegex)]),
+      role: new FormControl('', [Validators.required, Validators.pattern(lettersOnlyRegex)]),
+      emailAddress: new FormControl('', [Validators.required, Validators.pattern(emailPattern)]),
+      bio: new FormControl('', Validators.pattern(lettersOnlyRegex))
+    });
+  }
 }

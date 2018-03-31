@@ -10,11 +10,14 @@
               <!-- TODO -->
             </div>
             <span class="header-actions">
-              <button *ngIf="!dataSaving" mat-icon-button>
+              <!-- <button *ngIf="!dataSaving" mat-icon-button>
                 <i class="material-icons">save</i>
               </button>
               <button *ngIf="!deleting" mat-icon-button>
                 <i class="material-icons">delete</i>
+              </button> -->
+              <button mat-icon-button (click)="openAddOfficerDialog()">
+                <i class="material-icons">add</i>
               </button>
               <mat-spinner [diameter]="60" *ngIf="dataSaving || deleting"></mat-spinner>
             </span>
