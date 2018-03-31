@@ -51,6 +51,7 @@ export class OfficersDashboardComponent implements OnInit {
 })
 export class AddOfficerDialog {
   addOfficerForm: FormGroup;
+  officerPhoto: File;
 
   constructor(public dialogRef: MatDialogRef<AddOfficerDialog>) {
     this.createAddOfficerForm();
@@ -58,10 +59,21 @@ export class AddOfficerDialog {
 
   createAddOfficerForm() {
     this.addOfficerForm = new FormGroup({
-      name: new FormControl('', [Validators.required, Validators.pattern(lettersOnlyRegex)]),
-      role: new FormControl('', [Validators.required, Validators.pattern(lettersOnlyRegex)]),
-      emailAddress: new FormControl('', [Validators.required, Validators.pattern(emailPattern)]),
-      bio: new FormControl('', Validators.pattern(lettersOnlyRegex))
+      name: new FormControl('test', [Validators.required, Validators.pattern(lettersOnlyRegex)]),
+      role: new FormControl('test', [Validators.required, Validators.pattern(lettersOnlyRegex)]),
+      emailAddress: new FormControl('test@test.com', [Validators.required, Validators.pattern(emailPattern)]),
+      bio: new FormControl('test', Validators.pattern(lettersOnlyRegex)),
+      photo: new FormControl(this.officerPhoto)
     });
+  }
+
+  addOfficer() {
+    console.log(this.addOfficerForm);
+  }
+
+  handlePhotoUpload(imgFile: File) {
+    console.log('here')
+    console.log(imgFile);
+    this.officerPhoto = imgFile;
   }
 }

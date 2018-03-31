@@ -1,12 +1,47 @@
 <div class="add-officer-container">
     <form [formGroup]="addOfficerForm" novalidate>
-        <div class="subheading heading-font">Add Officer</div>
+        <div class="form-header flex-center">
+            <div class="subheading heading-font">Add Officer</div>
+            <div class="close-dialog-button">
+                <button mat-mini-fab (click)="dialogRef.close()">
+                    <i class="material-icons">close</i>
+                </button>
+            </div>
+        </div>
         <div class="form-container flex-center-vert">
             <div class="form-input-container">
                 <mat-form-field class="full-width">
                     <input type="text" matInput formControlName="name" placeholder="Name" required>
                 </mat-form-field>
             </div>
+            <div class="form-input-container">
+                <mat-form-field class="full-width">
+                    <input type="text" matInput formControlName="role" placeholder="Role" required>
+                </mat-form-field>
+            </div>
+            <div class="form-input-container">
+                <mat-form-field class="full-width">
+                    <input type="text" matInput formControlName="emailAddress" placeholder="Email Address" required>
+                </mat-form-field>
+            </div>
+            <div class="form-input-container">
+                <mat-form-field class="full-width">
+                    <textarea matInput matTextareaAutosize formControlName="bio" placeholder="Bio"></textarea>
+                </mat-form-field>
+            </div>
+            <div class="form-input-container flex-center file-upload-button">
+                <button class="flex-center" (click)="imgFileInput.click()" color="primary" mat-raised-button>
+                    <i class="material-icons">photo</i>
+                    <div class="inline">Attach Photo</div>
+                </button>
+                <input #imgFileInput type="file" class="hidden" (change)="handlePhotoUpload($event.target.files[0])">
+            </div>
+            <button mat-raised-button (click)="addOfficer()" [disabled]="addOfficerForm.invalid">
+                <div>Submit</div>
+                <div class="flex-center">
+                    <mat-spinner [diameter]="60"></mat-spinner>
+                </div>
+            </button>
         </div>
     </form>
 </div>

@@ -52,3 +52,10 @@
 .highlight {
     background-color: #b0b0b0;
 }
+
+.close-dialog-button {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 8px;
+}

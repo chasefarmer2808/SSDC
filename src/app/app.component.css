@@ -110,6 +110,14 @@
   display: inline-block;      
 }
 
+.hidden {
+  display: none;
+}
+
+.file-upload-button {
+  margin-bottom: 16px;
+}
+
 /* Banners */
 
 .banner-container-small {
@@ -179,6 +187,10 @@
 .fill-space {
   display: flex;
   flex: 1 1 auto;
+}
+
+.inline-text {
+  display: inline-block;
 }
 
 /* Fonts */
