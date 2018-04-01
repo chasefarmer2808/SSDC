@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators, ValidatorFn, AbstractControl } from '@angular/forms';
 import { MatDialogRef, MatDialog } from '@angular/material';
 
@@ -50,6 +50,7 @@ export class OfficersDashboardComponent implements OnInit {
   selector: 'add-officer-dialog',
   templateUrl: 'add-officer-dialog.html',
   styleUrls: [
+    './officers-dashboard.component.css',
     '../dashboard.component.css',
     '../../app.component.css'
   ]
@@ -60,10 +61,14 @@ export class AddOfficerDialog {
   addingOfficer: boolean = false;
   addOfficerSuccess: boolean = false;
   addOfficerError: any;
+  previewImageUrl: string;
+
+  @ViewChild('previewImage') previewImage: ElementRef;
 
   constructor(public dialogRef: MatDialogRef<AddOfficerDialog>, 
               private officersService: OfficersService) {
     this.createAddOfficerForm();
+    
   }
 
   createAddOfficerForm() {
@@ -98,10 +103,15 @@ export class AddOfficerDialog {
 
   handlePhotoUpload(imgFile: File) {
     this.addOfficerForm.get('photo').setValue(imgFile);
+
+    let reader = new FileReader();
+    reader.onload = (event: any) => {
+      this.previewImageUrl = event.target.result;
+    }
+    reader.readAsDataURL(imgFile);
   }
 
   private constructFormData(): FormData {
-    console.log(this.addOfficerForm)
     let formData = new FormData();
 
     for (let key of Object.keys(this.addOfficerForm.value)) {

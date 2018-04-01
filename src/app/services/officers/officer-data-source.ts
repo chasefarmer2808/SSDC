@@ -33,7 +33,6 @@ export class OfficerDataSource implements DataSource<Officer> {
                 finalize(() => this.laodingSubject.next(false))
             )
             .subscribe(officers => {
-                console.log(officers)
                 this.officersSubject.next(officers);
             });
     }

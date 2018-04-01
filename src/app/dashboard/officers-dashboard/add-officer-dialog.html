@@ -50,7 +50,12 @@
                 </button>
                 <input #imgFileInput type="file" class="hidden" (change)="handlePhotoUpload($event.target.files[0])">
             </div>
-            <button *ngIf="!addOfficerSuccess" mat-raised-button (click)="addOfficer()" [disabled]="addOfficerForm.invalid">
+            <div class="flex-center">
+                <div *ngIf="previewImageUrl" class="profile-preview">
+                    <img #previewImage src="{{previewImageUrl}}" *ngIf="previewImageUrl" id="profile-preview-image">
+                </div>
+            </div>
+            <button class="submit-button" *ngIf="!addOfficerSuccess" mat-raised-button (click)="addOfficer()" [disabled]="addOfficerForm.invalid">
                 <div *ngIf="!addingOfficer">Submit</div>
                 <div *ngIf="addingOfficer" class="flex-center">
                     <mat-spinner [diameter]="60"></mat-spinner>
