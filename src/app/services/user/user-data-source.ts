@@ -32,7 +32,7 @@ export class UserDataSource implements DataSource<User> {
         this.loadingSubject.next(true);
         this.userService.getAll()
             .pipe(
-                map(users => users.filter(user => user.username !== this.username)),
+                map(users => users.filter(user => user.username !== this.sessionUsername)),
                 catchError(() => of([])),
                 finalize(() => this.loadingSubject.next(false))
             )
