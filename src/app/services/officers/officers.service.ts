@@ -24,7 +24,6 @@ export class OfficersService {
   }
 
   createOfficer(newOfficer: FormData): Observable<Officer> {
-    console.log(newOfficer);
     return this.http
       .post<Officer>(`${environment.officersUrl}create`, newOfficer)
       .catch(this.handleObservableError);

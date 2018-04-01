@@ -11,7 +11,7 @@ import { Officer } from 'app/services/officers/officer';
 import { environment } from 'environments/environment';
 
 const emailPattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-const lettersOnlyRegex = /^[a-zA-Z]+$/;
+const lettersOnlyRegex = /^[a-zA-Z\s]+$/;
 
 @Component({
   selector: 'app-officers-dashboard',
@@ -68,10 +68,11 @@ export class AddOfficerDialog {
 
   createAddOfficerForm() {
     this.addOfficerForm = new FormGroup({
-      name: new FormControl('', [Validators.required, Validators.pattern(lettersOnlyRegex)]),
+      firstName: new FormControl('', [Validators.required, Validators.pattern(lettersOnlyRegex)]),
+      lastName: new FormControl('', [Validators.required, Validators.pattern(lettersOnlyRegex)]),
       role: new FormControl('', [Validators.required, Validators.pattern(lettersOnlyRegex)]),
       emailAddress: new FormControl('', [Validators.required, Validators.pattern(emailPattern)]),
-      bio: new FormControl('', Validators.pattern(lettersOnlyRegex)),
+      bio: new FormControl(''),
       photo: new FormControl(null, Validators.required)
     });
   }

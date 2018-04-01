@@ -10,7 +10,7 @@ var handler = {
     },
     filename: function (req, file, cb) {
       var extention = getFileExtention(file.mimetype);
-      cb(null, `${req.body.name}${extention}`)
+      cb(null, `${req.body.firstName}-${req.body.lastName}${extention}`)
     }
   }),
   imageFilter: imageFileFilter

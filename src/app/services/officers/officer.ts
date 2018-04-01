@@ -1,5 +1,6 @@
 export interface Officer {
-  name: string;
+  firstName: string;
+  lastName: string;
   role: string;
   pictureUrl: string;
   bio: string;

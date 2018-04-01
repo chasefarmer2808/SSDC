@@ -2,7 +2,8 @@ import { Officer } from './officer';
 
 export const OfficersMock: Officer[] = [
   {
-    name: 'Aastha Rajbhandary',
+    firstName: 'Aastha',
+    lastName: 'Rajbhandary',
     role: 'President',
     pictureUrl: '../../../assets/images/aastha.jpg',
     bio: `Aastha is a 3th year Aerospace Engineering major at the University of
@@ -12,7 +13,8 @@ export const OfficersMock: Officer[] = [
     photo: new File([], 'test.jpg')
   },
   {
-    name: 'John Kempienski',
+    firstName: 'John',
+    lastName: 'Kempienski',
     role: 'VP Internal',
     pictureUrl: '../../../assets/images/john.jpg',
     bio: `John Kempienski is a 4th year Mechanical Engineering major at the
@@ -22,7 +24,8 @@ export const OfficersMock: Officer[] = [
     photo: new File([], 'test.jpg')
   },
   {
-    name: 'Kevin Almanzar',
+    firstName: 'Kevin',
+    lastName: 'Almanzar',
     role: 'VP External',
     pictureUrl: '../../../assets/images/kevin.jpg',
     bio: `Kevin Almanzar is a 4th year Aerospace Engineering major at the
@@ -33,7 +36,8 @@ export const OfficersMock: Officer[] = [
 
   },
   {
-    name: 'Zane Gyorko',
+    firstName: 'Zane',
+    lastName: 'Gyorko',
     role: 'BEC Rep',
     pictureUrl: '../../../assets/images/zane.jpg',
     bio: `Zane Gyorko is a 2nd year Electrical Engineering major at the
@@ -43,7 +47,8 @@ export const OfficersMock: Officer[] = [
     photo: new File([], 'test.jpg')
   },
   {
-    name: 'Chris Charters',
+    firstName: 'Chris',
+    lastName: 'Charters',
     role: 'Treasurer',
     pictureUrl: '../../../assets/images/chris.jpg',
     bio: 'Chris Charters has the best mom in the whole wide world',
@@ -52,7 +57,8 @@ export const OfficersMock: Officer[] = [
     photo: new File([], 'test.jpg')
   },
   {
-    name: 'Logan Sprole',
+    firstName: 'Logan',
+    lastName: 'Sprole',
     role: 'Secretary',
     pictureUrl: '../../../assets/images/logan.jpg',
     bio: `Logan Sprole is a 3rd year Economics major at the University of
@@ -63,7 +69,8 @@ export const OfficersMock: Officer[] = [
     photo: new File([], 'test.jpg')
   },
   {
-    name: 'Chase Farmer',
+    firstName: 'Chase',
+    lastName: 'Farmer',
     role: 'Web Master',
     pictureUrl: '../../../assets/images/chase.jpg',
     bio: `Chase Farmer is a 5th year computer engineering major at the University

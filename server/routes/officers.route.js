@@ -70,7 +70,8 @@ router.get('/president', function(req, res, next) {
 
 router.post('/create', upload.single('photo'), /*verifyToken, isRole.isDev*/ function(req, res, next) {
   var newOfficer = new Officer({
-    name: req.body.name,
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
     role: req.body.role,
     emailAddress: req.body.emailAddress,
     bio: req.body.bio,

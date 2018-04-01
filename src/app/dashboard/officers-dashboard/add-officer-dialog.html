@@ -11,9 +11,16 @@
         <div class="form-container flex-center-vert">
             <div class="form-input-container">
                 <mat-form-field class="full-width">
-                    <input type="text" matInput formControlName="name" placeholder="Name" required>
-                    <mat-error *ngIf="addOfficerForm.controls['name'].hasError('required')">This field is required</mat-error>
-                    <mat-error *ngIf="addOfficerForm.controls['name'].hasError('pattern') && !addOfficerForm.controls['name'].hasError('required')">Letters only, please</mat-error>
+                    <input type="text" matInput formControlName="firstName" placeholder="First name" required>
+                    <mat-error *ngIf="addOfficerForm.controls['firstName'].hasError('required')">This field is required</mat-error>
+                    <mat-error *ngIf="addOfficerForm.controls['firstName'].hasError('pattern') && !addOfficerForm.controls['firstName'].hasError('required')">Letters only, please</mat-error>
+                </mat-form-field>
+            </div>
+            <div class="form-input-container">
+                <mat-form-field class="full-width">
+                    <input type="text" matInput formControlName="lastName" placeholder="Last name" required>
+                    <mat-error *ngIf="addOfficerForm.controls['lastName'].hasError('required')">This field is required</mat-error>
+                    <mat-error *ngIf="addOfficerForm.controls['lastName'].hasError('pattern') && !addOfficerForm.controls['lastName'].hasError('required')">Letters only, please</mat-error>
                 </mat-form-field>
             </div>
             <div class="form-input-container">
