@@ -35,6 +35,9 @@ export class OfficersDashboardComponent implements OnInit {
   ngOnInit() {
     this.officersDataSource = new OfficerDataSource(this.officersService);
     this.officersDataSource.loadOfficers();
+    this.addOfficerDialog.afterAllClosed.subscribe(() => {
+      this.officersDataSource.loadOfficers();
+    });
   }
 
   openAddOfficerDialog() {
