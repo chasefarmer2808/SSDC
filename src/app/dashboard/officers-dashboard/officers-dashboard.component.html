@@ -7,19 +7,16 @@
             <span>Officers</span>
             <span class="fill-space"></span>
             <div class="status-message-container">
-              <!-- TODO -->
+            <app-status-message [success]="deleteSuccess" [failMessage]="deleteError"></app-status-message>
             </div>
             <span class="header-actions">
-              <!-- <button *ngIf="!dataSaving" mat-icon-button>
-                <i class="material-icons">save</i>
-              </button>
-              <button *ngIf="!deleting" mat-icon-button>
+              <button *ngIf="!deleting" (click)="deleteSelectedOfficers()" mat-icon-button [disabled]="selectedRows.selected.length == 0">
                 <i class="material-icons">delete</i>
-              </button> -->
+              </button>
               <button mat-icon-button (click)="openAddOfficerDialog()">
                 <i class="material-icons">add</i>
               </button>
-              <mat-spinner [diameter]="60" *ngIf="dataSaving || deleting"></mat-spinner>
+              <mat-spinner [diameter]="60" *ngIf="deleting"></mat-spinner>
             </span>
           </mat-toolbar>
         </mat-card-title>
@@ -29,6 +26,17 @@
           <mat-spinner></mat-spinner>
         </div>
         <mat-table [dataSource]="officersDataSource">
+
+          <!-- Select Checkbox -->
+          <ng-container matColumnDef="select">
+            <mat-header-cell *matHeaderCellDef>Select</mat-header-cell>
+            <mat-cell *matCellDef="let row">
+              <mat-checkbox (click)="$event.stopPropagation()"
+                            (change)="$event ? selectedRows.toggle(row) : null"
+                            [checked]="selectedRows.isSelected(row)">
+              </mat-checkbox>
+            </mat-cell>
+          </ng-container>
 
           <!-- Photo Column -->
           <ng-container matColumnDef="photo">

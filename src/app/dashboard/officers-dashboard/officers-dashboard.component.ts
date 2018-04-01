@@ -25,12 +25,13 @@ const lettersOnlyRegex = /^[a-zA-Z\s]+$/;
 })
 export class OfficersDashboardComponent implements OnInit {
 
-  columnsToDisplay: Array<string> = ['photo', 'name', 'role'];
+  columnsToDisplay: Array<string> = ['select', 'photo', 'name', 'role'];
   officersDataSource: OfficerDataSource;
   serverUrl: string = environment.serverUrl;
   selectedRows: SelectionModel<Officer>
-  dataSaving: boolean = false;
   deleting: boolean = false;
+  deleteSuccess: boolean = false;
+  deleteError: any;
 
   constructor(private officersService: OfficersService,
               private addOfficerDialog: MatDialog) {
@@ -47,6 +48,26 @@ export class OfficersDashboardComponent implements OnInit {
 
   openAddOfficerDialog() {
     this.addOfficerDialog.open(AddOfficerDialog);
+  }
+
+  deleteSelectedOfficers() {
+    this.deleting = true;
+    this.officersService.deleteOfficerMany(this.selectedRows.selected)
+      .subscribe(
+        (res) => {
+          this.officersDataSource.loadOfficers();
+          this.selectedRows.clear();
+          this.deleteSuccess = true;
+          this.deleting = false;
+          console.log(res);
+        },
+        (err) => {
+          this.deleteSuccess = false;
+          this.deleteError = err;
+          this.deleting = false;
+          console.log(err);
+        }
+      );
   }
 
 }
