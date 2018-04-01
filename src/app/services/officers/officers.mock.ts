@@ -9,10 +9,7 @@ export const OfficersMock: Officer[] = [
           Florida.`,
     email: 'aasthar@ufl.edu',
     showInfo: false,
-    photo: {
-      filename: 'test.jpg',
-      contentType: 'image/jpeg'
-    }
+    photo: new File([], 'test.jpg')
   },
   {
     name: 'John Kempienski',
@@ -22,10 +19,7 @@ export const OfficersMock: Officer[] = [
           University of Florida.`,
     email: 'kempienski@ufl.edu',
     showInfo: false,
-    photo: {
-      filename: 'test.jpg',
-      contentType: 'image/jpeg'
-    }
+    photo: new File([], 'test.jpg')
   },
   {
     name: 'Kevin Almanzar',
@@ -35,10 +29,8 @@ export const OfficersMock: Officer[] = [
           University of Florida.`,
     email: 'kalmanzar5@ufl.edu',
     showInfo: false,
-    photo: {
-      filename: 'test.jpg',
-      contentType: 'image/jpeg'
-    }
+    photo: new File([], 'test.jpg')
+
   },
   {
     name: 'Zane Gyorko',
@@ -48,10 +40,7 @@ export const OfficersMock: Officer[] = [
           University of Florida.`,
     email: 'zgyorko@ufl.edu',
     showInfo: false,
-    photo: {
-      filename: 'test.jpg',
-      contentType: 'image/jpeg'
-    }
+    photo: new File([], 'test.jpg')
   },
   {
     name: 'Chris Charters',
@@ -60,10 +49,7 @@ export const OfficersMock: Officer[] = [
     bio: 'Chris Charters has the best mom in the whole wide world',
     email: 'chartersauce25@ufl.edu',
     showInfo: false,
-    photo: {
-      filename: 'test.jpg',
-      contentType: 'image/jpeg'
-    }
+    photo: new File([], 'test.jpg')
   },
   {
     name: 'Logan Sprole',
@@ -74,10 +60,7 @@ export const OfficersMock: Officer[] = [
           switches.`,
     email: 'lsprole@ufl.edu',
     showInfo: false,
-    photo: {
-      filename: 'test.jpg',
-      contentType: 'image/jpeg'
-    }
+    photo: new File([], 'test.jpg')
   },
   {
     name: 'Chase Farmer',
@@ -88,9 +71,6 @@ export const OfficersMock: Officer[] = [
           spends his free time running, rock climbing, and making websites.`,
     email: 'chasefarmer2808@ufl.edu',
     showInfo: false,
-    photo: {
-      filename: 'test.jpg',
-      contentType: 'image/jpeg'
-    }
+    photo: new File([], 'test.jpg')
   }
 ];

@@ -23,6 +23,13 @@ export class OfficersService {
       .catch(this.handleObservableError);
   }
 
+  createOfficer(newOfficer: FormData): Observable<Officer> {
+    console.log(newOfficer);
+    return this.http
+      .post<Officer>(`${environment.officersUrl}create`, newOfficer)
+      .catch(this.handleObservableError);
+  }
+
   private handleObservableError(error: Response) {
     let message = `Error status code ${error.status} at ${error.url}`;
     return Observable.throw(message);

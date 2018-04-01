@@ -53,27 +53,46 @@ export class AddOfficerDialog {
   addOfficerForm: FormGroup;
   officerPhoto: File;
 
-  constructor(public dialogRef: MatDialogRef<AddOfficerDialog>) {
+  constructor(public dialogRef: MatDialogRef<AddOfficerDialog>, 
+              private officersService: OfficersService) {
     this.createAddOfficerForm();
   }
 
   createAddOfficerForm() {
     this.addOfficerForm = new FormGroup({
-      name: new FormControl('test', [Validators.required, Validators.pattern(lettersOnlyRegex)]),
-      role: new FormControl('test', [Validators.required, Validators.pattern(lettersOnlyRegex)]),
-      emailAddress: new FormControl('test@test.com', [Validators.required, Validators.pattern(emailPattern)]),
-      bio: new FormControl('test', Validators.pattern(lettersOnlyRegex)),
-      photo: new FormControl(this.officerPhoto)
+      name: new FormControl('', [Validators.required, Validators.pattern(lettersOnlyRegex)]),
+      role: new FormControl('', [Validators.required, Validators.pattern(lettersOnlyRegex)]),
+      emailAddress: new FormControl('', [Validators.required, Validators.pattern(emailPattern)]),
+      bio: new FormControl('', Validators.pattern(lettersOnlyRegex)),
+      photo: new FormControl(null, Validators.required)
     });
   }
 
   addOfficer() {
-    console.log(this.addOfficerForm);
+    let formData = this.constructFormData();
+
+    this.officersService.createOfficer(formData)
+      .subscribe(
+        (res) => {
+          console.log('success: ', res);
+        },
+        (err) => {
+          console.log('err: ', err);
+        }
+      );
   }
 
   handlePhotoUpload(imgFile: File) {
-    console.log('here')
-    console.log(imgFile);
-    this.officerPhoto = imgFile;
+    this.addOfficerForm.get('photo').setValue(imgFile);
+  }
+
+  private constructFormData(): FormData {
+    let formData = new FormData();
+
+    for (let key of Object.keys(this.addOfficerForm.value)) {
+      formData.append(key, this.addOfficerForm.get(key).value);
+    }
+
+    return formData;
   }
 }

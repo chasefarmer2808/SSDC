@@ -1,6 +1,7 @@
 'use strict';
 
 const mongoose = require('mongoose');
+const FileSchema = require('./file');
 
 const MODEL_NAME = 'Officer';
 
@@ -21,8 +22,8 @@ var officerSchema = mongoose.Schema({
     type: String
   },
   photo: {
-    filename: String,
-    contentType: String
+    type: FileSchema,
+    required: true
   }
 });
 

@@ -5,7 +5,7 @@ function imageFilter(req, file, next) {
     return next(new Error('No file provided'), false);
   }
 
-  var extentionRegEx = '/\.(jpg|jpeg|png|gif)$/';
+  var extentionRegEx = /\.(jpg|jpeg|png|gif)$/;
 
   if (!file.originalname.match(extentionRegEx)) {
     return next(new Error('File must be an image'), false);
