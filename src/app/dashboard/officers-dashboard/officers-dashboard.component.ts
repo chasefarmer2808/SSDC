@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators, ValidatorFn, AbstractControl } from '@angular/forms';
 import { MatDialogRef, MatDialog } from '@angular/material';
+import { SelectionModel } from '@angular/cdk/collections';
 
 import { OfficersService } from 'app/services/officers/officers.service';
 import { OfficerDataSource } from 'app/services/officers/officer-data-source';
@@ -27,10 +28,14 @@ export class OfficersDashboardComponent implements OnInit {
   columnsToDisplay: Array<string> = ['photo', 'name', 'role'];
   officersDataSource: OfficerDataSource;
   serverUrl: string = environment.serverUrl;
+  selectedRows: SelectionModel<Officer>
   dataSaving: boolean = false;
   deleting: boolean = false;
 
-  constructor(private officersService: OfficersService, private addOfficerDialog: MatDialog) { }
+  constructor(private officersService: OfficersService,
+              private addOfficerDialog: MatDialog) {
+    this.selectedRows = new SelectionModel<Officer>(true, []);
+  }
 
   ngOnInit() {
     this.officersDataSource = new OfficerDataSource(this.officersService);

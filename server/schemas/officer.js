@@ -41,4 +41,8 @@ officerSchema.statics.getAll = function(callback) {
   });
 }
 
+// officerSchema.pre('remove', function(next) {
+//   console.log('here');
+// });
+
 var Officer = module.exports = mongoose.model(MODEL_NAME, officerSchema);

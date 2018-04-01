@@ -1,6 +1,7 @@
 'use strict';
 
 const express = require('express');
+const fs = require('fs');
 const officers = require('../assets/data/officers.json');
 const ROLES = require('../config').roles;
 
@@ -20,11 +21,8 @@ var upload = multer({
 });
 
 function validatePhoto(req, res, next) {
-  console.log(req.file)
-
   req.checkBody('photo', 'Officer photo is required').exists();
   var errors = req.validationErrors();
-  console.log(errors);
   if (errors) {
     return res.status(400).send(errors);
   }
@@ -93,6 +91,27 @@ router.post('/create', upload.single('photo'), /*verifyToken, isRole.isDev*/ fun
 
       res.status(200).send(newOfficer);
     });
+  });
+});
+
+router.delete('/:firstName/:lastName', function(req, res, next) {
+  Officer.findOneAndRemove({
+    firstName: req.params.firstName,
+    lastName: req.params.lastName
+  }, function(err, officer) {
+    if (err) {
+      return res.status(500).send('Could not delete officer');
+    }
+
+    if (!officer) {
+      return res.status(404).send('Could not find officer');
+    }
+
+    fileHandler.deleteFile(officer.photo.filename, function(err) {
+      if (err) res.status(500).send('Error removing officer photo');
+    });
+
+    return res.status(200).send({message: `${req.params.firstName} ${req.params.lastName} successfully deleted`});
   });
 });
 
