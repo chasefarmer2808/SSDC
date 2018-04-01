@@ -37,6 +37,7 @@ import { UserDashboardComponent } from './dashboard/user-dashboard/user-dashboar
 import { OfficersDashboardComponent, AddOfficerDialog } from './dashboard/officers-dashboard/officers-dashboard.component';
 import { TeamsDashboardComponent } from './dashboard/teams-dashboard/teams-dashboard.component';
 import { ProfileComponent, ChangePasswordDialog } from './dashboard/user-dashboard/profile/profile.component';
+import { StatusMessageComponent } from './status-message/status-message.component';
 
 @NgModule({
   declarations: [
@@ -67,7 +68,8 @@ import { ProfileComponent, ChangePasswordDialog } from './dashboard/user-dashboa
     TeamsDashboardComponent,
     ProfileComponent,
     ChangePasswordDialog,
-    AddOfficerDialog
+    AddOfficerDialog,
+    StatusMessageComponent
   ],
   imports: [
     BrowserModule,

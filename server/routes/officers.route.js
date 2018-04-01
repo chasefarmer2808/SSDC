@@ -20,9 +20,11 @@ var upload = multer({
 });
 
 function validatePhoto(req, res, next) {
+  console.log(req.file)
+
   req.checkBody('photo', 'Officer photo is required').exists();
   var errors = req.validationErrors();
-
+  console.log(errors);
   if (errors) {
     return res.status(400).send(errors);
   }
@@ -66,7 +68,7 @@ router.get('/president', function(req, res, next) {
   }
 });
 
-router.post('/create', upload.single('photo'), validatePhoto, /*verifyToken, isRole.isDev*/ function(req, res, next) {
+router.post('/create', upload.single('photo'), /*verifyToken, isRole.isDev*/ function(req, res, next) {
   var newOfficer = new Officer({
     name: req.body.name,
     role: req.body.role,

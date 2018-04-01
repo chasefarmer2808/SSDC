@@ -1,0 +1,12 @@
+.status-message {
+    text-align: center;
+    margin: 8px;
+  }
+  
+  .success-message {
+    background-color: rgba(76,175,80, 0.3);
+  }
+  
+  .fail-message {
+    background-color: rgba(211,47,47, 0.3)
+  }

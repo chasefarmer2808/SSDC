@@ -8,6 +8,7 @@ import { Observable } from 'rxjs/Observable';
 
 import { OfficersService } from 'app/services/officers/officers.service';
 
+import { StatusMessageComponent } from 'app/status-message/status-message.component';
 import { OfficersDashboardComponent, AddOfficerDialog } from './officers-dashboard.component';
 
 describe('OfficersDashboardComponent', () => {
@@ -16,7 +17,7 @@ describe('OfficersDashboardComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ OfficersDashboardComponent, AddOfficerDialog ],
+      declarations: [ OfficersDashboardComponent, AddOfficerDialog, StatusMessageComponent ],
       providers: [ OfficersService ],
       imports: [
         HttpClientTestingModule,
