@@ -26,6 +26,7 @@ import { UserDashboardComponent } from 'app/dashboard/user-dashboard/user-dashbo
 import { OfficersDashboardComponent } from 'app/dashboard/officers-dashboard/officers-dashboard.component';
 import { TeamsDashboardComponent } from 'app/dashboard/teams-dashboard/teams-dashboard.component';
 import { ProfileComponent } from 'app/dashboard/user-dashboard/profile/profile.component';
+import { StatusMessageComponent } from 'app/status-message/status-message.component';
 
 import { KeyDirective } from 'app/directives/key/key.directive';
 import { ClickOutsideDirective } from 'app/directives/click-outside/click-outside.directive';
@@ -65,7 +66,8 @@ describe('RouteGuardService', () => {
         KeyDirective,
         ClickOutsideDirective,
         ScrollInfoDirective,
-        RouteFilterPipe
+        RouteFilterPipe,
+        StatusMessageComponent
       ],
       imports: [
         RouterTestingModule.withRoutes(routes),
