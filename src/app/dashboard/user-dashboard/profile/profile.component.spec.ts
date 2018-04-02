@@ -64,11 +64,6 @@ describe('ProfileComponent', () => {
     expect(changePasswordDialogComponent.changePasswordForm.invalid).toBeTruthy();
   });
 
-  it('should disable submit button initally', () => {
-    changePasswordDialogFixture.detectChanges();
-    let submitButton = changePasswordDialogFixture.nativeElement.querySelector('.submit-button');
-  });
-
   it('should require old password field', () => {
     let oldPasswordField = changePasswordDialogComponent.changePasswordForm.controls['oldPassword'];
     expect(oldPasswordField.errors['required']).toBeTruthy();
