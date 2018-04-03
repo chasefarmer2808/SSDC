@@ -1,7 +1,8 @@
 <div class="add-officer-container">
-    <form [formGroup]="addOfficerForm" novalidate>
+    <form [formGroup]="officerForm" novalidate>
         <div class="form-header flex-center">
-            <div class="subheading heading-font">Add Officer</div>
+            <div *ngIf="addMode" class="subheading heading-font">Add Officer</div>
+            <div *ngIf="!addMode" class="subheading heading-font">Update Officer</div>
             <div class="close-dialog-button">
                 <button mat-mini-fab (click)="dialogRef.close()">
                     <i class="material-icons">close</i>
@@ -12,35 +13,35 @@
             <div class="form-input-container">
                 <mat-form-field class="full-width">
                     <input type="text" matInput formControlName="firstName" placeholder="First name" required>
-                    <mat-error *ngIf="addOfficerForm.controls['firstName'].hasError('required')">This field is required</mat-error>
-                    <mat-error *ngIf="addOfficerForm.controls['firstName'].hasError('pattern') && !addOfficerForm.controls['firstName'].hasError('required')">Letters only, please</mat-error>
+                    <mat-error *ngIf="officerForm.controls['firstName'].hasError('required')">This field is required</mat-error>
+                    <mat-error *ngIf="officerForm.controls['firstName'].hasError('pattern') && !officerForm.controls['firstName'].hasError('required')">Letters only, please</mat-error>
                 </mat-form-field>
             </div>
             <div class="form-input-container">
                 <mat-form-field class="full-width">
                     <input type="text" matInput formControlName="lastName" placeholder="Last name" required>
-                    <mat-error *ngIf="addOfficerForm.controls['lastName'].hasError('required')">This field is required</mat-error>
-                    <mat-error *ngIf="addOfficerForm.controls['lastName'].hasError('pattern') && !addOfficerForm.controls['lastName'].hasError('required')">Letters only, please</mat-error>
+                    <mat-error *ngIf="officerForm.controls['lastName'].hasError('required')">This field is required</mat-error>
+                    <mat-error *ngIf="officerForm.controls['lastName'].hasError('pattern') && !officerForm.controls['lastName'].hasError('required')">Letters only, please</mat-error>
                 </mat-form-field>
             </div>
             <div class="form-input-container">
                 <mat-form-field class="full-width">
                     <input type="text" matInput formControlName="role" placeholder="Role" required>
-                    <mat-error *ngIf="addOfficerForm.controls['role'].hasError('required')">This field is required</mat-error>
-                    <mat-error *ngIf="addOfficerForm.controls['role'].hasError('pattern') && !addOfficerForm.controls['role'].hasError('required')">Letters only, please</mat-error>
+                    <mat-error *ngIf="officerForm.controls['role'].hasError('required')">This field is required</mat-error>
+                    <mat-error *ngIf="officerForm.controls['role'].hasError('pattern') && !officerForm.controls['role'].hasError('required')">Letters only, please</mat-error>
                 </mat-form-field>
             </div>
             <div class="form-input-container">
                 <mat-form-field class="full-width">
                     <input type="text" matInput formControlName="emailAddress" placeholder="Email Address" required>
-                    <mat-error *ngIf="addOfficerForm.controls['emailAddress'].hasError('required')">This field is required</mat-error>
-                    <mat-error *ngIf="addOfficerForm.controls['emailAddress'].hasError('pattern') && !addOfficerForm.controls['emailAddress'].hasError('required')">Not a valid email address</mat-error>
+                    <mat-error *ngIf="officerForm.controls['emailAddress'].hasError('required')">This field is required</mat-error>
+                    <mat-error *ngIf="officerForm.controls['emailAddress'].hasError('pattern') && !officerForm.controls['emailAddress'].hasError('required')">Not a valid email address</mat-error>
                 </mat-form-field>
             </div>
             <div class="form-input-container">
                 <mat-form-field class="full-width">
                     <textarea matInput matTextareaAutosize formControlName="bio" placeholder="Bio"></textarea>
-                    <mat-error *ngIf="addOfficerForm.controls['bio'].hasError('pattern') && !addOfficerForm.controls['bio'].hasError('required')">Letters only, please</mat-error>
+                    <mat-error *ngIf="officerForm.controls['bio'].hasError('pattern') && !officerForm.controls['bio'].hasError('required')">Letters only, please</mat-error>
                 </mat-form-field>
             </div>
             <div class="form-input-container flex-center file-upload-button">
@@ -55,7 +56,7 @@
                     <img #previewImage src="{{previewImageUrl}}" *ngIf="previewImageUrl" id="profile-preview-image">
                 </div>
             </div>
-            <button class="submit-button" *ngIf="!addOfficerSuccess" mat-raised-button (click)="addOfficer()" [disabled]="addOfficerForm.invalid">
+            <button class="submit-button" *ngIf="!addOfficerSuccess" mat-raised-button (click)="addOfficer()" [disabled]="officerForm.invalid">
                 <div *ngIf="!addingOfficer">Submit</div>
                 <div *ngIf="addingOfficer" class="flex-center">
                     <mat-spinner [diameter]="60"></mat-spinner>

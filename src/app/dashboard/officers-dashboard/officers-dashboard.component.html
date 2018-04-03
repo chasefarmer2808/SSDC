@@ -13,7 +13,7 @@
               <button *ngIf="!deleting" (click)="deleteSelectedOfficers()" mat-icon-button [disabled]="selectedRows.selected.length == 0">
                 <i class="material-icons">delete</i>
               </button>
-              <button mat-icon-button (click)="openAddOfficerDialog()">
+              <button mat-icon-button (click)="openOfficerDialog()">
                 <i class="material-icons">add</i>
               </button>
               <mat-spinner [diameter]="60" *ngIf="deleting"></mat-spinner>
@@ -27,14 +27,29 @@
         </div>
         <mat-table [dataSource]="officersDataSource">
 
-          <!-- Select Checkbox -->
-          <ng-container matColumnDef="select">
-            <mat-header-cell *matHeaderCellDef>Select</mat-header-cell>
+          <!-- Actions Column -->
+          <ng-container matColumnDef="actions">
+            <mat-header-cell *matHeaderCellDef>Actions</mat-header-cell>
             <mat-cell *matCellDef="let row">
-              <mat-checkbox (click)="$event.stopPropagation()"
-                            (change)="$event ? selectedRows.toggle(row) : null"
-                            [checked]="selectedRows.isSelected(row)">
-              </mat-checkbox>
+              <div class="cell-container">
+                  <mat-checkbox (click)="$event.stopPropagation()"
+                    (change)="$event ? selectedRows.toggle(row) : null"
+                    [checked]="selectedRows.isSelected(row)">
+                  </mat-checkbox>
+                  <button mat-icon-button (click)="openUpdateOfficerDialog(row)">
+                    <i class="material-icons">mode_edit</i>
+                  </button>
+              </div>
+            </mat-cell>
+          </ng-container>
+
+          <!-- Edit Button -->
+          <ng-container matColumnDef="edit">
+            <mat-header-cell *matHeaderCellDef>Edit</mat-header-cell>
+            <mat-cell *matCellDef="let officer">
+              <button mat-icon-button>
+                <i class="material-icons">mode_edit</i>
+              </button>
             </mat-cell>
           </ng-container>
 

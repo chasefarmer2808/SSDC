@@ -10,17 +10,17 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { OfficersService } from 'app/services/officers/officers.service';
 
 import { StatusMessageComponent } from 'app/status-message/status-message.component';
-import { OfficersDashboardComponent, AddOfficerDialog } from './officers-dashboard.component';
+import { OfficersDashboardComponent, OfficerDialog } from './officers-dashboard.component';
 
 describe('OfficersDashboardComponent', () => {
   let component: OfficersDashboardComponent;
   let fixture: ComponentFixture<OfficersDashboardComponent>;
-  let addOfficerComponent: AddOfficerDialog;
-  let addOfficerFixture: ComponentFixture<AddOfficerDialog>;
+  let officerDialog: OfficerDialog;
+  let officerDialogFixture: ComponentFixture<OfficerDialog>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ OfficersDashboardComponent, AddOfficerDialog, StatusMessageComponent ],
+      declarations: [ OfficersDashboardComponent, OfficerDialog, StatusMessageComponent ],
       providers: [ 
         OfficersService,
         {
@@ -29,7 +29,11 @@ describe('OfficersDashboardComponent', () => {
         },
         {
           provide: MAT_DIALOG_DATA, 
-          useValue: {}
+          useValue: {
+            photo: {
+              filename: 'test.jpg'
+            }
+          }
         }
       ],
       imports: [
@@ -45,8 +49,8 @@ describe('OfficersDashboardComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(OfficersDashboardComponent);
     component = fixture.componentInstance;
-    addOfficerFixture = TestBed.createComponent(AddOfficerDialog);
-    addOfficerComponent = addOfficerFixture.componentInstance;
+    officerDialogFixture = TestBed.createComponent(OfficerDialog);
+    officerDialog = officerDialogFixture.componentInstance;
     fixture.detectChanges();
   });
 
@@ -55,65 +59,65 @@ describe('OfficersDashboardComponent', () => {
   });
 
   it('should create add officer form on init', () => {
-    expect(addOfficerComponent.addOfficerForm).toBeTruthy();
+    expect(officerDialog.officerForm).toBeTruthy();
   });
 
   it('form should be initially invalid', () => {
-    addOfficerFixture.detectChanges();
-    expect(addOfficerComponent.addOfficerForm.invalid).toBeTruthy();
+    officerDialogFixture.detectChanges();
+    expect(officerDialog.officerForm.invalid).toBeTruthy();
   });
 
   it('should require first name field', () => {
-    let firstNameField = addOfficerComponent.addOfficerForm.controls['firstName'];
+    let firstNameField = officerDialog.officerForm.controls['firstName'];
     expect(firstNameField.errors['required']).toBeTruthy();
   });
 
   it('should get pattern error for input with numbers', () => {
-    let firstNameField = addOfficerComponent.addOfficerForm.controls['firstName'];
+    let firstNameField = officerDialog.officerForm.controls['firstName'];
     firstNameField.setValue('123');
     expect(firstNameField.errors['pattern']).toBeTruthy();
   });
 
   it('should require last name field', () => {
-    let lastNameField = addOfficerComponent.addOfficerForm.controls['lastName'];
+    let lastNameField = officerDialog.officerForm.controls['lastName'];
     expect(lastNameField.errors['required']).toBeTruthy();
   });
 
   it('should get pattern error for input with numbers', () => {
-    let lastNameField = addOfficerComponent.addOfficerForm.controls['lastName'];
+    let lastNameField = officerDialog.officerForm.controls['lastName'];
     lastNameField.setValue('123');
     expect(lastNameField.errors['pattern']).toBeTruthy();
   });
 
   it('should require role field', () => {
-    let roleField = addOfficerComponent.addOfficerForm.controls['role'];
+    let roleField = officerDialog.officerForm.controls['role'];
     expect(roleField.errors['required']).toBeTruthy();
   });
 
   it('should get pattern error for input with numbers', () => {
-    let roleField = addOfficerComponent.addOfficerForm.controls['role'];
+    let roleField = officerDialog.officerForm.controls['role'];
     roleField.setValue('123');
     expect(roleField.errors['pattern']).toBeTruthy();    
   });
 
   it('should require email address field', () => {
-    let emailField = addOfficerComponent.addOfficerForm.controls['emailAddress'];
+    let emailField = officerDialog.officerForm.controls['emailAddress'];
     expect(emailField.errors['required']).toBeTruthy();
   });
 
   it('should get pattern error for invalid email', () => {
-    let emailField = addOfficerComponent.addOfficerForm.controls['emailAddress'];
+    let emailField = officerDialog.officerForm.controls['emailAddress'];
     emailField.setValue('not an email address');
     expect(emailField.errors['pattern']).toBeTruthy();    
   });
 
   it('bio field should be valid', () => {
-    let bioField = addOfficerComponent.addOfficerForm.controls['bio'];
+    let bioField = officerDialog.officerForm.controls['bio'];
     expect(bioField.valid).toBeTruthy();
   });
 
   it('should require photo field', () => {
-    let photoField = addOfficerComponent.addOfficerForm.controls['photo'];
-    expect(photoField.errors['required']).toBeTruthy();
+    let photoField = officerDialog.officerForm.controls['photo'];
+    expect(photoField.errors).toBeNull();
   });
 });

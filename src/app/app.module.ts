@@ -34,7 +34,7 @@ import { AuthService } from './services/auth/auth.service';
 import { RouteGuardService } from './services/route-guard/route-guard.service';
 import { UserService } from 'app/services/user/user.service';
 import { UserDashboardComponent } from './dashboard/user-dashboard/user-dashboard.component';
-import { OfficersDashboardComponent, AddOfficerDialog } from './dashboard/officers-dashboard/officers-dashboard.component';
+import { OfficersDashboardComponent, OfficerDialog } from './dashboard/officers-dashboard/officers-dashboard.component';
 import { TeamsDashboardComponent } from './dashboard/teams-dashboard/teams-dashboard.component';
 import { ProfileComponent, ChangePasswordDialog } from './dashboard/user-dashboard/profile/profile.component';
 import { StatusMessageComponent } from './status-message/status-message.component';
@@ -68,7 +68,7 @@ import { StatusMessageComponent } from './status-message/status-message.componen
     TeamsDashboardComponent,
     ProfileComponent,
     ChangePasswordDialog,
-    AddOfficerDialog,
+    OfficerDialog,
     StatusMessageComponent
   ],
   imports: [
@@ -85,7 +85,7 @@ import { StatusMessageComponent } from './status-message/status-message.componen
   entryComponents: [ 
     ImageDialogComponent, 
     ChangePasswordDialog,
-    AddOfficerDialog
+    OfficerDialog
   ],
   providers: [
     AuthService,

@@ -1,6 +1,6 @@
-import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators, ValidatorFn, AbstractControl } from '@angular/forms';
-import { MatDialogRef, MatDialog } from '@angular/material';
+import { MatDialogRef, MatDialog, MAT_DIALOG_DATA } from '@angular/material';
 import { SelectionModel } from '@angular/cdk/collections';
 
 import { OfficersService } from 'app/services/officers/officers.service';
@@ -25,7 +25,7 @@ const lettersOnlyRegex = /^[a-zA-Z\s]+$/;
 })
 export class OfficersDashboardComponent implements OnInit {
 
-  columnsToDisplay: Array<string> = ['select', 'photo', 'name', 'role'];
+  columnsToDisplay: Array<string> = ['actions', 'name', 'role'];
   officersDataSource: OfficerDataSource;
   serverUrl: string = environment.serverUrl;
   selectedRows: SelectionModel<Officer>
@@ -34,20 +34,24 @@ export class OfficersDashboardComponent implements OnInit {
   deleteError: any;
 
   constructor(private officersService: OfficersService,
-              private addOfficerDialog: MatDialog) {
+              private officerDialog: MatDialog) {
     this.selectedRows = new SelectionModel<Officer>(true, []);
   }
 
   ngOnInit() {
     this.officersDataSource = new OfficerDataSource(this.officersService);
     this.officersDataSource.loadOfficers();
-    this.addOfficerDialog.afterAllClosed.subscribe(() => {
+    this.officerDialog.afterAllClosed.subscribe(() => {
       this.officersDataSource.loadOfficers();
     });
   }
 
-  openAddOfficerDialog() {
-    this.addOfficerDialog.open(AddOfficerDialog);
+  openOfficerDialog() {
+    this.officerDialog.open(OfficerDialog, {data: new Officer()});
+  }
+
+  openUpdateOfficerDialog(officer: Officer) {
+    this.officerDialog.open(OfficerDialog, {data: officer});
   }
 
   deleteSelectedOfficers() {
@@ -81,30 +85,32 @@ export class OfficersDashboardComponent implements OnInit {
     '../../app.component.css'
   ]
 })
-export class AddOfficerDialog {
-  addOfficerForm: FormGroup;
+export class OfficerDialog {
+  officerForm: FormGroup;
   officerPhoto: File;
   addingOfficer: boolean = false;
   addOfficerSuccess: boolean = false;
+  addMode: boolean = false;
   addOfficerError: any;
   previewImageUrl: string;
 
   @ViewChild('previewImage') previewImage: ElementRef;
 
-  constructor(public dialogRef: MatDialogRef<AddOfficerDialog>, 
-              private officersService: OfficersService) {
-    this.createAddOfficerForm();
-    
+  constructor(public dialogRef: MatDialogRef<OfficerDialog>, 
+              private officersService: OfficersService,
+              @Inject(MAT_DIALOG_DATA) public officerData: Officer) {
+    this.createOfficerForm();
+    this.determineDialogMode(officerData);
   }
 
-  createAddOfficerForm() {
-    this.addOfficerForm = new FormGroup({
-      firstName: new FormControl('', [Validators.required, Validators.pattern(lettersOnlyRegex)]),
-      lastName: new FormControl('', [Validators.required, Validators.pattern(lettersOnlyRegex)]),
-      role: new FormControl('', [Validators.required, Validators.pattern(lettersOnlyRegex)]),
-      emailAddress: new FormControl('', [Validators.required, Validators.pattern(emailPattern)]),
-      bio: new FormControl(''),
-      photo: new FormControl(null, Validators.required)
+  createOfficerForm() {
+    this.officerForm = new FormGroup({
+      firstName: new FormControl(this.officerData.firstName, [Validators.required, Validators.pattern(lettersOnlyRegex)]),
+      lastName: new FormControl(this.officerData.lastName, [Validators.required, Validators.pattern(lettersOnlyRegex)]),
+      role: new FormControl(this.officerData.role, [Validators.required, Validators.pattern(lettersOnlyRegex)]),
+      emailAddress: new FormControl(this.officerData.emailAddress, [Validators.required, Validators.pattern(emailPattern)]),
+      bio: new FormControl(this.officerData.bio),
+      photo: new FormControl(this.officerData.photo, Validators.required)
     });
   }
 
@@ -128,22 +134,35 @@ export class AddOfficerDialog {
   }
 
   handlePhotoUpload(imgFile: File) {
-    this.addOfficerForm.get('photo').setValue(imgFile);
+    this.officerForm.get('photo').setValue(imgFile);
 
     let reader = new FileReader();
     reader.onload = (event: any) => {
-      this.previewImageUrl = event.target.result;
+      this.updatePreviewImageUrl(event.target.result);
     }
     reader.readAsDataURL(imgFile);
+  }
+
+  private determineDialogMode(officerData: Officer) {
+    if (officerData.firstName === '') {
+      this.addMode = true;
+    } else {
+      let imgUrl = `${environment.serverUrl}/${officerData.photo.filename}`;
+      this.updatePreviewImageUrl(imgUrl);
+    }
   }
 
   private constructFormData(): FormData {
     let formData = new FormData();
 
-    for (let key of Object.keys(this.addOfficerForm.value)) {
-      formData.append(key, this.addOfficerForm.get(key).value);
+    for (let key of Object.keys(this.officerForm.value)) {
+      formData.append(key, this.officerForm.get(key).value);
     }
 
     return formData;
+  }
+
+  private updatePreviewImageUrl(url: string) {
+    this.previewImageUrl = url;
   }
 }

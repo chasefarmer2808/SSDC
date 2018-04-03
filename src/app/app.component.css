@@ -243,6 +243,10 @@ mat-table {
   max-height: 100%;
 }
 
+mat-checkbox {
+  padding: 8px;
+}
+
 .table-title-container {
   display: grid;
   grid-template-columns: 1fr 1fr 3fr 1fr;

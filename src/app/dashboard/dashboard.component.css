@@ -59,3 +59,15 @@
     justify-content: center;
     margin-left: 8px;
 }
+
+.cell-container {
+    display: flex;
+    flex-direction: column;
+}
+
+@media screen and (min-width: 720px) {
+    .cell-container {
+        display: flex;
+        flex-direction: row;
+    }
+}
