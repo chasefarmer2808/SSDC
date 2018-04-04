@@ -41,8 +41,22 @@ officerSchema.statics.getAll = function(callback) {
   });
 }
 
-// officerSchema.pre('remove', function(next) {
-//   console.log('here');
-// });
+officerSchema.statics.getFilename = function(firstName, lastName, callback) {
+  var query = {
+    firstName,
+    lastName
+  };
+  this.model(MODEL_NAME).findOne(query, function(err, officer) {
+    if (err) {
+      return callback({status: 500, message: err});
+    }
+
+    if (!officer) {
+      return callback({status: 404, message: 'No officer found'});
+    }
+
+    return callback(undefined, officer.photo.filename);
+  });
+}
 
 var Officer = module.exports = mongoose.model(MODEL_NAME, officerSchema);

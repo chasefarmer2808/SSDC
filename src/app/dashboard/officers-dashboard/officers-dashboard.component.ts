@@ -93,12 +93,14 @@ export class OfficerDialog {
   addMode: boolean = false;
   addOfficerError: any;
   previewImageUrl: string;
+  selectedOfficer: Officer;
 
   @ViewChild('previewImage') previewImage: ElementRef;
 
   constructor(public dialogRef: MatDialogRef<OfficerDialog>, 
               private officersService: OfficersService,
               @Inject(MAT_DIALOG_DATA) public officerData: Officer) {
+    this.selectedOfficer = this.officerData;
     this.createOfficerForm();
     this.determineDialogMode(officerData);
   }
@@ -133,7 +135,27 @@ export class OfficerDialog {
       );
   }
 
-  handlePhotoUpload(imgFile: File) {
+  updateOfficer() {
+    let formData = this.constructFormData();
+    this.addingOfficer = true;
+    this.officersService.updateOfficer(this.selectedOfficer, formData)
+      .subscribe(
+        (res) => {
+          this.addingOfficer = false;
+          this.addOfficerSuccess = true;
+          console.log('success: ', res);
+        },
+        (err) => {
+          this.addingOfficer = false;
+          this.addOfficerSuccess = false;
+          this.addOfficerError = err;
+          console.log('err: ', err);
+        }
+      );
+  }
+
+  handlePhotoUpload(imgFile: any) {
+    console.log(imgFile)
     this.officerForm.get('photo').setValue(imgFile);
 
     let reader = new FileReader();

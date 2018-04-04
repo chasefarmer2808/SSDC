@@ -10,6 +10,7 @@ var multer = require('multer');
 var fileHandler = require('../app/file.handler');
 var verifyToken = require('../middleware/verifyToken');
 var isRole = require('../middleware/isRole');
+var deleteFileByRouteParams = require('../middleware/deleteFileByRouteParams');
 
 var Officer = require('../schemas/officer');
 
@@ -19,6 +20,21 @@ var upload = multer({
   storage: fileHandler.imageStorage,
   fileFilter: fileHandler.imageFilter
 });
+
+function validateOfficer(req, res, next) {
+  req.checkBody('firstName', 'First name is required').exists();
+  req.checkBody('lastName', 'Last name is required').exists();
+  req.checkBody('emailAddress', 'Email address is required').exists();
+  req.checkBody('role', 'Role is required').exists();
+  req.checkBody('photo', 'Officer photo is required').exists();
+
+  var errors = req.validationErrors();
+  if (errors) {
+    return res.status(400).send(errors);
+  }
+
+  next();
+}
 
 function validatePhoto(req, res, next) {
   req.checkBody('photo', 'Officer photo is required').exists();
@@ -91,6 +107,35 @@ router.post('/create', upload.single('photo'), /*verifyToken, isRole.isDev*/ fun
 
       res.status(200).send(newOfficer);
     });
+  });
+});
+
+router.put('/:oldFirstName/:oldLastName',
+            deleteFileByRouteParams,
+            upload.single('photo'),
+            function(req, res, next) {
+  var query = {
+    firstName: req.params.oldFirstName,
+    lastName: req.params.oldLastName
+  };
+  var updatedOfficer = {
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
+    role: req.body.role,
+    emailAddress: req.body.emailAddress,
+    bio: req.body.bio,
+    photo: {
+      filename: req.file.filename,
+      contentType: req.file.mimetype
+    }
+  };
+
+  Officer.findOneAndUpdate(query, updatedOfficer, {new: true}, function(err, updatedOfficer) {
+    if (err) {
+      return res.status(500).send('Error updating officer');
+    }
+
+    res.status(200).send(updatedOfficer);
   });
 });
 

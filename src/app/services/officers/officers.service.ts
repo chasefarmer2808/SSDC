@@ -29,6 +29,13 @@ export class OfficersService {
       .catch(this.handleObservableError);
   }
 
+  updateOfficer(oldOfficer: Officer, updatedOfficer: FormData): Observable<Officer> {
+    let routeParams = `${oldOfficer.firstName}/${oldOfficer.lastName}`;
+    return this.http
+      .put<Officer>(`${environment.officersUrl}${routeParams}`, updatedOfficer)
+      .catch(this.handleObservableError);
+  }
+
   deleteOfficer(firstName: string, lastName: string): Observable<any> {
     return this.http
       .delete<any>(`${environment.officersUrl}${firstName}/${lastName}`)

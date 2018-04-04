@@ -53,11 +53,17 @@
             </div>
             <div class="flex-center">
                 <div *ngIf="previewImageUrl" class="profile-preview">
-                    <img #previewImage src="{{previewImageUrl}}" *ngIf="previewImageUrl" id="profile-preview-image">
+                    <img #previewImage src="{{previewImageUrl}}" (load)="handlePhotoUpload($event)" *ngIf="previewImageUrl" id="profile-preview-image">
                 </div>
             </div>
-            <button class="submit-button" *ngIf="!addOfficerSuccess" mat-raised-button (click)="addOfficer()" [disabled]="officerForm.invalid">
+            <button class="submit-button" *ngIf="addMode && !addOfficerSuccess" mat-raised-button (click)="addOfficer()" [disabled]="officerForm.invalid">
                 <div *ngIf="!addingOfficer">Submit</div>
+                <div *ngIf="addingOfficer" class="flex-center">
+                    <mat-spinner [diameter]="60"></mat-spinner>
+                </div>
+            </button>
+            <button class="submit-button" *ngIf="!addMode && !addOfficerSuccess" mat-raised-button (click)="updateOfficer()" [disabled]="officerForm.invalid">
+                <div *ngIf="!addingOfficer">Update</div>
                 <div *ngIf="addingOfficer" class="flex-center">
                     <mat-spinner [diameter]="60"></mat-spinner>
                 </div>
