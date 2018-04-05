@@ -96,11 +96,14 @@ export class OfficerDialog {
   selectedOfficer: Officer;
 
   @ViewChild('previewImage') previewImage: ElementRef;
+  @ViewChild('imgFileInput') imgFileInput: HTMLElement;
+  @ViewChild('attachPhotoButton') attachPhotoButton: HTMLElement;
 
   constructor(public dialogRef: MatDialogRef<OfficerDialog>, 
               private officersService: OfficersService,
               @Inject(MAT_DIALOG_DATA) public officerData: Officer) {
     this.selectedOfficer = this.officerData;
+    console.log(this.officerData);
     this.createOfficerForm();
     this.determineDialogMode(officerData);
   }
@@ -112,7 +115,7 @@ export class OfficerDialog {
       role: new FormControl(this.officerData.role, [Validators.required, Validators.pattern(lettersOnlyRegex)]),
       emailAddress: new FormControl(this.officerData.emailAddress, [Validators.required, Validators.pattern(emailPattern)]),
       bio: new FormControl(this.officerData.bio),
-      photo: new FormControl(this.officerData.photo, Validators.required)
+      photo: new FormControl(this.officerData.photoUri, Validators.required)
     });
   }
 
@@ -154,13 +157,11 @@ export class OfficerDialog {
       );
   }
 
-  handlePhotoUpload(imgFile: any) {
-    console.log(imgFile)
-    this.officerForm.get('photo').setValue(imgFile);
-
+  handleFileUpload(imgFile: File) {
     let reader = new FileReader();
     reader.onload = (event: any) => {
-      this.updatePreviewImageUrl(event.target.result);
+      this.officerForm.get('photo').setValue(event.target.result);
+      console.log(this.officerForm.get('photo').value);
     }
     reader.readAsDataURL(imgFile);
   }
@@ -168,10 +169,7 @@ export class OfficerDialog {
   private determineDialogMode(officerData: Officer) {
     if (officerData.firstName === '') {
       this.addMode = true;
-    } else {
-      let imgUrl = `${environment.serverUrl}/${officerData.photo.filename}`;
-      this.updatePreviewImageUrl(imgUrl);
-    }
+    } 
   }
 
   private constructFormData(): FormData {
@@ -182,9 +180,5 @@ export class OfficerDialog {
     }
 
     return formData;
-  }
-
-  private updatePreviewImageUrl(url: string) {
-    this.previewImageUrl = url;
   }
 }

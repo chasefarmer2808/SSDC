@@ -82,17 +82,18 @@ router.get('/president', function(req, res, next) {
   }
 });
 
-router.post('/create', upload.single('photo'), /*verifyToken, isRole.isDev*/ function(req, res, next) {
+router.post('/create', upload.array(), /*verifyToken, isRole.isDev*/ function(req, res, next) {
   var newOfficer = new Officer({
     firstName: req.body.firstName,
     lastName: req.body.lastName,
     role: req.body.role,
     emailAddress: req.body.emailAddress,
     bio: req.body.bio,
-    photo: {
-      filename: req.file.filename,
-      contentType: req.file.mimetype
-    }
+    photo: req.body.photoUri
+    // photo: {
+    //   filename: req.file.filename,
+    //   contentType: req.file.mimetype
+    // }
   });
 
   newOfficer.save(function(err) {

@@ -45,15 +45,15 @@
                 </mat-form-field>
             </div>
             <div class="form-input-container flex-center file-upload-button">
-                <button class="flex-center" (click)="imgFileInput.click()" color="primary" mat-raised-button>
+                <button #attachPhotoButton class="flex-center" (click)="imgFileInput.click()" color="primary" mat-raised-button>
                     <i class="material-icons">photo</i>
                     <div class="inline">Attach Photo</div>
                 </button>
-                <input #imgFileInput type="file" class="hidden" (change)="handlePhotoUpload($event.target.files[0])">
+                <input #imgFileInput type="file" class="hidden" (change)="handleFileUpload($event.target.files[0])">
             </div>
             <div class="flex-center">
-                <div *ngIf="previewImageUrl" class="profile-preview">
-                    <img #previewImage src="{{previewImageUrl}}" (load)="handlePhotoUpload($event)" *ngIf="previewImageUrl" id="profile-preview-image">
+                <div class="profile-preview" *ngIf="officerData.photoUri">
+                    <img #previewImage src="{{officerForm.get('photo').value}}" id="profile-preview-image">
                 </div>
             </div>
             <button class="submit-button" *ngIf="addMode && !addOfficerSuccess" mat-raised-button (click)="addOfficer()" [disabled]="officerForm.invalid">

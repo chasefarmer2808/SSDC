@@ -5,7 +5,7 @@ export class Officer {
   bio: string;
   emailAddress: string;
   showInfo: boolean;
-  photo: any;
+  photoUri: any;
 
   constructor() {
     this.firstName = '';
@@ -14,6 +14,6 @@ export class Officer {
     this.bio = '';
     this.emailAddress = '';
     this.showInfo = false;
-    this.photo = {};
+    // this.photoUri = '';
   }
 }

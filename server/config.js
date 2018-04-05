@@ -1,5 +1,5 @@
 module.exports = {
-  fbApiRootUrl: 'https://graph.facebook.com/v2.11/',
+  fbApiRootUrl: 'https://graph.facebook.com/v2.12',
   ssdcGroupId: '264088390286051',
   prodDb: 'ssdc-website',
   testDb: 'ssdc-test',

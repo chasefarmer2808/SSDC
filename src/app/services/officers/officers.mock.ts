@@ -9,7 +9,7 @@ export const OfficersMock: Officer[] = [
           Florida.`,
     emailAddress: 'aasthar@ufl.edu',
     showInfo: false,
-    photo: new File([], 'test.jpg')
+    photoUri: 'test.jpg'
   },
   {
     firstName: 'John',
@@ -19,7 +19,7 @@ export const OfficersMock: Officer[] = [
           University of Florida.`,
     emailAddress: 'kempienski@ufl.edu',
     showInfo: false,
-    photo: new File([], 'test.jpg')
+    photoUri: 'test.jpg'
   },
   {
     firstName: 'Kevin',
@@ -29,7 +29,7 @@ export const OfficersMock: Officer[] = [
           University of Florida.`,
     emailAddress: 'kalmanzar5@ufl.edu',
     showInfo: false,
-    photo: new File([], 'test.jpg')
+    photoUri: 'test.jpg'
 
   },
   {
@@ -40,7 +40,7 @@ export const OfficersMock: Officer[] = [
           University of Florida.`,
     emailAddress: 'zgyorko@ufl.edu',
     showInfo: false,
-    photo: new File([], 'test.jpg')
+    photoUri: 'test.jpg'
   },
   {
     firstName: 'Chris',
@@ -49,7 +49,7 @@ export const OfficersMock: Officer[] = [
     bio: 'Chris Charters has the best mom in the whole wide world',
     emailAddress: 'chartersauce25@ufl.edu',
     showInfo: false,
-    photo: new File([], 'test.jpg')
+    photoUri: 'test.jpg'
   },
   {
     firstName: 'Logan',
@@ -60,7 +60,7 @@ export const OfficersMock: Officer[] = [
           switches.`,
     emailAddress: 'lsprole@ufl.edu',
     showInfo: false,
-    photo: new File([], 'test.jpg')
+    photoUri: 'test.jpg'
   },
   {
     firstName: 'Chase',
@@ -71,6 +71,6 @@ export const OfficersMock: Officer[] = [
           spends his free time running, rock climbing, and making websites.`,
     emailAddress: 'chasefarmer2808@ufl.edu',
     showInfo: false,
-    photo: new File([], 'test.jpg')
+    photoUri: 'test.jpg'
   }
 ];

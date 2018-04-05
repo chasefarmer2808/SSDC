@@ -26,7 +26,8 @@ var officerSchema = mongoose.Schema({
     type: String
   },
   photo: {
-    type: FileSchema,
+    // type: FileSchema,
+    type: String,
     required: true
   }
 });
