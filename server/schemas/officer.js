@@ -1,7 +1,6 @@
 'use strict';
 
 const mongoose = require('mongoose');
-const FileSchema = require('./file');
 
 const MODEL_NAME = 'Officer';
 
@@ -38,24 +37,6 @@ officerSchema.statics.getAll = function(callback) {
     }
 
     return callback(undefined, officers);
-  });
-}
-
-officerSchema.statics.getFilename = function(firstName, lastName, callback) {
-  var query = {
-    firstName,
-    lastName
-  };
-  this.model(MODEL_NAME).findOne(query, function(err, officer) {
-    if (err) {
-      return callback({status: 500, message: err});
-    }
-
-    if (!officer) {
-      return callback({status: 404, message: 'No officer found'});
-    }
-
-    return callback(undefined, officer.photo.filename);
   });
 }
 
