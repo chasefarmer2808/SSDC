@@ -1,0 +1,8 @@
+<div class="status-message-container">
+  <div *ngIf="success === true" class="status-message success-message">
+      Success
+  </div>
+  <div *ngIf="success === false" class="status-message fail-message" >
+      {{failMessage}}
+  </div>
+</div>

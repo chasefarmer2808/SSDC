@@ -110,6 +110,14 @@
   display: inline-block;      
 }
 
+.hidden {
+  display: none;
+}
+
+.file-upload-button {
+  margin-bottom: 16px;
+}
+
 /* Banners */
 
 .banner-container-small {
@@ -181,6 +189,10 @@
   flex: 1 1 auto;
 }
 
+.inline-text {
+  display: inline-block;
+}
+
 /* Fonts */
 
 .heading-font {
@@ -228,7 +240,15 @@
 
 mat-table {
   overflow: auto;
-  max-height: 500px;
+  max-height: 100%;
+}
+
+mat-checkbox {
+  padding: 8px;
+}
+
+mat-dialog-container {
+  z-index: 9999;
 }
 
 .table-title-container {

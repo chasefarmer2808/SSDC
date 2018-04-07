@@ -1,6 +1,7 @@
 export const environment = {
   production: true,
   envName: 'prod',
+  serverUrl: `/`,
   assetsUrl: `/assets`,
   facebookUrl: '/api/v1/fb/',
   emailUrl: '/api/v1/email/',

@@ -82,6 +82,18 @@ describe('UserDashboardComponent', () => {
     expect(getAllSpy).toHaveBeenCalled();
   });
 
+  it('should check the role of the session user on init', () => {
+    let hasRoleSpy = spyOn(authService, 'hasRole').and.callThrough();
+    fixture.detectChanges();
+
+    expect(hasRoleSpy).toHaveBeenCalled();
+  });
+
+  it('should set currentUser with session user', () => {
+    fixture.detectChanges();
+    expect(component.currentUser.username).toEqual('test');
+  });
+
   it('should populate user data table', () => {
     let getAllSpy = spyOn(userService, 'getAll').and.returnValue(Observable.of(UsersMock));
     fixture.detectChanges();

@@ -60,7 +60,7 @@ export class ContactComponent implements OnInit {
   getPresidentEmailAddress() {
     this.officersService.getPresident()
       .subscribe((president) => {
-        this.presEmailAddr = president.email;
+        this.presEmailAddr = president.emailAddress;
       });
   }
 

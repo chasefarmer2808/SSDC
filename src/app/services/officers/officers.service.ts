@@ -23,6 +23,35 @@ export class OfficersService {
       .catch(this.handleObservableError);
   }
 
+  createOfficer(newOfficer: FormData): Observable<Officer> {
+    return this.http
+      .post<Officer>(`${environment.officersUrl}create`, newOfficer)
+      .catch(this.handleObservableError);
+  }
+
+  updateOfficer(oldOfficer: Officer, updatedOfficer: FormData): Observable<Officer> {
+    let routeParams = `${oldOfficer.firstName}/${oldOfficer.lastName}`;
+    return this.http
+      .put<Officer>(`${environment.officersUrl}${routeParams}`, updatedOfficer)
+      .catch(this.handleObservableError);
+  }
+
+  deleteOfficer(firstName: string, lastName: string): Observable<any> {
+    return this.http
+      .delete<any>(`${environment.officersUrl}${firstName}/${lastName}`)
+      .catch(this.handleObservableError);
+  }
+
+  deleteOfficerMany(officers: Officer[]): Observable<any> {
+    let requests: Array<Observable<any>> = [];
+
+    officers.forEach(officer => {
+      requests.push(this.deleteOfficer(officer.firstName, officer.lastName));
+    });
+
+    return Observable.forkJoin(requests);
+  }
+
   private handleObservableError(error: Response) {
     let message = `Error status code ${error.status} at ${error.url}`;
     return Observable.throw(message);
