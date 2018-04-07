@@ -1,3 +1,58 @@
-<p>
-  teams-dashboard works!
-</p>
+<div class="dashboard-container">
+  <div class="table-container">
+    <mat-card class="team-table-card">
+      <mat-card-header>
+        <mat-card-title>
+          <mat-toolbar class="table-title-container">
+            <span>Teams</span>
+            <span class="fill-space"></span>
+            <div class="status-message-container">
+              <app-status-message [success]="deleteSuccess" [failMessage]="deleteError"></app-status-message>
+            </div>
+            <span class="header-actions">
+              <button *ngIf="!deleting" mat-icon-button [disabled]="selectedRows.selected.length == 0">
+                <i class="material-icons">delete</i>
+              </button>
+              <button mat-icon-button>
+                <i class="material-icons">add</i>
+              </button>
+              <mat-spinner [diameter]="60" *ngIf="deleting"></mat-spinner>
+            </span>
+          </mat-toolbar>
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="flex-center spinner-container" *ngIf="teamDataSource.loading$ | async">
+          <mat-spinner></mat-spinner>
+        </div>
+        <mat-table [dataSource]="teamDataSource">
+
+          <!-- Actions Column -->
+          <ng-container matColumnDef="actions">
+            <mat-header-cell *matHeaderCellDef>Actions</mat-header-cell>
+            <mat-cell *matCellDef="let row">
+              <div class="cell-container">
+                <mat-checkbox (click)="$event.stopPropagation()"
+                  (change)="$event ? selectedRows.toggel(row) : null"
+                  [checked]="selectedRows.isSelected(row)">
+                </mat-checkbox>
+              </div>
+            </mat-cell>
+          </ng-container>
+
+          <!-- Name Column -->
+          <ng-container matColumnDef="name">
+            <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
+            <mat-cell class="center md-font-size" *matCellDef="let team">
+              {{team.name}}
+            </mat-cell>
+          </ng-container>
+
+          <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
+          <mat-row *matRowDef="let teams; columns: columnsToDisplay"></mat-row>
+
+        </mat-table>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

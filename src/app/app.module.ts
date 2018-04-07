@@ -29,6 +29,7 @@ import { ScrollInfoDirective } from './directives/onscroll/onscroll.directive';
 
 import { RouteFilterPipe } from './pipes/route-filter/route-filter.pipe';
 
+import { TeamsService } from './services/teams/teams.service';
 import { OfficersService } from 'app/services/officers/officers.service';
 import { AuthService } from './services/auth/auth.service';
 import { RouteGuardService } from './services/route-guard/route-guard.service';
@@ -94,6 +95,7 @@ import { ImgFormControlComponent } from './dashboard/officers-dashboard/imgformc
     RouteGuardService,
     UserService,
     OfficersService,
+    TeamsService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,

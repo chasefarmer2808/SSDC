@@ -7,7 +7,7 @@
             <span>Officers</span>
             <span class="fill-space"></span>
             <div class="status-message-container">
-            <app-status-message [success]="deleteSuccess" [failMessage]="deleteError"></app-status-message>
+              <app-status-message [success]="deleteSuccess" [failMessage]="deleteError"></app-status-message>
             </div>
             <span class="header-actions">
               <button *ngIf="!deleting" (click)="deleteSelectedOfficers()" mat-icon-button [disabled]="selectedRows.selected.length == 0">
@@ -40,16 +40,6 @@
                     <i class="material-icons">mode_edit</i>
                   </button>
               </div>
-            </mat-cell>
-          </ng-container>
-
-          <!-- Edit Button -->
-          <ng-container matColumnDef="edit">
-            <mat-header-cell *matHeaderCellDef>Edit</mat-header-cell>
-            <mat-cell *matCellDef="let officer">
-              <button mat-icon-button>
-                <i class="material-icons">mode_edit</i>
-              </button>
             </mat-cell>
           </ng-container>
 

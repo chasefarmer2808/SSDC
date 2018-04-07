@@ -28,8 +28,7 @@ export class OfficersDashboardComponent implements OnInit {
 
   columnsToDisplay: Array<string> = ['actions', 'name', 'role'];
   officersDataSource: OfficerDataSource;
-  serverUrl: string = environment.serverUrl;
-  selectedRows: SelectionModel<Officer>
+  selectedRows: SelectionModel<Officer>;
   deleting: boolean = false;
   deleteSuccess: boolean = false;
   deleteError: any;
