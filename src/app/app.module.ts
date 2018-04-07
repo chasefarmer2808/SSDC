@@ -29,13 +29,16 @@ import { ScrollInfoDirective } from './directives/onscroll/onscroll.directive';
 
 import { RouteFilterPipe } from './pipes/route-filter/route-filter.pipe';
 
+import { OfficersService } from 'app/services/officers/officers.service';
 import { AuthService } from './services/auth/auth.service';
 import { RouteGuardService } from './services/route-guard/route-guard.service';
 import { UserService } from 'app/services/user/user.service';
 import { UserDashboardComponent } from './dashboard/user-dashboard/user-dashboard.component';
-import { OfficersDashboardComponent } from './dashboard/officers-dashboard/officers-dashboard.component';
+import { OfficersDashboardComponent, OfficerDialog } from './dashboard/officers-dashboard/officers-dashboard.component';
 import { TeamsDashboardComponent } from './dashboard/teams-dashboard/teams-dashboard.component';
 import { ProfileComponent, ChangePasswordDialog } from './dashboard/user-dashboard/profile/profile.component';
+import { StatusMessageComponent } from './status-message/status-message.component';
+import { ImgFormControlComponent } from './dashboard/officers-dashboard/imgformcontrol/imgformcontrol.component';
 
 @NgModule({
   declarations: [
@@ -65,7 +68,10 @@ import { ProfileComponent, ChangePasswordDialog } from './dashboard/user-dashboa
     OfficersDashboardComponent,
     TeamsDashboardComponent,
     ProfileComponent,
-    ChangePasswordDialog
+    ChangePasswordDialog,
+    OfficerDialog,
+    StatusMessageComponent,
+    ImgFormControlComponent
   ],
   imports: [
     BrowserModule,
@@ -78,11 +84,16 @@ import { ProfileComponent, ChangePasswordDialog } from './dashboard/user-dashboa
     ReactiveFormsModule,
     MaterialModule
   ],
-  entryComponents: [ ImageDialogComponent, ChangePasswordDialog ],
+  entryComponents: [ 
+    ImageDialogComponent, 
+    ChangePasswordDialog,
+    OfficerDialog
+  ],
   providers: [
     AuthService,
     RouteGuardService,
     UserService,
+    OfficersService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,

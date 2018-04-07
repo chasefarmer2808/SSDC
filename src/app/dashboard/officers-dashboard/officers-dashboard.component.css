@@ -1,0 +1,53 @@
+.profile-picture-small {
+    overflow: hidden;
+    width: 80px;
+    height: auto;
+    margin: 0 auto;
+    position: relative;
+}
+
+.profile-picture-small img {
+    width: 100%;
+    height: auto;
+}
+
+.profile-preview {
+    border-radius: 50%;
+    overflow: hidden;
+    width: 250px;
+    height: 240px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.profile-preview img {
+    width: 100%;
+    height: auto;
+}
+
+.add-officer-container {
+    max-height: 90vh;
+}
+
+.submit-button {
+    margin: 8px;
+}
+
+@media screen and (min-width: 720px) {
+    .profile-picture-small {
+        overflow: hidden;
+        width: 200px;
+        height: 200px;
+        margin: 0 auto;
+        position: relative;
+    }
+
+    .profile-picture-small img {
+        width: 100%;
+        height: auto;
+    }
+
+    .md-font-size {
+        font-size: 16px;
+    }
+}

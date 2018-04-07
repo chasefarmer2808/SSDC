@@ -5,8 +5,10 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const multer = require('multer');
 const upload = multer();
-const verifyToken = require('../app/verifyToken.js');
-const hashPassword = require('../app/hashPassword.js');
+const verifyToken = require('../middleware/verifyToken.js');
+const hashPassword = require('../middleware/hashPassword.js');
+const isRole = require('../middleware/isRole');
+
 
 const ROLES = {
   admin: 'admin',
@@ -16,43 +18,7 @@ const ROLES = {
 
 var User = require('../schemas/user.js');
 
-function isAdmin(userId, req, res, next) {
-  User.findById(userId, {password: 0}, function(err, user) {
-    if (err) {
-      return res.status(500).send('Error finding the user');
-    }
-
-    if (!user) {
-      return res.status(401).send('No user found');
-    }
-
-    if (user.role === ROLES.admin) {
-      next();
-    } else {
-      return res.status(401).send('Not authorized');
-    }
-  })
-}
-
-function isDev(userId, req, res, next) {
-  User.findById(userId, {password: 0}, function(err, user) {
-    if (err) {
-      return res.status(500).send('Error finding the user');
-    }
-
-    if (!user) {
-      return res.status(401).send('No user found');
-    }
-
-    if (user.role === ROLES.dev || user.role === ROLES.admin) {
-      next();
-    } else {
-      return res.status(401).send('Not authorized');
-    }
-  })
-}
-
-router.get('/', verifyToken, isDev, function(req, res, next) {
+router.get('/', verifyToken, isRole.isDev, function(req, res, next) {
   User.getAll(function(err, users) {
     if (err) {
       res.status(500).send(err);
@@ -102,7 +68,7 @@ router.get('/exist/:username', function(req, res, next) {
   });
 });
 
-router.put('/role', upload.array(), verifyToken, isAdmin, function(req, res, next) {
+router.put('/role', upload.array(), verifyToken, isRole.isAdmin, function(req, res, next) {
   var query = {username: req.body.username};
   User.findOneAndUpdate(query,
                         {role: req.body.role},
@@ -150,7 +116,7 @@ router.put('/password', upload.array(), verifyToken, function(userId, req, res, 
   });
 });
 
-router.delete('/:username', verifyToken, isAdmin, function(req, res, next) {
+router.delete('/:username', verifyToken, isRole.isAdmin, function(req, res, next) {
   User.deleteOne({username: req.params.username}, function(err) {
     if (err) {
       return res.status(500).send('Could not delete user');

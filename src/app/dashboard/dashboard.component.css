@@ -52,3 +52,22 @@
 .highlight {
     background-color: #b0b0b0;
 }
+
+.close-dialog-button {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 8px;
+}
+
+.cell-container {
+    display: flex;
+    flex-direction: column;
+}
+
+@media screen and (min-width: 720px) {
+    .cell-container {
+        display: flex;
+        flex-direction: row;
+    }
+}

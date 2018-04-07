@@ -3,6 +3,7 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
 
 import { OfficersService } from '../services/officers/officers.service';
 import { Officer } from '../services/officers/officer';
+import { environment } from 'environments/environment';
 
 @Component({
   selector: 'app-officers',
@@ -37,6 +38,7 @@ import { Officer } from '../services/officers/officer';
 export class OfficersComponent implements OnInit {
 
   officers: Officer[] = [];
+  serverUrl: string = environment.serverUrl;
 
   constructor(private officersService: OfficersService) { }
 
@@ -47,6 +49,11 @@ export class OfficersComponent implements OnInit {
   getOfficers() {
     this.officersService.getOfficers()
       .subscribe(officers => {
+        
+        for (let officer of officers) {
+          officer.showInfo = false;
+        }
+
         this.officers = officers;
       });
   }
