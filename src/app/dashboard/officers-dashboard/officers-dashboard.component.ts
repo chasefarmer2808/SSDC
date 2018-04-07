@@ -6,6 +6,7 @@ import { SelectionModel } from '@angular/cdk/collections';
 import { OfficersService } from 'app/services/officers/officers.service';
 import { OfficerDataSource } from 'app/services/officers/officer-data-source';
 
+import { ImgFormControlComponent } from 'app/dashboard/officers-dashboard/imgformcontrol/imgformcontrol.component';
 import { StatusMessageComponent } from 'app/status-message/status-message.component';
 
 import { Officer } from 'app/services/officers/officer';
@@ -115,7 +116,7 @@ export class OfficerDialog {
       role: new FormControl(this.officerData.role, [Validators.required, Validators.pattern(lettersOnlyRegex)]),
       emailAddress: new FormControl(this.officerData.emailAddress, [Validators.required, Validators.pattern(emailPattern)]),
       bio: new FormControl(this.officerData.bio),
-      photo: new FormControl(this.officerData.photoUri, Validators.required)
+      photoUri: new FormControl(this.officerData.photoUri, Validators.required)
     });
   }
 
@@ -160,8 +161,8 @@ export class OfficerDialog {
   handleFileUpload(imgFile: File) {
     let reader = new FileReader();
     reader.onload = (event: any) => {
-      this.officerForm.get('photo').setValue(event.target.result);
-      console.log(this.officerForm.get('photo').value);
+      this.officerForm.get('photoUri').setValue(event.target.result);
+      console.log(this.officerForm.get('photoUri').value);
     }
     reader.readAsDataURL(imgFile);
   }

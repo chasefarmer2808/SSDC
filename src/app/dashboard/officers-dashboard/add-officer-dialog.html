@@ -52,9 +52,10 @@
                 <input #imgFileInput type="file" class="hidden" (change)="handleFileUpload($event.target.files[0])">
             </div>
             <div class="flex-center">
-                <div class="profile-preview" *ngIf="officerData.photoUri">
-                    <img #previewImage src="{{officerForm.get('photo').value}}" id="profile-preview-image">
-                </div>
+                <!-- <div class="profile-preview"> -->
+                <app-imgformcontrol formControlName="photoUri"></app-imgformcontrol>
+                    <!-- <img #previewImage src="{{officerForm.get('photo').value}}" formControlName="photo" id="profile-preview-image"> -->
+                <!-- </div> -->
             </div>
             <button class="submit-button" *ngIf="addMode && !addOfficerSuccess" mat-raised-button (click)="addOfficer()" [disabled]="officerForm.invalid">
                 <div *ngIf="!addingOfficer">Submit</div>
