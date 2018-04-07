@@ -247,6 +247,10 @@ mat-checkbox {
   padding: 8px;
 }
 
+mat-dialog-container {
+  z-index: 9999;
+}
+
 .table-title-container {
   display: grid;
   grid-template-columns: 1fr 1fr 3fr 1fr;

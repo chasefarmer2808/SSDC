@@ -82,7 +82,7 @@ router.get('/president', function(req, res, next) {
   }
 });
 
-router.post('/create', upload.array(), /*verifyToken, isRole.isDev*/ function(req, res, next) {
+router.post('/create', upload.array(), verifyToken, isRole.isDev, validateOfficer, function(req, res, next) {
   var newOfficer = new Officer({
     firstName: req.body.firstName,
     lastName: req.body.lastName,
@@ -109,6 +109,9 @@ router.post('/create', upload.array(), /*verifyToken, isRole.isDev*/ function(re
 
 router.put('/:oldFirstName/:oldLastName',
             upload.array(),
+            verifyToken,
+            isRole.isDev,
+            validateOfficer,
             function(req, res, next) {
   var query = {
     firstName: req.params.oldFirstName,
@@ -132,13 +135,12 @@ router.put('/:oldFirstName/:oldLastName',
   });
 });
 
-router.delete('/:firstName/:lastName', function(req, res, next) {
+router.delete('/:firstName/:lastName', verifyToken, isRole.isDev, function(req, res, next) {
   Officer.findOneAndRemove({
     firstName: req.params.firstName,
     lastName: req.params.lastName
   }, function(err, officer) {
     if (err) {
-      console.log(err);
       return res.status(500).send('Could not delete officer');
     }
 
