@@ -104,7 +104,6 @@ export class OfficerDialog {
               private officersService: OfficersService,
               @Inject(MAT_DIALOG_DATA) public officerData: Officer) {
     this.selectedOfficer = this.officerData;
-    console.log(this.officerData);
     this.createOfficerForm();
     this.determineDialogMode(officerData);
   }
@@ -162,7 +161,6 @@ export class OfficerDialog {
     let reader = new FileReader();
     reader.onload = (event: any) => {
       this.officerForm.get('photoUri').setValue(event.target.result);
-      console.log(this.officerForm.get('photoUri').value);
     }
     reader.readAsDataURL(imgFile);
   }

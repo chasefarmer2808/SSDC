@@ -89,11 +89,7 @@ router.post('/create', upload.array(), /*verifyToken, isRole.isDev*/ function(re
     role: req.body.role,
     emailAddress: req.body.emailAddress,
     bio: req.body.bio,
-    photo: req.body.photoUri
-    // photo: {
-    //   filename: req.file.filename,
-    //   contentType: req.file.mimetype
-    // }
+    photoUri: req.body.photoUri
   });
 
   newOfficer.save(function(err) {
@@ -112,8 +108,7 @@ router.post('/create', upload.array(), /*verifyToken, isRole.isDev*/ function(re
 });
 
 router.put('/:oldFirstName/:oldLastName',
-            deleteFileByRouteParams,
-            upload.single('photo'),
+            upload.array(),
             function(req, res, next) {
   var query = {
     firstName: req.params.oldFirstName,
@@ -125,10 +120,7 @@ router.put('/:oldFirstName/:oldLastName',
     role: req.body.role,
     emailAddress: req.body.emailAddress,
     bio: req.body.bio,
-    photo: {
-      filename: req.file.filename,
-      contentType: req.file.mimetype
-    }
+    photoUri: req.body.photoUri
   };
 
   Officer.findOneAndUpdate(query, updatedOfficer, {new: true}, function(err, updatedOfficer) {
@@ -146,16 +138,13 @@ router.delete('/:firstName/:lastName', function(req, res, next) {
     lastName: req.params.lastName
   }, function(err, officer) {
     if (err) {
+      console.log(err);
       return res.status(500).send('Could not delete officer');
     }
 
     if (!officer) {
       return res.status(404).send('Could not find officer');
     }
-
-    fileHandler.deleteFile(officer.photo.filename, function(err) {
-      if (err) res.status(500).send('Error removing officer photo');
-    });
 
     return res.status(200).send({message: `${req.params.firstName} ${req.params.lastName} successfully deleted`});
   });

@@ -25,7 +25,6 @@ export class ImgFormControlComponent implements ControlValueAccessor {
   constructor() { }
 
   writeValue(value: string) {
-    console.log(value)
     if (value !== undefined) {
       this.dataUri = value;
     }

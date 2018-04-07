@@ -9,6 +9,7 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 import { OfficersService } from 'app/services/officers/officers.service';
 
+import { ImgFormControlComponent } from 'app/dashboard/officers-dashboard/imgformcontrol/imgformcontrol.component';
 import { StatusMessageComponent } from 'app/status-message/status-message.component';
 import { OfficersDashboardComponent, OfficerDialog } from './officers-dashboard.component';
 
@@ -20,7 +21,12 @@ describe('OfficersDashboardComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ OfficersDashboardComponent, OfficerDialog, StatusMessageComponent ],
+      declarations: [ 
+        OfficersDashboardComponent, 
+        OfficerDialog, 
+        StatusMessageComponent,
+        ImgFormControlComponent 
+      ],
       providers: [ 
         OfficersService,
         {
@@ -117,7 +123,7 @@ describe('OfficersDashboardComponent', () => {
   });
 
   it('should require photo field', () => {
-    let photoField = officerDialog.officerForm.controls['photo'];
-    expect(photoField.errors).toBeNull();
+    let photoUriField = officerDialog.officerForm.controls['photoUri'];
+    expect(photoUriField.errors['required']).toBeTruthy();
   });
 });
