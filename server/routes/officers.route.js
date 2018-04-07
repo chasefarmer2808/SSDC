@@ -26,7 +26,7 @@ function validateOfficer(req, res, next) {
   req.checkBody('lastName', 'Last name is required').exists();
   req.checkBody('emailAddress', 'Email address is required').exists();
   req.checkBody('role', 'Role is required').exists();
-  req.checkBody('photo', 'Officer photo is required').exists();
+  req.checkBody('photoUri', 'Officer photo is required').exists();
 
   var errors = req.validationErrors();
   if (errors) {
