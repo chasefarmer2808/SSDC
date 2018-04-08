@@ -59,7 +59,26 @@ export class TeamDataDialogComponent implements OnInit {
           console.log(res);
         },
         (err) => {
+          this.saveSuccess = false;
+          this.saveError = err;
+          console.log(err);
+        }
+      );
+  }
+
+  updateTeam() {
+    this.savingTeam = true;
+    this.updateTeamData();
+    this.teamsService.updateTeam(this.teamData)
+      .subscribe(
+        (res) => {
           this.saveSuccess = true;
+          this.savingTeam = false;
+          this.teamDataSource.loadTeams();
+          console.log(res);
+        },
+        (err) => {
+          this.saveSuccess = false;
           this.saveError = err;
           console.log(err);
         }
@@ -69,6 +88,12 @@ export class TeamDataDialogComponent implements OnInit {
   private determineDialogMode(teamData: Team) {
     if (this.teamData._id == undefined) {
       this.addMode = true;
+    }
+  }
+
+  private updateTeamData() {
+    for (let key of Object.keys(this.teamForm.value)) {
+      this.teamData[key] = this.teamForm.get(key).value;
     }
   }
 

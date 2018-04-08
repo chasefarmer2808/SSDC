@@ -63,7 +63,7 @@ router.put('/:id', upload.array(), validateTeam, function(req, res, next) {
 
   Team.findOneAndUpdate({_id: req.params.id}, updatedTeam, {new: true}, function(err, updatedTeam) {
     if (err) {
-      return status(500).send('Error updating officer');
+      return res.status(500).send('Error updating officer');
     }
 
     res.status(200).send(updatedTeam);

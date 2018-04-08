@@ -28,6 +28,12 @@ export class TeamsService {
       .catch(this.handleObservableError);
   }
 
+  updateTeam(updatedTeam: Team): Observable<Team> {
+    return this.http
+      .put<Team>(`${environment.teamsUrl}${updatedTeam._id}`, updatedTeam)
+      .catch(this.handleObservableError);
+  }
+
   deleteTeam(id: string): Observable<any> {
     return this.http
       .delete<any>(`${environment.teamsUrl}${id}`)

@@ -5,6 +5,7 @@ import { SelectionModel } from '@angular/cdk/collections';
 import { TeamsService } from 'app/services/teams/teams.service';
 import { TeamDataSource } from 'app/services/teams/team-data-source';
 
+import { NavbarComponent } from 'app/navbar/navbar.component';
 import { StatusMessageComponent } from 'app/status-message/status-message.component';
 import { TeamDataDialogComponent } from 'app/dashboard/teams-dashboard/team-data-dialog/team-data-dialog.component';
 
@@ -28,7 +29,8 @@ export class TeamsDashboardComponent implements OnInit {
   deleteSuccess: boolean = false;
   deleteError: any;
 
-  constructor(private teamsService: TeamsService, private teamDialog: MatDialog) { 
+  constructor(private teamsService: TeamsService, 
+              private teamDialog: MatDialog) { 
     this.selectedRows = new SelectionModel<Team>(true, []);
   }
 

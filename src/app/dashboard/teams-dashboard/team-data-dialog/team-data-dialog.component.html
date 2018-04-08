@@ -37,7 +37,7 @@
               <mat-spinner [diameter]="60"></mat-spinner>
           </div>
       </button>
-      <button class="submit-button" *ngIf="!addMode && !saveSuccess" mat-raised-button [disabled]="teamForm.invalid">
+      <button class="submit-button" *ngIf="!addMode && !saveSuccess" (click)="updateTeam()" mat-raised-button [disabled]="teamForm.invalid">
           <div *ngIf="!savingTeam">Update</div>
           <div *ngIf="savingTeam" class="flex-center">
               <mat-spinner [diameter]="60"></mat-spinner>
