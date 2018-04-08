@@ -14,21 +14,21 @@
         <mat-form-field class="full-width">
           <input type="text" matInput formControlName="name" placeholder="Team Name" required>
           <mat-error *ngIf="teamForm.controls['name'].hasError('required')">This field is required</mat-error>
-          <mat-error *ngIf="teamForm.controls['name'].hasError('required') && teamForm.controls['name'].hasError('pattern')">Letters and numbers only please</mat-error>
+          <mat-error *ngIf="!teamForm.controls['name'].hasError('required') && teamForm.controls['name'].hasError('pattern')">Letters and numbers only please</mat-error>
         </mat-form-field>
       </div>
       <div class="form-input-container">
         <mat-form-field class="full-width">
           <textarea matInput matTextareaAutosize formControlName="overview" placeholder="Overview"></textarea>
           <mat-error *ngIf="teamForm.controls['overview'].hasError('required')">This field is required</mat-error>
-          <mat-error *ngIf="teamForm.controls['overview'].hasError('required') && teamForm.controls['overview'].hasError('pattern')">Letters and numbers only please</mat-error>
+          <mat-error *ngIf="!teamForm.controls['overview'].hasError('required') && teamForm.controls['overview'].hasError('pattern')">Letters and numbers only please</mat-error>
         </mat-form-field>
       </div>
       <div class="form-input-container">
         <mat-form-field class="full-width">
           <textarea matInput matTextareaAutosize formControlName="goal" placeholder="Goal"></textarea>
           <mat-error *ngIf="teamForm.controls['goal'].hasError('required')">This field is required</mat-error>
-          <mat-error *ngIf="teamForm.controls['goal'].hasError('required') && teamForm.controls['goal'].hasError('pattern')">Letters and numbers only please</mat-error>
+          <mat-error *ngIf="!teamForm.controls['goal'].hasError('required') && teamForm.controls['goal'].hasError('pattern')">Letters and numbers only please</mat-error>
         </mat-form-field>
       </div>
       <button class="submit-button" *ngIf="addMode && !saveSuccess" (click)="createTeam()" mat-raised-button [disabled]="teamForm.invalid">
