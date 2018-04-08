@@ -32,7 +32,7 @@ router.get('/', function(req, res, next) {
   });
 });
 
-router.post('/create', upload.array(), validateTeam, function(req, res, next) {
+router.post('/create', upload.array(), verifyToken, isRole.isDev, validateTeam, function(req, res, next) {
   var newTeam = new Team({
     name: req.body.name,
     overview: req.body.overview,
@@ -54,7 +54,7 @@ router.post('/create', upload.array(), validateTeam, function(req, res, next) {
   });
 });
 
-router.put('/:id', upload.array(), validateTeam, function(req, res, next) {
+router.put('/:id', upload.array(), verifyToken, isRole.isDev, validateTeam, function(req, res, next) {
   var updatedTeam = {
     name: req.body.name,
     overview: req.body.overview,
@@ -70,7 +70,7 @@ router.put('/:id', upload.array(), validateTeam, function(req, res, next) {
   });
 });
 
-router.delete('/:id', function(req, res, next) {
+router.delete('/:id', verifyToken, isRole.isDev, function(req, res, next) {
   Team.findOneAndRemove({_id: req.params.id}, function(err, team) {
     if (err) {
       return res.status(500).send('Could not delete team');
