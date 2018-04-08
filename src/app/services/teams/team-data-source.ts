@@ -5,39 +5,35 @@ import { catchError, finalize, map } from 'rxjs/operators';
 import { of } from 'rxjs/observable/of'; 
 import 'rxjs/add/operator/filter'
 
-import { OfficersService } from './officers.service';
-import { Officer } from './officer';
+import { TeamsService } from './teams.service';
+import { Team } from './team';
 
-export class OfficerDataSource implements DataSource<Officer> {
-    private officersSubject = new BehaviorSubject<Officer[]>([]);
+export class TeamDataSource implements DataSource<Team> {
+    private teamsSubject = new BehaviorSubject<Team[]>([]);
     private loadingSubject = new BehaviorSubject<boolean>(false);
-
+    
     public loading$ = this.loadingSubject.asObservable();
 
-    constructor(private officersService: OfficersService) {}
+    constructor(private teamsService: TeamsService) {}
 
-    connect(CollectionViewer: CollectionViewer): Observable<Officer[]> {
-        return this.officersSubject.asObservable();
+    connect(CollectionViewer: CollectionViewer): Observable<Team[]> {
+        return this.teamsSubject.asObservable();
     }
 
     disconnect(CollectionViewer: CollectionViewer): void {
-        this.officersSubject.complete();
+        this.teamsSubject.complete();
         this.loadingSubject.complete();
     }
 
-    loadOfficers() {
+    loadTeams() {
         this.loadingSubject.next(true);
-        this.officersService.getOfficers()
+        this.teamsService.getTeams()
             .pipe(
                 catchError(() => of([])),
                 finalize(() => this.loadingSubject.next(false))
             )
-            .subscribe(officers => {
-                this.officersSubject.next(officers);
+            .subscribe(teams => {
+                this.teamsSubject.next(teams);
             });
-    }
-
-    getOfficers(): Officer[] {
-        return this.officersSubject.getValue();
     }
 }

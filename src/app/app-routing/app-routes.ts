@@ -49,9 +49,7 @@ export const routes: Routes = [
     path: 'teams',
     component: TeamsComponent,
     data: {
-      name: 'Design Teams',
-      showSubItems: false,
-      subItems: [ ]
+      name: 'Design Teams'
     }
   },
   {
