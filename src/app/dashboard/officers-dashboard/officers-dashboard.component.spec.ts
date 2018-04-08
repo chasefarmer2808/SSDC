@@ -35,11 +35,7 @@ describe('OfficersDashboardComponent', () => {
         },
         {
           provide: MAT_DIALOG_DATA, 
-          useValue: {
-            photo: {
-              filename: 'test.jpg'
-            }
-          }
+          useValue: {}
         }
       ],
       imports: [

@@ -27,7 +27,10 @@ describe('TeamDataDialogComponent', () => {
         },
         {
           provide: MAT_DIALOG_DATA,
-          useValue: {}
+          useValue: {
+            team: {},
+            dataSource: {}
+          }
         }
       ],
       imports: [

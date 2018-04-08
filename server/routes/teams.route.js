@@ -80,7 +80,7 @@ router.delete('/:id', function(req, res, next) {
       return res.status(404).send('Could not find team');
     }
 
-    return res.status(200).send(`${team.name} was successfully deleted`);
+    return res.status(200).send({message: `${team.name} was successfully deleted`});
   });
 });
 

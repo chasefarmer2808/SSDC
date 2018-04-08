@@ -21,9 +21,10 @@ import { Team } from 'app/services/teams/team';
 })
 export class TeamsDashboardComponent implements OnInit {
 
-  columnsToDisplay: Array<string> = ['name', 'overview', 'goal'];
+  columnsToDisplay: Array<string> = ['actions', 'name', 'overview', 'goal'];
   teamDataSource: TeamDataSource;
   selectedRows: SelectionModel<Team>;
+  deleting: boolean = false;
   deleteSuccess: boolean = false;
   deleteError: any;
 
@@ -37,7 +38,43 @@ export class TeamsDashboardComponent implements OnInit {
   }
 
   openTeamDialog() {
-    this.teamDialog.open(TeamDataDialogComponent, {data: new Team()});
+    let dialogData = {
+      data: {
+        team: new Team(),
+        dataSource: this.teamDataSource
+      }
+    };
+
+    this.teamDialog.open(TeamDataDialogComponent, dialogData);
   }
 
+  openUpdateTeamDialog(team: Team) {
+    let dialogData = {
+      data: {
+        team: team,
+        dataSource: this.teamDataSource
+      }
+    };
+
+    this.teamDialog.open(TeamDataDialogComponent, dialogData);
+  }
+
+  deleteSelectedTeams() {
+    this.deleting = true;
+    this.teamsService.deleteTeamMany(this.selectedRows.selected)
+      .subscribe(
+        (res) => {
+          this.teamDataSource.loadTeams();
+          this.selectedRows.clear();
+          this.deleteSuccess = true;
+          this.deleting = false;
+        },
+        (err) => {
+          this.deleteSuccess = false;
+          this.deleteError = err;
+          this.deleting = false;
+          console.log(err);
+        }
+      )
+  }
 }

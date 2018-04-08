@@ -31,7 +31,7 @@
           <mat-error *ngIf="teamForm.controls['goal'].hasError('required') && teamForm.controls['goal'].hasError('pattern')">Letters and numbers only please</mat-error>
         </mat-form-field>
       </div>
-      <button class="submit-button" *ngIf="addMode && !saveSuccess" mat-raised-button [disabled]="teamForm.invalid">
+      <button class="submit-button" *ngIf="addMode && !saveSuccess" (click)="createTeam()" mat-raised-button [disabled]="teamForm.invalid">
           <div *ngIf="!savingTeam">Submit</div>
           <div *ngIf="savingTeam" class="flex-center">
               <mat-spinner [diameter]="60"></mat-spinner>

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 
 import { environment } from '../../../environments/environment';
@@ -52,9 +52,8 @@ export class OfficersService {
     return Observable.forkJoin(requests);
   }
 
-  private handleObservableError(error: Response) {
-    let message = `Error status code ${error.status} at ${error.url}`;
-    return Observable.throw(message);
+  private handleObservableError(error: HttpErrorResponse) {
+    return Observable.throw(error.message);
   }
 
 }

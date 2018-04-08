@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Headers, Http, Response } from '@angular/http';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/map';
@@ -22,9 +22,30 @@ export class TeamsService {
       .catch(this.handleObservableError);
   }
 
-  private handleObservableError(error: Response) {
-    let message = `Error status code ${error.status} at ${error.url}`;
-    return Observable.throw(message);
+  createTeam(newTeam: Team): Observable<Team> {
+    return this.http
+      .post<Team>(`${environment.teamsUrl}create`, newTeam)
+      .catch(this.handleObservableError);
+  }
+
+  deleteTeam(id: string): Observable<any> {
+    return this.http
+      .delete<any>(`${environment.teamsUrl}${id}`)
+      .catch(this.handleObservableError);
+  }
+
+  deleteTeamMany(teams: Team[]): Observable<any> {
+    let requests: Array<Observable<any>> = [];
+
+    teams.forEach(team => {
+      requests.push(this.deleteTeam(team._id));
+    });
+
+    return Observable.forkJoin(requests);
+  }
+
+  private handleObservableError(error: HttpErrorResponse) {
+    return Observable.throw(error.message);
   }
 
 }

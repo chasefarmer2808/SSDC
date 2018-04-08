@@ -10,7 +10,7 @@
               <app-status-message [success]="deleteSuccess" [failMessage]="deleteError"></app-status-message>
             </div>
             <span class="header-actions">
-              <button *ngIf="!deleting" mat-icon-button [disabled]="selectedRows.selected.length == 0">
+              <button *ngIf="!deleting" mat-icon-button (click)="deleteSelectedTeams()" [disabled]="selectedRows.selected.length == 0">
                 <i class="material-icons">delete</i>
               </button>
               <button mat-icon-button (click)="openTeamDialog()">
@@ -33,9 +33,12 @@
             <mat-cell *matCellDef="let row">
               <div class="cell-container">
                 <mat-checkbox (click)="$event.stopPropagation()"
-                  (change)="$event ? selectedRows.toggel(row) : null"
+                  (change)="$event ? selectedRows.toggle(row) : null"
                   [checked]="selectedRows.isSelected(row)">
                 </mat-checkbox>
+                <button mat-icon-button (click)="openUpdateTeamDialog(row)">
+                  <i class="material-icons">mode_edit</i>
+                </button>
               </div>
             </mat-cell>
           </ng-container>
@@ -43,7 +46,7 @@
           <!-- Name Column -->
           <ng-container matColumnDef="name">
             <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
-            <mat-cell class="center md-font-size" *matCellDef="let team">
+            <mat-cell class="md-font-size" *matCellDef="let team">
               {{team.name}}
             </mat-cell>
           </ng-container>
@@ -51,7 +54,7 @@
           <!-- Overview Column -->
           <ng-container matColumnDef="overview">
             <mat-header-cell *matHeaderCellDef>Overview</mat-header-cell>
-            <mat-cell class="center md-font-size" *matCellDef="let team">
+            <mat-cell class="md-font-size" *matCellDef="let team">
               {{team.overview}}
             </mat-cell>
           </ng-container>
@@ -59,7 +62,7 @@
           <!-- Goal Column -->
           <ng-container matColumnDef="goal">
             <mat-header-cell *matHeaderCellDef>Goal</mat-header-cell>
-            <mat-cell class="center md-font-size" *matCellDef="let team">
+            <mat-cell class="md-font-size" *matCellDef="let team">
               {{team.goal}}
             </mat-cell>
           </ng-container>

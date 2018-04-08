@@ -33,6 +33,7 @@ export class TeamDataSource implements DataSource<Team> {
                 finalize(() => this.loadingSubject.next(false))
             )
             .subscribe(teams => {
+                console.log(teams)
                 this.teamsSubject.next(teams);
             });
     }

@@ -1,5 +1,5 @@
 export class Team {
-    id: string;
+    _id: string;
     name: string;
     overview: string;
     goal: string;
