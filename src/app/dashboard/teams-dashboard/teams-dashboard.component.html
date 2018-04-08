@@ -13,7 +13,7 @@
               <button *ngIf="!deleting" mat-icon-button [disabled]="selectedRows.selected.length == 0">
                 <i class="material-icons">delete</i>
               </button>
-              <button mat-icon-button>
+              <button mat-icon-button (click)="openTeamDialog()">
                 <i class="material-icons">add</i>
               </button>
               <mat-spinner [diameter]="60" *ngIf="deleting"></mat-spinner>
@@ -45,6 +45,22 @@
             <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
             <mat-cell class="center md-font-size" *matCellDef="let team">
               {{team.name}}
+            </mat-cell>
+          </ng-container>
+
+          <!-- Overview Column -->
+          <ng-container matColumnDef="overview">
+            <mat-header-cell *matHeaderCellDef>Overview</mat-header-cell>
+            <mat-cell class="center md-font-size" *matCellDef="let team">
+              {{team.overview}}
+            </mat-cell>
+          </ng-container>
+
+          <!-- Goal Column -->
+          <ng-container matColumnDef="goal">
+            <mat-header-cell *matHeaderCellDef>Goal</mat-header-cell>
+            <mat-cell class="center md-font-size" *matCellDef="let team">
+              {{team.goal}}
             </mat-cell>
           </ng-container>
 

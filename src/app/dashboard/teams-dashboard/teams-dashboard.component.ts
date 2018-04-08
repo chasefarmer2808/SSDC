@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators, ValidatorFn, AbstractControl } from '@angular/forms';
 import { MatDialogRef, MatDialog, MAT_DIALOG_DATA } from '@angular/material';
 import { SelectionModel } from '@angular/cdk/collections';
 
@@ -7,10 +6,9 @@ import { TeamsService } from 'app/services/teams/teams.service';
 import { TeamDataSource } from 'app/services/teams/team-data-source';
 
 import { StatusMessageComponent } from 'app/status-message/status-message.component';
+import { TeamDataDialogComponent } from 'app/dashboard/teams-dashboard/team-data-dialog/team-data-dialog.component';
 
 import { Team } from 'app/services/teams/team';
-
-const alphanumericOnlyRegex = /^[a-zA-Z0-9\s]+$/;
 
 @Component({
   selector: 'app-teams-dashboard',
@@ -23,7 +21,7 @@ const alphanumericOnlyRegex = /^[a-zA-Z0-9\s]+$/;
 })
 export class TeamsDashboardComponent implements OnInit {
 
-  columnsToDisplay: Array<string> = ['name'];
+  columnsToDisplay: Array<string> = ['name', 'overview', 'goal'];
   teamDataSource: TeamDataSource;
   selectedRows: SelectionModel<Team>;
   deleteSuccess: boolean = false;
@@ -36,6 +34,10 @@ export class TeamsDashboardComponent implements OnInit {
   ngOnInit() {
     this.teamDataSource = new TeamDataSource(this.teamsService);
     this.teamDataSource.loadTeams();
+  }
+
+  openTeamDialog() {
+    this.teamDialog.open(TeamDataDialogComponent, {data: new Team()});
   }
 
 }

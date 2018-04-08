@@ -10,26 +10,38 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { TeamsService } from 'app/services/teams/teams.service';
 
 import { StatusMessageComponent } from 'app/status-message/status-message.component';
-import { TeamsDashboardComponent } from './teams-dashboard.component';
+import { TeamDataDialogComponent } from './team-data-dialog.component';
 
-describe('TeamsDashboardComponent', () => {
-  let component: TeamsDashboardComponent;
-  let fixture: ComponentFixture<TeamsDashboardComponent>;
+describe('TeamDataDialogComponent', () => {
+  let component: TeamDataDialogComponent;
+  let fixture: ComponentFixture<TeamDataDialogComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TeamsDashboardComponent, StatusMessageComponent ],
-      providers: [ TeamsService ],
+      declarations: [ TeamDataDialogComponent, StatusMessageComponent ],
+      providers: [
+        TeamsService,
+        {
+          provide: MatDialogRef,
+          useValue: {}
+        },
+        {
+          provide: MAT_DIALOG_DATA,
+          useValue: {}
+        }
+      ],
       imports: [
-        HttpClientTestingModule,
-        MaterialModule
+        ReactiveFormsModule,
+        MaterialModule,
+        BrowserAnimationsModule,
+        HttpClientTestingModule
       ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TeamsDashboardComponent);
+    fixture = TestBed.createComponent(TeamDataDialogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

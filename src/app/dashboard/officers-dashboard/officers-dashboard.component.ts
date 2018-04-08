@@ -87,17 +87,11 @@ export class OfficersDashboardComponent implements OnInit {
 })
 export class OfficerDialog {
   officerForm: FormGroup;
-  officerPhoto: File;
   addingOfficer: boolean = false;
   addOfficerSuccess: boolean = false;
   addMode: boolean = false;
   addOfficerError: any;
-  previewImageUrl: string;
   selectedOfficer: Officer;
-
-  @ViewChild('previewImage') previewImage: ElementRef;
-  @ViewChild('imgFileInput') imgFileInput: HTMLElement;
-  @ViewChild('attachPhotoButton') attachPhotoButton: HTMLElement;
 
   constructor(public dialogRef: MatDialogRef<OfficerDialog>, 
               private officersService: OfficersService,

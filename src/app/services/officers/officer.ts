@@ -14,6 +14,5 @@ export class Officer {
     this.bio = '';
     this.emailAddress = '';
     this.showInfo = false;
-    // this.photoUri = '';
   }
 }

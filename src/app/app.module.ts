@@ -40,6 +40,7 @@ import { TeamsDashboardComponent } from './dashboard/teams-dashboard/teams-dashb
 import { ProfileComponent, ChangePasswordDialog } from './dashboard/user-dashboard/profile/profile.component';
 import { StatusMessageComponent } from './status-message/status-message.component';
 import { ImgFormControlComponent } from './dashboard/officers-dashboard/imgformcontrol/imgformcontrol.component';
+import { TeamDataDialogComponent } from './dashboard/teams-dashboard/team-data-dialog/team-data-dialog.component';
 
 @NgModule({
   declarations: [
@@ -72,7 +73,8 @@ import { ImgFormControlComponent } from './dashboard/officers-dashboard/imgformc
     ChangePasswordDialog,
     OfficerDialog,
     StatusMessageComponent,
-    ImgFormControlComponent
+    ImgFormControlComponent,
+    TeamDataDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -88,7 +90,8 @@ import { ImgFormControlComponent } from './dashboard/officers-dashboard/imgformc
   entryComponents: [ 
     ImageDialogComponent, 
     ChangePasswordDialog,
-    OfficerDialog
+    OfficerDialog,
+    TeamDataDialogComponent
   ],
   providers: [
     AuthService,
