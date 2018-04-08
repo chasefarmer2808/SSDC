@@ -7,7 +7,7 @@ import { TeamDataSource } from 'app/services/teams/team-data-source';
 
 import { Team } from 'app/services/teams/team';
 
-const alphanumericOnlyRegex = /^[a-zA-Z0-9._\s]+$/;
+const alphanumericOnlyRegex = /^[a-zA-Z0-9.,!?"'_\s]+$/;
 
 @Component({
   selector: 'app-team-data-dialog',
