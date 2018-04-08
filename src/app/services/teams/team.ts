@@ -1,6 +1,13 @@
 export class Team {
+    _id: string;
     name: string;
     overview: string;
     goal: string;
-    albumId: string;
+
+    constructor() {
+        this.name = '';
+        this.overview = '';
+        this.goal = '';
+    }
 }
+

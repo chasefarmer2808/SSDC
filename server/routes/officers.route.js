@@ -1,25 +1,13 @@
 'use strict';
 
 const express = require('express');
-const fs = require('fs');
-const officers = require('../assets/data/officers.json');
-const ROLES = require('../config').roles;
-
-var multer = require('multer');
-
-var fileHandler = require('../app/file.handler');
-var verifyToken = require('../middleware/verifyToken');
-var isRole = require('../middleware/isRole');
-var deleteFileByRouteParams = require('../middleware/deleteFileByRouteParams');
-
-var Officer = require('../schemas/officer');
-
+const multer = require('multer');
+const upload = multer();
 const router = express.Router();
 
-var upload = multer({
-  storage: fileHandler.imageStorage,
-  fileFilter: fileHandler.imageFilter
-});
+var Officer = require('../schemas/officer');
+var verifyToken = require('../middleware/verifyToken');
+var isRole = require('../middleware/isRole');
 
 function validateOfficer(req, res, next) {
   req.checkBody('firstName', 'First name is required').exists();
@@ -36,28 +24,8 @@ function validateOfficer(req, res, next) {
   next();
 }
 
-function validatePhoto(req, res, next) {
-  req.checkBody('photo', 'Officer photo is required').exists();
-  var errors = req.validationErrors();
-  if (errors) {
-    return res.status(400).send(errors);
-  }
-
-  next();
-}
-
 router.get('/', function(req, res, next) {
   Officer.getAll(function(err, officers) {
-    if (err) {
-      return res.status(500).send(err);
-    }
-
-    res.status(200).send(officers);
-  });
-});
-
-router.get('/photos', function(req, res, next) {
-  Officer.getAllPhotos(function(err, officers) {
     if (err) {
       return res.status(500).send(err);
     }

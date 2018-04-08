@@ -84,8 +84,6 @@ export class NavbarComponent implements OnInit {
         this.updateLogin();
       }
     });
-
-    this.populateTeamsSubItems();
   }
 
   updateLogin() {
@@ -95,19 +93,6 @@ export class NavbarComponent implements OnInit {
   navigate(routePath: string, params:any={}) {
     this.router.navigate([routePath, params]);
     this.closeNav(false, '');
-  }
-
-  populateTeamsSubItems() {
-    let teamsRoute = this.getRoute('teams');
-
-    if (!teamsRoute) {
-      return;
-    }
-
-    this.teamsService.getTeams()
-      .subscribe(teams => {
-        teamsRoute.data.subItems = teams;
-      });
   }
 
   getRoute(routePath: string): any {
