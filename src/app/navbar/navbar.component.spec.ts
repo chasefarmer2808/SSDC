@@ -51,16 +51,6 @@ describe('NavbarComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should call populateTeamsSubItems on init', () => {
-    let populateTeamsSubItemsSpy = spyOn(component, 'populateTeamsSubItems').and.callThrough();
-
-    fixture.detectChanges();
-
-    fixture.whenStable().then(() => {
-      expect(populateTeamsSubItemsSpy).toHaveBeenCalled();
-    });
-  });
-
   it('should get contact route by path name', () => {
     fixture.detectChanges();
     let trueRoute = routes[1];
