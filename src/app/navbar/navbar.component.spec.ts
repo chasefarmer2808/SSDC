@@ -12,7 +12,7 @@ import { NavbarComponent } from '../navbar/navbar.component';
 import { TeamsService } from '../services/teams/teams.service';
 import { AuthService } from 'app/services/auth/auth.service';
 
-import { RouteFilterPipe } from '../pipes/route-filter/route-filter.pipe';
+import { RouteDataFilterPipe } from '../pipes/route-data-filter/route-data-filter.pipe';
 
 import { routes } from '../app-routing/app-routes';
 
@@ -27,7 +27,7 @@ describe('NavbarComponent', () => {
     TestBed.configureTestingModule({
       declarations: [
         NavbarComponent,
-        RouteFilterPipe
+        RouteDataFilterPipe
       ],
       imports: [
         HttpClientTestingModule,

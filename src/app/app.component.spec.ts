@@ -4,7 +4,7 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
 
-import { RouteFilterPipe } from './pipes/route-filter/route-filter.pipe';
+import { RouteDataFilterPipe } from './pipes/route-data-filter/route-data-filter.pipe';
 
 import { RouterTestingModule } from '@angular/router/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -21,7 +21,7 @@ describe('AppComponent', () => {
         AppComponent,
         NavbarComponent,
         FooterComponent,
-        RouteFilterPipe
+        RouteDataFilterPipe
       ],
       imports: [
         RouterTestingModule,

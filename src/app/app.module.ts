@@ -27,7 +27,7 @@ import { KeyDirective } from './directives/key/key.directive';
 import { ClickOutsideDirective } from './directives/click-outside/click-outside.directive';
 import { ScrollInfoDirective } from './directives/onscroll/onscroll.directive';
 
-import { RouteFilterPipe } from './pipes/route-filter/route-filter.pipe';
+import { RouteDataFilterPipe } from './pipes/route-data-filter/route-data-filter.pipe';
 
 import { TeamsService } from './services/teams/teams.service';
 import { OfficersService } from 'app/services/officers/officers.service';
@@ -57,7 +57,7 @@ import { TeamDataDialogComponent } from './dashboard/teams-dashboard/team-data-d
     HomeComponent,
     EventsComponent,
     ContactComponent,
-    RouteFilterPipe,
+    RouteDataFilterPipe,
     KeyDirective,
     LoginComponent,
     DashboardComponent,

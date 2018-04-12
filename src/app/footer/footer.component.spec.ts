@@ -3,24 +3,24 @@ import { By } from '@angular/platform-browser';
 
 import { FooterComponent } from './footer.component';
 import { RouterTestingModule } from '@angular/router/testing';
-import { RouteFilterPipe } from '../pipes/route-filter/route-filter.pipe';
+import { RouteDataFilterPipe } from '../pipes/route-data-filter/route-data-filter.pipe';
 
 import { routes } from '../app-routing/app-routes';
 
 describe('FooterComponent', () => {
   let component: FooterComponent;
   let fixture: ComponentFixture<FooterComponent>;
-  let routeFileterPipe: RouteFilterPipe;
+  let routeFileterPipe: RouteDataFilterPipe;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FooterComponent, RouteFilterPipe ],
-      providers: [ RouteFilterPipe ],
+      declarations: [ FooterComponent, RouteDataFilterPipe ],
+      providers: [ RouteDataFilterPipe ],
       imports: [ RouterTestingModule ]
     })
     .compileComponents();
 
-    routeFileterPipe = TestBed.get(RouteFilterPipe);
+    routeFileterPipe = TestBed.get(RouteDataFilterPipe);
   }));
 
   beforeEach(() => {

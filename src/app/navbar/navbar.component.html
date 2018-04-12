@@ -3,7 +3,7 @@
     <div class="nav-logo"></div>
     <div class="nav-burger" (click)="toggleNav()"><i class="fa fa-bars fa-2x" aria-hidden="true"></i></div>
     <div class="large-links-container">
-      <div *ngFor="let route of myRoutes | routeFilter" (mouseover)="toggleSubItemVisible(route)" (mouseout)="toggleSubItemVisible(route)" class="large-nav-link">
+      <div *ngFor="let route of myRoutes | routeDataFilter" (mouseover)="toggleSubItemVisible(route)" (mouseout)="toggleSubItemVisible(route)" class="large-nav-link">
         <div class="vert-center">
           <div class="large-link-group">
             <a routerLink="/{{route.path}}" class="slide-center">{{route.data.name}}</a>
@@ -27,7 +27,7 @@
   </div>
   <div class="nav-links-container" [@dropDown]="navDropDown">
     <div class="nav-links">
-      <div *ngFor="let route of myRoutes | routeFilter" class="nav-link">
+      <div *ngFor="let route of myRoutes | routeDataFilter" class="nav-link">
         <a routerLink="/{{route.path}}" (click)="closeNav(true, route.path)">{{route.data.name}}</a>
         <i [@rotate180]="route.data.showSubItems" *ngIf="route.data.subItems?.length > 0" (click)="toggleSubItemVisible(route)" class="fa fa-angle-down" aria-hidden="true"></i>
         <ul [@slideDown]="route.data.showSubItems" class="scrollables">
