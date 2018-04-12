@@ -9,7 +9,7 @@ export class RouteDataFilterPipe implements PipeTransform {
 
     let visibleRoutes = items.filter(item => {
       return item.data;
-    })
+    });
 
     return visibleRoutes;
   }

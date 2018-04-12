@@ -41,6 +41,7 @@ import { ProfileComponent, ChangePasswordDialog } from './dashboard/user-dashboa
 import { StatusMessageComponent } from './status-message/status-message.component';
 import { ImgFormControlComponent } from './dashboard/officers-dashboard/imgformcontrol/imgformcontrol.component';
 import { TeamDataDialogComponent } from './dashboard/teams-dashboard/team-data-dialog/team-data-dialog.component';
+import { RouteGuardFilterPipe } from './pipes/route-guard-filter/route-guard-filter.pipe';
 
 @NgModule({
   declarations: [
@@ -74,7 +75,8 @@ import { TeamDataDialogComponent } from './dashboard/teams-dashboard/team-data-d
     OfficerDialog,
     StatusMessageComponent,
     ImgFormControlComponent,
-    TeamDataDialogComponent
+    TeamDataDialogComponent,
+    RouteGuardFilterPipe
   ],
   imports: [
     BrowserModule,

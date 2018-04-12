@@ -20,7 +20,7 @@
       </div>
       <div class="nav-map-container">
         <div class="grid-col-header-sm">Navigation</div>
-        <div *ngFor="let route of myRoutes | routeDataFilter" class="nav-map-link">
+        <div *ngFor="let route of myRoutes | routeDataFilter | routeGuardFilter" class="nav-map-link">
             <a class="nav-link-sm" routerLink="/{{route.path}}">{{route.data.name}}</a>
         </div>
       </div>

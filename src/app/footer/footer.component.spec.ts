@@ -4,23 +4,32 @@ import { By } from '@angular/platform-browser';
 import { FooterComponent } from './footer.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { RouteDataFilterPipe } from '../pipes/route-data-filter/route-data-filter.pipe';
+import { RouteGuardFilterPipe } from 'app/pipes/route-guard-filter/route-guard-filter.pipe';
+import { AuthService } from 'app/services/auth/auth.service';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 import { routes } from '../app-routing/app-routes';
 
 describe('FooterComponent', () => {
   let component: FooterComponent;
   let fixture: ComponentFixture<FooterComponent>;
-  let routeFileterPipe: RouteDataFilterPipe;
+  let routeDataFileterPipe: RouteDataFilterPipe;
+  let routeGuardFilterPipe: RouteGuardFilterPipe;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FooterComponent, RouteDataFilterPipe ],
-      providers: [ RouteDataFilterPipe ],
-      imports: [ RouterTestingModule ]
+      declarations: [ 
+        FooterComponent,
+        RouteDataFilterPipe, 
+        RouteGuardFilterPipe
+      ],
+      providers: [ RouteDataFilterPipe, AuthService, HttpClientTestingModule ],
+      imports: [ RouterTestingModule, HttpClientTestingModule ]
     })
     .compileComponents();
 
-    routeFileterPipe = TestBed.get(RouteDataFilterPipe);
+    routeDataFileterPipe = TestBed.get(RouteDataFilterPipe);
+    routeGuardFilterPipe = TestBed.get(RouteDataFilterPipe);
   }));
 
   beforeEach(() => {
@@ -39,7 +48,6 @@ describe('FooterComponent', () => {
 
   it('should have populated footer with routes', () => {
     let navLinks = fixture.nativeElement;
-    let visibleRoutes = routeFileterPipe.transform(component.myRoutes);
-    expect(navLinks.querySelectorAll('.nav-map-link').length).toEqual(visibleRoutes.length);
+    expect(navLinks.querySelectorAll('.nav-map-link').length).toEqual(4);
   });
 });
