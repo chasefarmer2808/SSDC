@@ -27,7 +27,7 @@ import { KeyDirective } from './directives/key/key.directive';
 import { ClickOutsideDirective } from './directives/click-outside/click-outside.directive';
 import { ScrollInfoDirective } from './directives/onscroll/onscroll.directive';
 
-import { RouteFilterPipe } from './pipes/route-filter/route-filter.pipe';
+import { RouteDataFilterPipe } from './pipes/route-data-filter/route-data-filter.pipe';
 
 import { TeamsService } from './services/teams/teams.service';
 import { OfficersService } from 'app/services/officers/officers.service';
@@ -41,6 +41,7 @@ import { ProfileComponent, ChangePasswordDialog } from './dashboard/user-dashboa
 import { StatusMessageComponent } from './status-message/status-message.component';
 import { ImgFormControlComponent } from './dashboard/officers-dashboard/imgformcontrol/imgformcontrol.component';
 import { TeamDataDialogComponent } from './dashboard/teams-dashboard/team-data-dialog/team-data-dialog.component';
+import { RouteGuardFilterPipe } from './pipes/route-guard-filter/route-guard-filter.pipe';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,7 @@ import { TeamDataDialogComponent } from './dashboard/teams-dashboard/team-data-d
     HomeComponent,
     EventsComponent,
     ContactComponent,
-    RouteFilterPipe,
+    RouteDataFilterPipe,
     KeyDirective,
     LoginComponent,
     DashboardComponent,
@@ -74,7 +75,8 @@ import { TeamDataDialogComponent } from './dashboard/teams-dashboard/team-data-d
     OfficerDialog,
     StatusMessageComponent,
     ImgFormControlComponent,
-    TeamDataDialogComponent
+    TeamDataDialogComponent,
+    RouteGuardFilterPipe
   ],
   imports: [
     BrowserModule,

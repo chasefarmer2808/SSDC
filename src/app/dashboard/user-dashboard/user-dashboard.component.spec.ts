@@ -13,6 +13,7 @@ import { AuthService } from 'app/services/auth/auth.service';
 
 import { User } from 'app/services/user/user';
 import { UsersMock } from 'app/services/user/users.mock';
+import { ROLES } from 'app/services/user/roles';
 
 describe('UserDashboardComponent', () => {
   let component: UserDashboardComponent;
@@ -113,5 +114,19 @@ describe('UserDashboardComponent', () => {
     fixture.detectChanges();
 
     expect(component.getUserByUsername('blah')).toBeUndefined();
+  });
+
+  it('should not display select column is user is dev', () => {
+    localStorage.setItem('role', ROLES.DEV);
+    fixture.detectChanges();
+
+    expect(component.columnsToDisplay.indexOf('select')).toBe(-1);
+  });
+
+  it('should not display select column is user is dev', () => {
+    localStorage.setItem('role', ROLES.ADMIN);
+    fixture.detectChanges();
+
+    expect(component.columnsToDisplay.indexOf('select')).toBeGreaterThan(-1);
   });
 });

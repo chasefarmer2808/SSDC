@@ -22,7 +22,7 @@ import { Team } from 'app/services/teams/team';
 })
 export class TeamsDashboardComponent implements OnInit {
 
-  columnsToDisplay: Array<string> = ['actions', 'name', 'overview', 'goal'];
+  columnsToDisplay: Array<string> = ['name', 'overview', 'goal', 'actions'];
   teamDataSource: TeamDataSource;
   selectedRows: SelectionModel<Team>;
   deleting: boolean = false;
