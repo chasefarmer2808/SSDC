@@ -26,7 +26,7 @@ const lettersOnlyRegex = /^[a-zA-Z\s]+$/;
 })
 export class OfficersDashboardComponent implements OnInit {
 
-  columnsToDisplay: Array<string> = ['actions', 'name', 'role'];
+  columnsToDisplay: Array<string> = ['name', 'role', 'actions'];
   officersDataSource: OfficerDataSource;
   selectedRows: SelectionModel<Officer>;
   deleting: boolean = false;

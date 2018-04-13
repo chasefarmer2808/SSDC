@@ -26,13 +26,15 @@
             </mat-form-field>
           </div>
           <mat-card-actions>
-            <button class="sign-up-button" (click)="toggleSignUpForm()" mat-raised-button color="primary">
-              Sign Up
-            </button>
-            <button class="submit-button" (click)="login(loginForm.value)" mat-raised-button color="accent" [disabled]="loginForm.invalid">
-              <div *ngIf="!loading">Submit</div>
-              <mat-spinner [diameter]="60" *ngIf="loading"></mat-spinner>
-            </button>
+            <div class="flex-center">
+              <button class="sign-up-button" (click)="toggleSignUpForm()" mat-raised-button color="primary">
+                Sign Up
+              </button>
+              <button class="submit-button row-center" (click)="login(loginForm.value)" mat-raised-button color="accent" [disabled]="loginForm.invalid">
+                <div *ngIf="!loading">Submit</div>
+                <mat-spinner [diameter]="30" [strokeWidth]="3" *ngIf="loading"></mat-spinner>
+              </button>
+            </div>
           </mat-card-actions>
         </form>
       </mat-card-content>
@@ -68,13 +70,15 @@
             </mat-form-field>
           </div>
           <mat-card-actions>
-            <button class="sign-up-button" (click)="toggleSignUpForm()" mat-raised-button color="primary">
-              Cancel
-            </button>
-            <button class="signup-button" (click)="createUser()" mat-raised-button color="accent" [disabled]="signUpForm.invalid">
-              <div *ngIf="!loading">Blast off!</div>
-              <mat-spinner [diameter]="60" *ngIf="loading"></mat-spinner>
-            </button>
+            <div class="flex-center">
+              <button class="sign-up-button" (click)="toggleSignUpForm()" mat-raised-button color="primary">
+                Cancel
+              </button>
+              <button class="signup-button row-center" (click)="createUser()" mat-raised-button color="accent" [disabled]="signUpForm.invalid">
+                <div *ngIf="!loading">Blast off!</div>
+                <mat-spinner [diameter]="30" [strokeWidth]="3" *ngIf="loading"></mat-spinner>
+              </button>
+            </div>
           </mat-card-actions>
         </form>
       </mat-card-content>

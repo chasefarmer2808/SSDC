@@ -44,6 +44,11 @@
   justify-content: center;
 }
 
+.row-center {
+  display: flex;
+  justify-content: center;
+}
+
 .slide-center {
   position: relative;
   color: white;

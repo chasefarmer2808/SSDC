@@ -32,7 +32,8 @@ import { KeyDirective } from 'app/directives/key/key.directive';
 import { ClickOutsideDirective } from 'app/directives/click-outside/click-outside.directive';
 import { ScrollInfoDirective } from 'app/directives/onscroll/onscroll.directive';
 
-import { RouteFilterPipe } from 'app/pipes/route-filter/route-filter.pipe';
+import { RouteDataFilterPipe } from 'app/pipes/route-data-filter/route-data-filter.pipe';
+import { RouteGuardFilterPipe } from 'app/pipes/route-guard-filter/route-guard-filter.pipe';
 
 import { RouteGuardService } from './route-guard.service';
 import { AuthService } from '../auth/auth.service';
@@ -66,7 +67,8 @@ describe('RouteGuardService', () => {
         KeyDirective,
         ClickOutsideDirective,
         ScrollInfoDirective,
-        RouteFilterPipe,
+        RouteDataFilterPipe,
+        RouteGuardFilterPipe,
         StatusMessageComponent
       ],
       imports: [
