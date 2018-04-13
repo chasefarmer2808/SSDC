@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
+import { PlatformLocation } from '@angular/common';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,10 +10,28 @@ import { ActivatedRoute } from '@angular/router';
 export class DashboardComponent implements OnInit {
 
   dashboards: Array<any>;
+  showDashButtons: boolean;
 
-  constructor(private router: ActivatedRoute) { }
+  constructor(private activatedRoute: ActivatedRoute, 
+              private router: Router,
+              private location: PlatformLocation) { }
 
   ngOnInit() {
-    this.dashboards = this.router.routeConfig.children;
+    this.showDashButtons = true;
+    this.dashboards = this.activatedRoute.routeConfig.children;
+
+    this.router.events.subscribe((evt) => {
+      if (evt instanceof NavigationEnd) {
+        if (this.onMainMenu()) {
+          this.showDashButtons = true;
+        } else {
+          this.showDashButtons = false;
+        }
+      }
+    });
+  }
+
+  private onMainMenu(): boolean {
+    return this.location.pathname === '/dashboard';
   }
 }

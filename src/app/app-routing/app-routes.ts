@@ -66,15 +66,24 @@ export const routes: Routes = [
     children: [
       {
         path: 'user',
-        component: UserDashboardComponent
+        component: UserDashboardComponent,
+        data: {
+          icon: 'person'
+        }
       },
       {
         path: 'officer',
-        component: OfficersDashboardComponent
+        component: OfficersDashboardComponent,
+        data: {
+          icon: 'star'
+        }
       },
       {
         path: 'team',
-        component: TeamsDashboardComponent
+        component: TeamsDashboardComponent,
+        data: {
+          icon: 'people'
+        }
       }
     ]
   },
