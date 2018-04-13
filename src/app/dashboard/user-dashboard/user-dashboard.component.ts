@@ -21,7 +21,7 @@ import { UserDataSource } from 'app/services/user/user-data-source';
   ]
 })
 export class UserDashboardComponent implements OnInit {
-  columnsToDisplay: Array<string> = ['select', 'username', 'role'];
+  columnsToDisplay: Array<string> = ['username', 'role'];
   usersDataSource: UserDataSource;
   roleOptions: Array<string> = [];
   usersToUpdate: GenericSet<User>;
@@ -48,6 +48,7 @@ export class UserDashboardComponent implements OnInit {
     this.usersDataSource.loadUsers();
     this.roleOptions = this.objectToValueArray(ROLES);
     this.sessionIsAdmin = this.authService.hasRole(ROLES.ADMIN);
+    this.determineSelectColumn();
   }
 
   updateChangeList(username: string) {
@@ -130,6 +131,12 @@ export class UserDashboardComponent implements OnInit {
       if (user.username === username) {
         users.splice(+i, 1);
       }
+    }
+  }
+
+  private determineSelectColumn() {
+    if (this.sessionIsAdmin) {
+      this.columnsToDisplay.push('select');
     }
   }
 }
