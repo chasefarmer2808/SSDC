@@ -28,7 +28,7 @@ describe('NavbarComponent', () => {
   let authService: AuthService;
 
   function loginWithRole(role: string) {
-    let expiresAt = moment().add('20', 'second');
+    let expiresAt = moment().add('1', 'second');
     localStorage.setItem('expires_at', JSON.stringify(expiresAt.valueOf()));
     localStorage.setItem('role', role);
   }
