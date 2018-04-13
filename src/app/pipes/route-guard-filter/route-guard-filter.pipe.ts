@@ -3,6 +3,8 @@ import { Routes } from '@angular/router';
 
 import { AuthService } from 'app/services/auth/auth.service';
 
+import { ROLES } from 'app/services/user/roles';
+
 @Pipe({
   name: 'routeGuardFilter',
   pure: false
@@ -13,8 +15,12 @@ export class RouteGuardFilterPipe implements PipeTransform {
 
   transform(routes: Routes): Routes {
     let visibleRoutes = routes.filter(route => {
+      let isLoggedIn = this.authService.isLoggedIn();
+      let canActivate = this.authService.hasRole(ROLES.DEV) || 
+                        this.authService.hasRole(ROLES.ADMIN) 
+                        
       if (route.canActivate) {
-        if (this.authService.isLoggedIn()) {
+        if (isLoggedIn && canActivate) {
           return route.data;
         }
       } else {
