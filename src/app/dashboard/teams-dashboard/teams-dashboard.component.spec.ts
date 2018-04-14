@@ -6,6 +6,7 @@ import { ReactiveFormsModule } from '@angular/forms'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Observable } from 'rxjs/Observable';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { TeamsService } from 'app/services/teams/teams.service';
 
@@ -22,7 +23,8 @@ describe('TeamsDashboardComponent', () => {
       providers: [ TeamsService ],
       imports: [
         HttpClientTestingModule,
-        MaterialModule
+        MaterialModule,
+        RouterTestingModule
       ]
     })
     .compileComponents();

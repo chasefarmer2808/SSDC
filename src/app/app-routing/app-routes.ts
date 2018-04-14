@@ -67,6 +67,7 @@ export const routes: Routes = [
       {
         path: 'user',
         component: UserDashboardComponent,
+        canActivate: [RouteGuardService],
         data: {
           icon: 'person'
         }
@@ -74,6 +75,7 @@ export const routes: Routes = [
       {
         path: 'officer',
         component: OfficersDashboardComponent,
+        canActivate: [RouteGuardService],
         data: {
           icon: 'star'
         }
@@ -81,6 +83,7 @@ export const routes: Routes = [
       {
         path: 'team',
         component: TeamsDashboardComponent,
+        canActivate: [RouteGuardService],
         data: {
           icon: 'people'
         }

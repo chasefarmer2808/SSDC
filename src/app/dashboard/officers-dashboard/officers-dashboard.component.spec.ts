@@ -6,6 +6,7 @@ import { ReactiveFormsModule } from '@angular/forms'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Observable } from 'rxjs/Observable';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { OfficersService } from 'app/services/officers/officers.service';
 
@@ -42,7 +43,8 @@ describe('OfficersDashboardComponent', () => {
         HttpClientTestingModule,
         MaterialModule,
         BrowserAnimationsModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        RouterTestingModule
       ]
     })
     .compileComponents();

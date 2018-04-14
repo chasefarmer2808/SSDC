@@ -4,6 +4,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { MaterialModule } from 'app/modules/material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Observable } from 'rxjs/Observable';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { UserDashboardComponent } from './user-dashboard.component';
 import { ProfileComponent } from './profile/profile.component';
@@ -35,7 +36,8 @@ describe('UserDashboardComponent', () => {
       imports: [
         HttpClientTestingModule,
         MaterialModule,
-        BrowserAnimationsModule
+        BrowserAnimationsModule,
+        RouterTestingModule
       ]
     })
     .compileComponents();

@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import * as moment from 'moment';
 
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/shareReplay';
-
 
 import { User } from '../user/user';
 import { AuthRes } from './authres';
@@ -17,7 +17,7 @@ export class AuthService {
 
   private loginUrl: string = `${environment.authUrl}/login`
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
   private setSession(authRes: AuthRes) {
     const expiresAt = moment().add(authRes.expiresIn, 'second');
@@ -25,7 +25,13 @@ export class AuthService {
     localStorage.setItem('expires_at', JSON.stringify(expiresAt.valueOf()));
     localStorage.setItem('username', authRes.username);
     localStorage.setItem('role', authRes.role);
-    
+
+    let expireTimeInMilliSec: number = parseInt(authRes.expiresIn) * 1000;
+
+    setTimeout(() => {
+      this.logout();
+      this.router.navigate(['login']);
+    }, expireTimeInMilliSec);
   }
 
   login(user: User): Observable<any> {
