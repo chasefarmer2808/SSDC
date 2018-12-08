@@ -1,33 +1,19 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AppRoutingModule } from './app-routing/app-routing.module';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from 'app/services/auth/auth.interceptor';
+import { AppRoutingModule } from 'app/app-routing/app-routing.module';
+import { MaterialModule } from 'app/modules/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { Ng2PageScrollModule } from 'ng2-page-scroll';
-import { MaterialModule } from './modules/material.module';
+import { ComponentModule } from './modules/component.module';
 
 import { AppComponent } from './app.component';
-import { NavbarComponent } from './navbar/navbar.component';
-import { HomeComponent } from './home/home.component';
-import { EventsComponent } from './events/events.component';
-import { ContactComponent } from './contact/contact.component';
-import { OfficersComponent } from './officers/officers.component';
-import { FooterComponent } from './footer/footer.component';
-import { GalleryComponent } from './gallery/gallery.component';
-import { GalleryGridComponent } from './gallery/gallery-grid/gallery-grid.component';
-import { ImageDialogComponent } from './gallery/gallery-grid/image-dialog/image-dialog.component';
-import { TeamsComponent } from './teams/teams.component';
-import { LoginComponent } from './login/login.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
 
 import { KeyDirective } from './directives/key/key.directive';
 import { ClickOutsideDirective } from './directives/click-outside/click-outside.directive';
 import { ScrollInfoDirective } from './directives/onscroll/onscroll.directive';
-
-import { RouteDataFilterPipe } from './pipes/route-data-filter/route-data-filter.pipe';
 
 import { TeamsService } from './services/teams/teams.service';
 import { OfficersService } from 'app/services/officers/officers.service';
@@ -41,32 +27,13 @@ import { ProfileComponent, ChangePasswordDialog } from './dashboard/user-dashboa
 import { StatusMessageComponent } from './status-message/status-message.component';
 import { ImgFormControlComponent } from './dashboard/officers-dashboard/imgformcontrol/imgformcontrol.component';
 import { TeamDataDialogComponent } from './dashboard/teams-dashboard/team-data-dialog/team-data-dialog.component';
-import { RouteGuardFilterPipe } from './pipes/route-guard-filter/route-guard-filter.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavbarComponent,
-    HomeComponent,
-    EventsComponent,
-    ContactComponent,
     ClickOutsideDirective,
     ScrollInfoDirective,
-    OfficersComponent,
-    AppComponent,
-    NavbarComponent,
-    HomeComponent,
-    EventsComponent,
-    ContactComponent,
-    RouteDataFilterPipe,
     KeyDirective,
-    LoginComponent,
-    DashboardComponent,
-    GalleryComponent,
-    TeamsComponent,
-    ImageDialogComponent,
-    FooterComponent,
-    GalleryGridComponent,
     UserDashboardComponent,
     OfficersDashboardComponent,
     TeamsDashboardComponent,
@@ -76,21 +43,19 @@ import { RouteGuardFilterPipe } from './pipes/route-guard-filter/route-guard-fil
     StatusMessageComponent,
     ImgFormControlComponent,
     TeamDataDialogComponent,
-    RouteGuardFilterPipe
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    AppRoutingModule,
     HttpModule,
     HttpClientModule,
-    Ng2PageScrollModule,
+    ComponentModule,
+    AppRoutingModule,
+    MaterialModule,
     FormsModule,
-    ReactiveFormsModule,
-    MaterialModule
+    ReactiveFormsModule
   ],
   entryComponents: [ 
-    ImageDialogComponent, 
     ChangePasswordDialog,
     OfficerDialog,
     TeamDataDialogComponent
