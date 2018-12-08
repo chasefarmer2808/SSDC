@@ -15,7 +15,7 @@ module.exports = function (config) {
       require('@angular-devkit/build-angular/plugins/karma')
     ],
     files: [
-      { pattern: './node_modules/@angular/material/prebuild-themes/indigo-pink.css', included: true, watched: true },
+      { pattern: './node_modules/@angular/material/prebuilt-themes/indigo-pink.css', included: true, watched: true },
       { pattern: './src/assets/**', watched: false, included: false, nocache: false, served: true},
       { pattern: './server/assets/**/*.json', watched: false, included: false, nocache: false, served: true},
       { pattern: './src/assets/**/*.jpg', watched: false, included: false, nocache: false, served: true},
@@ -53,9 +53,10 @@ module.exports = function (config) {
     }
   };
 
-  // if (process.env.TRAVIS) {
-  //   configuration.browsers = ['Chrome_travis_ci'];
-  // }
+  if (process.env.TRAVIS) {
+    configuration.singleRun = true
+    // configuration.browsers = ['Chrome_travis_ci'];
+  }
 
   config.set(configuration);
 };
