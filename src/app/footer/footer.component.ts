@@ -10,7 +10,8 @@ import { RouteDataFilterPipe } from '../pipes/route-data-filter/route-data-filte
 })
 export class FooterComponent implements OnInit {
 
-  email:string;
+  emailAddr:string;
+  fbLink:string;
   address:string;
   name:string;
   office:string;
@@ -20,7 +21,8 @@ export class FooterComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.email = 'ufssdc@gmail.com';
+    this.fbLink = 'https://www.facebook.com/groups/ufssdc/';
+    this.emailAddr = 'ufssdc@gmail.com';
     this.name = 'SSDC';
     this.copywriteYear = new Date().getFullYear();
     this.office = 'NEB 225';

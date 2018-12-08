@@ -1,4 +1,4 @@
-<nav class="navbar nav-font" clickOutside (clickedOutside)="closeNav()" [ngClass]="navClassHandler()">
+<nav class="navbar nav-font" clickOutside (clickedOutside)="closeNav(false, '')" [ngClass]="navClassHandler()">
   <div class="navbar-container">
     <div class="nav-logo"></div>
     <div class="nav-burger" (click)="toggleNav()"><i class="fa fa-bars fa-2x" aria-hidden="true"></i></div>
