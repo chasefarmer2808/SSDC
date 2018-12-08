@@ -1,7 +1,7 @@
 language: node_js
 node_js:
 - lts/*
-script: node_modules/karma/bin/karma start karma.conf.js --single-run
+script: ng test --karma-config karma.conf.js
 before_install:
 - export DISPLAY=:99.0
 - sh -e /etc/init.d/xvfb start
